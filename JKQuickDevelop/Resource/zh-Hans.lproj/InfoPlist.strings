@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  JKQuickDevelop
+
+  Created by dengjie on 2017/1/20.
+  Copyright © 2017年 dengjie. All rights reserved.
+*/
+
+// 显示的名称
+CFBundleDisplayName = "中文名字";

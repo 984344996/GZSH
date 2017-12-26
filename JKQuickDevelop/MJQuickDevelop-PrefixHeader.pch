@@ -1,0 +1,16 @@
+//
+//  MJQuickDevelop-PrefixHeader.pch
+//  JKQuickDevelop
+//
+//  Created by dengjie on 2017/1/19.
+//  Copyright © 2017年 dengjie. All rights reserved.
+//
+
+#ifndef MJQuickDevelop_PrefixHeader_pch
+#define MJQuickDevelop_PrefixHeader_pch
+
+#ifdef __OBJC__
+#import "JKAppGlobalHeader.h"
+#endif
+
+#endif /* MJQuickDevelop_PrefixHeader_pch */

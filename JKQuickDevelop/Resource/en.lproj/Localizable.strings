@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  JKQuickDevelop
+
+  Created by dengjie on 2017/1/20.
+  Copyright © 2017年 dengjie. All rights reserved.
+*/
+
+"JKLoadingPromptTitle" = "Loading..."; //加载提示文字
+
+//版本更新
+"Version update" = "Version update"; //版本更新
+"Not Now" = "Not Now"; //暂不更新
+"Ingnore This Version" = "Ingnore This Version"; //跳过此版本
+"Upgrade Now" = "Upgrade Now"; //现在更新
+
+//按钮
+"Skip" = "Skip"; //跳过

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" userLabel="Notification View Controller" customClass="NotificationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HbA-Gm-6ki">
+                                <rect key="frame" x="11" y="25" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="4zy-o8-9qU"/>
+                                    <constraint firstAttribute="height" constant="100" id="pRC-Ge-ZMo"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAs-mU-aAi">
+                                <rect key="frame" x="131" y="25" width="153" height="19.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmc-w9-hH0">
+                                <rect key="frame" x="131" y="52.5" width="169" height="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" white="0.38009438195398876" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxa-3s-3Hl">
+                                <rect key="frame" x="131" y="108.5" width="169" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.25948283585859699" green="0.25948283585859699" blue="0.25948283585859699" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.45882353186607361" green="0.74901962280273438" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gxa-3s-3Hl" firstAttribute="leading" secondItem="HbA-Gm-6ki" secondAttribute="trailing" constant="20" id="9sL-ta-b3a"/>
+                            <constraint firstItem="RAs-mU-aAi" firstAttribute="top" secondItem="HbA-Gm-6ki" secondAttribute="top" id="Eoj-kd-j22"/>
+                            <constraint firstItem="gxa-3s-3Hl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cmc-w9-hH0" secondAttribute="bottom" constant="10" id="F2r-3h-0VN"/>
+                            <constraint firstItem="cmc-w9-hH0" firstAttribute="top" secondItem="RAs-mU-aAi" secondAttribute="bottom" constant="8" id="JoA-yX-ptv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RAs-mU-aAi" secondAttribute="trailing" constant="20" id="RIT-op-SIy"/>
+                            <constraint firstItem="HbA-Gm-6ki" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="b8a-Jn-f45"/>
+                            <constraint firstItem="HbA-Gm-6ki" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-5" id="e39-mp-RG2"/>
+                            <constraint firstItem="RAs-mU-aAi" firstAttribute="leading" secondItem="HbA-Gm-6ki" secondAttribute="trailing" constant="20" id="heO-Cb-LG3"/>
+                            <constraint firstAttribute="trailing" secondItem="gxa-3s-3Hl" secondAttribute="trailing" constant="20" id="ims-Fo-pH6"/>
+                            <constraint firstItem="cmc-w9-hH0" firstAttribute="leading" secondItem="HbA-Gm-6ki" secondAttribute="trailing" constant="20" id="jv5-kK-0Nt"/>
+                            <constraint firstItem="gxa-3s-3Hl" firstAttribute="bottom" secondItem="HbA-Gm-6ki" secondAttribute="bottom" id="py3-M4-Gu2"/>
+                            <constraint firstAttribute="trailing" secondItem="cmc-w9-hH0" secondAttribute="trailing" constant="20" id="wS3-fM-FK5"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="150"/>
+                    <connections>
+                        <outlet property="notificationContent" destination="cmc-w9-hH0" id="P3w-4G-bGI"/>
+                        <outlet property="notificationImage" destination="HbA-Gm-6ki" id="M4V-tE-JzB"/>
+                        <outlet property="notificationTime" destination="gxa-3s-3Hl" id="rOB-Ze-kvx"/>
+                        <outlet property="notificationTitle" destination="RAs-mU-aAi" id="Hjw-Jt-s62"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
