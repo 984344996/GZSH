@@ -63,7 +63,8 @@
 }
 
 - (void)initView{
-    self.backgroundColor = [UIColor clearColor];
+    self.userInteractionEnabled = YES;
+    self.backgroundColor        = [UIColor clearColor];
     // 跳过
     self.label               = [[UILabel alloc] initWithFrame:self.bounds];
     self.label.font          = [UIFont systemFontOfSize:11];

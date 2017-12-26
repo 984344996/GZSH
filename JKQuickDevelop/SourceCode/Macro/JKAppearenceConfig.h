@@ -16,7 +16,7 @@
 
 // 主色调
 // 导航按钮 UITabBar
-#define kNavBarThemeColor             RGB(250, 251, 253)
+#define kNavBarThemeColor             RGB(29, 184, 69)
 #define kTabBarTintColor              RGB(251, 216, 95)
 #define kTabBarBarTintColor           RGB(255, 255, 255)
 

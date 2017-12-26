@@ -17,6 +17,7 @@
 #import "StartPageViewController.h"
 #import "SplashViewController.h"
 #import "LoginViewController.h"
+#import <JKCategories.h>
 
 @implementation JKBaseAppDelegate
 
@@ -235,7 +236,17 @@
  */
 - (void)configAppearance
 {
-    //UINavigationBar
+    // UINavigationBar
+    
+    // 用背景图片做NavigationBar
+    /*
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage jk_imageWithColor:kNavBarThemeColor]
+                                      forBarPosition:UIBarPositionAny
+                                          barMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+     */
+    
     [[UINavigationBar appearance] setBarTintColor:kNavBarThemeColor];
     [[UINavigationBar appearance] setTintColor:kBlackColor];
     NSShadow *shadow = [[NSShadow alloc] init];

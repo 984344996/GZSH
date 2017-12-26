@@ -11,6 +11,10 @@
 #import <AFNetworking.h>
 
 @interface JKBaseViewController ()
+/// Nav分隔线
+@property (nonatomic , weak , readonly) UIImageView * navSystemLine;
+/// TabBar栏分隔线
+@property (nonatomic , weak , readonly) UIImageView * tabSystemLine;
 @end
 
 @implementation JKPageLoadingView
@@ -119,6 +123,16 @@
     [self addObserver];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (![self showNavigationBarBottomLine]) {
+        [self hideNavBottomLine];
+    }
+    if (![self showTabBarTopLine]) {
+        [self hideTabBarTopLine];
+    }
+}
+
 - (void)dealloc{
     [self removeObserver];
 }
@@ -134,10 +148,19 @@
 }
 
 #pragma mark - 初始化设置
+
 - (void)configView{}
 - (void)configData{}
 - (void)configLayout{}
 - (void)configEvent{}
+
+- (BOOL)showNavigationBarBottomLine{
+    return NO;
+}
+
+- (BOOL)showTabBarTopLine{
+    return YES;
+}
 
 #pragma mark - 网络状态监听
 - (void)statusChanged:(NSNotification *)notification{
@@ -170,6 +193,8 @@
 - (void)statusToReachableWiFi{
 
 }
+
+#pragma mark - Navigation Bar 添加按钮
 
 - (void)addUIBarButtonItemImage:(NSString *)name isLeft:(BOOL)isLeft target:(id)target action:(SEL)action{
     CGSize size = CGSizeMake(20, 20);
@@ -233,5 +258,33 @@
 - (NSString *)loadingPrompText{
     return NSLocalizedString(@"JKLoadingPromptTitle", nil);
 }
+
+#pragma mark - Navigation Tabbar界面调整
+
+- (UIImageView *)findHairLine:(UIView *)view{
+    if ([view isKindOfClass:UIImageView.class] && view.bounds.size.height <= 1.0) {
+        return (UIImageView *)view;
+    }
+    for (UIView *subview in view.subviews)
+    {
+        UIImageView *imageView = [self findHairLine:subview];
+        if (imageView)
+        {
+            return imageView;
+        }
+    }
+    return nil;
+}
+
+- (void)hideNavBottomLine{
+    _navSystemLine = [self findHairLine:self.navigationController.navigationBar];
+    self.navSystemLine.hidden = YES;
+}
+
+- (void)hideTabBarTopLine{
+    _tabSystemLine = [self findHairLine:self.tabBarController.tabBar];
+    self.tabSystemLine.hidden = YES;
+}
+
 
 @end

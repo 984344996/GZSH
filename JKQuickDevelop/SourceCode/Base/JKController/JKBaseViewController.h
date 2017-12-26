@@ -57,6 +57,16 @@ typedef NS_ENUM(NSInteger,LoadingViewType){
 
 
 /**
+ 显示NavigationBar 下面线
+ */
+- (BOOL)showNavigationBarBottomLine;
+
+/**
+ 显示TabBar 上面线
+ */
+- (BOOL)showTabBarTopLine;
+
+/**
  网络不可用
  */
 - (void)statusToNotReachable;
