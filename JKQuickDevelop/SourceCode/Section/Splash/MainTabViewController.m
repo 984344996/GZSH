@@ -7,10 +7,11 @@
 //
 
 #import "MainTabViewController.h"
-#import "HomeViewController.h"
-#import "AccountViewController.h"
-#import "MessageViewController.h"
-#import "MyCityViewController.h"
+#import "SHMainPageViewController.h"
+#import "SHCircleViewController.h"
+#import "SHAddressViewController.h"
+#import "SHActivityViewController.h"
+#import "SHMemberViewController.h"
 
 @interface MainTabViewController()
 @end
@@ -18,17 +19,20 @@
 @implementation MainTabViewController
 
 - (void)configChildVC{
-    HomeViewController *homeVC = [[HomeViewController alloc] init];
-    [self addChildViewController:homeVC title:@"闲鱼" imageNormal:@"home_normal" imageSelect:@"home_highlight" hasNav:YES];
+    SHMainPageViewController *mainPageVC = [[SHMainPageViewController alloc] init];
+    [self addChildViewController:mainPageVC title:@"主页" imageNormal:@"Home_Icon_House_dark" imageSelect:@"Home_Icon_House_Bright" hasNav:YES];
     
-    MyCityViewController *mycityVC = [[MyCityViewController alloc] init];
-    [self addChildViewController:mycityVC title:@"鱼塘" imageNormal:@"mycity_normal" imageSelect:@"mycity_highlight" hasNav:YES];
+    SHCircleViewController *circleVC = [[SHCircleViewController alloc] init];
+    [self addChildViewController:circleVC title:@"商会圈" imageNormal:@"Home_Icon_AddressBook_Dark" imageSelect:@"Home_Icon_AddressBook_Bright" hasNav:YES];
     
-    MessageViewController *messageVC = [[MessageViewController alloc] init];
-    [self addChildViewController:messageVC title:@"消息" imageNormal:@"message_normal" imageSelect:@"message_highlight" hasNav:YES];
+    SHAddressViewController *addressVC = [[SHAddressViewController alloc] init];
+    [self addChildViewController:addressVC title:@"通讯录" imageNormal:@"Home_Icon_AddressBook_Dark" imageSelect:@"Home_Icon_AddressBook_Bright" hasNav:YES];
     
-    AccountViewController *accountVC = [[AccountViewController alloc] init];
-    [self addChildViewController:accountVC title:@"我的" imageNormal:@"account_normal" imageSelect:@"account_highlight" hasNav:YES];
+    SHActivityViewController *activityVC = [[SHActivityViewController alloc] init];
+    [self addChildViewController:activityVC title:@"会议活动" imageNormal:@"Home_Icon_Activity_Dark" imageSelect:@"Home_Icon_Activity_Bright" hasNav:YES];
+    
+    SHMemberViewController *memberVC = [[SHMemberViewController alloc] init];
+    [self addChildViewController:memberVC title:@"个人中心" imageNormal:@"Home_Icon_Vip_Dark" imageSelect:@"Home_Icon_Vip_Bright" hasNav:YES];
 }
 
 @end

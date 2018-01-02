@@ -27,11 +27,11 @@
 
 // 开关配置
 #define kJKSupportNetOberve 1
-#define kJKSupportRater 1
+#define kJKSupportRater 0
 #define kJKSupportUpgrade 0
-#define kJKSupportPush 1
-#define kJKUsingStartPage 1
-#define kJKUsingSplahPage 1
+#define kJKSupportPush 0
+#define kJKUsingStartPage 0
+#define kJKUsingSplahPage 0
 #define kJKUsingLoginPage 1
 
 #endif /* JKSwitchMarco_h */

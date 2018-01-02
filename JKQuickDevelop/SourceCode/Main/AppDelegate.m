@@ -44,7 +44,7 @@
     if ([LoginViewController checkIfNeedLogin] && kJKUsingLoginPage) {
         enterVC = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
     }else{
-        enterVC = [[MainTabViewController alloc] initWithType:JKTabBarTypeCenterRise];
+        enterVC = [[MainTabViewController alloc] initWithType:JKTabBarTypeNormal];
     }
     [self replaceRootViewController:enterVC animated:YES];
 }

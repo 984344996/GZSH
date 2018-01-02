@@ -16,7 +16,6 @@
 		352F236B1E52FF7E0063C511 /* temp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 352F236A1E52FF7E0063C511 /* temp.plist */; };
 		352F236E1E530C1F0063C511 /* JKAppConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F236D1E530C1F0063C511 /* JKAppConst.m */; };
 		352F23721E5434D10063C511 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F23711E5434D10063C511 /* MainTabViewController.m */; };
-		352F23751E5443580063C511 /* CustomAniamtionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F23741E5443580063C511 /* CustomAniamtionViewController.m */; };
 		352F23791E553FE30063C511 /* JKTickDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F23781E553FE30063C511 /* JKTickDownButton.m */; };
 		35323E9A1E6D3D8500FF7BF0 /* MZIMAudioPlayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35323E771E6D3D8500FF7BF0 /* MZIMAudioPlayHelper.m */; };
 		35323E9B1E6D3D8500FF7BF0 /* MZIMChatInputBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35323E791E6D3D8500FF7BF0 /* MZIMChatInputBar.m */; };
@@ -73,9 +72,6 @@
 		3563803C1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563803A1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m */; };
 		356380431FF629E800A01869 /* JKTextField_Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = 356380421FF629E800A01869 /* JKTextField_Padding.m */; };
 		356380491FFB1CA200A01869 /* CopyAbleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 356380471FFB1CA100A01869 /* CopyAbleLabel.m */; };
-		3563804C1FFB1FF800A01869 /* TableViewCellTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563804B1FFB1FF800A01869 /* TableViewCellTest1.m */; };
-		356380501FFB200B00A01869 /* TableViewCellTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563804E1FFB200B00A01869 /* TableViewCellTest2.m */; };
-		356380511FFB200B00A01869 /* TableViewCellTest2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3563804F1FFB200B00A01869 /* TableViewCellTest2.xib */; };
 		357A41AE1EAF310A00340180 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A41AD1EAF310A00340180 /* NotificationService.m */; };
 		357A41B21EAF310A00340180 /* JKCustomPushService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 357A41AA1EAF310A00340180 /* JKCustomPushService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		357A41BD1EAF338800340180 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357A41BC1EAF338800340180 /* UserNotifications.framework */; };
@@ -91,14 +87,38 @@
 		358B44E11E4C148E00A0DC93 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 358B44E01E4C148E00A0DC93 /* SplashViewController.m */; };
 		358B44E51E4C151200A0DC93 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 358B44E41E4C151200A0DC93 /* LoginViewController.m */; };
 		35A323461E34830800787AFD /* JKCenterRiseTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A323451E34830800787AFD /* JKCenterRiseTabBar.m */; };
+		35C172621FFBA77700607658 /* SHMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172611FFBA77700607658 /* SHMainPageViewController.m */; };
+		35C172651FFBA7BD00607658 /* SHCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172641FFBA7BD00607658 /* SHCircleViewController.m */; };
+		35C172681FFBA7CB00607658 /* SHAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172671FFBA7CB00607658 /* SHAddressViewController.m */; };
+		35C1726B1FFBA7D800607658 /* SHActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1726A1FFBA7D800607658 /* SHActivityViewController.m */; };
+		35C1726E1FFBA7ED00607658 /* SHMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1726D1FFBA7ED00607658 /* SHMemberViewController.m */; };
+		35C172711FFBAF0000607658 /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172701FFBAF0000607658 /* ResetPasswordViewController.m */; };
+		35C172741FFBAFCF00607658 /* ApplicationStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172731FFBAFCF00607658 /* ApplicationStep1ViewController.m */; };
+		35C172771FFBB02300607658 /* ApplicationStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172761FFBB02300607658 /* ApplicationStep2ViewController.m */; };
+		35C1727A1FFBB06600607658 /* SHSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172791FFBB06600607658 /* SHSettingViewController.m */; };
+		35C1727D1FFBB0EF00607658 /* MyCompanyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1727C1FFBB0EF00607658 /* MyCompanyInfoViewController.m */; };
+		35C172801FFBB10300607658 /* MyCompanyInfoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1727F1FFBB10300607658 /* MyCompanyInfoEditViewController.m */; };
+		35C172831FFBB14400607658 /* MySupplyAndDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172821FFBB14400607658 /* MySupplyAndDemandViewController.m */; };
+		35C172861FFBB16B00607658 /* MySupplyAndDemandEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172851FFBB16B00607658 /* MySupplyAndDemandEditViewController.m */; };
+		35C172891FFBB23300607658 /* SHActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172881FFBB23300607658 /* SHActivityDetailViewController.m */; };
+		35C1728C1FFBB27F00607658 /* ApplicationStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1728B1FFBB27F00607658 /* ApplicationStep3ViewController.m */; };
+		35C1728F1FFBB32100607658 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1728E1FFBB32100607658 /* PersonInfoViewController.m */; };
+		35C172921FFBB33D00607658 /* CompanyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172911FFBB33D00607658 /* CompanyInfoViewController.m */; };
+		35C172951FFBB37800607658 /* SupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172941FFBB37800607658 /* SupplyInfoViewController.m */; };
+		35C172981FFBB3E700607658 /* NewsNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172971FFBB3E700607658 /* NewsNoticeViewController.m */; };
+		35C1729B1FFBB40C00607658 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1729A1FFBB40C00607658 /* NewsViewController.m */; };
+		35C1729E1FFBB41D00607658 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1729D1FFBB41D00607658 /* NoticeViewController.m */; };
+		35C172A11FFBB42D00607658 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172A01FFBB42D00607658 /* NewsDetailViewController.m */; };
+		35C172A41FFBB44400607658 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172A31FFBB44400607658 /* NoticeDetailViewController.m */; };
+		35C172A71FFBB49D00607658 /* SendMomentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172A61FFBB49D00607658 /* SendMomentViewController.m */; };
+		35C172AA1FFBB4B300607658 /* MomentNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172A91FFBB4B300607658 /* MomentNewsViewController.m */; };
+		35C172AD1FFBB4D400607658 /* MomentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172AC1FFBB4D400607658 /* MomentDetailViewController.m */; };
+		35C172B01FFBB4F600607658 /* ContactSHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172AF1FFBB4F600607658 /* ContactSHViewController.m */; };
+		35C172B31FFBB50E00607658 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172B21FFBB50E00607658 /* FeedbackViewController.m */; };
 		35EA976F1E35FB6700BD07CF /* JKQuickDevelopUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA976E1E35FB6700BD07CF /* JKQuickDevelopUITests.m */; };
 		35EA97771E360C2200BD07CF /* JKNetworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA97761E360C2200BD07CF /* JKNetworkTest.m */; };
-		35EA97831E372BBC00BD07CF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA97821E372BBC00BD07CF /* HomeViewController.m */; };
 		35EA97891E372C1F00BD07CF /* JKBaseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA97881E372C1F00BD07CF /* JKBaseAppDelegate.m */; };
 		35EA978B1E372CB700BD07CF /* Temp.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35EA978A1E372CB700BD07CF /* Temp.xcassets */; };
-		35EA978E1E372DAB00BD07CF /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA978D1E372DAB00BD07CF /* AccountViewController.m */; };
-		35EA97911E372DC000BD07CF /* MyCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA97901E372DC000BD07CF /* MyCityViewController.m */; };
-		35EA97941E372DE200BD07CF /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA97931E372DE200BD07CF /* MessageViewController.m */; };
 		35F0691A1E52E098009DBEE4 /* PathUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F069171E52E098009DBEE4 /* PathUtility.m */; };
 		35F0691B1E52E098009DBEE4 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F069191E52E098009DBEE4 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		35F0691D1E52E0D4009DBEE4 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F0691C1E52E0D4009DBEE4 /* libicucore.tbd */; };
@@ -178,8 +198,6 @@
 		352F236D1E530C1F0063C511 /* JKAppConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKAppConst.m; path = SourceCode/Macro/JKAppConst.m; sourceTree = "<group>"; };
 		352F23701E5434D10063C511 /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabViewController.h; path = SourceCode/Section/Splash/MainTabViewController.h; sourceTree = "<group>"; };
 		352F23711E5434D10063C511 /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabViewController.m; path = SourceCode/Section/Splash/MainTabViewController.m; sourceTree = "<group>"; };
-		352F23731E5443580063C511 /* CustomAniamtionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAniamtionViewController.h; path = Temp/CustomAniamtionViewController.h; sourceTree = "<group>"; };
-		352F23741E5443580063C511 /* CustomAniamtionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAniamtionViewController.m; path = Temp/CustomAniamtionViewController.m; sourceTree = "<group>"; };
 		352F23771E553FE30063C511 /* JKTickDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKTickDownButton.h; path = SourceCode/Base/JKCustomView/JKTickDownButton.h; sourceTree = "<group>"; };
 		352F23781E553FE30063C511 /* JKTickDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKTickDownButton.m; path = SourceCode/Base/JKCustomView/JKTickDownButton.m; sourceTree = "<group>"; };
 		35323E761E6D3D8500FF7BF0 /* MZIMAudioPlayHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZIMAudioPlayHelper.h; path = SourceCode/Main/IM/MZIMAudioPlayHelper.h; sourceTree = "<group>"; };
@@ -323,11 +341,6 @@
 		356380421FF629E800A01869 /* JKTextField_Padding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKTextField_Padding.m; sourceTree = "<group>"; };
 		356380471FFB1CA100A01869 /* CopyAbleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CopyAbleLabel.m; path = Vendor/UIView/CopyAbleLabel.m; sourceTree = "<group>"; };
 		356380481FFB1CA200A01869 /* CopyAbleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CopyAbleLabel.h; path = Vendor/UIView/CopyAbleLabel.h; sourceTree = "<group>"; };
-		3563804A1FFB1FF800A01869 /* TableViewCellTest1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellTest1.h; sourceTree = "<group>"; };
-		3563804B1FFB1FF800A01869 /* TableViewCellTest1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellTest1.m; sourceTree = "<group>"; };
-		3563804D1FFB200B00A01869 /* TableViewCellTest2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellTest2.h; sourceTree = "<group>"; };
-		3563804E1FFB200B00A01869 /* TableViewCellTest2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellTest2.m; sourceTree = "<group>"; };
-		3563804F1FFB200B00A01869 /* TableViewCellTest2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellTest2.xib; sourceTree = "<group>"; };
 		357A41AA1EAF310A00340180 /* JKCustomPushService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JKCustomPushService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		357A41AC1EAF310A00340180 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		357A41AD1EAF310A00340180 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
@@ -356,21 +369,69 @@
 		35A323441E34830800787AFD /* JKCenterRiseTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKCenterRiseTabBar.h; path = SourceCode/Base/JKCustomView/JKCenterRiseTabBar.h; sourceTree = "<group>"; };
 		35A323451E34830800787AFD /* JKCenterRiseTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKCenterRiseTabBar.m; path = SourceCode/Base/JKCustomView/JKCenterRiseTabBar.m; sourceTree = "<group>"; };
 		35A323541E348C3B00787AFD /* JKAppGlobalHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JKAppGlobalHeader.h; path = SourceCode/Macro/JKAppGlobalHeader.h; sourceTree = "<group>"; };
+		35C172601FFBA77700607658 /* SHMainPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHMainPageViewController.h; path = SourceCode/Section/MainPage/SHMainPageViewController.h; sourceTree = "<group>"; };
+		35C172611FFBA77700607658 /* SHMainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHMainPageViewController.m; path = SourceCode/Section/MainPage/SHMainPageViewController.m; sourceTree = "<group>"; };
+		35C172631FFBA7BD00607658 /* SHCircleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHCircleViewController.h; path = SourceCode/Section/MainPage/SHCircleViewController.h; sourceTree = "<group>"; };
+		35C172641FFBA7BD00607658 /* SHCircleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHCircleViewController.m; path = SourceCode/Section/MainPage/SHCircleViewController.m; sourceTree = "<group>"; };
+		35C172661FFBA7CB00607658 /* SHAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHAddressViewController.h; path = SourceCode/Section/MainPage/SHAddressViewController.h; sourceTree = "<group>"; };
+		35C172671FFBA7CB00607658 /* SHAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHAddressViewController.m; path = SourceCode/Section/MainPage/SHAddressViewController.m; sourceTree = "<group>"; };
+		35C172691FFBA7D800607658 /* SHActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHActivityViewController.h; path = SourceCode/Section/MainPage/SHActivityViewController.h; sourceTree = "<group>"; };
+		35C1726A1FFBA7D800607658 /* SHActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHActivityViewController.m; path = SourceCode/Section/MainPage/SHActivityViewController.m; sourceTree = "<group>"; };
+		35C1726C1FFBA7ED00607658 /* SHMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHMemberViewController.h; path = SourceCode/Section/MainPage/SHMemberViewController.h; sourceTree = "<group>"; };
+		35C1726D1FFBA7ED00607658 /* SHMemberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHMemberViewController.m; path = SourceCode/Section/MainPage/SHMemberViewController.m; sourceTree = "<group>"; };
+		35C1726F1FFBAF0000607658 /* ResetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ResetPasswordViewController.h; path = SourceCode/Section/MainPage/ResetPasswordViewController.h; sourceTree = "<group>"; };
+		35C172701FFBAF0000607658 /* ResetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ResetPasswordViewController.m; path = SourceCode/Section/MainPage/ResetPasswordViewController.m; sourceTree = "<group>"; };
+		35C172721FFBAFCF00607658 /* ApplicationStep1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApplicationStep1ViewController.h; path = SourceCode/Section/MainPage/ApplicationStep1ViewController.h; sourceTree = "<group>"; };
+		35C172731FFBAFCF00607658 /* ApplicationStep1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep1ViewController.m; path = SourceCode/Section/MainPage/ApplicationStep1ViewController.m; sourceTree = "<group>"; };
+		35C172751FFBB02300607658 /* ApplicationStep2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApplicationStep2ViewController.h; path = SourceCode/Section/MainPage/ApplicationStep2ViewController.h; sourceTree = "<group>"; };
+		35C172761FFBB02300607658 /* ApplicationStep2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep2ViewController.m; path = SourceCode/Section/MainPage/ApplicationStep2ViewController.m; sourceTree = "<group>"; };
+		35C172781FFBB06600607658 /* SHSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHSettingViewController.h; path = SourceCode/Section/MainPage/SHSettingViewController.h; sourceTree = "<group>"; };
+		35C172791FFBB06600607658 /* SHSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHSettingViewController.m; path = SourceCode/Section/MainPage/SHSettingViewController.m; sourceTree = "<group>"; };
+		35C1727B1FFBB0EF00607658 /* MyCompanyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyCompanyInfoViewController.h; path = SourceCode/Section/MainPage/MyCompanyInfoViewController.h; sourceTree = "<group>"; };
+		35C1727C1FFBB0EF00607658 /* MyCompanyInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyCompanyInfoViewController.m; path = SourceCode/Section/MainPage/MyCompanyInfoViewController.m; sourceTree = "<group>"; };
+		35C1727E1FFBB10300607658 /* MyCompanyInfoEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyCompanyInfoEditViewController.h; path = SourceCode/Section/MainPage/MyCompanyInfoEditViewController.h; sourceTree = "<group>"; };
+		35C1727F1FFBB10300607658 /* MyCompanyInfoEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyCompanyInfoEditViewController.m; path = SourceCode/Section/MainPage/MyCompanyInfoEditViewController.m; sourceTree = "<group>"; };
+		35C172811FFBB14400607658 /* MySupplyAndDemandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MySupplyAndDemandViewController.h; path = SourceCode/Section/MainPage/MySupplyAndDemandViewController.h; sourceTree = "<group>"; };
+		35C172821FFBB14400607658 /* MySupplyAndDemandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MySupplyAndDemandViewController.m; path = SourceCode/Section/MainPage/MySupplyAndDemandViewController.m; sourceTree = "<group>"; };
+		35C172841FFBB16B00607658 /* MySupplyAndDemandEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MySupplyAndDemandEditViewController.h; path = SourceCode/Section/MainPage/MySupplyAndDemandEditViewController.h; sourceTree = "<group>"; };
+		35C172851FFBB16B00607658 /* MySupplyAndDemandEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MySupplyAndDemandEditViewController.m; path = SourceCode/Section/MainPage/MySupplyAndDemandEditViewController.m; sourceTree = "<group>"; };
+		35C172871FFBB23300607658 /* SHActivityDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHActivityDetailViewController.h; path = SourceCode/Section/MainPage/SHActivityDetailViewController.h; sourceTree = "<group>"; };
+		35C172881FFBB23300607658 /* SHActivityDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHActivityDetailViewController.m; path = SourceCode/Section/MainPage/SHActivityDetailViewController.m; sourceTree = "<group>"; };
+		35C1728A1FFBB27F00607658 /* ApplicationStep3ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApplicationStep3ViewController.h; path = SourceCode/Section/MainPage/ApplicationStep3ViewController.h; sourceTree = "<group>"; };
+		35C1728B1FFBB27F00607658 /* ApplicationStep3ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep3ViewController.m; path = SourceCode/Section/MainPage/ApplicationStep3ViewController.m; sourceTree = "<group>"; };
+		35C1728D1FFBB32100607658 /* PersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PersonInfoViewController.h; path = SourceCode/Section/MainPage/PersonInfoViewController.h; sourceTree = "<group>"; };
+		35C1728E1FFBB32100607658 /* PersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PersonInfoViewController.m; path = SourceCode/Section/MainPage/PersonInfoViewController.m; sourceTree = "<group>"; };
+		35C172901FFBB33D00607658 /* CompanyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CompanyInfoViewController.h; path = SourceCode/Section/MainPage/CompanyInfoViewController.h; sourceTree = "<group>"; };
+		35C172911FFBB33D00607658 /* CompanyInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CompanyInfoViewController.m; path = SourceCode/Section/MainPage/CompanyInfoViewController.m; sourceTree = "<group>"; };
+		35C172931FFBB37800607658 /* SupplyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplyInfoViewController.h; sourceTree = "<group>"; };
+		35C172941FFBB37800607658 /* SupplyInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplyInfoViewController.m; sourceTree = "<group>"; };
+		35C172961FFBB3E700607658 /* NewsNoticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewsNoticeViewController.h; path = SourceCode/Section/MainPage/NewsNoticeViewController.h; sourceTree = "<group>"; };
+		35C172971FFBB3E700607658 /* NewsNoticeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsNoticeViewController.m; path = SourceCode/Section/MainPage/NewsNoticeViewController.m; sourceTree = "<group>"; };
+		35C172991FFBB40C00607658 /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = SourceCode/Section/MainPage/NewsViewController.h; sourceTree = "<group>"; };
+		35C1729A1FFBB40C00607658 /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = SourceCode/Section/MainPage/NewsViewController.m; sourceTree = "<group>"; };
+		35C1729C1FFBB41D00607658 /* NoticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoticeViewController.h; path = SourceCode/Section/MainPage/NoticeViewController.h; sourceTree = "<group>"; };
+		35C1729D1FFBB41D00607658 /* NoticeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NoticeViewController.m; path = SourceCode/Section/MainPage/NoticeViewController.m; sourceTree = "<group>"; };
+		35C1729F1FFBB42D00607658 /* NewsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewsDetailViewController.h; path = SourceCode/Section/MainPage/NewsDetailViewController.h; sourceTree = "<group>"; };
+		35C172A01FFBB42D00607658 /* NewsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsDetailViewController.m; path = SourceCode/Section/MainPage/NewsDetailViewController.m; sourceTree = "<group>"; };
+		35C172A21FFBB44400607658 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoticeDetailViewController.h; path = SourceCode/Section/MainPage/NoticeDetailViewController.h; sourceTree = "<group>"; };
+		35C172A31FFBB44400607658 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NoticeDetailViewController.m; path = SourceCode/Section/MainPage/NoticeDetailViewController.m; sourceTree = "<group>"; };
+		35C172A51FFBB49D00607658 /* SendMomentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SendMomentViewController.h; path = SourceCode/Section/MainPage/SendMomentViewController.h; sourceTree = "<group>"; };
+		35C172A61FFBB49D00607658 /* SendMomentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SendMomentViewController.m; path = SourceCode/Section/MainPage/SendMomentViewController.m; sourceTree = "<group>"; };
+		35C172A81FFBB4B300607658 /* MomentNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentNewsViewController.h; path = SourceCode/Section/MainPage/MomentNewsViewController.h; sourceTree = "<group>"; };
+		35C172A91FFBB4B300607658 /* MomentNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentNewsViewController.m; path = SourceCode/Section/MainPage/MomentNewsViewController.m; sourceTree = "<group>"; };
+		35C172AB1FFBB4D400607658 /* MomentDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentDetailViewController.h; path = SourceCode/Section/MainPage/MomentDetailViewController.h; sourceTree = "<group>"; };
+		35C172AC1FFBB4D400607658 /* MomentDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentDetailViewController.m; path = SourceCode/Section/MainPage/MomentDetailViewController.m; sourceTree = "<group>"; };
+		35C172AE1FFBB4F600607658 /* ContactSHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ContactSHViewController.h; path = SourceCode/Section/MainPage/ContactSHViewController.h; sourceTree = "<group>"; };
+		35C172AF1FFBB4F600607658 /* ContactSHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ContactSHViewController.m; path = SourceCode/Section/MainPage/ContactSHViewController.m; sourceTree = "<group>"; };
+		35C172B11FFBB50E00607658 /* FeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = SourceCode/Section/MainPage/FeedbackViewController.h; sourceTree = "<group>"; };
+		35C172B21FFBB50E00607658 /* FeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = SourceCode/Section/MainPage/FeedbackViewController.m; sourceTree = "<group>"; };
 		35EA976C1E35FB6700BD07CF /* JKQuickDevelopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JKQuickDevelopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35EA976E1E35FB6700BD07CF /* JKQuickDevelopUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKQuickDevelopUITests.m; sourceTree = "<group>"; };
 		35EA97701E35FB6700BD07CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35EA97761E360C2200BD07CF /* JKNetworkTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKNetworkTest.m; sourceTree = "<group>"; };
-		35EA97811E372BBC00BD07CF /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Temp/HomeViewController.h; sourceTree = "<group>"; };
-		35EA97821E372BBC00BD07CF /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Temp/HomeViewController.m; sourceTree = "<group>"; };
 		35EA97871E372C1F00BD07CF /* JKBaseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKBaseAppDelegate.h; path = SourceCode/Base/JKDelegate/JKBaseAppDelegate.h; sourceTree = "<group>"; };
 		35EA97881E372C1F00BD07CF /* JKBaseAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKBaseAppDelegate.m; path = SourceCode/Base/JKDelegate/JKBaseAppDelegate.m; sourceTree = "<group>"; };
 		35EA978A1E372CB700BD07CF /* Temp.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Temp.xcassets; path = Resource/Image/Temp.xcassets; sourceTree = "<group>"; };
-		35EA978C1E372DAB00BD07CF /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountViewController.h; path = Temp/AccountViewController.h; sourceTree = "<group>"; };
-		35EA978D1E372DAB00BD07CF /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountViewController.m; path = Temp/AccountViewController.m; sourceTree = "<group>"; };
-		35EA978F1E372DC000BD07CF /* MyCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCityViewController.h; path = Temp/MyCityViewController.h; sourceTree = "<group>"; };
-		35EA97901E372DC000BD07CF /* MyCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCityViewController.m; path = Temp/MyCityViewController.m; sourceTree = "<group>"; };
-		35EA97921E372DE200BD07CF /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageViewController.h; path = Temp/MessageViewController.h; sourceTree = "<group>"; };
-		35EA97931E372DE200BD07CF /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageViewController.m; path = Temp/MessageViewController.m; sourceTree = "<group>"; };
 		35F069161E52E098009DBEE4 /* PathUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathUtility.h; path = SourceCode/Tool/Foundation/PathUtility.h; sourceTree = "<group>"; };
 		35F069171E52E098009DBEE4 /* PathUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathUtility.m; path = SourceCode/Tool/Foundation/PathUtility.m; sourceTree = "<group>"; };
 		35F069181E52E098009DBEE4 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = SourceCode/Tool/Foundation/RegexKitLite.h; sourceTree = "<group>"; };
@@ -674,9 +735,13 @@
 		353D20B91E2C9C7400AA2610 /* JKSection */ = {
 			isa = PBXGroup;
 			children = (
+				35C1725F1FFBA74500607658 /* SHMemberCenter */,
+				35C1725E1FFBA73A00607658 /* SHActivity */,
+				35C1725D1FFBA73000607658 /* SHAddress */,
+				35C1725C1FFBA71D00607658 /* SHCircle */,
+				35C1725B1FFBA71500607658 /* SHMainPage */,
 				358B44DB1E4C135700A0DC93 /* Splash */,
 				35EA97791E37249C00BD07CF /* Login */,
-				35EA977A1E3724B900BD07CF /* Test */,
 			);
 			name = JKSection;
 			sourceTree = "<group>";
@@ -941,6 +1006,89 @@
 			name = Splash;
 			sourceTree = "<group>";
 		};
+		35C1725B1FFBA71500607658 /* SHMainPage */ = {
+			isa = PBXGroup;
+			children = (
+				35C172601FFBA77700607658 /* SHMainPageViewController.h */,
+				35C172611FFBA77700607658 /* SHMainPageViewController.m */,
+				35C172961FFBB3E700607658 /* NewsNoticeViewController.h */,
+				35C172971FFBB3E700607658 /* NewsNoticeViewController.m */,
+				35C172991FFBB40C00607658 /* NewsViewController.h */,
+				35C1729A1FFBB40C00607658 /* NewsViewController.m */,
+				35C1729C1FFBB41D00607658 /* NoticeViewController.h */,
+				35C1729D1FFBB41D00607658 /* NoticeViewController.m */,
+				35C1729F1FFBB42D00607658 /* NewsDetailViewController.h */,
+				35C172A01FFBB42D00607658 /* NewsDetailViewController.m */,
+				35C172A21FFBB44400607658 /* NoticeDetailViewController.h */,
+				35C172A31FFBB44400607658 /* NoticeDetailViewController.m */,
+			);
+			name = SHMainPage;
+			sourceTree = "<group>";
+		};
+		35C1725C1FFBA71D00607658 /* SHCircle */ = {
+			isa = PBXGroup;
+			children = (
+				35C172631FFBA7BD00607658 /* SHCircleViewController.h */,
+				35C172641FFBA7BD00607658 /* SHCircleViewController.m */,
+				35C172A51FFBB49D00607658 /* SendMomentViewController.h */,
+				35C172A61FFBB49D00607658 /* SendMomentViewController.m */,
+				35C172A81FFBB4B300607658 /* MomentNewsViewController.h */,
+				35C172A91FFBB4B300607658 /* MomentNewsViewController.m */,
+				35C172AB1FFBB4D400607658 /* MomentDetailViewController.h */,
+				35C172AC1FFBB4D400607658 /* MomentDetailViewController.m */,
+			);
+			name = SHCircle;
+			sourceTree = "<group>";
+		};
+		35C1725D1FFBA73000607658 /* SHAddress */ = {
+			isa = PBXGroup;
+			children = (
+				35C172661FFBA7CB00607658 /* SHAddressViewController.h */,
+				35C172671FFBA7CB00607658 /* SHAddressViewController.m */,
+				35C1728D1FFBB32100607658 /* PersonInfoViewController.h */,
+				35C1728E1FFBB32100607658 /* PersonInfoViewController.m */,
+				35C172901FFBB33D00607658 /* CompanyInfoViewController.h */,
+				35C172911FFBB33D00607658 /* CompanyInfoViewController.m */,
+				35C172931FFBB37800607658 /* SupplyInfoViewController.h */,
+				35C172941FFBB37800607658 /* SupplyInfoViewController.m */,
+			);
+			name = SHAddress;
+			sourceTree = "<group>";
+		};
+		35C1725E1FFBA73A00607658 /* SHActivity */ = {
+			isa = PBXGroup;
+			children = (
+				35C172691FFBA7D800607658 /* SHActivityViewController.h */,
+				35C1726A1FFBA7D800607658 /* SHActivityViewController.m */,
+				35C172871FFBB23300607658 /* SHActivityDetailViewController.h */,
+				35C172881FFBB23300607658 /* SHActivityDetailViewController.m */,
+			);
+			name = SHActivity;
+			sourceTree = "<group>";
+		};
+		35C1725F1FFBA74500607658 /* SHMemberCenter */ = {
+			isa = PBXGroup;
+			children = (
+				35C1726C1FFBA7ED00607658 /* SHMemberViewController.h */,
+				35C1726D1FFBA7ED00607658 /* SHMemberViewController.m */,
+				35C172781FFBB06600607658 /* SHSettingViewController.h */,
+				35C172791FFBB06600607658 /* SHSettingViewController.m */,
+				35C1727B1FFBB0EF00607658 /* MyCompanyInfoViewController.h */,
+				35C1727C1FFBB0EF00607658 /* MyCompanyInfoViewController.m */,
+				35C1727E1FFBB10300607658 /* MyCompanyInfoEditViewController.h */,
+				35C1727F1FFBB10300607658 /* MyCompanyInfoEditViewController.m */,
+				35C172811FFBB14400607658 /* MySupplyAndDemandViewController.h */,
+				35C172821FFBB14400607658 /* MySupplyAndDemandViewController.m */,
+				35C172841FFBB16B00607658 /* MySupplyAndDemandEditViewController.h */,
+				35C172851FFBB16B00607658 /* MySupplyAndDemandEditViewController.m */,
+				35C172AE1FFBB4F600607658 /* ContactSHViewController.h */,
+				35C172AF1FFBB4F600607658 /* ContactSHViewController.m */,
+				35C172B11FFBB50E00607658 /* FeedbackViewController.h */,
+				35C172B21FFBB50E00607658 /* FeedbackViewController.m */,
+			);
+			name = SHMemberCenter;
+			sourceTree = "<group>";
+		};
 		35EA976D1E35FB6700BD07CF /* JKQuickDevelopUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -962,30 +1110,16 @@
 			children = (
 				358B44E31E4C151200A0DC93 /* LoginViewController.h */,
 				358B44E41E4C151200A0DC93 /* LoginViewController.m */,
+				35C1726F1FFBAF0000607658 /* ResetPasswordViewController.h */,
+				35C172701FFBAF0000607658 /* ResetPasswordViewController.m */,
+				35C172721FFBAFCF00607658 /* ApplicationStep1ViewController.h */,
+				35C172731FFBAFCF00607658 /* ApplicationStep1ViewController.m */,
+				35C172751FFBB02300607658 /* ApplicationStep2ViewController.h */,
+				35C172761FFBB02300607658 /* ApplicationStep2ViewController.m */,
+				35C1728A1FFBB27F00607658 /* ApplicationStep3ViewController.h */,
+				35C1728B1FFBB27F00607658 /* ApplicationStep3ViewController.m */,
 			);
 			name = Login;
-			sourceTree = "<group>";
-		};
-		35EA977A1E3724B900BD07CF /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				35EA97811E372BBC00BD07CF /* HomeViewController.h */,
-				35EA97821E372BBC00BD07CF /* HomeViewController.m */,
-				35EA978C1E372DAB00BD07CF /* AccountViewController.h */,
-				35EA978D1E372DAB00BD07CF /* AccountViewController.m */,
-				35EA978F1E372DC000BD07CF /* MyCityViewController.h */,
-				35EA97901E372DC000BD07CF /* MyCityViewController.m */,
-				35EA97921E372DE200BD07CF /* MessageViewController.h */,
-				35EA97931E372DE200BD07CF /* MessageViewController.m */,
-				352F23731E5443580063C511 /* CustomAniamtionViewController.h */,
-				352F23741E5443580063C511 /* CustomAniamtionViewController.m */,
-				3563804A1FFB1FF800A01869 /* TableViewCellTest1.h */,
-				3563804B1FFB1FF800A01869 /* TableViewCellTest1.m */,
-				3563804D1FFB200B00A01869 /* TableViewCellTest2.h */,
-				3563804E1FFB200B00A01869 /* TableViewCellTest2.m */,
-				3563804F1FFB200B00A01869 /* TableViewCellTest2.xib */,
-			);
-			name = Test;
 			sourceTree = "<group>";
 		};
 		35EA977B1E37254600BD07CF /* IM */ = {
@@ -1287,7 +1421,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				356380511FFB200B00A01869 /* TableViewCellTest2.xib in Resources */,
 				353750751E31BE98006DC277 /* Localizable.strings in Resources */,
 				356380251FF33CEB00A01869 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				35F517331E2377A5006E14C1 /* LaunchScreen.storyboard in Resources */,
@@ -1446,33 +1579,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35C1727D1FFBB0EF00607658 /* MyCompanyInfoViewController.m in Sources */,
 				356380311FF33CFC00A01869 /* PinyinHelper.m in Sources */,
 				35323E9D1E6D3D8500FF7BF0 /* MZIMConversation.m in Sources */,
-				35EA97941E372DE200BD07CF /* MessageViewController.m in Sources */,
-				3563804C1FFB1FF800A01869 /* TableViewCellTest1.m in Sources */,
 				35F0691A1E52E098009DBEE4 /* PathUtility.m in Sources */,
-				356380501FFB200B00A01869 /* TableViewCellTest2.m in Sources */,
 				356380491FFB1CA200A01869 /* CopyAbleLabel.m in Sources */,
 				35323E9E1E6D3D8500FF7BF0 /* MZIMFileHelper.m in Sources */,
 				358B44D11E499C6800A0DC93 /* JKAPPVersionCheckHelper.m in Sources */,
 				35374ED11E3059A1006DC277 /* JKBaseViewController.m in Sources */,
+				35C172981FFBB3E700607658 /* NewsNoticeViewController.m in Sources */,
 				35FCE3A71E6FC0E9001ACC20 /* NSObject+CommonBlock.m in Sources */,
 				35F5172E1E2377A5006E14C1 /* JKQuickDevelop.xcdatamodeld in Sources */,
 				35323EA91E6D3D8500FF7BF0 /* MZIMRecorderHelper.m in Sources */,
 				352B88691E8DF9950034F005 /* PushNotificationHelper.m in Sources */,
 				35323E9A1E6D3D8500FF7BF0 /* MZIMAudioPlayHelper.m in Sources */,
 				356380431FF629E800A01869 /* JKTextField_Padding.m in Sources */,
+				35C172711FFBAF0000607658 /* ResetPasswordViewController.m in Sources */,
+				35C172681FFBA7CB00607658 /* SHAddressViewController.m in Sources */,
 				35323EA21E6D3D8500FF7BF0 /* MZIMMessageCellBodyBase.m in Sources */,
+				35C172771FFBB02300607658 /* ApplicationStep2ViewController.m in Sources */,
 				35A323461E34830800787AFD /* JKCenterRiseTabBar.m in Sources */,
+				35C172621FFBA77700607658 /* SHMainPageViewController.m in Sources */,
 				352F23721E5434D10063C511 /* MainTabViewController.m in Sources */,
+				35C172A71FFBB49D00607658 /* SendMomentViewController.m in Sources */,
+				35C172B01FFBB4F600607658 /* ContactSHViewController.m in Sources */,
+				35C1726E1FFBA7ED00607658 /* SHMemberViewController.m in Sources */,
 				35323EC61E6D438E00FF7BF0 /* MZIMMessageTableViewCell.m in Sources */,
+				35C1728F1FFBB32100607658 /* PersonInfoViewController.m in Sources */,
 				352B886C1E8E1E310034F005 /* PushActionHelper.m in Sources */,
+				35C172801FFBB10300607658 /* MyCompanyInfoEditViewController.m in Sources */,
 				35F0691B1E52E098009DBEE4 /* RegexKitLite.m in Sources */,
 				3519B3F61E3759AE006B8A5D /* JKTopBottomViewCoordinator.m in Sources */,
+				35C172B31FFBB50E00607658 /* FeedbackViewController.m in Sources */,
+				35C1726B1FFBA7D800607658 /* SHActivityViewController.m in Sources */,
+				35C172831FFBB14400607658 /* MySupplyAndDemandViewController.m in Sources */,
+				35C1728C1FFBB27F00607658 /* ApplicationStep3ViewController.m in Sources */,
 				35323EA71E6D3D8500FF7BF0 /* MZIMMessageShappedImageView.m in Sources */,
 				358B44D41E499C8200A0DC93 /* HUDHelper.m in Sources */,
 				35323E9C1E6D3D8500FF7BF0 /* MZIMChatViewController.m in Sources */,
 				358B44DE1E4C142D00A0DC93 /* StartPageViewController.m in Sources */,
+				35C172A41FFBB44400607658 /* NoticeDetailViewController.m in Sources */,
+				35C172A11FFBB42D00607658 /* NewsDetailViewController.m in Sources */,
+				35C1729E1FFBB41D00607658 /* NoticeViewController.m in Sources */,
 				35323EA51E6D3D8500FF7BF0 /* MZIMMessageDispatcher.m in Sources */,
 				353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */,
 				35374EDD1E305ACF006DC277 /* JKBaseTableViewController.m in Sources */,
@@ -1482,21 +1630,27 @@
 				356380341FF33CFC00A01869 /* ChineseToPinyinResource.m in Sources */,
 				352F236E1E530C1F0063C511 /* JKAppConst.m in Sources */,
 				35323EA41E6D3D8500FF7BF0 /* MZIMMessageCellBodyText.m in Sources */,
+				35C1729B1FFBB40C00607658 /* NewsViewController.m in Sources */,
 				35EA97891E372C1F00BD07CF /* JKBaseAppDelegate.m in Sources */,
 				35323EA01E6D3D8500FF7BF0 /* MZIMManager.m in Sources */,
 				358B44D91E499C9B00A0DC93 /* JKNetworkCache.m in Sources */,
 				356380321FF33CFC00A01869 /* HanyuPinyinOutputFormat.m in Sources */,
+				35C1727A1FFBB06600607658 /* SHSettingViewController.m in Sources */,
 				358B44E51E4C151200A0DC93 /* LoginViewController.m in Sources */,
+				35C172921FFBB33D00607658 /* CompanyInfoViewController.m in Sources */,
 				35FCE3A11E6FC04D001ACC20 /* NSDate+Common.m in Sources */,
-				352F23751E5443580063C511 /* CustomAniamtionViewController.m in Sources */,
 				3563803B1FF3A4FF00A01869 /* UITableView+HYBCacheHeight.m in Sources */,
 				35323EA31E6D3D8500FF7BF0 /* MZIMMessageCellBodyImage.m in Sources */,
-				35EA978E1E372DAB00BD07CF /* AccountViewController.m in Sources */,
 				35323EA11E6D3D8500FF7BF0 /* MZIMMessage.m in Sources */,
+				35C172651FFBA7BD00607658 /* SHCircleViewController.m in Sources */,
+				35C172861FFBB16B00607658 /* MySupplyAndDemandEditViewController.m in Sources */,
 				35323EAA1E6D3D8500FF7BF0 /* MZIMTableViewController.m in Sources */,
-				35EA97911E372DC000BD07CF /* MyCityViewController.m in Sources */,
+				35C172741FFBAFCF00607658 /* ApplicationStep1ViewController.m in Sources */,
+				35C172AA1FFBB4B300607658 /* MomentNewsViewController.m in Sources */,
 				35323EA61E6D3D8500FF7BF0 /* MZIMMessageFactory.m in Sources */,
 				353750861E321348006DC277 /* JKBaseTabBarController.m in Sources */,
+				35C172891FFBB23300607658 /* SHActivityDetailViewController.m in Sources */,
+				35C172AD1FFBB4D400607658 /* MomentDetailViewController.m in Sources */,
 				35FCE3A41E6FC09E001ACC20 /* NSString+Commen.m in Sources */,
 				35374ECA1E305944006DC277 /* main.m in Sources */,
 				352F23791E553FE30063C511 /* JKTickDownButton.m in Sources */,
@@ -1504,12 +1658,12 @@
 				356380351FF33CFC00A01869 /* PinyinFormatter.m in Sources */,
 				35323E9B1E6D3D8500FF7BF0 /* MZIMChatInputBar.m in Sources */,
 				35FCE39E1E6FB6D6001ACC20 /* UIColor+MLPFlatColors.m in Sources */,
+				35C172951FFBB37800607658 /* SupplyInfoViewController.m in Sources */,
 				35323E9F1E6D3D8500FF7BF0 /* MZIMListener.m in Sources */,
 				35374EC81E305921006DC277 /* AppDelegate.m in Sources */,
 				358B44E11E4C148E00A0DC93 /* SplashViewController.m in Sources */,
 				35F069241E52EFE8009DBEE4 /* KeyValueUtility.m in Sources */,
 				35323EC91E6D444500FF7BF0 /* MZIMMessageCellBodyAudio.m in Sources */,
-				35EA97831E372BBC00BD07CF /* HomeViewController.m in Sources */,
 				3563803C1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

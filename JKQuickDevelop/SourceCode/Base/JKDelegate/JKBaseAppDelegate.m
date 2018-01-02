@@ -248,19 +248,19 @@
      */
     
     [[UINavigationBar appearance] setBarTintColor:kNavBarThemeColor];
-    [[UINavigationBar appearance] setTintColor:kBlackColor];
+    [[UINavigationBar appearance] setTintColor:kNavBarTintColor];
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = kWhiteColor;
     shadow.shadowOffset = CGSizeMake(0, 0);
     [[UINavigationBar appearance] setTitleTextAttributes:@{
-                                                           NSForegroundColorAttributeName:kBlackColor,
+                                                           NSForegroundColorAttributeName:kNavBarTintColor,
                                                            NSShadowAttributeName:shadow,
                                                            NSFontAttributeName:kCommonLargeTextFont
                                                            }];
     
     //UIBarButtonItem
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{
-                                                           NSForegroundColorAttributeName:kBlackColor,
+                                                           NSForegroundColorAttributeName:kNavBarTintColor,
                                                            NSShadowAttributeName:shadow,
                                                            NSFontAttributeName:kCommonMiddleTextFont
                                                            }
@@ -272,6 +272,14 @@
                                                         NSFontAttributeName:kCommonSmallTextFont
                                                         }
                                              forState:UIControlStateNormal];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{
+                                                        NSForegroundColorAttributeName:kTabBarTintColor,
+                                                        NSShadowAttributeName:shadow,
+                                                        NSFontAttributeName:kCommonSmallTextFont
+                                                        }
+                                             forState:UIControlStateSelected];
+    
     //UITabBar
     [[UITabBar appearance] setTintColor:kTabBarTintColor];
     [[UITabBar appearance] setBarTintColor:kTabBarBarTintColor];
