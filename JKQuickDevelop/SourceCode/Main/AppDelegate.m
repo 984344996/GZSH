@@ -31,7 +31,8 @@
 
 - (void)configLoginUI{
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [self.window setRootViewController:loginVC];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.window setRootViewController:nav];
 }
 
 -(void)configMainUI{

@@ -25,7 +25,9 @@ target 'JKQuickDevelop' do
     # 自动布局
     # https://github.com/SnapKit/Masonry.git
     pod 'Masonry'
-
+    
+    pod 'SDAutoLayout', '~> 2.1.3'
+    
     # HUD
     # https://github.com/jdg/MBProgressHUD
     pod 'MBProgressHUD'
@@ -99,9 +101,15 @@ target 'JKQuickDevelop' do
     # 分页View PageIndicator
     pod 'SGPagingView', '~> 1.3'
     
-    
     # cell自动高度
     pod 'UITableView+FDTemplateLayoutCell'
+    
+    # UITextView+PlaceHolder
+    pod 'UITextView+Placeholder', '~> 1.2'
+    
+    # 对话框
+    pod 'LEEAlert'
+    
     
   # Pods for JKQuickDevelop
 

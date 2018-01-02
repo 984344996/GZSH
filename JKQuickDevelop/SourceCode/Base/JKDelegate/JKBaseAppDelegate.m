@@ -285,11 +285,11 @@
     [[UITabBar appearance] setBarTintColor:kTabBarBarTintColor];
     
     //UILabel
-    [[UILabel appearance] setBackgroundColor:kClearColor];
-    [[UILabel appearance] setTextColor:kMainTextColor];
+    //[[UILabel appearance] setBackgroundColor:kClearColor];
+    //[[UILabel appearance] setTextColor:kMainTextColor];
     
     //UIButton
-    [[UIButton appearance] setTitleColor:kMainTextColor forState:UIControlStateNormal];
+    //[[UIButton appearance] setTitleColor:kMainTextColor forState:UIControlStateNormal];
     
     //UITableViewCell
     [[UITableViewCell appearance] setBackgroundColor:kClearColor];

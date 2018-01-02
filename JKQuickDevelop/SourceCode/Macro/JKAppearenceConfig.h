@@ -22,7 +22,7 @@
 #define kTabBarBarTintColor           RGB(255, 255, 255)
 
 #define kTableViewCellHeight 50
-
+#define kCommonButtonRadious 4
 // 默认的字体颜色
 #define kMainTextColor                kBlackColor
 #define kDetailTextColor              RGB(145, 145, 145)
