@@ -9,12 +9,23 @@
 #import "MessageViewController.h"
 #import "JKTopBottomViewCoordinator.h"
 #import "CustomAniamtionViewController.h"
+#import "TableViewCellTest1.h"
+#import "TableViewCellTest2.h"
+#import <UITableView+FDTemplateLayoutCell.h>
 
 @interface MessageViewController ()
 @property (nonatomic, strong) JKTopBottomViewCoordinator *coordinator;
 @end
 
 @implementation MessageViewController
+
+
+- (NSDictionary *)modeData{
+    return @{
+             @"name":@"dengjie dengjie dengjie dengjie dengjie",
+             @"avatar":@"avatar"
+             };
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +35,9 @@
     self.coordinator.scrollView = self.tableView;
     self.coordinator.topViewMinisedHeight = 0;
     [self.coordinator startMonitoring];
+    
+    [self.tableView registerClass:[TableViewCellTest1 class] forCellReuseIdentifier:@"test1"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TableViewCellTest2" bundle:nil] forCellReuseIdentifier:@"test2"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,26 +47,35 @@
 
 #pragma mark - overrite
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return 10;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self presentViewController:[[CustomAniamtionViewController alloc] init] animated:YES completion:nil];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell;
+    if (indexPath.row % 2) {
+        TableViewCellTest1 *test1 = [tableView dequeueReusableCellWithIdentifier:@"test1" forIndexPath:indexPath];
+        [test1 configData:[self modeData]];
+        cell = test1;
+    }else{
+        TableViewCellTest2 *test2 = [tableView dequeueReusableCellWithIdentifier:@"test2" forIndexPath:indexPath];
+        [test2 configData:[self modeData]];
+        cell = test2;
+    }
+    return cell;
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [self.coordinator scrollViewWillBeginDragging:scrollView];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row % 2) {
+        return [tableView fd_heightForCellWithIdentifier:@"test1" cacheByIndexPath:indexPath configuration:^(TableViewCellTest1 *cell) {
+            [cell configData:[self modeData]];
+        }];
+    }else{
+        return [tableView fd_heightForCellWithIdentifier:@"test2" cacheByIndexPath:indexPath configuration:^(TableViewCellTest2 *cell) {
+            [cell configData:[self modeData]];
+        }];
+    }
 }
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.coordinator scrollViewDidScroll:scrollView];
-    NSLog(@"uitableView inset %@ offset %@",[NSValue valueWithUIEdgeInsets:self.tableView.contentInset],[NSValue valueWithCGPoint:self.tableView.contentOffset]);
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    [self.coordinator scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
-}
-
 #pragma mark -  没有数据配置
 - (UIImage *)emptyImage{
     return [UIImage imageNamed:@""];

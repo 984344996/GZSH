@@ -63,6 +63,19 @@
 		353D21281E2CB57300AA2610 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21271E2CB57300AA2610 /* MessageUI.framework */; };
 		353D212A1E2CB57D00AA2610 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21291E2CB57D00AA2610 /* UIKit.framework */; };
 		353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E2DA21E8B9AC900802E9F /* JKIAPHelper.m */; };
+		356380251FF33CEB00A01869 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = 356380241FF33CEB00A01869 /* unicode_to_hanyu_pinyin.txt */; };
+		356380311FF33CFC00A01869 /* PinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 356380271FF33CFB00A01869 /* PinyinHelper.m */; };
+		356380321FF33CFC00A01869 /* HanyuPinyinOutputFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563802B1FF33CFB00A01869 /* HanyuPinyinOutputFormat.m */; };
+		356380331FF33CFC00A01869 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563802C1FF33CFB00A01869 /* NSString+PinYin4Cocoa.m */; };
+		356380341FF33CFC00A01869 /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563802D1FF33CFB00A01869 /* ChineseToPinyinResource.m */; };
+		356380351FF33CFC00A01869 /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 356380301FF33CFC00A01869 /* PinyinFormatter.m */; };
+		3563803B1FF3A4FF00A01869 /* UITableView+HYBCacheHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 356380371FF3A4FF00A01869 /* UITableView+HYBCacheHeight.m */; };
+		3563803C1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563803A1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m */; };
+		356380431FF629E800A01869 /* JKTextField_Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = 356380421FF629E800A01869 /* JKTextField_Padding.m */; };
+		356380491FFB1CA200A01869 /* CopyAbleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 356380471FFB1CA100A01869 /* CopyAbleLabel.m */; };
+		3563804C1FFB1FF800A01869 /* TableViewCellTest1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563804B1FFB1FF800A01869 /* TableViewCellTest1.m */; };
+		356380501FFB200B00A01869 /* TableViewCellTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3563804E1FFB200B00A01869 /* TableViewCellTest2.m */; };
+		356380511FFB200B00A01869 /* TableViewCellTest2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3563804F1FFB200B00A01869 /* TableViewCellTest2.xib */; };
 		357A41AE1EAF310A00340180 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A41AD1EAF310A00340180 /* NotificationService.m */; };
 		357A41B21EAF310A00340180 /* JKCustomPushService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 357A41AA1EAF310A00340180 /* JKCustomPushService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		357A41BD1EAF338800340180 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357A41BC1EAF338800340180 /* UserNotifications.framework */; };
@@ -290,6 +303,31 @@
 		353D21291E2CB57D00AA2610 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		353E2DA11E8B9AC900802E9F /* JKIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKIAPHelper.h; sourceTree = "<group>"; };
 		353E2DA21E8B9AC900802E9F /* JKIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIAPHelper.m; sourceTree = "<group>"; };
+		356380241FF33CEB00A01869 /* unicode_to_hanyu_pinyin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unicode_to_hanyu_pinyin.txt; path = Vendor/PinYin4Objc/Resources/unicode_to_hanyu_pinyin.txt; sourceTree = "<group>"; };
+		356380261FF33CFB00A01869 /* PinyinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinyinHelper.h; path = Vendor/PinYin4Objc/Classes/PinyinHelper.h; sourceTree = "<group>"; };
+		356380271FF33CFB00A01869 /* PinyinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PinyinHelper.m; path = Vendor/PinYin4Objc/Classes/PinyinHelper.m; sourceTree = "<group>"; };
+		356380281FF33CFB00A01869 /* NSString+PinYin4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PinYin4Cocoa.h"; path = "Vendor/PinYin4Objc/Classes/NSString+PinYin4Cocoa.h"; sourceTree = "<group>"; };
+		356380291FF33CFB00A01869 /* ChineseToPinyinResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChineseToPinyinResource.h; path = Vendor/PinYin4Objc/Classes/ChineseToPinyinResource.h; sourceTree = "<group>"; };
+		3563802A1FF33CFB00A01869 /* PinYin4Objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinYin4Objc.h; path = Vendor/PinYin4Objc/Classes/PinYin4Objc.h; sourceTree = "<group>"; };
+		3563802B1FF33CFB00A01869 /* HanyuPinyinOutputFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HanyuPinyinOutputFormat.m; path = Vendor/PinYin4Objc/Classes/HanyuPinyinOutputFormat.m; sourceTree = "<group>"; };
+		3563802C1FF33CFB00A01869 /* NSString+PinYin4Cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PinYin4Cocoa.m"; path = "Vendor/PinYin4Objc/Classes/NSString+PinYin4Cocoa.m"; sourceTree = "<group>"; };
+		3563802D1FF33CFB00A01869 /* ChineseToPinyinResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChineseToPinyinResource.m; path = Vendor/PinYin4Objc/Classes/ChineseToPinyinResource.m; sourceTree = "<group>"; };
+		3563802E1FF33CFB00A01869 /* HanyuPinyinOutputFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HanyuPinyinOutputFormat.h; path = Vendor/PinYin4Objc/Classes/HanyuPinyinOutputFormat.h; sourceTree = "<group>"; };
+		3563802F1FF33CFB00A01869 /* PinyinFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinyinFormatter.h; path = Vendor/PinYin4Objc/Classes/PinyinFormatter.h; sourceTree = "<group>"; };
+		356380301FF33CFC00A01869 /* PinyinFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PinyinFormatter.m; path = Vendor/PinYin4Objc/Classes/PinyinFormatter.m; sourceTree = "<group>"; };
+		356380371FF3A4FF00A01869 /* UITableView+HYBCacheHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+HYBCacheHeight.m"; path = "Vendor/HYBMasonryAutoCellHeight/UITableView+HYBCacheHeight.m"; sourceTree = "<group>"; };
+		356380381FF3A4FF00A01869 /* UITableView+HYBCacheHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+HYBCacheHeight.h"; path = "Vendor/HYBMasonryAutoCellHeight/UITableView+HYBCacheHeight.h"; sourceTree = "<group>"; };
+		356380391FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+HYBMasonryAutoCellHeight.h"; path = "Vendor/HYBMasonryAutoCellHeight/UITableViewCell+HYBMasonryAutoCellHeight.h"; sourceTree = "<group>"; };
+		3563803A1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+HYBMasonryAutoCellHeight.m"; path = "Vendor/HYBMasonryAutoCellHeight/UITableViewCell+HYBMasonryAutoCellHeight.m"; sourceTree = "<group>"; };
+		356380411FF629E800A01869 /* JKTextField_Padding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKTextField_Padding.h; sourceTree = "<group>"; };
+		356380421FF629E800A01869 /* JKTextField_Padding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKTextField_Padding.m; sourceTree = "<group>"; };
+		356380471FFB1CA100A01869 /* CopyAbleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CopyAbleLabel.m; path = Vendor/UIView/CopyAbleLabel.m; sourceTree = "<group>"; };
+		356380481FFB1CA200A01869 /* CopyAbleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CopyAbleLabel.h; path = Vendor/UIView/CopyAbleLabel.h; sourceTree = "<group>"; };
+		3563804A1FFB1FF800A01869 /* TableViewCellTest1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellTest1.h; sourceTree = "<group>"; };
+		3563804B1FFB1FF800A01869 /* TableViewCellTest1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellTest1.m; sourceTree = "<group>"; };
+		3563804D1FFB200B00A01869 /* TableViewCellTest2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellTest2.h; sourceTree = "<group>"; };
+		3563804E1FFB200B00A01869 /* TableViewCellTest2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellTest2.m; sourceTree = "<group>"; };
+		3563804F1FFB200B00A01869 /* TableViewCellTest2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellTest2.xib; sourceTree = "<group>"; };
 		357A41AA1EAF310A00340180 /* JKCustomPushService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JKCustomPushService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		357A41AC1EAF310A00340180 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		357A41AD1EAF310A00340180 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
@@ -443,6 +481,8 @@
 				3519B3F51E3759AE006B8A5D /* JKTopBottomViewCoordinator.m */,
 				352F23771E553FE30063C511 /* JKTickDownButton.h */,
 				352F23781E553FE30063C511 /* JKTickDownButton.m */,
+				356380411FF629E800A01869 /* JKTextField_Padding.h */,
+				356380421FF629E800A01869 /* JKTextField_Padding.m */,
 			);
 			name = JKCustomView;
 			sourceTree = "<group>";
@@ -681,6 +721,9 @@
 		353D20BD1E2C9CBE00AA2610 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				3563803D1FF6273100A01869 /* UIView */,
+				356380361FF3A4CE00A01869 /* HYBMasonryAutoCellHeight */,
+				356380211FF33C9900A01869 /* PinYin4Objc */,
 				3516EC0B1E8C9F8D00B9A97D /* ClusterPrePermissions */,
 				353D20F61E2CB3D000AA2610 /* BlocksKit */,
 			);
@@ -762,6 +805,61 @@
 				357A41BE1EAF338800340180 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		356380211FF33C9900A01869 /* PinYin4Objc */ = {
+			isa = PBXGroup;
+			children = (
+				356380231FF33CCE00A01869 /* Resources */,
+				356380221FF33CC900A01869 /* Classes */,
+			);
+			name = PinYin4Objc;
+			sourceTree = "<group>";
+		};
+		356380221FF33CC900A01869 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				356380291FF33CFB00A01869 /* ChineseToPinyinResource.h */,
+				3563802D1FF33CFB00A01869 /* ChineseToPinyinResource.m */,
+				3563802E1FF33CFB00A01869 /* HanyuPinyinOutputFormat.h */,
+				3563802B1FF33CFB00A01869 /* HanyuPinyinOutputFormat.m */,
+				356380281FF33CFB00A01869 /* NSString+PinYin4Cocoa.h */,
+				3563802C1FF33CFB00A01869 /* NSString+PinYin4Cocoa.m */,
+				3563802A1FF33CFB00A01869 /* PinYin4Objc.h */,
+				3563802F1FF33CFB00A01869 /* PinyinFormatter.h */,
+				356380301FF33CFC00A01869 /* PinyinFormatter.m */,
+				356380261FF33CFB00A01869 /* PinyinHelper.h */,
+				356380271FF33CFB00A01869 /* PinyinHelper.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		356380231FF33CCE00A01869 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				356380241FF33CEB00A01869 /* unicode_to_hanyu_pinyin.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		356380361FF3A4CE00A01869 /* HYBMasonryAutoCellHeight */ = {
+			isa = PBXGroup;
+			children = (
+				356380381FF3A4FF00A01869 /* UITableView+HYBCacheHeight.h */,
+				356380371FF3A4FF00A01869 /* UITableView+HYBCacheHeight.m */,
+				356380391FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.h */,
+				3563803A1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m */,
+			);
+			name = HYBMasonryAutoCellHeight;
+			sourceTree = "<group>";
+		};
+		3563803D1FF6273100A01869 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				356380481FFB1CA200A01869 /* CopyAbleLabel.h */,
+				356380471FFB1CA100A01869 /* CopyAbleLabel.m */,
+			);
+			name = UIView;
 			sourceTree = "<group>";
 		};
 		357A41AB1EAF310A00340180 /* JKCustomPushService */ = {
@@ -881,6 +979,11 @@
 				35EA97931E372DE200BD07CF /* MessageViewController.m */,
 				352F23731E5443580063C511 /* CustomAniamtionViewController.h */,
 				352F23741E5443580063C511 /* CustomAniamtionViewController.m */,
+				3563804A1FFB1FF800A01869 /* TableViewCellTest1.h */,
+				3563804B1FFB1FF800A01869 /* TableViewCellTest1.m */,
+				3563804D1FFB200B00A01869 /* TableViewCellTest2.h */,
+				3563804E1FFB200B00A01869 /* TableViewCellTest2.m */,
+				3563804F1FFB200B00A01869 /* TableViewCellTest2.xib */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -1184,7 +1287,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				356380511FFB200B00A01869 /* TableViewCellTest2.xib in Resources */,
 				353750751E31BE98006DC277 /* Localizable.strings in Resources */,
+				356380251FF33CEB00A01869 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				35F517331E2377A5006E14C1 /* LaunchScreen.storyboard in Resources */,
 				353750811E31F9E4006DC277 /* loading_01@2x.png in Resources */,
 				35EA978B1E372CB700BD07CF /* Temp.xcassets in Resources */,
@@ -1295,7 +1400,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-JKQuickDevelop/Pods-JKQuickDevelop-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle,
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
@@ -1341,9 +1446,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				356380311FF33CFC00A01869 /* PinyinHelper.m in Sources */,
 				35323E9D1E6D3D8500FF7BF0 /* MZIMConversation.m in Sources */,
 				35EA97941E372DE200BD07CF /* MessageViewController.m in Sources */,
+				3563804C1FFB1FF800A01869 /* TableViewCellTest1.m in Sources */,
 				35F0691A1E52E098009DBEE4 /* PathUtility.m in Sources */,
+				356380501FFB200B00A01869 /* TableViewCellTest2.m in Sources */,
+				356380491FFB1CA200A01869 /* CopyAbleLabel.m in Sources */,
 				35323E9E1E6D3D8500FF7BF0 /* MZIMFileHelper.m in Sources */,
 				358B44D11E499C6800A0DC93 /* JKAPPVersionCheckHelper.m in Sources */,
 				35374ED11E3059A1006DC277 /* JKBaseViewController.m in Sources */,
@@ -1352,6 +1461,7 @@
 				35323EA91E6D3D8500FF7BF0 /* MZIMRecorderHelper.m in Sources */,
 				352B88691E8DF9950034F005 /* PushNotificationHelper.m in Sources */,
 				35323E9A1E6D3D8500FF7BF0 /* MZIMAudioPlayHelper.m in Sources */,
+				356380431FF629E800A01869 /* JKTextField_Padding.m in Sources */,
 				35323EA21E6D3D8500FF7BF0 /* MZIMMessageCellBodyBase.m in Sources */,
 				35A323461E34830800787AFD /* JKCenterRiseTabBar.m in Sources */,
 				352F23721E5434D10063C511 /* MainTabViewController.m in Sources */,
@@ -1369,14 +1479,17 @@
 				3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */,
 				358B44DA1E499C9B00A0DC93 /* JKNetworkHelper.m in Sources */,
 				35323EA81E6D3D8500FF7BF0 /* MZIMModeExtra.m in Sources */,
+				356380341FF33CFC00A01869 /* ChineseToPinyinResource.m in Sources */,
 				352F236E1E530C1F0063C511 /* JKAppConst.m in Sources */,
 				35323EA41E6D3D8500FF7BF0 /* MZIMMessageCellBodyText.m in Sources */,
 				35EA97891E372C1F00BD07CF /* JKBaseAppDelegate.m in Sources */,
 				35323EA01E6D3D8500FF7BF0 /* MZIMManager.m in Sources */,
 				358B44D91E499C9B00A0DC93 /* JKNetworkCache.m in Sources */,
+				356380321FF33CFC00A01869 /* HanyuPinyinOutputFormat.m in Sources */,
 				358B44E51E4C151200A0DC93 /* LoginViewController.m in Sources */,
 				35FCE3A11E6FC04D001ACC20 /* NSDate+Common.m in Sources */,
 				352F23751E5443580063C511 /* CustomAniamtionViewController.m in Sources */,
+				3563803B1FF3A4FF00A01869 /* UITableView+HYBCacheHeight.m in Sources */,
 				35323EA31E6D3D8500FF7BF0 /* MZIMMessageCellBodyImage.m in Sources */,
 				35EA978E1E372DAB00BD07CF /* AccountViewController.m in Sources */,
 				35323EA11E6D3D8500FF7BF0 /* MZIMMessage.m in Sources */,
@@ -1387,6 +1500,8 @@
 				35FCE3A41E6FC09E001ACC20 /* NSString+Commen.m in Sources */,
 				35374ECA1E305944006DC277 /* main.m in Sources */,
 				352F23791E553FE30063C511 /* JKTickDownButton.m in Sources */,
+				356380331FF33CFC00A01869 /* NSString+PinYin4Cocoa.m in Sources */,
+				356380351FF33CFC00A01869 /* PinyinFormatter.m in Sources */,
 				35323E9B1E6D3D8500FF7BF0 /* MZIMChatInputBar.m in Sources */,
 				35FCE39E1E6FB6D6001ACC20 /* UIColor+MLPFlatColors.m in Sources */,
 				35323E9F1E6D3D8500FF7BF0 /* MZIMListener.m in Sources */,
@@ -1395,6 +1510,7 @@
 				35F069241E52EFE8009DBEE4 /* KeyValueUtility.m in Sources */,
 				35323EC91E6D444500FF7BF0 /* MZIMMessageCellBodyAudio.m in Sources */,
 				35EA97831E372BBC00BD07CF /* HomeViewController.m in Sources */,
+				3563803C1FF3A4FF00A01869 /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

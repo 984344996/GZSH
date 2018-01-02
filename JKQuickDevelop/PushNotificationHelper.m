@@ -66,6 +66,7 @@
 }
 
 #pragma mark - IOS8 - 10
+
 - (UIUserNotificationSettings *)getUIUserNotificationSettings{
     UIMutableUserNotificationCategory *categoryNewMessage = [self getUIUserNotificationCategoryNewMessage];
     NSSet *categories = [NSSet setWithObjects:categoryNewMessage, nil];

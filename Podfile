@@ -86,6 +86,10 @@ target 'JKQuickDevelop' do
     # https://github.com/ReactiveCocoa/ReactiveObjC
     pod 'ReactiveObjC', '~> 3.0'
 
+    # UIView 离屏渲染
+    # https://github.com/liuzhiyi1992/ZYCornerRadius
+    pod 'ZYCornerRadius', '~> 1.0.2'
+    
     # 私有的的第三方类库（根据自己的业务需求）
     
     # 滚动轮播
@@ -94,6 +98,10 @@ target 'JKQuickDevelop' do
     
     # 分页View PageIndicator
     pod 'SGPagingView', '~> 1.3'
+    
+    
+    # cell自动高度
+    pod 'UITableView+FDTemplateLayoutCell'
     
   # Pods for JKQuickDevelop
 
