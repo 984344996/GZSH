@@ -67,6 +67,11 @@ typedef NS_ENUM(NSInteger,LoadingViewType){
 - (BOOL)showTabBarTopLine;
 
 /**
+ 手势返回
+ */
+- (BOOL)interactivePopEnable;
+
+/**
  网络不可用
  */
 - (void)statusToNotReachable;

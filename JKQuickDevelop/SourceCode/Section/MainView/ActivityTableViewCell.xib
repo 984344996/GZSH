@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="323" id="KGk-i7-Jjw" customClass="ActivityTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="507" height="323"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="507" height="322.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="P79-2r-Kbh">
+                        <rect key="frame" x="0.0" y="10" width="507" height="216"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="P79-2r-Kbh" secondAttribute="height" multiplier="75:32" id="7qL-1x-mSV"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商会在人民大会堂隆重召开" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6S-S7-ayW">
+                        <rect key="frame" x="12" y="230" width="483" height="43"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="地址：人民大会堂主厅 人民大会堂主厅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0K7-2P-hwp">
+                        <rect key="frame" x="12" y="277" width="483" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="时间: 2017/09/08  14:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUq-yG-8gx">
+                        <rect key="frame" x="12" y="298" width="345" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已报人数：1999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhK-wu-AFK">
+                        <rect key="frame" x="367" y="298" width="120" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="e1T-Hg-MaH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="dhK-wu-AFK" secondAttribute="trailing" id="Dy4-Vp-78m"/>
+                    <constraint firstItem="dUq-yG-8gx" firstAttribute="top" secondItem="0K7-2P-hwp" secondAttribute="bottom" constant="4" id="GI7-aM-vd3"/>
+                    <constraint firstAttribute="bottom" secondItem="dUq-yG-8gx" secondAttribute="bottom" constant="10" id="HMc-xW-4Zn"/>
+                    <constraint firstItem="0K7-2P-hwp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Qac-YV-wiq"/>
+                    <constraint firstItem="0K7-2P-hwp" firstAttribute="top" secondItem="l6S-S7-ayW" secondAttribute="bottom" constant="4" id="SeY-1B-n12"/>
+                    <constraint firstItem="dhK-wu-AFK" firstAttribute="top" secondItem="0K7-2P-hwp" secondAttribute="bottom" constant="4" id="SiC-8z-GZG"/>
+                    <constraint firstItem="dUq-yG-8gx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="TN1-AO-Mch"/>
+                    <constraint firstAttribute="trailing" secondItem="l6S-S7-ayW" secondAttribute="trailing" constant="12" id="a5d-yd-FOl"/>
+                    <constraint firstItem="l6S-S7-ayW" firstAttribute="top" secondItem="P79-2r-Kbh" secondAttribute="bottom" constant="4" id="bRX-Up-VtU"/>
+                    <constraint firstItem="P79-2r-Kbh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="drb-8t-Kb5"/>
+                    <constraint firstAttribute="trailing" secondItem="0K7-2P-hwp" secondAttribute="trailing" constant="12" id="f1O-9b-ZY4"/>
+                    <constraint firstItem="l6S-S7-ayW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="gtl-fX-1xd"/>
+                    <constraint firstAttribute="trailing" secondItem="P79-2r-Kbh" secondAttribute="trailing" id="onD-i2-Xlq"/>
+                    <constraint firstItem="dhK-wu-AFK" firstAttribute="leading" secondItem="dUq-yG-8gx" secondAttribute="trailing" constant="10" id="tts-F3-I2r"/>
+                    <constraint firstItem="P79-2r-Kbh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zAZ-EX-NCi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="activityAddress" destination="0K7-2P-hwp" id="zSu-5J-6dp"/>
+                <outlet property="activityImage" destination="P79-2r-Kbh" id="app-UH-Vux"/>
+                <outlet property="activityMemberCount" destination="dhK-wu-AFK" id="E5K-v6-BQC"/>
+                <outlet property="activityName" destination="l6S-S7-ayW" id="LpS-h0-lmC"/>
+                <outlet property="activityTime" destination="dUq-yG-8gx" id="WvD-m6-ugx"/>
+            </connections>
+            <point key="canvasLocation" x="-65.5" y="-66.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholder" width="320" height="150"/>
+    </resources>
+</document>

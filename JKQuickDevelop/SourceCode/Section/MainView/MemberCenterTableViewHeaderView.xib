@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MemberCenterTableViewHeaderView">
+            <connections>
+                <outlet property="avatar" destination="EDe-R0-JL9" id="Y2M-g9-zaM"/>
+                <outlet property="companyLabel" destination="Qhs-lX-c5d" id="jEM-mm-gFQ"/>
+                <outlet property="companyPositionLabel" destination="bKw-RH-HDu" id="2fD-oG-PLR"/>
+                <outlet property="header" destination="iN0-l3-epB" id="Sbh-pV-2N6"/>
+                <outlet property="iconVipImage" destination="evx-iL-bxY" id="ESK-th-5WK"/>
+                <outlet property="nameLabel" destination="Owk-up-jMj" id="fUm-2v-Xl5"/>
+                <outlet property="shPositionLabel" destination="15E-xv-3j4" id="qQG-ob-ul8"/>
+                <outlet property="vipInfoLabel" destination="1EZ-dN-qsH" id="u6a-8p-d31"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="106"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="EDe-R0-JL9">
+                    <rect key="frame" x="13" y="17" width="46" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="7yt-kD-EEd"/>
+                        <constraint firstAttribute="width" constant="46" id="eIV-0z-eh7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张益民" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owk-up-jMj">
+                    <rect key="frame" x="72" y="17" width="55.5" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都酱游泳网络科技有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qhs-lX-c5d">
+                    <rect key="frame" x="72" y="49" width="249" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.6993257705479452" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公司职位：执行总裁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKw-RH-HDu">
+                    <rect key="frame" x="72" y="71" width="110.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.70146618150684936" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VipCenter_Icon_Vip_F" translatesAutoresizingMaskIntoConstraints="NO" id="evx-iL-bxY">
+                    <rect key="frame" x="341" y="46.5" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="r9R-Su-Ovo"/>
+                        <constraint firstAttribute="width" constant="24" id="rBN-TC-Cg4"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人会员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EZ-dN-qsH">
+                    <rect key="frame" x="324" y="78" width="41" height="12"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="商会秘书" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15E-xv-3j4">
+                    <rect key="frame" x="135" y="22" width="222" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.12389469891786575" green="0.7264525294303894" blue="0.13289859890937805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="15E-xv-3j4" firstAttribute="leading" secondItem="Owk-up-jMj" secondAttribute="trailing" constant="7.5" id="Ck7-se-Gy5"/>
+                <constraint firstItem="Owk-up-jMj" firstAttribute="top" secondItem="EDe-R0-JL9" secondAttribute="top" id="H4E-a3-MIE"/>
+                <constraint firstAttribute="bottom" secondItem="1EZ-dN-qsH" secondAttribute="bottom" constant="16" id="Jfl-5r-Rbt"/>
+                <constraint firstAttribute="trailing" secondItem="1EZ-dN-qsH" secondAttribute="trailing" constant="12" id="M6v-vO-ZBs"/>
+                <constraint firstItem="15E-xv-3j4" firstAttribute="bottom" secondItem="Owk-up-jMj" secondAttribute="bottom" id="RTQ-9b-UgN"/>
+                <constraint firstItem="Owk-up-jMj" firstAttribute="leading" secondItem="EDe-R0-JL9" secondAttribute="trailing" constant="13" id="Tpb-yV-6AR"/>
+                <constraint firstItem="EDe-R0-JL9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="13" id="V6J-Tm-QCl"/>
+                <constraint firstItem="bKw-RH-HDu" firstAttribute="top" secondItem="Qhs-lX-c5d" secondAttribute="bottom" constant="8" id="atC-U8-4QB"/>
+                <constraint firstAttribute="trailing" secondItem="evx-iL-bxY" secondAttribute="trailing" constant="12" id="bPA-h6-lHd"/>
+                <constraint firstItem="evx-iL-bxY" firstAttribute="leading" secondItem="Qhs-lX-c5d" secondAttribute="trailing" constant="20" id="bpa-8l-dQU"/>
+                <constraint firstItem="bKw-RH-HDu" firstAttribute="leading" secondItem="Qhs-lX-c5d" secondAttribute="leading" id="cFB-XA-Rfd"/>
+                <constraint firstItem="Qhs-lX-c5d" firstAttribute="leading" secondItem="EDe-R0-JL9" secondAttribute="trailing" constant="13" id="gye-dD-FmU"/>
+                <constraint firstItem="Qhs-lX-c5d" firstAttribute="bottom" secondItem="EDe-R0-JL9" secondAttribute="bottom" id="hYb-0F-0Zu"/>
+                <constraint firstItem="1EZ-dN-qsH" firstAttribute="top" secondItem="evx-iL-bxY" secondAttribute="bottom" constant="7.5" id="iiY-nY-uYS"/>
+                <constraint firstAttribute="trailing" secondItem="15E-xv-3j4" secondAttribute="trailing" constant="20" id="tUQ-m6-ZVi"/>
+                <constraint firstItem="EDe-R0-JL9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="wbX-tg-rxd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="61.5" y="-143"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="VipCenter_Icon_Vip_F" width="24" height="24"/>
+        <image name="placeholder" width="320" height="150"/>
+    </resources>
+</document>

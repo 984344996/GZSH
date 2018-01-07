@@ -14,7 +14,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        _loginView = [[[NSBundle mainBundle] loadNibNamed:@"LoginView" owner:self options:nil] firstObject];
+    _loginView = [[[NSBundle mainBundle] loadNibNamed:@"LoginView" owner:self options:nil] firstObject];
         [self addSubview:self.loginView];
         [self.loginView setFrame:self.bounds];
         [self.loginView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
@@ -30,7 +30,7 @@
     [self.btnLogin jk_setBackgroundColor:kLightGrayColor forState:UIControlStateDisabled];
     [self.btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.btnLogin setTitleColor:kDarkGrayColor forState:UIControlStateDisabled];
-    self.btnLogin.enabled = NO;
+    //self.btnLogin.enabled = NO;
 }
 
 @end

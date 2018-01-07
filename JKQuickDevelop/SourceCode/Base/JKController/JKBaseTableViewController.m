@@ -36,6 +36,7 @@
         self.tableView.emptyDataSetDelegate = self;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.showsVerticalScrollIndicator = NO;
         //去掉下面没有数据呈现的cell
         self.tableView.tableFooterView = [[UIView alloc]init];
     }

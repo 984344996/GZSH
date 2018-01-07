@@ -6,8 +6,8 @@
 //  Copyright © 2018年 dengjie. All rights reserved.
 //
 
-#import "JKBaseViewController.h"
+#import "JKBaseTableViewController.h"
 
-@interface SHMainPageViewController : JKBaseViewController
+@interface SHMainPageViewController :JKBaseTableViewController
 
 @end

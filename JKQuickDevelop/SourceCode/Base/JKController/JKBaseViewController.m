@@ -115,6 +115,7 @@
 
 #pragma mark - LifeCircle
 -(void)viewDidLoad{
+    self.view.backgroundColor = [UIColor whiteColor];
     [super viewDidLoad];
     [self configView];
     [self configLayout];
@@ -131,6 +132,13 @@
     if (![self showTabBarTopLine]) {
         [self hideTabBarTopLine];
     }
+    
+    [self addIconBackNavigationItem];
+    
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = [self interactivePopEnable];
+    }
+    
 }
 
 - (void)dealloc{
@@ -147,6 +155,17 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kJKNetStatusChangeNotification object:nil];
 }
 
+
+- (void)addIconBackNavigationItem{
+    if (self.navigationController.childViewControllers.count > 1) {
+        [self addUIBarButtonItemImage:@"Bars_Arrow_Right" isLeft:YES target:self action:@selector(popBack)];
+    }
+}
+
+- (void)popBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - 初始化设置
 
 - (void)configView{}
@@ -159,6 +178,10 @@
 }
 
 - (BOOL)showTabBarTopLine{
+    return YES;
+}
+
+- (BOOL)interactivePopEnable{
     return YES;
 }
 
@@ -197,7 +220,7 @@
 #pragma mark - Navigation Bar 添加按钮
 
 - (void)addUIBarButtonItemImage:(NSString *)name isLeft:(BOOL)isLeft target:(id)target action:(SEL)action{
-    CGSize size = CGSizeMake(20, 20);
+    CGSize size = CGSizeMake(13, 22);
     UIImage *image = [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     image = [image jk_resizedImage:size interpolationQuality:kCGInterpolationHigh];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:target action:action];

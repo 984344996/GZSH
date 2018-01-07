@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MainPageHeaderCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="111" height="77"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="111" height="77"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home_Icon_Activity" translatesAutoresizingMaskIntoConstraints="NO" id="NgH-QO-0cQ">
+                        <rect key="frame" x="27.5" y="1" width="56" height="56"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="1lJ-B0-u8E"/>
+                            <constraint firstAttribute="height" constant="56" id="aTM-wo-xTl"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnD-zw-fvn">
+                        <rect key="frame" x="31" y="62.5" width="49.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.72537481784820557" green="0.72553938627243042" blue="0.7336571216583252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="gnD-zw-fvn" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="9wH-Qh-vWn"/>
+                <constraint firstItem="NgH-QO-0cQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="Z5M-dz-Bah"/>
+                <constraint firstAttribute="bottom" secondItem="gnD-zw-fvn" secondAttribute="bottom" id="aSh-uC-lYH"/>
+                <constraint firstItem="NgH-QO-0cQ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="az0-fZ-69V"/>
+            </constraints>
+            <size key="customSize" width="111" height="77"/>
+            <connections>
+                <outlet property="icon" destination="NgH-QO-0cQ" id="84s-o8-HXp"/>
+                <outlet property="nameTitle" destination="gnD-zw-fvn" id="dzy-VI-Ghj"/>
+            </connections>
+            <point key="canvasLocation" x="29.5" y="-44.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Home_Icon_Activity" width="56" height="56"/>
+    </resources>
+</document>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="AddressTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="477" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="477" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-zu-qNG">
+                        <rect key="frame" x="12" y="22" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="53g-P1-0SS"/>
+                            <constraint firstAttribute="height" constant="36" id="Xca-eU-lIl"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKB-8V-cVb">
+                        <rect key="frame" x="447" y="6" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="Cb9-JB-m6D"/>
+                            <constraint firstAttribute="height" constant="24" id="wB6-in-7OW"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="AddressBook_Icon_Phone"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U99-0c-dxO">
+                        <rect key="frame" x="447" y="49.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="63h-Bb-fEF"/>
+                            <constraint firstAttribute="width" constant="24" id="beB-RB-vOn"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="AddressBook_Icon_Text"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘能刘能" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dc-28-7XC">
+                        <rect key="frame" x="56" y="21.5" width="57.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.16076219081878662" green="0.16079705953598022" blue="0.16075998544692993" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都酱游泳网络科技有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkR-1A-Xfb">
+                        <rect key="frame" x="56" y="43.5" width="371" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.68608134984970093" green="0.69018268585205078" blue="0.69423973560333252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1838****233" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q06-CX-anL">
+                        <rect key="frame" x="143" y="21.5" width="83.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Q06-CX-anL" firstAttribute="leading" secondItem="3Dc-28-7XC" secondAttribute="trailing" constant="30" id="56p-8e-hJK"/>
+                    <constraint firstItem="JkR-1A-Xfb" firstAttribute="leading" secondItem="Edo-zu-qNG" secondAttribute="trailing" constant="8" id="CXc-sG-xQ6"/>
+                    <constraint firstItem="XKB-8V-cVb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q06-CX-anL" secondAttribute="trailing" constant="20" id="SCQ-91-c51"/>
+                    <constraint firstItem="3Dc-28-7XC" firstAttribute="top" secondItem="Edo-zu-qNG" secondAttribute="top" id="SIf-1n-7ga"/>
+                    <constraint firstAttribute="bottom" secondItem="U99-0c-dxO" secondAttribute="bottom" constant="6" id="SL6-Bg-Dqz"/>
+                    <constraint firstItem="XKB-8V-cVb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Y43-IL-OhY"/>
+                    <constraint firstItem="Q06-CX-anL" firstAttribute="centerY" secondItem="3Dc-28-7XC" secondAttribute="centerY" id="Zaq-qB-nm7"/>
+                    <constraint firstAttribute="trailing" secondItem="U99-0c-dxO" secondAttribute="trailing" constant="6" id="cdF-Ls-zRi"/>
+                    <constraint firstItem="Edo-zu-qNG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gXm-Dw-WAl"/>
+                    <constraint firstItem="JkR-1A-Xfb" firstAttribute="bottom" secondItem="Edo-zu-qNG" secondAttribute="bottom" id="ifz-G2-osq"/>
+                    <constraint firstItem="Edo-zu-qNG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="qHH-Qs-2hb"/>
+                    <constraint firstItem="3Dc-28-7XC" firstAttribute="leading" secondItem="Edo-zu-qNG" secondAttribute="trailing" constant="8" id="qgr-Ks-mnD"/>
+                    <constraint firstAttribute="trailing" secondItem="XKB-8V-cVb" secondAttribute="trailing" constant="6" id="uDL-CN-x7G"/>
+                    <constraint firstItem="U99-0c-dxO" firstAttribute="leading" secondItem="JkR-1A-Xfb" secondAttribute="trailing" constant="20" id="w54-rk-IH5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="imageAvatar" destination="Edo-zu-qNG" id="NDo-VY-Sqy"/>
+                <outlet property="labelCompany" destination="JkR-1A-Xfb" id="7gF-q2-sac"/>
+                <outlet property="labelName" destination="3Dc-28-7XC" id="Cfq-ip-ViK"/>
+                <outlet property="labelPhone" destination="Q06-CX-anL" id="TnM-T5-gh0"/>
+            </connections>
+            <point key="canvasLocation" x="204.5" y="-11"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="AddressBook_Icon_Phone" width="24" height="24"/>
+        <image name="AddressBook_Icon_Text" width="24" height="24"/>
+        <image name="placeholder" width="320" height="150"/>
+    </resources>
+</document>

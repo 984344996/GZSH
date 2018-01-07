@@ -50,6 +50,22 @@
 
 #pragma mark - Getter and Setter
 
+- (void)setCornerR:(CGFloat)cornerR{
+    _cornerR = cornerR;
+    self.layer.cornerRadius = cornerR;
+    self.layer.masksToBounds = YES;
+}
+
+- (void)setBorderW:(CGFloat)borderW{
+    _borderW = borderW;
+    self.layer.borderWidth = borderW;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor{
+    _borderColor = borderColor;
+    self.layer.borderColor = borderColor.CGColor;
+}
+
 - (void)setLeftPadding:(CGFloat)leftPadding{
     _leftPadding = leftPadding;
     [self setNeedsLayout];

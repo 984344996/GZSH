@@ -7,31 +7,48 @@
 //
 
 #import "ResetPasswordViewController.h"
+#import "ResetPasswordView.h"
+#import <ReactiveObjC.h>
 
 @interface ResetPasswordViewController ()
+
+@property (nonatomic, strong) ResetPasswordView *resetView;
 
 @end
 
 @implementation ResetPasswordViewController
 
+#pragma mark - Life circle
+
 - (void)viewDidLoad {
+    self.title = @"忘记密码";
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)interactivePopEnable{
+    return NO;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (ResetPasswordView *)resetView{
+    if (!_resetView) {
+        _resetView = [[ResetPasswordView alloc] init];
+    }
+    return _resetView;
 }
-*/
 
+#pragma mark - Initialize
+
+- (void)loadView{
+    self.view = self.resetView;
+}
+
+- (void)configEvent{
+    [super configEvent];
+    
+    @weakify(self)
+    [[self.resetView.buttonModify rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self);
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
 @end

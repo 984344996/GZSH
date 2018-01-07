@@ -8,6 +8,11 @@
 
 #import "LoginViewController.h"
 #import "LoginView.h"
+#import <ReactiveObjC.h>
+
+#import "ResetPasswordViewController.h"
+#import "ApplicationStep1ViewController.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) LoginView *loginView;
@@ -17,17 +22,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self doInit];
 }
 
 - (void)loadView{
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view = self.loginView;
 }
 
 
-- (void)doInit{
+- (void)configView{
+    [super configView];
     self.title = @"登录";
+    self.loginView.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)configEvent{
+    @weakify(self)
+    [[self.loginView.btnResetPass rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
+        ResetPasswordViewController *vc = [[ResetPasswordViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [[self.loginView.btnApplication rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        ApplicationStep1ViewController *vc = [[ApplicationStep1ViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [[self.loginView.btnLogin rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        [[AppDelegate sharedAppDelegate] configMainUI];
+    }];
 }
 
 #pragma mark - Public methods

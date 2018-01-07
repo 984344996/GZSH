@@ -26,8 +26,6 @@ target 'JKQuickDevelop' do
     # https://github.com/SnapKit/Masonry.git
     pod 'Masonry'
     
-    pod 'SDAutoLayout', '~> 2.1.3'
-    
     # HUD
     # https://github.com/jdg/MBProgressHUD
     pod 'MBProgressHUD'
@@ -75,6 +73,12 @@ target 'JKQuickDevelop' do
     # 富文本展示
     # https://github.com/ibireme/YYKit
     pod 'YYText'
+    
+    # pod 'YYImage'
+    
+    # yykit开源库
+    # https://github.com/ibireme/YYKit
+    # pod 'YYKit'
     
     # 照片浏览选择器
     # https://github.com/mwaterfall/MWPhotoBrowser

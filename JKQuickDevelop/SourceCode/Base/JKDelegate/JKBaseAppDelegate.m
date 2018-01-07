@@ -247,6 +247,7 @@
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
      */
     
+    [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setBarTintColor:kNavBarThemeColor];
     [[UINavigationBar appearance] setTintColor:kNavBarTintColor];
     NSShadow *shadow = [[NSShadow alloc] init];
@@ -318,8 +319,10 @@
 #pragma mark - SDK Active
 - (void)configAppLaunch
 {
-    // 防止键盘遮挡
-    [IQKeyboardManager sharedManager].enable = YES;
+    // 在需要的界面自行打开
+      [IQKeyboardManager sharedManager].enable = NO;
+      [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+      [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
     
 #if kJKSupportNetOberve
     [self registerNetObeserver];

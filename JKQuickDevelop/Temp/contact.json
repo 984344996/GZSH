@@ -1,0 +1,67 @@
+{
+    "friends": [
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "四川酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "1",
+                "userName": "张五"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "成都酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "2",
+                "userName": "~五"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "广州酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "3",
+                "userName": "A五"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "北京酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "4",
+                "userName": "a五"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "北京酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "5",
+                "userName": "隔壁老王"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "北京酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "6",
+                "userName": "王五"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "北京酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "7",
+                "userName": "邓杰"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "北京酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "8",
+                "userName": "无敌小萌妹"
+                },
+                {
+                "avatar": "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160513/14631233468840.JPEG",
+                "enterprise": "北京酱游泳网络科技有限公司",
+                "mobile": "18834919794",
+                "userId": "9",
+                "userName": "()五"
+                }
+                ]
+}
