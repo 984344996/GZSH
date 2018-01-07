@@ -73,8 +73,7 @@ target 'JKQuickDevelop' do
     # 富文本展示
     # https://github.com/ibireme/YYKit
     pod 'YYText'
-    
-    # pod 'YYImage'
+    pod 'YYImage'
     
     # yykit开源库
     # https://github.com/ibireme/YYKit
