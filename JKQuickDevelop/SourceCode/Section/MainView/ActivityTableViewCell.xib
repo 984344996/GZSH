@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="507" height="322.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="P79-2r-Kbh">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testBG" translatesAutoresizingMaskIntoConstraints="NO" id="P79-2r-Kbh">
                         <rect key="frame" x="0.0" y="10" width="507" height="216"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="P79-2r-Kbh" secondAttribute="height" multiplier="75:32" id="7qL-1x-mSV"/>
@@ -83,6 +83,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="placeholder" width="320" height="150"/>
+        <image name="testBG" width="1024" height="768"/>
     </resources>
 </document>

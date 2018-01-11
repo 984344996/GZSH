@@ -23,7 +23,7 @@
     [self addChildViewController:mainPageVC title:@"主页" imageNormal:@"Home_Icon_House_dark" imageSelect:@"Home_Icon_House_Bright" hasNav:YES];
     
     SHCircleViewController *circleVC = [[SHCircleViewController alloc] init];
-    [self addChildViewController:circleVC title:@"商会圈" imageNormal:@"Home_Icon_AddressBook_Dark" imageSelect:@"Home_Icon_AddressBook_Bright" hasNav:YES];
+    [self addChildViewController:circleVC title:@"商会圈" imageNormal:@"Home_Icon_Cricle_Dark" imageSelect:@"Home_Icon_Cricle_Bright" hasNav:YES];
     
     SHAddressViewController *addressVC = [[SHAddressViewController alloc] init];
     [self addChildViewController:addressVC title:@"通讯录" imageNormal:@"Home_Icon_AddressBook_Dark" imageSelect:@"Home_Icon_AddressBook_Bright" hasNav:YES];

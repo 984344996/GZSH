@@ -82,10 +82,11 @@ target 'JKQuickDevelop' do
     # 照片浏览选择器
     # https://github.com/mwaterfall/MWPhotoBrowser
     # pod 'MWPhotoBrowser', '~> 2.1'
-    
+
+
     # 照片浏览选择器
-    # https://github.com/banchichen/TZImagePickerController
-    pod 'TZImagePickerController'
+    # https://github.com/longitachi/ZLPhotoBrowser#%E6%95%88%E6%9E%9C%E5%9B%BE
+    pod 'ZLPhotoBrowser'
     
     # RAC 项目框架
     # https://github.com/ReactiveCocoa/ReactiveObjC

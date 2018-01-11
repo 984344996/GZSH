@@ -246,6 +246,7 @@
     
     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
      */
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setBarTintColor:kNavBarThemeColor];

@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="377" height="106"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="EDe-R0-JL9">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="EDe-R0-JL9">
                     <rect key="frame" x="13" y="17" width="46" height="46"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="7yt-kD-EEd"/>
@@ -96,6 +96,6 @@
     </objects>
     <resources>
         <image name="VipCenter_Icon_Vip_F" width="24" height="24"/>
-        <image name="placeholder" width="320" height="150"/>
+        <image name="testAvatar" width="500" height="500"/>
     </resources>
 </document>

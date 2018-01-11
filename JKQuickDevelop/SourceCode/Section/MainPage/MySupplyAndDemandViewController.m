@@ -7,31 +7,50 @@
 //
 
 #import "MySupplyAndDemandViewController.h"
+#import "DemandInfo.h"
+#import "MySupplyAndDemandTableViewCell.h"
 
 @interface MySupplyAndDemandViewController ()
-
+@property (nonatomic, strong) NSMutableArray *supplies;
 @end
 
 @implementation MySupplyAndDemandViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)configView{
+    [super configView];
+    self.title = @"我的供求信息";
+    [self addUIBarButtonItemText:@"发布" isLeft:NO target:self action:@selector(doPublish:)];
+    
+    self.tableView.separatorColor = kGrayLineColor;
+    [self.tableView registerNib:[UINib nibWithNibName:@"MySupplyAndDemandTableViewCell" bundle:nil] forCellReuseIdentifier:@"MySupplyAndDemandTableViewCell"];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Private methods
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)doPublish:(UIBarButtonItem *)sender{
+    
 }
-*/
+
+#pragma mark - Table Delegate and Datasource
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 82;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MySupplyAndDemandTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MySupplyAndDemandTableViewCell" forIndexPath:indexPath];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end

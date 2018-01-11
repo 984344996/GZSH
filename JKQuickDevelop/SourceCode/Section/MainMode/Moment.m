@@ -10,4 +10,12 @@
 
 @implementation Moment
 
++ (NSDictionary *)mj_objectClassInArray{
+    return @{
+             @"praiseList":@"MomentUser",
+             @"commentList":@"Comment"
+             };
+}
+
+
 @end

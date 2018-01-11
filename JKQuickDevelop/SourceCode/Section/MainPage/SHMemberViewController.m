@@ -9,6 +9,10 @@
 #import "SHMemberViewController.h"
 #import "MemberCenterTableViewCell.h"
 #import "MemberCenterTableViewHeaderView.h"
+#import "MyCompanyInfoViewController.h"
+#import "MySupplyAndDemandViewController.h"
+#import "ContactSHViewController.h"
+#import "SHSettingViewController.h"
 
 @interface SHMemberViewController ()
 
@@ -43,7 +47,7 @@
         _cellModes = [NSArray arrayWithObjects:@[@"VipCenter_Icon_Company",@"我的企业信息",@"intoMyCompanyInfo"],
                       @[@"VipCenter_Icon_AffordRequire",@"我的供求信息",@"intoMyApplyInfo"],
                       @[@"VipCenter_Icon_Contact",@"联系商会",@"intoSH"],
-                      @[@"VipCenter_Icon_Set",@"设置",@"intoSH"],
+                      @[@"VipCenter_Icon_Set",@"设置",@"intoSetting"],
                       nil];
     }
     return _cellModes;
@@ -52,19 +56,31 @@
 #pragma mark - Private methods
 
 - (void)intoMyCompanyInfo{
-    
+    MyCompanyInfoViewController *vc = [[MyCompanyInfoViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)intoMyApplyInfo{
-    
+    MySupplyAndDemandViewController *vc = [[MySupplyAndDemandViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)intoSH{
-    
+    ContactSHViewController *vc = [[ContactSHViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)intoSetting{
-    
+    SHSettingViewController *vc = [[SHSettingViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 

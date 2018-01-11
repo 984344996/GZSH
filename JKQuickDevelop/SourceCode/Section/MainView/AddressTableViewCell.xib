@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="477" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-zu-qNG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-zu-qNG">
                         <rect key="frame" x="12" y="22" width="36" height="36"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="36" id="53g-P1-0SS"/>
@@ -91,6 +91,6 @@
     <resources>
         <image name="AddressBook_Icon_Phone" width="24" height="24"/>
         <image name="AddressBook_Icon_Text" width="24" height="24"/>
-        <image name="placeholder" width="320" height="150"/>
+        <image name="testAvatar" width="500" height="500"/>
     </resources>
 </document>

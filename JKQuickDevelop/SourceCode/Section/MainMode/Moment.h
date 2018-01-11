@@ -12,6 +12,8 @@
 @class DynamicInfo;
 @class Comment;
 
+#import <MJExtension.h>
+
 @interface Moment : NSObject
 
 @property (nonatomic, strong) MomentUser *momentUser;
@@ -21,5 +23,7 @@
 @property (nonatomic, strong) NSArray<NSString *> *content;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSString *momentId;
+@property (nonatomic, assign) BOOL isExpand;
+@property (nonatomic, assign) BOOL shouldUpdateCache;
 
 @end

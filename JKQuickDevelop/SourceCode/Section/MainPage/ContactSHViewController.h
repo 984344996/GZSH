@@ -6,8 +6,12 @@
 //  Copyright © 2018年 dengjie. All rights reserved.
 //
 
-#import "JKBaseViewController.h"
+#import "JKBaseTableViewController.h"
 
-@interface ContactSHViewController : JKBaseViewController
+@interface ContactSHHeaderView: UIView
+@property (nonatomic, strong) UIImageView *imageView;
+@end
+
+@interface ContactSHViewController : JKBaseTableViewController
 
 @end
