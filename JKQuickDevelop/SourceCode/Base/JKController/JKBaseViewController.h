@@ -132,6 +132,7 @@ typedef NS_ENUM(NSInteger,LoadingViewType){
  */
 - (void)addUIBarButtonItemImage:(NSString *)name isLeft:(BOOL)isLeft target:(id)target action:(SEL)action;
 
+- (void)addUIBarButtonItemImage:(NSString *)name size:(CGSize)size isLeft:(BOOL)isLeft target:(id)target action:(SEL)action;
 /**
  添加图片BarButton
  

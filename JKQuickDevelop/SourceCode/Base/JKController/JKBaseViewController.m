@@ -219,12 +219,21 @@
 
 #pragma mark - Navigation Bar 添加按钮
 
-- (void)addUIBarButtonItemImage:(NSString *)name isLeft:(BOOL)isLeft target:(id)target action:(SEL)action{
-    CGSize size = CGSizeMake(13, 22);
+- (void)addUIBarButtonItemImage:(NSString *)name size:(CGSize)size isLeft:(BOOL)isLeft target:(id)target action:(SEL)action{
+    
     UIImage *image = [[UIImage imageNamed:name] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    image = [image jk_resizedImage:size interpolationQuality:kCGInterpolationHigh];
+    CGSize finalSize = image.size;
+    if (!CGSizeEqualToSize(size, CGSizeZero)) {
+        finalSize = size;
+    }
+    
+    image = [image jk_resizedImage:finalSize interpolationQuality:kCGInterpolationHigh];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:target action:action];
     isLeft ? (self.navigationItem.leftBarButtonItem = item) : (self.navigationItem.rightBarButtonItem = item);
+}
+
+- (void)addUIBarButtonItemImage:(NSString *)name isLeft:(BOOL)isLeft target:(id)target action:(SEL)action{
+    [self addUIBarButtonItemImage:name size:CGSizeZero isLeft:isLeft target:target action:action];
 }
 
 - (void)addUIBarButtonItemText:(NSString *)title isLeft:(BOOL)isLeft target:(id)target action:(SEL)action{

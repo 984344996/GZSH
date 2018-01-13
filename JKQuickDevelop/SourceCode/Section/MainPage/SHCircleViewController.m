@@ -15,6 +15,7 @@
 #import "MomentMacro.h"
 #import "MomentHeaderView.h"
 #import <ZLPhotoActionSheet.h>
+#import "SendMomentViewController.h"
 
 @interface SHCircleViewController ()<MomentCellDelegate>
 
@@ -28,8 +29,10 @@
 - (void)configView{
     [super configView];
     
+    [self addUIBarButtonItemImage:@"Circle_Icon_Camera" size:CGSizeMake(24, 24) isLeft:NO target:self action:@selector(publishMoment:)];
     self.tableView.tableHeaderView = self.header;
     [self.tableView registerClass:[MomentTableViewCell class] forCellReuseIdentifier:@"MomentTableViewCell"];
+    
 }
 
 - (void)configData{
@@ -59,6 +62,15 @@
 }
 
 #pragma mark - Private methods
+
+- (void)publishMoment:(UIBarButtonItem *)sender{
+    SendMomentViewController *vc = [[SendMomentViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+#pragma mark - TableView Delegate and Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.momentModes.count;

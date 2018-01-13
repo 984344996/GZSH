@@ -18,6 +18,8 @@
 		3513564D2007A2080091606C /* SHContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3513564B2007A2080091606C /* SHContactTableViewCell.m */; };
 		3513564E2007A2080091606C /* SHContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3513564C2007A2080091606C /* SHContactTableViewCell.xib */; };
 		351356522007A59A0091606C /* ContactSHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351356512007A59A0091606C /* ContactSHViewController.m */; };
+		351356562009CF010091606C /* CirclePicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351356542009CF010091606C /* CirclePicCollectionViewCell.m */; };
+		351356572009CF010091606C /* CirclePicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 351356552009CF010091606C /* CirclePicCollectionViewCell.xib */; };
 		3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3516EC0D1E8C9FC400B9A97D /* ClusterPrePermissions.m */; };
 		3519B3F61E3759AE006B8A5D /* JKTopBottomViewCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3519B3F51E3759AE006B8A5D /* JKTopBottomViewCoordinator.m */; };
 		352B88691E8DF9950034F005 /* PushNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 352B88681E8DF9950034F005 /* PushNotificationHelper.m */; };
@@ -499,6 +501,9 @@
 		3513564B2007A2080091606C /* SHContactTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHContactTableViewCell.m; path = SourceCode/Section/MainView/SHContactTableViewCell.m; sourceTree = "<group>"; };
 		3513564C2007A2080091606C /* SHContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SHContactTableViewCell.xib; path = SourceCode/Section/MainView/SHContactTableViewCell.xib; sourceTree = "<group>"; };
 		351356512007A59A0091606C /* ContactSHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactSHViewController.m; path = SourceCode/Section/MainPage/ContactSHViewController.m; sourceTree = "<group>"; };
+		351356532009CF010091606C /* CirclePicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CirclePicCollectionViewCell.h; path = SourceCode/Section/MainView/CirclePicCollectionViewCell.h; sourceTree = "<group>"; };
+		351356542009CF010091606C /* CirclePicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CirclePicCollectionViewCell.m; path = SourceCode/Section/MainView/CirclePicCollectionViewCell.m; sourceTree = "<group>"; };
+		351356552009CF010091606C /* CirclePicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CirclePicCollectionViewCell.xib; path = SourceCode/Section/MainView/CirclePicCollectionViewCell.xib; sourceTree = "<group>"; };
 		3516EC0C1E8C9FC400B9A97D /* ClusterPrePermissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterPrePermissions.h; sourceTree = "<group>"; };
 		3516EC0D1E8C9FC400B9A97D /* ClusterPrePermissions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterPrePermissions.m; sourceTree = "<group>"; };
 		3519B3F41E3759AE006B8A5D /* JKTopBottomViewCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKTopBottomViewCoordinator.h; path = SourceCode/Base/JKCustomView/JKTopBottomViewCoordinator.h; sourceTree = "<group>"; };
@@ -1614,6 +1619,9 @@
 				355894F92001FD3600ED128A /* MomentTableViewCell.m */,
 				354B0AEB2003A12200D614B7 /* MomentHeaderView.h */,
 				354B0AEC2003A12200D614B7 /* MomentHeaderView.m */,
+				351356532009CF010091606C /* CirclePicCollectionViewCell.h */,
+				351356542009CF010091606C /* CirclePicCollectionViewCell.m */,
+				351356552009CF010091606C /* CirclePicCollectionViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3590,6 +3598,7 @@
 				355894B72001F13500ED128A /* f_static_092@3x.png in Resources */,
 				352F236B1E52FF7E0063C511 /* temp.plist in Resources */,
 				355894CB2001F13500ED128A /* f_static_102@3x.png in Resources */,
+				351356572009CF010091606C /* CirclePicCollectionViewCell.xib in Resources */,
 				355894612001F13500ED128A /* f_static_049@3x.png in Resources */,
 				355894BC2001F13500ED128A /* f_static_095@2x.png in Resources */,
 				355894AB2001F13500ED128A /* f_static_086@3x.png in Resources */,
@@ -3814,6 +3823,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				355893DE2001F13400ED128A /* ChatKeyBoard.m in Sources */,
+				351356562009CF010091606C /* CirclePicCollectionViewCell.m in Sources */,
 				35C1727D1FFBB0EF00607658 /* MyCompanyInfoViewController.m in Sources */,
 				356380311FF33CFC00A01869 /* PinyinHelper.m in Sources */,
 				35323E9D1E6D3D8500FF7BF0 /* MZIMConversation.m in Sources */,
