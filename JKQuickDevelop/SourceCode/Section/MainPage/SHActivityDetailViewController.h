@@ -7,6 +7,7 @@
 //
 
 #import "JKBaseViewController.h"
+#import <WebKit/WebKit.h>
 
 @interface SHActivityDetailViewController : JKBaseViewController
 

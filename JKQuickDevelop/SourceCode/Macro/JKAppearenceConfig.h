@@ -28,7 +28,7 @@
 #define kDetailTextColor              RGB(145, 145, 145)
 #define kMainTextColor RGB(49,49,49)
 #define kSecondTextColor RGB(185,185,187)
-#define kMainBlueColor RGB(47,161,250)
+#define kMainBlueColor RGB(0,161,254)
 #define kMainYellowColor RGB(248,179,63)
 #define kMainGreenColor RGB(31, 185, 34)
 #define kMainTextFieldBorderColor RGB(151,151,151)

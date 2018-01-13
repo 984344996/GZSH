@@ -9,6 +9,7 @@
 #import "SHActivityViewController.h"
 #import "ActivityTableViewCell.h"
 #import <UITableView+FDTemplateLayoutCell.h>
+#import "SHActivityDetailViewController.h"
 
 @interface SHActivityViewController ()
 
@@ -28,6 +29,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ActivityTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityTableViewCell"];
 }
 
+- (void)intoActivityDetail{
+    SHActivityDetailViewController *vc = [[SHActivityDetailViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
 #pragma mark - Private methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -46,6 +53,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self intoActivityDetail];
 }
 
 @end

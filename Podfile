@@ -114,6 +114,9 @@ target 'JKQuickDevelop' do
     # 对话框
     pod 'LEEAlert'
     
+    # 网页加载显示进度
+    # https://github.com/ninjinkun/NJKWebViewProgress
+    pod 'NJKWebViewProgress'
     
   # Pods for JKQuickDevelop
 
