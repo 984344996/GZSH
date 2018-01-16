@@ -9,6 +9,7 @@
 #import "MySupplyAndDemandViewController.h"
 #import "DemandInfo.h"
 #import "MySupplyAndDemandTableViewCell.h"
+#import "MySupplyAndDemandEditViewController.h"
 
 @interface MySupplyAndDemandViewController ()
 @property (nonatomic, strong) NSMutableArray *supplies;
@@ -32,7 +33,10 @@
 #pragma mark - Private methods
 
 - (void)doPublish:(UIBarButtonItem *)sender{
-    
+    MySupplyAndDemandEditViewController *vc = [[MySupplyAndDemandEditViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - Table Delegate and Datasource

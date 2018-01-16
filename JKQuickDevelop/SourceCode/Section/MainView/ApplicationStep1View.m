@@ -122,7 +122,7 @@
     
     CGFloat btnH = 56;
     if (kDevice_Is_iPhoneX) {
-        btnH += 24;
+        btnH += kDeltaForIphoneX;
     }
     [self.buttonNext setFrame:CGRectMake(0, h - btnH, w, btnH)];
 }

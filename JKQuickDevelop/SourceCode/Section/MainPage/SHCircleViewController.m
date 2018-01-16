@@ -16,9 +16,13 @@
 #import "MomentHeaderView.h"
 #import <ZLPhotoActionSheet.h>
 #import "SendMomentViewController.h"
+#import <ReactiveObjC.h>
+#import "MomentNewsViewController.h"
 
 @interface SHCircleViewController ()<MomentCellDelegate>
 
+@property (nonatomic, assign) BOOL isMainPage;
+@property (nonatomic, strong) NSString *userid;
 @property (nonatomic, strong) NSMutableArray *momentModes;
 @property (nonatomic, strong) MomentHeaderView *header;
 
@@ -26,11 +30,23 @@
 
 @implementation SHCircleViewController
 
+- (instancetype)initWithMainPage:(BOOL) isMainPage userid:(NSString *)userid{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.userid = userid;
+        self.isMainPage = isMainPage;
+    }
+    return self;
+}
+
 - (void)configView{
     [super configView];
     
     [self addUIBarButtonItemImage:@"Circle_Icon_Camera" size:CGSizeMake(24, 24) isLeft:NO target:self action:@selector(publishMoment:)];
-    self.tableView.tableHeaderView = self.header;
+    
+    if (self.isMainPage) {
+        self.tableView.tableHeaderView = self.header;
+    }
     [self.tableView registerClass:[MomentTableViewCell class] forCellReuseIdentifier:@"MomentTableViewCell"];
     
 }
@@ -43,6 +59,24 @@
         [self.momentModes addObject:[Moment mj_objectWithKeyValues:eachDic]];
     }
     [self.tableView reloadData];
+}
+
+
+- (void)configEvent{
+    [super configEvent];
+    self.header.userInteractionEnabled               = YES;
+    self.header.containerView.userInteractionEnabled = YES;
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    [self.header.containerView addGestureRecognizer:tap];
+    @weakify(self)
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        @strongify(self)
+        MomentNewsViewController *vc = [[MomentNewsViewController alloc] init];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }];
 }
 
 - (NSMutableArray *)momentModes{

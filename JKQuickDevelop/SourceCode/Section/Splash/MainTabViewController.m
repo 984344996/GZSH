@@ -22,7 +22,7 @@
     SHMainPageViewController *mainPageVC = [[SHMainPageViewController alloc] init];
     [self addChildViewController:mainPageVC title:@"主页" imageNormal:@"Home_Icon_House_dark" imageSelect:@"Home_Icon_House_Bright" hasNav:YES];
     
-    SHCircleViewController *circleVC = [[SHCircleViewController alloc] init];
+    SHCircleViewController *circleVC = [[SHCircleViewController alloc] initWithMainPage:YES userid:@""];
     [self addChildViewController:circleVC title:@"商会圈" imageNormal:@"Home_Icon_Cricle_Dark" imageSelect:@"Home_Icon_Cricle_Bright" hasNav:YES];
     
     SHAddressViewController *addressVC = [[SHAddressViewController alloc] init];

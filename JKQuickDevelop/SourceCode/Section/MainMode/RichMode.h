@@ -10,10 +10,13 @@
 
 @interface RichMode : NSObject
 // ["image", "text"]
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSString *type;
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *inputContent;
 @property (nonatomic, strong) NSString *imageUrl;
-@property (nonatomic, assign) NSUInteger *w;
-@property (nonatomic, assign) NSUInteger *h;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, assign) NSInteger tagForView;
 
 @end

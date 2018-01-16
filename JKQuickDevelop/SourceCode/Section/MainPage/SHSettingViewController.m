@@ -8,6 +8,8 @@
 
 #import "SHSettingViewController.h"
 #import <JKCategories.h>
+#import "ResetPasswordViewController.h"
+#import "FeedbackViewController.h"
 
 @interface SHSettingViewController ()
 @property (nonatomic, strong) NSArray *cellTitles;
@@ -54,9 +56,25 @@
     
     CGFloat btnH = 56;
     if (kDevice_Is_iPhoneX) {
-        btnH += 24;
+        btnH += kDeltaForIphoneX;
     }
     [self.btnLogout setFrame:CGRectMake(0, h - btnH, w, btnH)];
+}
+
+#pragma mark - Private methods
+
+- (void)intoChangePassword{
+    ResetPasswordViewController *vc = [[ResetPasswordViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+- (void)intoFeedback{
+    FeedbackViewController *vc = [[FeedbackViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - Delefate and Datasource
@@ -93,6 +111,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        [self intoChangePassword];
+    }else{
+        [self intoFeedback];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -104,5 +127,4 @@
     headerView.backgroundColor = [UIColor clearColor];
     return headerView;
 }
-
 @end

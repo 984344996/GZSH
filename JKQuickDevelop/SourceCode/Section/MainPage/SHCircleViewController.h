@@ -12,4 +12,12 @@
 
 @interface SHCircleViewController : JKBaseTableViewController
 
+/**
+ 朋友圈初始化函数
+
+ @param isMainPage 是不是主页面
+ @param userid 用户ID
+ @return VC
+ */
+- (instancetype)initWithMainPage:(BOOL) isMainPage userid:(NSString *)userid;
 @end

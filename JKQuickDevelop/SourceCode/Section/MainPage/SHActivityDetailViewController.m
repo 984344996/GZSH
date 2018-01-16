@@ -66,7 +66,7 @@
     
     CGFloat btnH = 56;
     if (kDevice_Is_iPhoneX) {
-        btnH += 24;
+        btnH += kDeltaForIphoneX;
     }
     [self.btnJoin setFrame:CGRectMake(0, h - btnH, w, btnH)];
     [self.webView setFrame:CGRectMake(0, 0, w, h - btnH)];

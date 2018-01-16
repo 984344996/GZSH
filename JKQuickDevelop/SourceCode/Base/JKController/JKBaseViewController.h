@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger,LoadingViewType){
 @property (nonatomic, strong)NSString *loadingPrompText;
 @property (nonatomic, strong)JKPageLoadingView * loadingView;
 
+- (CGFloat)topMargin;
 
 /**
  显示NavigationBar 下面线

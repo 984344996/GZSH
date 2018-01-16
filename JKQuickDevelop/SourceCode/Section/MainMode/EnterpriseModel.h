@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface EnterpriseModel : NSObject
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *mobile;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSString *service;
-@property (nonatomic, strong) NSString *mobile;
-@property (nonatomic, strong) NSString *email;
-@property (nonatomic, strong) NSString *phone;
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *eld;
+@property (nonatomic, strong) NSString *avatar;
 
 @end

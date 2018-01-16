@@ -12,6 +12,7 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "NSString+Commen.h"
 #import <MJExtension.h>
+#import "MyCompanyInfoEditViewController.h"
 
 @interface MyCompanyInfoViewController ()
 @property (nonatomic, strong) NSMutableArray *models;
@@ -83,7 +84,10 @@
 }
 
 - (void)editInfo:(UIBarButtonItem *)sender{
-    
+    MyCompanyInfoEditViewController *vc = [[MyCompanyInfoEditViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 

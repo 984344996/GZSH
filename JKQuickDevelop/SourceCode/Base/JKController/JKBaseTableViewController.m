@@ -50,6 +50,11 @@
     return _dataArray;
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.tableView setFrame:self.view.bounds];
+}
+
 #pragma mark - 注册是否开启头部刷新and脚部刷新
 - (void)setIsOpenHeaderRefresh:(BOOL)isOpenHeaderRefresh
 { _isOpenHeaderRefresh =  isOpenHeaderRefresh;

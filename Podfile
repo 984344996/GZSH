@@ -96,6 +96,7 @@ target 'JKQuickDevelop' do
     # https://github.com/liuzhiyi1992/ZYCornerRadius
     pod 'ZYCornerRadius', '~> 1.0.2'
     
+    
     # 私有的的第三方类库（根据自己的业务需求）
     
     # 滚动轮播
@@ -117,6 +118,10 @@ target 'JKQuickDevelop' do
     # 网页加载显示进度
     # https://github.com/ninjinkun/NJKWebViewProgress
     pod 'NJKWebViewProgress'
+    
+    # 自动布局
+    pod 'SDAutoLayout', '~> 2.1.3'
+    pod 'MyLayout', '~> 1.5.0'
     
   # Pods for JKQuickDevelop
 

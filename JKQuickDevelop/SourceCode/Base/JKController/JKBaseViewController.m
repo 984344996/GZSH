@@ -185,6 +185,14 @@
     return YES;
 }
 
+- (CGFloat)topMargin{
+        CGFloat margin = [[UIApplication sharedApplication] statusBarFrame].size.height;
+        if (self.navigationController && !self.navigationController.navigationBarHidden) {
+            margin += self.navigationController.navigationBar.bounds.size.height;
+        }
+    return margin;
+}
+
 #pragma mark - 网络状态监听
 - (void)statusChanged:(NSNotification *)notification{
     NSNumber *status = notification.userInfo[@"status"];

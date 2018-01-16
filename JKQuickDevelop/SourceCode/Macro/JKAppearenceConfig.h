@@ -31,6 +31,7 @@
 #define kMainBlueColor RGB(0,161,254)
 #define kMainYellowColor RGB(248,179,63)
 #define kMainGreenColor RGB(31, 185, 34)
+#define kBtnYellowColor RGB(252, 180, 40)
 #define kMainTextFieldBorderColor RGB(151,151,151)
 #define kMainBottomLayerColor RGB(245,245,245)
 #define kMainFrontLayerColor RGB(245,245,245)
@@ -55,6 +56,6 @@
 
 #define kAvatar_Size 40
 
-
-
+#define kRichCompanyWidth (JK_SCREEN_WIDTH - 24)
+#define kRichSupplyWidth (JK_SCREEN_WIDTH - 109)
 #endif /* JKAppearenceConfig_h */

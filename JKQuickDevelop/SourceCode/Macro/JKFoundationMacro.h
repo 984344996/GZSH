@@ -64,6 +64,8 @@ static __inline__ CGFloat JKMainScreenAutoHeight()
 
 #define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
+#define kDeltaForIphoneX 14.0;
+
 // NSString
 #define NSStringFromInt(d) [NSString stringWithFormat:@"%d", (d)]
 #define NSStringFromLong(d) [NSString stringWithFormat:@"%lld", (d)]

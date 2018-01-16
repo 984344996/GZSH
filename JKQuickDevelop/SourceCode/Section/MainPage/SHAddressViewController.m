@@ -14,6 +14,7 @@
 #import <JKCategories.h>
 #import "Contact.h"
 #import "ObjectPingSortHelper.h"
+#import "PersonalInfoViewController.h"
 
 @interface SHAddressViewController ()
 @property (nonatomic, strong) AddressTableViewHeader *header;
@@ -100,6 +101,12 @@
 }
 #pragma mark - Private methods
 
+- (void)intoPersonInfo{
+    PersonalInfoViewController *vc =  [[PersonalInfoViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
 
 
 #pragma mark - Delegate and Datasource
@@ -141,6 +148,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self intoPersonInfo];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{

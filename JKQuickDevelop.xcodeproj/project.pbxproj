@@ -20,6 +20,10 @@
 		351356522007A59A0091606C /* ContactSHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351356512007A59A0091606C /* ContactSHViewController.m */; };
 		351356562009CF010091606C /* CirclePicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351356542009CF010091606C /* CirclePicCollectionViewCell.m */; };
 		351356572009CF010091606C /* CirclePicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 351356552009CF010091606C /* CirclePicCollectionViewCell.xib */; };
+		3513565A2009ECCC0091606C /* MomentNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351356592009ECCC0091606C /* MomentNewsTableViewCell.m */; };
+		3513565D2009FAE60091606C /* MomentNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3513565C2009FAE60091606C /* MomentNewsModel.m */; };
+		35135660200A0C1B0091606C /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3513565F200A0C1B0091606C /* PersonalInfoViewController.m */; };
+		3513566A200B3D110091606C /* RichContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35135669200B3D110091606C /* RichContainerView.m */; };
 		3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3516EC0D1E8C9FC400B9A97D /* ClusterPrePermissions.m */; };
 		3519B3F61E3759AE006B8A5D /* JKTopBottomViewCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3519B3F51E3759AE006B8A5D /* JKTopBottomViewCoordinator.m */; };
 		352B88691E8DF9950034F005 /* PushNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 352B88681E8DF9950034F005 /* PushNotificationHelper.m */; };
@@ -75,8 +79,18 @@
 		353D212A1E2CB57D00AA2610 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21291E2CB57D00AA2610 /* UIKit.framework */; };
 		353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E2DA21E8B9AC900802E9F /* JKIAPHelper.m */; };
 		35439D641FFBC9C50069FA28 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35439D631FFBC9C50069FA28 /* LoginView.m */; };
+		354832B1200E2A570004E574 /* APIServerSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B0200E2A570004E574 /* APIServerSdk.m */; };
+		354832B5200E2B710004E574 /* APIRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B4200E2B710004E574 /* APIRouter.m */; };
+		354832B9200E33E90004E574 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B8200E33E90004E574 /* UserInfo.m */; };
+		354832BC200E39370004E574 /* AccomplishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832BB200E39370004E574 /* AccomplishModel.m */; };
+		354832BF200E3BC20004E574 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832BE200E3BC20004E574 /* BannerModel.m */; };
+		354832C2200E3C500004E574 /* SysInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832C1200E3C500004E574 /* SysInfoModel.m */; };
+		354832C5200E3CA10004E574 /* UpLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832C4200E3CA10004E574 /* UpLoadModel.m */; };
+		354832C8200E3CFF0004E574 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832C7200E3CFF0004E574 /* NewsModel.m */; };
+		354832CB200E3DA70004E574 /* MettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832CA200E3DA70004E574 /* MettingModel.m */; };
+		354832CE200E402B0004E574 /* DynamicMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832CD200E402B0004E574 /* DynamicMsg.m */; };
+		354832D1200E44660004E574 /* CommonResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832D0200E44660004E574 /* CommonResponseModel.m */; };
 		354B0AED2003A12200D614B7 /* MomentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AEC2003A12200D614B7 /* MomentHeaderView.m */; };
-		354B0AF02004724500D614B7 /* RichEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AEF2004724500D614B7 /* RichEditTableView.m */; };
 		354B0AF32004729E00D614B7 /* RichMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AF22004729E00D614B7 /* RichMode.m */; };
 		35588CA42000895C00ED128A /* AddressTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 35588CA32000895C00ED128A /* AddressTableViewHeader.m */; };
 		35588CA820008F5F00ED128A /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35588CA620008F5F00ED128A /* AddressTableViewCell.m */; };
@@ -421,7 +435,6 @@
 		35C172861FFBB16B00607658 /* MySupplyAndDemandEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172851FFBB16B00607658 /* MySupplyAndDemandEditViewController.m */; };
 		35C172891FFBB23300607658 /* SHActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172881FFBB23300607658 /* SHActivityDetailViewController.m */; };
 		35C1728C1FFBB27F00607658 /* ApplicationStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1728B1FFBB27F00607658 /* ApplicationStep3ViewController.m */; };
-		35C1728F1FFBB32100607658 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C1728E1FFBB32100607658 /* PersonInfoViewController.m */; };
 		35C172921FFBB33D00607658 /* CompanyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172911FFBB33D00607658 /* CompanyInfoViewController.m */; };
 		35C172951FFBB37800607658 /* SupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172941FFBB37800607658 /* SupplyInfoViewController.m */; };
 		35C172981FFBB3E700607658 /* NewsNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172971FFBB3E700607658 /* NewsNoticeViewController.m */; };
@@ -504,6 +517,14 @@
 		351356532009CF010091606C /* CirclePicCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CirclePicCollectionViewCell.h; path = SourceCode/Section/MainView/CirclePicCollectionViewCell.h; sourceTree = "<group>"; };
 		351356542009CF010091606C /* CirclePicCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CirclePicCollectionViewCell.m; path = SourceCode/Section/MainView/CirclePicCollectionViewCell.m; sourceTree = "<group>"; };
 		351356552009CF010091606C /* CirclePicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CirclePicCollectionViewCell.xib; path = SourceCode/Section/MainView/CirclePicCollectionViewCell.xib; sourceTree = "<group>"; };
+		351356582009ECCC0091606C /* MomentNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentNewsTableViewCell.h; path = SourceCode/Section/MainView/MomentNewsTableViewCell.h; sourceTree = "<group>"; };
+		351356592009ECCC0091606C /* MomentNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentNewsTableViewCell.m; path = SourceCode/Section/MainView/MomentNewsTableViewCell.m; sourceTree = "<group>"; };
+		3513565B2009FAE60091606C /* MomentNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentNewsModel.h; path = SourceCode/Section/MainMode/MomentNewsModel.h; sourceTree = "<group>"; };
+		3513565C2009FAE60091606C /* MomentNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentNewsModel.m; path = SourceCode/Section/MainMode/MomentNewsModel.m; sourceTree = "<group>"; };
+		3513565E200A0C1B0091606C /* PersonalInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PersonalInfoViewController.h; path = SourceCode/Section/MainPage/PersonalInfoViewController.h; sourceTree = "<group>"; };
+		3513565F200A0C1B0091606C /* PersonalInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PersonalInfoViewController.m; path = SourceCode/Section/MainPage/PersonalInfoViewController.m; sourceTree = "<group>"; };
+		35135668200B3D110091606C /* RichContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichContainerView.h; path = SourceCode/Section/MainView/RichContainerView.h; sourceTree = "<group>"; };
+		35135669200B3D110091606C /* RichContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RichContainerView.m; path = SourceCode/Section/MainView/RichContainerView.m; sourceTree = "<group>"; };
 		3516EC0C1E8C9FC400B9A97D /* ClusterPrePermissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterPrePermissions.h; sourceTree = "<group>"; };
 		3516EC0D1E8C9FC400B9A97D /* ClusterPrePermissions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterPrePermissions.m; sourceTree = "<group>"; };
 		3519B3F41E3759AE006B8A5D /* JKTopBottomViewCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKTopBottomViewCoordinator.h; path = SourceCode/Base/JKCustomView/JKTopBottomViewCoordinator.h; sourceTree = "<group>"; };
@@ -644,10 +665,30 @@
 		353E2DA21E8B9AC900802E9F /* JKIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIAPHelper.m; sourceTree = "<group>"; };
 		35439D621FFBC9C50069FA28 /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		35439D631FFBC9C50069FA28 /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		354832AF200E2A570004E574 /* APIServerSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIServerSdk.h; path = SourceCode/Section/MainMode/APIServerSdk.h; sourceTree = "<group>"; };
+		354832B0200E2A570004E574 /* APIServerSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = APIServerSdk.m; path = SourceCode/Section/MainMode/APIServerSdk.m; sourceTree = "<group>"; };
+		354832B3200E2B710004E574 /* APIRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIRouter.h; path = SourceCode/Section/MainMode/APIRouter.h; sourceTree = "<group>"; };
+		354832B4200E2B710004E574 /* APIRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = APIRouter.m; path = SourceCode/Section/MainMode/APIRouter.m; sourceTree = "<group>"; };
+		354832B7200E33E90004E574 /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = SourceCode/Section/MainMode/UserInfo.h; sourceTree = "<group>"; };
+		354832B8200E33E90004E574 /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = SourceCode/Section/MainMode/UserInfo.m; sourceTree = "<group>"; };
+		354832BA200E39370004E574 /* AccomplishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AccomplishModel.h; path = SourceCode/Section/MainMode/AccomplishModel.h; sourceTree = "<group>"; };
+		354832BB200E39370004E574 /* AccomplishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AccomplishModel.m; path = SourceCode/Section/MainMode/AccomplishModel.m; sourceTree = "<group>"; };
+		354832BD200E3BC20004E574 /* BannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
+		354832BE200E3BC20004E574 /* BannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
+		354832C0200E3C500004E574 /* SysInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SysInfoModel.h; path = SourceCode/Section/MainMode/SysInfoModel.h; sourceTree = "<group>"; };
+		354832C1200E3C500004E574 /* SysInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SysInfoModel.m; path = SourceCode/Section/MainMode/SysInfoModel.m; sourceTree = "<group>"; };
+		354832C3200E3CA10004E574 /* UpLoadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UpLoadModel.h; path = SourceCode/Section/MainMode/UpLoadModel.h; sourceTree = "<group>"; };
+		354832C4200E3CA10004E574 /* UpLoadModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UpLoadModel.m; path = SourceCode/Section/MainMode/UpLoadModel.m; sourceTree = "<group>"; };
+		354832C6200E3CFF0004E574 /* NewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NewsModel.h; path = SourceCode/Section/MainMode/NewsModel.h; sourceTree = "<group>"; };
+		354832C7200E3CFF0004E574 /* NewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsModel.m; path = SourceCode/Section/MainMode/NewsModel.m; sourceTree = "<group>"; };
+		354832C9200E3DA70004E574 /* MettingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MettingModel.h; path = SourceCode/Section/MainMode/MettingModel.h; sourceTree = "<group>"; };
+		354832CA200E3DA70004E574 /* MettingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MettingModel.m; path = SourceCode/Section/MainMode/MettingModel.m; sourceTree = "<group>"; };
+		354832CC200E402B0004E574 /* DynamicMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DynamicMsg.h; path = SourceCode/Section/MainMode/DynamicMsg.h; sourceTree = "<group>"; };
+		354832CD200E402B0004E574 /* DynamicMsg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DynamicMsg.m; path = SourceCode/Section/MainMode/DynamicMsg.m; sourceTree = "<group>"; };
+		354832CF200E44660004E574 /* CommonResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CommonResponseModel.h; path = SourceCode/Section/MainMode/CommonResponseModel.h; sourceTree = "<group>"; };
+		354832D0200E44660004E574 /* CommonResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CommonResponseModel.m; path = SourceCode/Section/MainMode/CommonResponseModel.m; sourceTree = "<group>"; };
 		354B0AEB2003A12200D614B7 /* MomentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentHeaderView.h; path = SourceCode/Section/MainView/MomentHeaderView.h; sourceTree = "<group>"; };
 		354B0AEC2003A12200D614B7 /* MomentHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentHeaderView.m; path = SourceCode/Section/MainView/MomentHeaderView.m; sourceTree = "<group>"; };
-		354B0AEE2004724500D614B7 /* RichEditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichEditTableView.h; path = SourceCode/Section/MainView/RichEditTableView.h; sourceTree = "<group>"; };
-		354B0AEF2004724500D614B7 /* RichEditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RichEditTableView.m; path = SourceCode/Section/MainView/RichEditTableView.m; sourceTree = "<group>"; };
 		354B0AF12004729E00D614B7 /* RichMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichMode.h; path = SourceCode/Section/MainMode/RichMode.h; sourceTree = "<group>"; };
 		354B0AF22004729E00D614B7 /* RichMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RichMode.m; path = SourceCode/Section/MainMode/RichMode.m; sourceTree = "<group>"; };
 		35588CA22000895C00ED128A /* AddressTableViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AddressTableViewHeader.h; path = SourceCode/Section/MainView/AddressTableViewHeader.h; sourceTree = "<group>"; };
@@ -1076,8 +1117,6 @@
 		35C172881FFBB23300607658 /* SHActivityDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHActivityDetailViewController.m; path = SourceCode/Section/MainPage/SHActivityDetailViewController.m; sourceTree = "<group>"; };
 		35C1728A1FFBB27F00607658 /* ApplicationStep3ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApplicationStep3ViewController.h; path = SourceCode/Section/MainPage/ApplicationStep3ViewController.h; sourceTree = "<group>"; };
 		35C1728B1FFBB27F00607658 /* ApplicationStep3ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep3ViewController.m; path = SourceCode/Section/MainPage/ApplicationStep3ViewController.m; sourceTree = "<group>"; };
-		35C1728D1FFBB32100607658 /* PersonInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PersonInfoViewController.h; path = SourceCode/Section/MainPage/PersonInfoViewController.h; sourceTree = "<group>"; };
-		35C1728E1FFBB32100607658 /* PersonInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PersonInfoViewController.m; path = SourceCode/Section/MainPage/PersonInfoViewController.m; sourceTree = "<group>"; };
 		35C172901FFBB33D00607658 /* CompanyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CompanyInfoViewController.h; path = SourceCode/Section/MainPage/CompanyInfoViewController.h; sourceTree = "<group>"; };
 		35C172911FFBB33D00607658 /* CompanyInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CompanyInfoViewController.m; path = SourceCode/Section/MainPage/CompanyInfoViewController.m; sourceTree = "<group>"; };
 		35C172931FFBB37800607658 /* SupplyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplyInfoViewController.h; sourceTree = "<group>"; };
@@ -1187,12 +1226,23 @@
 		35135636200783600091606C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				354B0AF12004729E00D614B7 /* RichMode.h */,
+				354B0AF22004729E00D614B7 /* RichMode.m */,
 				35135637200783780091606C /* EnterpriseModel.h */,
 				35135638200783780091606C /* EnterpriseModel.m */,
 				35135642200798530091606C /* DemandInfo.h */,
 				35135643200798530091606C /* DemandInfo.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		35135661200A3DD30091606C /* Rich */ = {
+			isa = PBXGroup;
+			children = (
+				35135668200B3D110091606C /* RichContainerView.h */,
+				35135669200B3D110091606C /* RichContainerView.m */,
+			);
+			name = Rich;
 			sourceTree = "<group>";
 		};
 		3516EC0B1E8C9F8D00B9A97D /* ClusterPrePermissions */ = {
@@ -1408,6 +1458,7 @@
 		353D20B91E2C9C7400AA2610 /* JKSection */ = {
 			isa = PBXGroup;
 			children = (
+				354832AB200E2A0B0004E574 /* SHServer */,
 				35C1725F1FFBA74500607658 /* SHMemberCenter */,
 				35C1725E1FFBA73A00607658 /* SHActivity */,
 				35C1725D1FFBA73000607658 /* SHAddress */,
@@ -1547,6 +1598,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		354832AB200E2A0B0004E574 /* SHServer */ = {
+			isa = PBXGroup;
+			children = (
+				354832B6200E2F960004E574 /* Model */,
+				354832AF200E2A570004E574 /* APIServerSdk.h */,
+				354832B0200E2A570004E574 /* APIServerSdk.m */,
+				354832B3200E2B710004E574 /* APIRouter.h */,
+				354832B4200E2B710004E574 /* APIRouter.m */,
+			);
+			name = SHServer;
+			sourceTree = "<group>";
+		};
+		354832B6200E2F960004E574 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				354832B7200E33E90004E574 /* UserInfo.h */,
+				354832B8200E33E90004E574 /* UserInfo.m */,
+				354832BA200E39370004E574 /* AccomplishModel.h */,
+				354832BB200E39370004E574 /* AccomplishModel.m */,
+				354832BD200E3BC20004E574 /* BannerModel.h */,
+				354832BE200E3BC20004E574 /* BannerModel.m */,
+				354832C0200E3C500004E574 /* SysInfoModel.h */,
+				354832C1200E3C500004E574 /* SysInfoModel.m */,
+				354832C3200E3CA10004E574 /* UpLoadModel.h */,
+				354832C4200E3CA10004E574 /* UpLoadModel.m */,
+				354832C6200E3CFF0004E574 /* NewsModel.h */,
+				354832C7200E3CFF0004E574 /* NewsModel.m */,
+				354832C9200E3DA70004E574 /* MettingModel.h */,
+				354832CA200E3DA70004E574 /* MettingModel.m */,
+				354832CC200E402B0004E574 /* DynamicMsg.h */,
+				354832CD200E402B0004E574 /* DynamicMsg.m */,
+				354832CF200E44660004E574 /* CommonResponseModel.h */,
+				354832D0200E44660004E574 /* CommonResponseModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		35588CA12000892300ED128A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1583,14 +1671,13 @@
 		35588CBF2000E46A00ED128A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35135661200A3DD30091606C /* Rich */,
 				35588CC02000E4A000ED128A /* MemberCenterTableViewHeaderView.h */,
 				35588CC12000E4A000ED128A /* MemberCenterTableViewHeaderView.m */,
 				35588CC32000E4C500ED128A /* MemberCenterTableViewHeaderView.xib */,
 				35588CC52000E8CE00ED128A /* MemberCenterTableViewCell.h */,
 				35588CC62000E8CE00ED128A /* MemberCenterTableViewCell.m */,
 				35588CC72000E8CE00ED128A /* MemberCenterTableViewCell.xib */,
-				354B0AEE2004724500D614B7 /* RichEditTableView.h */,
-				354B0AEF2004724500D614B7 /* RichEditTableView.m */,
 				35135631200780470091606C /* MineCompanyTextTableViewCell.h */,
 				35135632200780470091606C /* MineCompanyTextTableViewCell.m */,
 				35135633200780470091606C /* MineCompanyTextTableViewCell.xib */,
@@ -1622,6 +1709,8 @@
 				351356532009CF010091606C /* CirclePicCollectionViewCell.h */,
 				351356542009CF010091606C /* CirclePicCollectionViewCell.m */,
 				351356552009CF010091606C /* CirclePicCollectionViewCell.xib */,
+				351356582009ECCC0091606C /* MomentNewsTableViewCell.h */,
+				351356592009ECCC0091606C /* MomentNewsTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1637,6 +1726,8 @@
 				35588CDC2001191000ED128A /* Comment.m */,
 				35588CDE20011A2C00ED128A /* Moment.h */,
 				35588CDF20011A2C00ED128A /* Moment.m */,
+				3513565B2009FAE60091606C /* MomentNewsModel.h */,
+				3513565C2009FAE60091606C /* MomentNewsModel.m */,
 			);
 			name = Mode;
 			sourceTree = "<group>";
@@ -3074,8 +3165,6 @@
 				35588CA12000892300ED128A /* View */,
 				35C172661FFBA7CB00607658 /* SHAddressViewController.h */,
 				35C172671FFBA7CB00607658 /* SHAddressViewController.m */,
-				35C1728D1FFBB32100607658 /* PersonInfoViewController.h */,
-				35C1728E1FFBB32100607658 /* PersonInfoViewController.m */,
 				35C172901FFBB33D00607658 /* CompanyInfoViewController.h */,
 				35C172911FFBB33D00607658 /* CompanyInfoViewController.m */,
 				35C172931FFBB37800607658 /* SupplyInfoViewController.h */,
@@ -3117,8 +3206,8 @@
 				351356512007A59A0091606C /* ContactSHViewController.m */,
 				35C172B11FFBB50E00607658 /* FeedbackViewController.h */,
 				35C172B21FFBB50E00607658 /* FeedbackViewController.m */,
-				354B0AF12004729E00D614B7 /* RichMode.h */,
-				354B0AF22004729E00D614B7 /* RichMode.m */,
+				3513565E200A0C1B0091606C /* PersonalInfoViewController.h */,
+				3513565F200A0C1B0091606C /* PersonalInfoViewController.m */,
 			);
 			name = SHMemberCenter;
 			sourceTree = "<group>";
@@ -3828,7 +3917,6 @@
 				356380311FF33CFC00A01869 /* PinyinHelper.m in Sources */,
 				35323E9D1E6D3D8500FF7BF0 /* MZIMConversation.m in Sources */,
 				35588CE020011A2C00ED128A /* Moment.m in Sources */,
-				354B0AF02004724500D614B7 /* RichEditTableView.m in Sources */,
 				358104DE1FFE4E1900FC463A /* MainPageTableHeaderView.m in Sources */,
 				35F0691A1E52E098009DBEE4 /* PathUtility.m in Sources */,
 				354B0AED2003A12200D614B7 /* MomentHeaderView.m in Sources */,
@@ -3847,6 +3935,7 @@
 				35323EA91E6D3D8500FF7BF0 /* MZIMRecorderHelper.m in Sources */,
 				35588CB82000C0B200ED128A /* CornerTriangleView.m in Sources */,
 				352B88691E8DF9950034F005 /* PushNotificationHelper.m in Sources */,
+				354832BF200E3BC20004E574 /* BannerModel.m in Sources */,
 				35323E9A1E6D3D8500FF7BF0 /* MZIMAudioPlayHelper.m in Sources */,
 				356380431FF629E800A01869 /* JKTextField_Padding.m in Sources */,
 				35588CB22000A63E00ED128A /* ObjectPingSortHelper.m in Sources */,
@@ -3865,7 +3954,6 @@
 				35C172A71FFBB49D00607658 /* SendMomentViewController.m in Sources */,
 				35C1726E1FFBA7ED00607658 /* SHMemberViewController.m in Sources */,
 				35323EC61E6D438E00FF7BF0 /* MZIMMessageTableViewCell.m in Sources */,
-				35C1728F1FFBB32100607658 /* PersonInfoViewController.m in Sources */,
 				352B886C1E8E1E310034F005 /* PushActionHelper.m in Sources */,
 				35C172801FFBB10300607658 /* MyCompanyInfoEditViewController.m in Sources */,
 				35F0691B1E52E098009DBEE4 /* RegexKitLite.m in Sources */,
@@ -3874,14 +3962,17 @@
 				357039C11FFCF1F900A373CB /* ResetPasswordView.m in Sources */,
 				358104D31FFDFB5E00FC463A /* ApplicationStep2View.m in Sources */,
 				355894EA2001F13500ED128A /* OfficialAccountToolbar.m in Sources */,
+				3513566A200B3D110091606C /* RichContainerView.m in Sources */,
 				35C172B31FFBB50E00607658 /* FeedbackViewController.m in Sources */,
 				358104F71FFE633C00FC463A /* MainPageHeaderBannerCollectionViewCell.m in Sources */,
+				354832C5200E3CA10004E574 /* UpLoadModel.m in Sources */,
 				35C1726B1FFBA7D800607658 /* SHActivityViewController.m in Sources */,
 				355894DE2001F13500ED128A /* MoreItem.m in Sources */,
 				355894E32001F13500ED128A /* FacePageView.m in Sources */,
 				3513563C200793B20091606C /* MyCompanyInfoEditView.m in Sources */,
 				35588CA42000895C00ED128A /* AddressTableViewHeader.m in Sources */,
 				35C172831FFBB14400607658 /* MySupplyAndDemandViewController.m in Sources */,
+				354832D1200E44660004E574 /* CommonResponseModel.m in Sources */,
 				35588CA820008F5F00ED128A /* AddressTableViewCell.m in Sources */,
 				35C1728C1FFBB27F00607658 /* ApplicationStep3ViewController.m in Sources */,
 				355894FA2001FD3600ED128A /* MomentTableViewCell.m in Sources */,
@@ -3897,12 +3988,16 @@
 				358104D91FFE054C00FC463A /* UITextView+Placeholder.m in Sources */,
 				355894E62001F13500ED128A /* FaceThemeView.m in Sources */,
 				35C1729E1FFBB41D00607658 /* NoticeViewController.m in Sources */,
+				354832C8200E3CFF0004E574 /* NewsModel.m in Sources */,
 				35323EA51E6D3D8500FF7BF0 /* MZIMMessageDispatcher.m in Sources */,
 				355894F42001FD1100ED128A /* CommentTableViewCell.m in Sources */,
 				355894DD2001F13500ED128A /* FaceThemeModel.m in Sources */,
 				353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */,
+				354832CE200E402B0004E574 /* DynamicMsg.m in Sources */,
 				35374EDD1E305ACF006DC277 /* JKBaseTableViewController.m in Sources */,
 				3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */,
+				354832C2200E3C500004E574 /* SysInfoModel.m in Sources */,
+				354832CB200E3DA70004E574 /* MettingModel.m in Sources */,
 				358B44DA1E499C9B00A0DC93 /* JKNetworkHelper.m in Sources */,
 				35323EA81E6D3D8500FF7BF0 /* MZIMModeExtra.m in Sources */,
 				356380341FF33CFC00A01869 /* ChineseToPinyinResource.m in Sources */,
@@ -3910,6 +4005,7 @@
 				35588CBD2000D06700ED128A /* ActivityTableViewCell.m in Sources */,
 				35323EA41E6D3D8500FF7BF0 /* MZIMMessageCellBodyText.m in Sources */,
 				35C1729B1FFBB40C00607658 /* NewsViewController.m in Sources */,
+				354832B5200E2B710004E574 /* APIRouter.m in Sources */,
 				355894E22001F13500ED128A /* FaceButton.m in Sources */,
 				358104D61FFDFB7600FC463A /* ApplicationStep3View.m in Sources */,
 				35EA97891E372C1F00BD07CF /* JKBaseAppDelegate.m in Sources */,
@@ -3925,6 +4021,8 @@
 				35135634200780470091606C /* MineCompanyTextTableViewCell.m in Sources */,
 				35C172921FFBB33D00607658 /* CompanyInfoViewController.m in Sources */,
 				355894FD20020E1A00ED128A /* JGGView.m in Sources */,
+				35135660200A0C1B0091606C /* PersonalInfoViewController.m in Sources */,
+				354832BC200E39370004E574 /* AccomplishModel.m in Sources */,
 				35FCE3A11E6FC04D001ACC20 /* NSDate+Common.m in Sources */,
 				35588CB52000ACCA00ED128A /* SortBaseObject.m in Sources */,
 				35323EA31E6D3D8500FF7BF0 /* MZIMMessageCellBodyImage.m in Sources */,
@@ -3939,11 +4037,13 @@
 				35323EA61E6D3D8500FF7BF0 /* MZIMMessageFactory.m in Sources */,
 				353750861E321348006DC277 /* JKBaseTabBarController.m in Sources */,
 				35C172891FFBB23300607658 /* SHActivityDetailViewController.m in Sources */,
+				354832B9200E33E90004E574 /* UserInfo.m in Sources */,
 				355894E52001F13500ED128A /* FaceSourceManager.m in Sources */,
 				35C172AD1FFBB4D400607658 /* MomentDetailViewController.m in Sources */,
 				35FCE3A41E6FC09E001ACC20 /* NSString+Commen.m in Sources */,
 				35588CC82000E8CE00ED128A /* MemberCenterTableViewCell.m in Sources */,
 				35374ECA1E305944006DC277 /* main.m in Sources */,
+				3513565D2009FAE60091606C /* MomentNewsModel.m in Sources */,
 				352F23791E553FE30063C511 /* JKTickDownButton.m in Sources */,
 				358104E41FFE4E9300FC463A /* MainPageNewsView.m in Sources */,
 				358104D01FFDFB3E00FC463A /* ApplicationStep1View.m in Sources */,
@@ -3956,6 +4056,7 @@
 				35439D641FFBC9C50069FA28 /* LoginView.m in Sources */,
 				35135639200783780091606C /* EnterpriseModel.m in Sources */,
 				35FCE39E1E6FB6D6001ACC20 /* UIColor+MLPFlatColors.m in Sources */,
+				3513565A2009ECCC0091606C /* MomentNewsTableViewCell.m in Sources */,
 				35588CDA200118F800ED128A /* DynamicInfo.m in Sources */,
 				35C172951FFBB37800607658 /* SupplyInfoViewController.m in Sources */,
 				35323E9F1E6D3D8500FF7BF0 /* MZIMListener.m in Sources */,
@@ -3964,6 +4065,7 @@
 				35F069241E52EFE8009DBEE4 /* KeyValueUtility.m in Sources */,
 				35323EC91E6D444500FF7BF0 /* MZIMMessageCellBodyAudio.m in Sources */,
 				355894EC2001F13500ED128A /* RFTextView.m in Sources */,
+				354832B1200E2A570004E574 /* APIServerSdk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

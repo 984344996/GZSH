@@ -10,4 +10,13 @@
 
 @implementation RichMode
 
+- (BOOL)isEqual:(id)object{
+    if ([object isKindOfClass:[self class]]) {
+        RichMode *toCompare = object;
+        if (toCompare.tagForView == self.tagForView) {
+            return YES;
+        }
+    }
+    return NO;
+}
 @end
