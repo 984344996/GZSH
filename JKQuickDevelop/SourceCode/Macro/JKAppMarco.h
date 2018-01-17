@@ -15,7 +15,7 @@
 #define APPUpgradeAddr [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/SMZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",APPID]
 
 #define APIServerProduct @"https://app.product.com"
-#define APIServerDevelop @"https://app.develop.com"
+#define APIServerDevelop @"http://gzsh.projects.jyapi.cn/app"
 #define APIServerCerPath @""   // SSL验证证书
 #define APPHttpCacheTime 10080 // http缓存时间 默认为一周
 

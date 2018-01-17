@@ -24,14 +24,14 @@ typedef void(^SHRequestSucceed)(id obj);
 
 // 注册
 + (void)doRegister:(NSString *)mobile
-          password:(NSString *)verifyCode
+        verifyCode:(NSString *)verifyCode
            succeed:(SHRequestSucceed)succeed
             failed:(SHRequestFailed)failed;
 
 // 注册：register
 // 重置密码：reset_password
 + (void)doVerify:(NSString *)mobile
-        password:(NSString *)type
+            type:(NSString *)type
          succeed:(SHRequestSucceed)succeed
           failed:(SHRequestFailed)failed;
 
@@ -44,7 +44,7 @@ typedef void(^SHRequestSucceed)(id obj);
 + (void)doResetPass:(NSString *)mobile
        verification:(NSString *)verification
            password:(NSString *)password
-             succeed:(SHRequestSucceed)succeed
-              failed:(SHRequestFailed)failed;
+            succeed:(SHRequestSucceed)succeed
+             failed:(SHRequestFailed)failed;
 
 @end

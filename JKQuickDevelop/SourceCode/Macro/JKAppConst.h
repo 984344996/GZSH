@@ -10,3 +10,4 @@
 
 /// 网络状态变化通知
 extern  NSString * const  kJKNetStatusChangeNotification;
+extern  NSString * const  kJKTokenOutofDate;

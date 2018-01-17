@@ -9,5 +9,5 @@
 #import "JKBaseViewController.h"
 
 @interface ApplicationStep2ViewController : JKBaseViewController
-
+@property (nonatomic, strong) NSString *token;
 @end

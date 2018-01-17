@@ -13,6 +13,10 @@
 @property (nonatomic, assign) NSInteger code;
 @property (nonatomic, strong) NSString *msg;
 @property (nonatomic, strong) NSDictionary *page;
-@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) id data;
+
+- (BOOL)isSucceed;
+- (BOOL)isFailure;
+- (NSString *)getErrorMsg;
 
 @end

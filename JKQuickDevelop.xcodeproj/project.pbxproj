@@ -79,6 +79,11 @@
 		353D212A1E2CB57D00AA2610 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21291E2CB57D00AA2610 /* UIKit.framework */; };
 		353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 353E2DA21E8B9AC900802E9F /* JKIAPHelper.m */; };
 		35439D641FFBC9C50069FA28 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35439D631FFBC9C50069FA28 /* LoginView.m */; };
+		3547EA7D200F7D8E00A37B1F /* RegExString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA7C200F7D8E00A37B1F /* RegExString.m */; };
+		3547EA7F200F911300A37B1F /* comm_areas.json in Resources */ = {isa = PBXBuildFile; fileRef = 3547EA7E200F911300A37B1F /* comm_areas.json */; };
+		3547EA82200F91AF00A37B1F /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA81200F91AF00A37B1F /* AddressModel.m */; };
+		3547EA85200F961700A37B1F /* AddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA84200F961700A37B1F /* AddressParser.m */; };
+		3547EA88200FA25400A37B1F /* JKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA87200FA25400A37B1F /* JKImagePicker.m */; };
 		354832B1200E2A570004E574 /* APIServerSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B0200E2A570004E574 /* APIServerSdk.m */; };
 		354832B5200E2B710004E574 /* APIRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B4200E2B710004E574 /* APIRouter.m */; };
 		354832B9200E33E90004E574 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B8200E33E90004E574 /* UserInfo.m */; };
@@ -665,6 +670,15 @@
 		353E2DA21E8B9AC900802E9F /* JKIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIAPHelper.m; sourceTree = "<group>"; };
 		35439D621FFBC9C50069FA28 /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		35439D631FFBC9C50069FA28 /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		3547EA7B200F7D8D00A37B1F /* RegExString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegExString.h; path = SourceCode/Tool/Foundation/RegExString.h; sourceTree = "<group>"; };
+		3547EA7C200F7D8E00A37B1F /* RegExString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegExString.m; path = SourceCode/Tool/Foundation/RegExString.m; sourceTree = "<group>"; };
+		3547EA7E200F911300A37B1F /* comm_areas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = comm_areas.json; sourceTree = "<group>"; };
+		3547EA80200F91AF00A37B1F /* AddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AddressModel.h; path = SourceCode/Section/MainMode/AddressModel.h; sourceTree = "<group>"; };
+		3547EA81200F91AF00A37B1F /* AddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AddressModel.m; path = SourceCode/Section/MainMode/AddressModel.m; sourceTree = "<group>"; };
+		3547EA83200F961700A37B1F /* AddressParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AddressParser.h; path = SourceCode/Section/MainMode/AddressParser.h; sourceTree = "<group>"; };
+		3547EA84200F961700A37B1F /* AddressParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AddressParser.m; path = SourceCode/Section/MainMode/AddressParser.m; sourceTree = "<group>"; };
+		3547EA86200FA25400A37B1F /* JKImagePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JKImagePicker.h; path = SourceCode/Tool/UIKit/JKImagePicker.h; sourceTree = "<group>"; };
+		3547EA87200FA25400A37B1F /* JKImagePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JKImagePicker.m; path = SourceCode/Tool/UIKit/JKImagePicker.m; sourceTree = "<group>"; };
 		354832AF200E2A570004E574 /* APIServerSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIServerSdk.h; path = SourceCode/Section/MainMode/APIServerSdk.h; sourceTree = "<group>"; };
 		354832B0200E2A570004E574 /* APIServerSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = APIServerSdk.m; path = SourceCode/Section/MainMode/APIServerSdk.m; sourceTree = "<group>"; };
 		354832B3200E2B710004E574 /* APIRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIRouter.h; path = SourceCode/Section/MainMode/APIRouter.h; sourceTree = "<group>"; };
@@ -1232,6 +1246,8 @@
 				35135638200783780091606C /* EnterpriseModel.m */,
 				35135642200798530091606C /* DemandInfo.h */,
 				35135643200798530091606C /* DemandInfo.m */,
+				3547EA80200F91AF00A37B1F /* AddressModel.h */,
+				3547EA81200F91AF00A37B1F /* AddressModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1401,6 +1417,7 @@
 		353750621E31BA01006DC277 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				3547EA7E200F911300A37B1F /* comm_areas.json */,
 				35F5172C1E2377A5006E14C1 /* JKQuickDevelop.xcdatamodeld */,
 				353750701E31BDEB006DC277 /* InfoPlist.strings */,
 				353750771E31BE98006DC277 /* Localizable.strings */,
@@ -1631,6 +1648,8 @@
 				354832CD200E402B0004E574 /* DynamicMsg.m */,
 				354832CF200E44660004E574 /* CommonResponseModel.h */,
 				354832D0200E44660004E574 /* CommonResponseModel.m */,
+				3547EA83200F961700A37B1F /* AddressParser.h */,
+				3547EA84200F961700A37B1F /* AddressParser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -3076,6 +3095,8 @@
 				352B886D1E8E1E370034F005 /* PushNotificationHelper */,
 				358B44D21E499C8200A0DC93 /* HUDHelper.h */,
 				358B44D31E499C8200A0DC93 /* HUDHelper.m */,
+				3547EA86200FA25400A37B1F /* JKImagePicker.h */,
+				3547EA87200FA25400A37B1F /* JKImagePicker.m */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
@@ -3083,6 +3104,8 @@
 		358B44CD1E497A5100A0DC93 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				3547EA7B200F7D8D00A37B1F /* RegExString.h */,
+				3547EA7C200F7D8E00A37B1F /* RegExString.m */,
 				35F069161E52E098009DBEE4 /* PathUtility.h */,
 				35F069171E52E098009DBEE4 /* PathUtility.m */,
 				35F069181E52E098009DBEE4 /* RegexKitLite.h */,
@@ -3559,6 +3582,7 @@
 				355894962001F13500ED128A /* f_static_076@2x.png in Resources */,
 				3513564E2007A2080091606C /* SHContactTableViewCell.xib in Resources */,
 				355894C92001F13500ED128A /* f_static_101@3x.png in Resources */,
+				3547EA7F200F911300A37B1F /* comm_areas.json in Resources */,
 				355894BD2001F13500ED128A /* f_static_095@3x.png in Resources */,
 				35588CA920008F5F00ED128A /* AddressTableViewCell.xib in Resources */,
 				355894362001F13400ED128A /* f_static_028@2x.png in Resources */,
@@ -3950,6 +3974,7 @@
 				35C172771FFBB02300607658 /* ApplicationStep2ViewController.m in Sources */,
 				35A323461E34830800787AFD /* JKCenterRiseTabBar.m in Sources */,
 				35C172621FFBA77700607658 /* SHMainPageViewController.m in Sources */,
+				3547EA82200F91AF00A37B1F /* AddressModel.m in Sources */,
 				352F23721E5434D10063C511 /* MainTabViewController.m in Sources */,
 				35C172A71FFBB49D00607658 /* SendMomentViewController.m in Sources */,
 				35C1726E1FFBA7ED00607658 /* SHMemberViewController.m in Sources */,
@@ -3989,6 +4014,7 @@
 				355894E62001F13500ED128A /* FaceThemeView.m in Sources */,
 				35C1729E1FFBB41D00607658 /* NoticeViewController.m in Sources */,
 				354832C8200E3CFF0004E574 /* NewsModel.m in Sources */,
+				3547EA7D200F7D8E00A37B1F /* RegExString.m in Sources */,
 				35323EA51E6D3D8500FF7BF0 /* MZIMMessageDispatcher.m in Sources */,
 				355894F42001FD1100ED128A /* CommentTableViewCell.m in Sources */,
 				355894DD2001F13500ED128A /* FaceThemeModel.m in Sources */,
@@ -4009,11 +4035,13 @@
 				355894E22001F13500ED128A /* FaceButton.m in Sources */,
 				358104D61FFDFB7600FC463A /* ApplicationStep3View.m in Sources */,
 				35EA97891E372C1F00BD07CF /* JKBaseAppDelegate.m in Sources */,
+				3547EA88200FA25400A37B1F /* JKImagePicker.m in Sources */,
 				35323EA01E6D3D8500FF7BF0 /* MZIMManager.m in Sources */,
 				358B44D91E499C9B00A0DC93 /* JKNetworkCache.m in Sources */,
 				356380321FF33CFC00A01869 /* HanyuPinyinOutputFormat.m in Sources */,
 				35C1727A1FFBB06600607658 /* SHSettingViewController.m in Sources */,
 				354B0AF32004729E00D614B7 /* RichMode.m in Sources */,
+				3547EA85200F961700A37B1F /* AddressParser.m in Sources */,
 				3513564D2007A2080091606C /* SHContactTableViewCell.m in Sources */,
 				358B44E51E4C151200A0DC93 /* LoginViewController.m in Sources */,
 				355894E92001F13500ED128A /* ChatToolBar.m in Sources */,
