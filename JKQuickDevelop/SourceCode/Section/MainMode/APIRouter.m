@@ -12,7 +12,7 @@
 NSString *const RLogin = @"/sign/login";
 NSString *const RRegister = @"/sign/register";
 NSString *const RVerify = @"/sign/verify";
-NSString *const RAccomplish = @"/user/accomplish";
+NSString *const RAccomplish = @"/sign/accomplish";
 NSString *const RResetPassword = @"/sign/password";
 
 /// main

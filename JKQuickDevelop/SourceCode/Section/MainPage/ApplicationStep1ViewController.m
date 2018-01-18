@@ -73,8 +73,7 @@
     
     [[self.applicationStep1View.buttonNext rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self);
-        //[self doRegister];
-        [self toStep2Controller:@"test"];
+        [self doRegister];
     }];
 }
 
@@ -112,8 +111,9 @@
     [APIServerSdk doRegister:self.phone verifyCode:self.code succeed:^(id obj) {
         @strongify(self);
         [[HUDHelper sharedInstance] stopLoading:self.hud];
-        [[HUDHelper sharedInstance] tipMessage:@"注册成功" inView:self.view];
-        
+        CommonResponseModel *mode = obj;
+        NSString *token = mode.data;
+        [self toStep2Controller: token];
     } failed:^(NSString *error) {
         @strongify(self);
         [[HUDHelper sharedInstance] stopLoading:self.hud];

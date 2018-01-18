@@ -26,6 +26,7 @@
 #define kIsWiFiNetwork [AFNetworkReachabilityManager sharedManager].reachableViaWiFi;  // 一次性判断是否为WiFi网络的宏
 #endif
 
+#import "CommonResponseModel.h"
 typedef NS_ENUM(NSUInteger,JKHttpRequestType) {
     JKHttpRequestTypeGET,
     JKHttpRequestTypePOST,
