@@ -47,4 +47,11 @@ typedef void(^SHRequestSucceed)(id obj);
             succeed:(SHRequestSucceed)succeed
              failed:(SHRequestFailed)failed;
 
+// 上传图片
++ (void)doUploadImage:(UIImage *)image
+                  dir:(NSString *)dir
+                 name:(NSString *)name
+              succeed:(SHRequestSucceed)succeed
+               failed:(SHRequestFailed)failed;
+
 @end

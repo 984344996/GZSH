@@ -73,7 +73,8 @@
     
     [[self.applicationStep1View.buttonNext rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self);
-        [self doRegister];
+        //[self doRegister];
+        [self toStep2Controller:@"test"];
     }];
 }
 
@@ -123,6 +124,7 @@
 - (void)toStep2Controller:(NSString *)token{
     ApplicationStep2ViewController *vc = [[ApplicationStep2ViewController alloc] init];
     vc.token = token;
+    [JKNetworkHelper setToken:token];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

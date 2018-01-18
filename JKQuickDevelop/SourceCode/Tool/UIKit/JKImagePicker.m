@@ -7,6 +7,7 @@
 //
 
 #import "JKImagePicker.h"
+#import "ClusterPrePermissions.h"
 #define System_Version ([[[UIDevice currentDevice] systemVersion] floatValue])
 
 @interface JKImagePicker()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
@@ -29,6 +30,7 @@
 {
     self.vc = vc;
     self.PickCallback = callback;
+    self.allowedEdit  = allowedEdit;
     NSString *cancelButtonTitle = @"取消";
     NSString *destructiveButtonTitle =  @"拍照";
     NSString *otherTitle = @"从相册中选取";
@@ -55,28 +57,52 @@
             [self onCancel];
         }];
         
-        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:destructiveButtonTitle style: UIAlertActionStyleDestructive  handler:^(UIAlertAction *action) {
-            [self onFromCamera];
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:destructiveButtonTitle style: UIAlertActionStyleDefault  handler:^(UIAlertAction *action) {
+            [self askCamerPermission];
         }];
         
         UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self onPhotoAlbum];
+            [self askPhotoLibPermission];
         }];
         
         // Add the actions.
         [alertController addAction:cancelAction];
         [alertController addAction:destructiveAction];
         [alertController addAction:otherAction];
-        
         [vc presentViewController:alertController animated:YES completion:nil];
     }
 }
-
 
 - (void)onCancel
 {
     
 }
+
+
+#pragma mark - Get premission
+
+- (void)askCamerPermission{
+    [[ClusterPrePermissions sharedPermissions] showCameraPermissionsWithTitle:@"获取相机权限" message:@"用于使用拍照功能" denyButtonTitle:@"取消" grantButtonTitle:@"确定" completionHandler:^(BOOL hasPermission, ClusterDialogResult userDialogResult, ClusterDialogResult systemDialogResult) {
+        if (!hasPermission && userDialogResult == ClusterDialogResultNoActionTaken) {
+            [[ClusterPrePermissions sharedPermissions] retrievePermission:@"打开权限" message:@"到设置->打开相机权限" denyButtonTitle:@"取消" grantButtonTitle:@"确定"];
+        }else{
+            [self onFromCamera];
+        }
+    }];
+}
+
+- (void)askPhotoLibPermission{
+    [[ClusterPrePermissions sharedPermissions] showPhotoPermissionsWithTitle:@"获取相册权限" message:@"用于访问您的相册" denyButtonTitle:@"取消" grantButtonTitle:@"确定" completionHandler:^(BOOL hasPermission, ClusterDialogResult userDialogResult, ClusterDialogResult systemDialogResult) {
+        if (!hasPermission && userDialogResult == ClusterDialogResultNoActionTaken) {
+            [[ClusterPrePermissions sharedPermissions] retrievePermission:@"打开权限" message:@"到设置->打开照片权限" denyButtonTitle:@"取消" grantButtonTitle:@"确定"];
+        }else{
+            [self onPhotoAlbum];
+        }
+    }];
+}
+
+
+#pragma mark - Get photo
 
 - (void)onFromCamera
 {
@@ -85,7 +111,7 @@
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]){
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = weakSelf;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = self.allowedEdit;
         picker.sourceType = sourceType;
         picker.videoQuality = UIImagePickerControllerQualityTypeLow;
         [self.vc presentViewController:picker animated:YES completion:^{}];
@@ -104,7 +130,7 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     picker.delegate = weakSelf;
     picker.videoQuality = UIImagePickerControllerQualityTypeLow;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = self.allowedEdit;
     [self.vc presentViewController:picker animated:YES completion:^{}];
 }
 
@@ -112,7 +138,7 @@
 #pragma mark - Delegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    self.PickCallback(nil);
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
@@ -120,10 +146,13 @@
     if (info[UIImagePickerControllerEditedImage]) {
         selectedImage = info[UIImagePickerControllerEditedImage];
         self.PickCallback(selectedImage);
+        [picker dismissViewControllerAnimated:YES completion:nil];
         return;
     }
+    
     selectedImage = info[UIImagePickerControllerOriginalImage];
     self.PickCallback(selectedImage);
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

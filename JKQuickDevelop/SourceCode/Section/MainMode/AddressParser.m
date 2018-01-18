@@ -21,6 +21,27 @@
     return instance;
 }
 
+- (NSMutableArray *)provinces{
+    if (!_provinces){
+        _provinces = [NSMutableArray array];
+    }
+    return _provinces;
+}
+
+- (NSMutableArray *)cities{
+    if (!_cities){
+        _cities = [NSMutableArray array];
+    }
+    return _cities;
+}
+
+- (NSMutableArray *)countries{
+    if (!_countries){
+        _countries = [NSMutableArray array];
+    }
+    return _countries;
+}
+
 -  (void)parseAddressArr{
     NSData *friendsData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"comm_areas" ofType:@"json"]]];
     NSDictionary *JSONDic = [NSJSONSerialization JSONObjectWithData:friendsData options:NSJSONReadingAllowFragments error:nil];
@@ -30,7 +51,7 @@
         if ([obj.level_type isEqualToString:@"1"]) {
             [self.provinces addObject:obj];
         }else if ([obj.level_type isEqualToString:@"2"]){
-            [self.provinces addObject:obj];
+            [self.cities addObject:obj];
         }else{
             [self.countries addObject:obj];
         }

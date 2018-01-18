@@ -45,9 +45,10 @@ typedef void(^JKHttpRequestFailed)(NSError* _Nonnull error);
 /** http请求进度 */
 typedef void (^JKHttpRequestProgress)(NSProgress* _Nonnull progress);
 
-
 @interface JKNetworkHelper : NSObject
 
+// 设置新的Token
++ (void)setToken:(NSString *)newToken;
 
 /**
  HTTP请求
@@ -94,6 +95,7 @@ typedef void (^JKHttpRequestProgress)(NSProgress* _Nonnull progress);
  @param failure 请求失败回调
  @return 返回对象用于取消请求
  */
+
 + (__kindof NSURLSessionTask* _Nonnull)POST:(NSString * _Nonnull)URL
                                  parameters:(NSDictionary * _Nullable)parameters
                                       cache:(JKHttpRequestCacheResponse _Nullable)cache
@@ -130,6 +132,31 @@ typedef void (^JKHttpRequestProgress)(NSProgress* _Nonnull progress);
                                    parameters:(NSDictionary * _Nullable)parameters
                                       success:(JKHttpRequestSuccess _Nullable)success
                                       failure:(JKHttpRequestFailed _Nullable)failure;
+
+/**
+ 上传图片
+ 
+ @param URL 上传地址
+ @param parameters 上传参数
+ @param image 图片数组
+ @param name 文件对应服务器上的字段
+ @param fileName 文件名
+ @param mimeType 图片文件的类型,例:png、jpeg(默认类型)....
+ @param progress 上传进度
+ @param success 上传成功回调
+ @param failure 上传失败回调
+ @return 返回对象用于取消上传
+ */
+
++ (__kindof NSURLSessionTask * _Nonnull)uploadSingleImageWithURL:(NSString *_Nonnull)URL
+                                           parameters:(NSDictionary *_Nullable)parameters
+                                                image:(UIImage * _Nonnull)image
+                                                 name:(NSString * _Nonnull)name
+                                             fileName:(NSString * _Nonnull)fileName
+                                             mimeType:(NSString * _Nullable)mimeType
+                                             progress:(JKHttpRequestProgress _Nullable)progress
+                                              success:(JKHttpRequestSuccess _Nullable)success
+                                              failure:(JKHttpRequestFailed _Nullable)failure;
 
 
 /**

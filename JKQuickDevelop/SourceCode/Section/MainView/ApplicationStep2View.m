@@ -144,9 +144,8 @@
 - (UIButton *)btnImage{
     if (!_btnImage) {
         _btnImage = [[UIButton alloc] init];
-        [_btnImage setImage:[UIImage imageNamed:@"Apply_Icon_UploadingPicture"] forState:UIControlStateNormal];
+        [_btnImage setImage:[UIImage imageNamed:@"Apply_Icon_UploadingPictureWithBG"] forState:UIControlStateNormal];
         [_btnImage setBackgroundColor: RGB(216, 216, 216)];
-        [_btnImage setImageEdgeInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
     }
     return _btnImage;
 }
@@ -195,7 +194,8 @@
         _inputAddressProvince.layer.borderWidth = 1;
         _inputAddressProvince.textColor = kSecondTextColor;
         _inputAddressProvince.font = kMainTextFieldTextFontMiddle;
-        _inputAddressProvince.text = @" -省-";
+        _inputAddressProvince.textAlignment = NSTextAlignmentCenter;
+        _inputAddressProvince.text = @"-市-";
     }
     return _inputAddressProvince;
 }
@@ -207,7 +207,8 @@
         _inputAddressCity.layer.borderWidth = 1;
         _inputAddressCity.textColor = kSecondTextColor;
         _inputAddressCity.font = kMainTextFieldTextFontMiddle;
-        _inputAddressCity.text = @" -市-";
+        _inputAddressCity.textAlignment = NSTextAlignmentCenter;
+        _inputAddressCity.text = @"-县-";
     }
     return _inputAddressCity;
 }
@@ -264,7 +265,6 @@
     
     self.labelName.frame = CGRectMake(margin, posY, 72, 20);
     self.inputName.frame = CGRectMake(84, posY - 2, w - 96, 24);
-    
     
     posY += 50;
     self.labelAddress.frame = CGRectMake(margin, posY, 72, 20);

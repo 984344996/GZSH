@@ -17,5 +17,6 @@
 
 + (AddressParser *)sharedInstance;
 - (void)parseAddressArr;
+- (NSMutableArray *)getArrayAddressNextLevel:(NSString *)parent_id level_type:(NSString *)level_type;
 
 @end

@@ -84,6 +84,7 @@
 		3547EA82200F91AF00A37B1F /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA81200F91AF00A37B1F /* AddressModel.m */; };
 		3547EA85200F961700A37B1F /* AddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA84200F961700A37B1F /* AddressParser.m */; };
 		3547EA88200FA25400A37B1F /* JKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA87200FA25400A37B1F /* JKImagePicker.m */; };
+		3547EA8D2010746B00A37B1F /* SelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA8A2010746A00A37B1F /* SelectedListView.m */; };
 		354832B1200E2A570004E574 /* APIServerSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B0200E2A570004E574 /* APIServerSdk.m */; };
 		354832B5200E2B710004E574 /* APIRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B4200E2B710004E574 /* APIRouter.m */; };
 		354832B9200E33E90004E574 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B8200E33E90004E574 /* UserInfo.m */; };
@@ -408,7 +409,6 @@
 		358104D01FFDFB3E00FC463A /* ApplicationStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104CF1FFDFB3E00FC463A /* ApplicationStep1View.m */; };
 		358104D31FFDFB5E00FC463A /* ApplicationStep2View.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104D21FFDFB5E00FC463A /* ApplicationStep2View.m */; };
 		358104D61FFDFB7600FC463A /* ApplicationStep3View.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104D51FFDFB7600FC463A /* ApplicationStep3View.m */; };
-		358104D91FFE054C00FC463A /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104D81FFE054C00FC463A /* UITextView+Placeholder.m */; };
 		358104DE1FFE4E1900FC463A /* MainPageTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104DD1FFE4E1900FC463A /* MainPageTableHeaderView.m */; };
 		358104E41FFE4E9300FC463A /* MainPageNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104E31FFE4E9300FC463A /* MainPageNewsView.m */; };
 		358104EE1FFE618E00FC463A /* MainPageHeaderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104EC1FFE618E00FC463A /* MainPageHeaderCollectionViewCell.m */; };
@@ -679,6 +679,8 @@
 		3547EA84200F961700A37B1F /* AddressParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AddressParser.m; path = SourceCode/Section/MainMode/AddressParser.m; sourceTree = "<group>"; };
 		3547EA86200FA25400A37B1F /* JKImagePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JKImagePicker.h; path = SourceCode/Tool/UIKit/JKImagePicker.h; sourceTree = "<group>"; };
 		3547EA87200FA25400A37B1F /* JKImagePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JKImagePicker.m; path = SourceCode/Tool/UIKit/JKImagePicker.m; sourceTree = "<group>"; };
+		3547EA8A2010746A00A37B1F /* SelectedListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectedListView.m; path = SourceCode/Tool/UIKit/SelectedListView.m; sourceTree = "<group>"; };
+		3547EA8C2010746B00A37B1F /* SelectedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectedListView.h; path = SourceCode/Tool/UIKit/SelectedListView.h; sourceTree = "<group>"; };
 		354832AF200E2A570004E574 /* APIServerSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIServerSdk.h; path = SourceCode/Section/MainMode/APIServerSdk.h; sourceTree = "<group>"; };
 		354832B0200E2A570004E574 /* APIServerSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = APIServerSdk.m; path = SourceCode/Section/MainMode/APIServerSdk.m; sourceTree = "<group>"; };
 		354832B3200E2B710004E574 /* APIRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIRouter.h; path = SourceCode/Section/MainMode/APIRouter.h; sourceTree = "<group>"; };
@@ -1068,8 +1070,6 @@
 		358104D21FFDFB5E00FC463A /* ApplicationStep2View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep2View.m; path = SourceCode/Section/MainView/ApplicationStep2View.m; sourceTree = "<group>"; };
 		358104D41FFDFB7600FC463A /* ApplicationStep3View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApplicationStep3View.h; path = SourceCode/Section/MainView/ApplicationStep3View.h; sourceTree = "<group>"; };
 		358104D51FFDFB7600FC463A /* ApplicationStep3View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep3View.m; path = SourceCode/Section/MainView/ApplicationStep3View.m; sourceTree = "<group>"; };
-		358104D71FFE054C00FC463A /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+Placeholder.h"; path = "Vendor/UIView/UITextView+Placeholder.h"; sourceTree = "<group>"; };
-		358104D81FFE054C00FC463A /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+Placeholder.m"; path = "Vendor/UIView/UITextView+Placeholder.m"; sourceTree = "<group>"; };
 		358104DC1FFE4E1900FC463A /* MainPageTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainPageTableHeaderView.h; sourceTree = "<group>"; };
 		358104DD1FFE4E1900FC463A /* MainPageTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainPageTableHeaderView.m; sourceTree = "<group>"; };
 		358104E21FFE4E9300FC463A /* MainPageNewsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainPageNewsView.h; path = SourceCode/Section/MainView/MainPageNewsView.h; sourceTree = "<group>"; };
@@ -1288,6 +1288,8 @@
 		352B886D1E8E1E370034F005 /* PushNotificationHelper */ = {
 			isa = PBXGroup;
 			children = (
+				3547EA8C2010746B00A37B1F /* SelectedListView.h */,
+				3547EA8A2010746A00A37B1F /* SelectedListView.m */,
 				352B88671E8DF9950034F005 /* PushNotificationHelper.h */,
 				352B88681E8DF9950034F005 /* PushNotificationHelper.m */,
 				352B886A1E8E1E310034F005 /* PushActionHelper.h */,
@@ -3049,8 +3051,6 @@
 		3563803D1FF6273100A01869 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				358104D71FFE054C00FC463A /* UITextView+Placeholder.h */,
-				358104D81FFE054C00FC463A /* UITextView+Placeholder.m */,
 				356380481FFB1CA200A01869 /* CopyAbleLabel.h */,
 				356380471FFB1CA100A01869 /* CopyAbleLabel.m */,
 			);
@@ -4010,7 +4010,6 @@
 				355894F72001FD1F00ED128A /* LikeTableViewCell.m in Sources */,
 				35C172A41FFBB44400607658 /* NoticeDetailViewController.m in Sources */,
 				35C172A11FFBB42D00607658 /* NewsDetailViewController.m in Sources */,
-				358104D91FFE054C00FC463A /* UITextView+Placeholder.m in Sources */,
 				355894E62001F13500ED128A /* FaceThemeView.m in Sources */,
 				35C1729E1FFBB41D00607658 /* NoticeViewController.m in Sources */,
 				354832C8200E3CFF0004E574 /* NewsModel.m in Sources */,
@@ -4044,6 +4043,7 @@
 				3547EA85200F961700A37B1F /* AddressParser.m in Sources */,
 				3513564D2007A2080091606C /* SHContactTableViewCell.m in Sources */,
 				358B44E51E4C151200A0DC93 /* LoginViewController.m in Sources */,
+				3547EA8D2010746B00A37B1F /* SelectedListView.m in Sources */,
 				355894E92001F13500ED128A /* ChatToolBar.m in Sources */,
 				358104FA1FFE74C100FC463A /* MainPageSectionView.m in Sources */,
 				35135634200780470091606C /* MineCompanyTextTableViewCell.m in Sources */,

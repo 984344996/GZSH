@@ -50,6 +50,12 @@ static AFHTTPSessionManager* _securityPolicyManager;
     return NO;
 }
 
++ (void)setToken:(NSString *)newToken{
+    if (newToken) {
+        [_commonManager.requestSerializer setValue:newToken forHTTPHeaderField:@"Authorization"];
+    }
+}
+
 + (AFHTTPSessionManager *)getCommonManger{
     AFHTTPSessionManager *manger = [AFHTTPSessionManager manager];
     manger.requestSerializer  = [AFJSONRequestSerializer serializer];
@@ -146,6 +152,27 @@ static AFHTTPSessionManager* _securityPolicyManager;
     }];
     return sessionTask;
 }
+
++ (NSURLSessionTask *)uploadSingleImageWithURL:(NSString *)URL parameters:(NSDictionary *)parameters image:(UIImage *)image name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType progress:(JKHttpRequestProgress)progress success:(JKHttpRequestSuccess)success failure:(JKHttpRequestFailed)failure{
+    
+    NSURLSessionTask *sessionTask = [kAFManager POST:URL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        //压缩-添加-上传
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        [formData appendPartWithFileData:imageData name:@"file"
+                                    fileName:fileName
+                                    mimeType:[NSString stringWithFormat:@"image/%@",mimeType ? mimeType : @"jpeg"]];
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            progress ? progress(uploadProgress) : nil;
+        });
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success ? success(responseObject) : nil;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure ? failure(error) : nil;
+    }];
+    return sessionTask;
+}
+
 
 + (NSURLSessionTask *)uploadWithURL:(NSString *)URL parameters:(NSDictionary *)parameters images:(NSArray<UIImage *> *)images name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType progress:(JKHttpRequestProgress)progress success:(JKHttpRequestSuccess)success failure:(JKHttpRequestFailed)failure{
     

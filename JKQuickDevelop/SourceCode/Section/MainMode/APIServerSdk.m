@@ -54,7 +54,7 @@ static inline NSString* getServerAddr(NSString *relativePath){
 
 // 注册
 + (void)doRegister:(NSString *)mobile
-          verifyCode:(NSString *)verifyCode
+        verifyCode:(NSString *)verifyCode
            succeed:(SHRequestSucceed)succeed
             failed:(SHRequestFailed)failed{
     NSDictionary *params = @{@"mobile":mobile,@"verifyCode":verifyCode};
@@ -85,9 +85,9 @@ static inline NSString* getServerAddr(NSString *relativePath){
               failed:(SHRequestFailed)failed{
     NSDictionary *params = [model mj_keyValues];
     [JKNetworkHelper POST:getServerAddr(RAccomplish) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
-        
+        [self commontCallbackDeliver:responseObject succeed:succeed failed:failed];
     } failure:^(NSError * _Nonnull error) {
-        
+        [self netWorkErrorDeliver:nil failed:failed];
     }];
 }
 
@@ -104,6 +104,21 @@ static inline NSString* getServerAddr(NSString *relativePath){
         
     } failure:^(NSError * _Nonnull error) {
         
+    }];
+}
+
+// 上传图片
++ (void)doUploadImage:(UIImage *)image
+                  dir:(NSString *)dir
+                 name:(NSString *)name
+              succeed:(SHRequestSucceed)succeed
+               failed:(SHRequestFailed)failed{
+    NSDictionary *params = @{@"dir":dir};
+    
+    [JKNetworkHelper uploadSingleImageWithURL:getServerAddr(RUpload) parameters:params image:image name:name fileName:name mimeType:nil progress:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
     }];
 }
 

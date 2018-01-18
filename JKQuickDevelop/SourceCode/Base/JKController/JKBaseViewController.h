@@ -58,6 +58,11 @@ typedef NS_ENUM(NSInteger,LoadingViewType){
 - (CGFloat)topMargin;
 
 /**
+  返回  可从写 自定义逻辑
+ */
+- (void)popBack;
+
+/**
  显示NavigationBar 下面线
  */
 - (BOOL)showNavigationBarBottomLine;

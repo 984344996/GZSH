@@ -89,6 +89,7 @@ static ClusterPrePermissions *__sharedInstance;
 }
 
 #pragma mark - Get authorization status
+
 + (instancetype) sharedPermissions
 {
     static dispatch_once_t onceToken;

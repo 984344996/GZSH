@@ -7,7 +7,8 @@
 //
 
 #import "JKBaseViewController.h"
+#import "AccomplishModel.h"
 
 @interface ApplicationStep3ViewController : JKBaseViewController
-
+@property (nonatomic, strong) AccomplishModel *model;
 @end
