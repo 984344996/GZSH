@@ -85,12 +85,12 @@
     if (!_photoActionSheet) {
         _photoActionSheet = [[ZLPhotoActionSheet alloc] init];
         _photoActionSheet.sender = self;
-        _photoActionSheet.navBarColor = kGreenColor;
-        _photoActionSheet.navTitleColor = kWhiteColor;
-        _photoActionSheet.maxSelectCount = 9;
-        _photoActionSheet.allowSelectGif = NO;
-        _photoActionSheet.allowSelectVideo = NO;
-        _photoActionSheet.allowMixSelect = NO;
+        _photoActionSheet.configuration.navBarColor = kGreenColor;
+        _photoActionSheet.configuration.navTitleColor = kWhiteColor;
+        _photoActionSheet.configuration.maxSelectCount = 9;
+        _photoActionSheet.configuration.allowSelectGif = NO;
+        _photoActionSheet.configuration.allowSelectVideo = NO;
+        _photoActionSheet.configuration.allowMixSelect = NO;
         
     }
     return _photoActionSheet;

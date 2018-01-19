@@ -44,10 +44,10 @@ static HUDHelper *_instance = nil;
         if (![NSString isEmpty:msg])
         {
             hud.mode = MBProgressHUDModeIndeterminate;
-            hud.labelText = msg;
+            hud.label.text = msg;
         }
         [inView addSubview:hud];
-        [hud show:YES];
+        [hud showAnimated:YES];
     });
     return hud;
 }
@@ -60,18 +60,18 @@ static HUDHelper *_instance = nil;
         if (![NSString isEmpty:msg])
         {
             hud.mode = MBProgressHUDModeText;
-            hud.labelText = msg;
+            hud.label.text = msg;
         }
         
         [inView addSubview:hud];
-        [hud show:YES];
+        [hud showAnimated:YES];
         if (exec)
         {
             exec();
         }
         
         // 超时自动消失
-        [hud hide:YES afterDelay:seconds];
+        [hud hideAnimated:YES afterDelay:seconds];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (completion)
             {
@@ -99,11 +99,11 @@ static HUDHelper *_instance = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (![NSString isEmpty:msg])
             {
-                hud.labelText = msg;
+                hud.label.text = msg;
                 hud.mode = MBProgressHUDModeText;
             }
             
-            [hud hide:YES afterDelay:seconds];
+            [hud hideAnimated:YES afterDelay:seconds];
             _syncHUD = nil;
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -147,9 +147,10 @@ static HUDHelper *_instance = nil;
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:inView];
         [showInView addSubview:hud];
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = msg;
-        [hud show:YES];
-        [hud hide:YES afterDelay:seconds];
+        //hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+        hud.label.text = msg;
+        [hud showAnimated:YES];
+        [hud hideAnimated:YES afterDelay:seconds];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (completion)
@@ -180,12 +181,12 @@ static HUDHelper *_instance = nil;
         
         if (![NSString isEmpty:msg])
         {
-            _syncHUD.labelText = msg;
+            _syncHUD.label.text = msg;
             _syncHUD.mode = MBProgressHUDModeText;
         }
         else
         {
-            _syncHUD.labelText = nil;
+            _syncHUD.label.text = nil;
             _syncHUD.mode = MBProgressHUDModeIndeterminate;
         }
         
@@ -210,12 +211,12 @@ static HUDHelper *_instance = nil;
     {
         if (![NSString isEmpty:msg])
         {
-            _syncHUD.labelText = msg;
+            _syncHUD.label.text = msg;
             _syncHUD.mode = MBProgressHUDModeText;
         }
         else
         {
-            _syncHUD.labelText = nil;
+            _syncHUD.label.text = nil;
             _syncHUD.mode = MBProgressHUDModeIndeterminate;
         }
         
@@ -226,4 +227,3 @@ static HUDHelper *_instance = nil;
     }
 }
 @end
-

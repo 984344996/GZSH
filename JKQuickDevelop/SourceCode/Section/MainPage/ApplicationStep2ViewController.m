@@ -100,13 +100,13 @@
     if (!_photoActionSheet) {
         _photoActionSheet = [[ZLPhotoActionSheet alloc] init];
         _photoActionSheet.sender = self;
-        _photoActionSheet.navBarColor = kGreenColor;
-        _photoActionSheet.navTitleColor = kWhiteColor;
-        _photoActionSheet.maxSelectCount = 1;
-        _photoActionSheet.allowSelectGif = NO;
-        _photoActionSheet.allowSelectVideo = NO;
-        _photoActionSheet.allowMixSelect = NO;
-        _photoActionSheet.allowEditImage = YES;
+        _photoActionSheet.configuration.navBarColor = kGreenColor;
+        _photoActionSheet.configuration.navTitleColor = kWhiteColor;
+        _photoActionSheet.configuration.maxSelectCount = 1;
+        _photoActionSheet.configuration.allowSelectGif = NO;
+        _photoActionSheet.configuration.allowSelectVideo = NO;
+        _photoActionSheet.configuration.allowMixSelect = NO;
+        _photoActionSheet.configuration.allowEditImage = YES;
     }
     return _photoActionSheet;
 }
@@ -243,6 +243,7 @@
     NSString *msg;
     if (!self.upLoadModel) {
         msg = @"请先上传头像";
+        isOK = NO;
     }
     
     if ([NSString isEmpty:self.accomplishModel.name]) {

@@ -167,8 +167,8 @@
 - (void)jggViewTapped:(NSUInteger)index dataource:(NSArray *)datasource{
     ZLPhotoActionSheet *actionSheet = [[ZLPhotoActionSheet alloc] init];
     actionSheet.sender = self;
-    actionSheet.navBarColor = kGreenColor;
-    actionSheet.navTitleColor = kWhiteColor;
+    actionSheet.configuration.navBarColor = kGreenColor;
+    actionSheet.configuration.navTitleColor = kWhiteColor;
     NSMutableArray *urls = [NSMutableArray array];
     [datasource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSString class]]) {

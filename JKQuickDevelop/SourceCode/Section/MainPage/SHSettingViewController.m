@@ -10,6 +10,12 @@
 #import <JKCategories.h>
 #import "ResetPasswordViewController.h"
 #import "FeedbackViewController.h"
+#import "AppDelegate.h"
+#import "AppDataFlowHelper.h"
+#import "LoginViewController.h"
+#import <ReactiveObjC.h>
+#import <LEEAlert.h>
+#import "ResetPasswordViewController.h"
 
 @interface SHSettingViewController ()
 @property (nonatomic, strong) NSArray *cellTitles;
@@ -28,6 +34,16 @@
     [self.tableView setBackgroundColor:kMainBottomLayerColor];
     self.tableView.separatorColor = kGrayLineColor;
     [self.view addSubview:self.btnLogout];
+}
+
+- (void)configEvent{
+    [super configEvent];
+    
+    @weakify(self)
+    [[[self btnLogout] rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
+        [self alertLogout];
+    }];
 }
 
 - (NSArray *)cellTitles{
@@ -49,6 +65,30 @@
     return _btnLogout;
 }
 
+
+#pragma mark - Private methods
+
+- (void)alertLogout{
+    [LEEAlert alert]
+    .config
+    .LeeTitle(@"提示")
+    .LeeCancelAction(@"取消", ^{
+        
+    })
+    .LeeAction(@"确定", ^{
+        [AppDataFlowHelper loginOut];
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [[AppDelegate sharedAppDelegate] replaceRootViewController:nav animated:YES];
+    })
+    .LeeAddContent(^(UILabel *label) {
+        label.text = @"退出当前账户？";
+        label.textColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
+        label.textAlignment = NSTextAlignmentCenter;
+    })
+    .LeeShow();
+}
+
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     CGFloat w = self.view.jk_width;
@@ -65,6 +105,7 @@
 
 - (void)intoChangePassword{
     ResetPasswordViewController *vc = [[ResetPasswordViewController alloc] init];
+    vc.pushedFromLogin = NO;
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;

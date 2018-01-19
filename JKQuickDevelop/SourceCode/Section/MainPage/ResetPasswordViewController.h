@@ -10,4 +10,9 @@
 
 @interface ResetPasswordViewController : JKBaseViewController
 
+/**
+  指定是否从Login界面push进来的
+ */
+@property (nonatomic, assign) BOOL pushedFromLogin;
+
 @end

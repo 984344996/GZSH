@@ -24,13 +24,16 @@
 }
 
 - (void)initView{
+    self.textPhone.keyboardType = UIKeyboardTypePhonePad;
+    self.textPass.keyboardType = UIKeyboardTypeASCIICapable;
+    self.textPass.secureTextEntry = YES;
+    
     self.btnLogin.layer.cornerRadius = kCommonButtonRadious;
     self.btnLogin.layer.masksToBounds = YES;
     [self.btnLogin jk_setBackgroundColor:kNavBarThemeColor forState:UIControlStateNormal];
     [self.btnLogin jk_setBackgroundColor:kLightGrayColor forState:UIControlStateDisabled];
     [self.btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.btnLogin setTitleColor:kDarkGrayColor forState:UIControlStateDisabled];
-    //self.btnLogin.enabled = NO;
 }
 
 @end

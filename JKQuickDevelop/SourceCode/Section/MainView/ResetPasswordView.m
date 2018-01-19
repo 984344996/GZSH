@@ -68,7 +68,7 @@
         _inputPass.textColor = kMainTextColor;
         _inputPass.font = kMainTextFieldTextFontMiddle;
         _inputPass.placeholder = @"请输入至少6位包含英文数字的新密码";
-        _inputPass.keyboardType = UIKeyboardTypeNumberPad;
+        _inputPass.keyboardType = UIKeyboardTypeASCIICapable;
     }
     return _inputPass;
 }
