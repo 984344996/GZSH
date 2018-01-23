@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="DynamicMsg" representedClassName="DynamicMsg" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opAvatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opUsername" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DynamicMsg" positionX="-63" positionY="-18" width="128" height="195"/>
+    </elements>
+</model>

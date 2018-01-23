@@ -18,6 +18,7 @@
 #import "SplashViewController.h"
 #import "LoginViewController.h"
 #import <JKCategories.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 @implementation JKBaseAppDelegate
 
@@ -73,6 +74,7 @@
 
 /** APP将要终止进程 */
 - (void)applicationWillTerminate:(UIApplication *)application {
+    [MagicalRecord cleanUp];
     [self saveContext];
 }
 
@@ -321,9 +323,11 @@
 - (void)configAppLaunch
 {
     // 在需要的界面自行打开
-      [IQKeyboardManager sharedManager].enable = NO;
-      [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-      [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"GZSH"];
     
 #if kJKSupportNetOberve
     [self registerNetObeserver];

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PageData.h"
 
 @interface CommonResponseModel : NSObject
 
 @property (nonatomic, assign) NSInteger code;
 @property (nonatomic, strong) NSString *msg;
-@property (nonatomic, strong) NSDictionary *page;
+@property (nonatomic, strong) PageData *page;
 @property (nonatomic, strong) id data;
 
 - (BOOL)isSucceed;

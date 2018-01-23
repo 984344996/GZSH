@@ -28,7 +28,7 @@
             if ([dataSource[i] isKindOfClass:[UIImage class]]) {
             iv.image = dataSource[i];
         }else if ([dataSource[i] isKindOfClass:[NSString class]]){
-            [iv sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dataSource[i]]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+            [iv sd_setImageWithURL:GetImageUrl(dataSource[i]) placeholderImage:[UIImage imageNamed:@"placeholder"]];
         }else if ([dataSource[i] isKindOfClass:[NSURL class]]){
             [iv sd_setImageWithURL:dataSource[i] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         }

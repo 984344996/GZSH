@@ -10,8 +10,8 @@
 
 @interface DynamicInfo : NSObject
 @property (nonatomic, strong) NSString *dynamicId;
-@property (nonatomic, strong) NSNumber *createTime;
+@property (nonatomic, strong) NSString *createTime;
 @property (nonatomic, strong) NSString *type;
-@property (nonatomic, assign) BOOL *hasPraised;
+@property (nonatomic, assign) BOOL hasPraised;
 
 @end

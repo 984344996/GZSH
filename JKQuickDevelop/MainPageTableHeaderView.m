@@ -13,16 +13,13 @@
 
 @interface MainPageTableHeaderView()<YJBannerViewDelegate,YJBannerViewDataSource, UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSArray *collectionData;
+@property (nonatomic, strong) NSMutableArray *bannerModels;
+@property (nonatomic, strong) NSMutableArray *noticeModels;
+@property (nonatomic, strong) NSMutableArray *imageArray;
 @end
 
 @implementation MainPageTableHeaderView
 
-- (NSArray *)customBannerViewImages{
-    return @[@"http://img.zcool.cn/community/01f5ce56e112ef6ac72531cb37bec4.png@900w_1l_2o_100sh.jpg",
-             @"http://img.zcool.cn/community/01c41656cbf3eb32f875520f71f47a.png",
-             @"http://pic.58pic.com/58pic/17/27/94/54d350c57f5f8_1024.jpg"
-             ];
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -33,27 +30,72 @@
     return self;
 }
 
+- (void)startTimer{
+    [self.topBanner startTimerWhenAutoScroll];
+    [self.newsBanner startTimerWhenAutoScroll];
+}
+
+- (void)stopTimer{
+    [self.topBanner invalidateTimerWhenAutoScroll];
+    [self.newsBanner invalidateTimerWhenAutoScroll];
+}
+
 - (void)initView{
+    self.userInteractionEnabled = YES;
     self.backgroundColor = kMainBottomLayerColor;
     [self addSubview:self.topBanner];
     [self addSubview:self.collection];
     [self addSubview:self.newsBanner];
     [self addSubview:self.btnAddress];
     [self addSubview:self.btnCompanyLib];
-    
+}
+
+#pragma mark - Setting
+
+- (void)resetBannerModels:(NSMutableArray *)arrray{
+    self.bannerModels = arrray;
+    [self.imageArray removeAllObjects];
+    [arrray enumerateObjectsUsingBlock:^(BannerModel*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.imageArray addObject:GetImageString(obj.imgUrl)];
+    }];
     [self.topBanner reloadData];
-    [self.topBanner startTimerWhenAutoScroll];
-    
+}
+
+- (void)resetNewsModels:(NSMutableArray *)arrray{
+    self.noticeModels = arrray;
     [self.newsBanner reloadData];
-    [self.newsBanner startTimerWhenAutoScroll];
 }
 
 #pragma mark - Lazy loading
+- (NSMutableArray *)imageArray{
+    if (!_imageArray) {
+        _imageArray = [NSMutableArray array];
+    }
+    return _imageArray;
+}
+
+- (NSMutableArray *)bannerModels{
+    if (!_bannerModels) {
+        _bannerModels = [NSMutableArray array];
+    }
+    return _bannerModels;
+}
+
+- (NSMutableArray *)noticeModels{
+    if (!_noticeModels) {
+        _noticeModels = [NSMutableArray array];
+    }
+    return _noticeModels;
+}
 
 - (YJBannerView *)topBanner{
     if (!_topBanner) {
-        _topBanner = [YJBannerView bannerViewWithFrame:CGRectZero dataSource:self delegate:self placeholderImageName:@"placeholder" selectorString:@"sd_setImageWithURL:placeholderImage:"];
+        _topBanner = [YJBannerView bannerViewWithFrame:CGRectZero
+                                            dataSource:self
+                                              delegate:self
+                                  placeholderImageName:@"placeholder"     selectorString:@"sd_setImageWithURL:placeholderImage:"];
         _topBanner.autoDuration = 2.5f;
+        _topBanner.autoScroll = YES;
     }
     return _topBanner;
 }
@@ -83,9 +125,14 @@
 - (YJBannerView *)newsBanner{
     if (!_newsBanner) {
         _newsBanner.backgroundColor = [UIColor redColor];
-        _newsBanner = [YJBannerView bannerViewWithFrame:CGRectZero dataSource:self delegate:self placeholderImageName:@"" selectorString:nil];
+        _newsBanner = [YJBannerView bannerViewWithFrame:CGRectZero
+                                             dataSource:self
+                                               delegate:self
+                                   placeholderImageName:@""
+                                         selectorString:nil];
         _newsBanner.bannerViewScrollDirection = BannerViewDirectionLeft;
-        _newsBanner.bannerGestureEnable = NO;
+        _newsBanner.bannerGestureEnable = YES;
+        _newsBanner.autoScroll = YES;
     }
     return _newsBanner;
 }
@@ -93,6 +140,7 @@
 - (UIButton *)btnAddress{
     if (!_btnAddress) {
         _btnAddress = [[UIButton alloc] init];
+        [_btnAddress addTarget:self action:@selector(btnAddressClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_btnAddress setImage:[UIImage imageNamed:@"Address_List"] forState:UIControlStateNormal];
     }
     return _btnAddress;
@@ -101,6 +149,7 @@
 - (UIButton *)btnCompanyLib{
     if (!_btnCompanyLib) {
         _btnCompanyLib = [[UIButton alloc] init];
+        [_btnCompanyLib addTarget:self action:@selector(btnCompanyClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_btnCompanyLib setImage:[UIImage imageNamed:@"Company_Lib"] forState:UIControlStateNormal];
     }
     return _btnCompanyLib;
@@ -115,6 +164,16 @@
                            nil];
     }
     return _collectionData;
+}
+
+#pragma mark - Events
+
+- (void)btnAddressClicked:(UIButton *)sender{
+    [self.delegate didTurnToTabIndex:2];
+}
+
+- (void)btnCompanyClicked:(UIButton *)sender{
+    [self.delegate didTurnToTabIndex:2];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size{
@@ -148,11 +207,19 @@
 #pragma mark - banner Delegate and Datasource
 
 - (void)bannerView:(YJBannerView *)bannerView didSelectItemAtIndex:(NSInteger)index{
-    
+    if (bannerView == self.topBanner) {
+        [self.delegate didBannerTapped:self.bannerModels[index]];
+    }else{
+        [self.delegate didNewsTapped:self.noticeModels[index]];
+    }
 }
 
 - (NSArray *)bannerViewImages:(YJBannerView *)bannerView{
-    return [self customBannerViewImages];
+    if (bannerView == self.topBanner) {
+        return self.imageArray;
+    }else{
+        return self.noticeModels;
+    }
 }
 
 - (NSArray *)bannerViewTitles:(YJBannerView *)bannerView{
@@ -170,7 +237,8 @@
 - (void)bannerView:(YJBannerView *)bannerView customCell:(UICollectionViewCell *)customCell index:(NSInteger)index{
     if (bannerView == self.newsBanner) {
         MainPageHeaderBannerCollectionViewCell *bannerCell = (MainPageHeaderBannerCollectionViewCell *)customCell;
-        [bannerCell setCellData:nil];
+        NewsModel *mode                                    = self.noticeModels[index];
+        [bannerCell setCellData:mode];
     }
 }
 
@@ -189,7 +257,15 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.row == 0) {
+        [self.delegate didTurnToTabIndex:4];
+    }else if(indexPath.row == 1){
+        [self.delegate didTurnToTabIndex:3];
+    }else if(indexPath.row == 2){
+         [self.delegate didTurnToTabIndex:3];
+    }else{
+        [self.delegate didTurnToNewCenter];
+    }
 }
 
 @end

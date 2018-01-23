@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DemandInfo.h"
 
 @interface MySupplyAndDemandTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *labelTime;
 @property (weak, nonatomic) IBOutlet UIImageView *imageIcon;
 
+- (void)setCellData:(DemandInfo *)model;
 @end

@@ -123,7 +123,8 @@ target 'JKQuickDevelop' do
     pod 'SDAutoLayout', '~> 2.1.3'
     pod 'MyLayout', '~> 1.5.0'
     
-  # Pods for JKQuickDevelop
+    #数据库
+    pod "MagicalRecord"
 
   target 'JKQuickDevelopTests' do
     inherit! :search_paths

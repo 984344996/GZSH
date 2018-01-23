@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSNumber *time;
 @property (nonatomic, strong) NSString *state;
-@property (nonatomic, strong) NSNumber *number;
+@property (nonatomic, assign) NSInteger number;
 @property (nonatomic, strong) NSString *img;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *content;

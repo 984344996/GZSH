@@ -18,11 +18,10 @@
 
 @property (nonatomic, strong) MomentUser *momentUser;
 @property (nonatomic, strong) DynamicInfo *dynamicInfo;
-@property (nonatomic, strong) NSArray<MomentUser *> *praiseList;
-@property (nonatomic, strong) NSArray<Comment *> *commentList;
+@property (nonatomic, strong) NSMutableArray<MomentUser *> *praiseList;
+@property (nonatomic, strong) NSMutableArray<Comment *> *commentList;
 @property (nonatomic, strong) NSArray<NSString *> *content;
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) NSString *momentId;
 @property (nonatomic, assign) BOOL isExpand;
 @property (nonatomic, assign) BOOL shouldUpdateCache;
 

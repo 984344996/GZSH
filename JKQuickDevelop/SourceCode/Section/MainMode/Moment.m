@@ -17,5 +17,20 @@
              };
 }
 
+- (NSMutableArray<MomentUser *> *)praiseList{
+    if (!_praiseList) {
+        _praiseList = [NSMutableArray array];
+    }
+    return _praiseList;
+}
+
+
+- (NSMutableArray<Comment *> *)commentList{
+    if (!_commentList) {
+        _commentList = [NSMutableArray array];
+    }
+    return _commentList;
+}
+
 
 @end

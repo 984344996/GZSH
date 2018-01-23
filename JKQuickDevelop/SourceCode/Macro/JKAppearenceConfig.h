@@ -41,6 +41,8 @@
 #define kDownReleaseToRefresh   @"松开即可更新..."
 #define kDownDragUpToRefresh    @"上拉即可更新..."
 #define kDownRefreshLoading     @"加载中..."
+#define kPlaceHoderHeaderImage [UIImage imageNamed:@"placeholder"]
+#define kPlaceHoderBannerImage [UIImage imageNamed:@"placeholder"]
 
 // 常用的字体
 #define kCommonLargeTextFont       [UIFont systemFontOfSize:16]
@@ -56,6 +58,7 @@
 
 #define kAvatar_Size 40
 
+#define kRichCompanyInfoWidth (JK_SCREEN_WIDTH - 104)
 #define kRichCompanyWidth (JK_SCREEN_WIDTH - 24)
 #define kRichSupplyWidth (JK_SCREEN_WIDTH - 109)
 #endif /* JKAppearenceConfig_h */

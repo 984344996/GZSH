@@ -108,14 +108,14 @@
     vc.pushedFromLogin = NO;
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)intoFeedback{
     FeedbackViewController *vc = [[FeedbackViewController alloc] init];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 #pragma mark - Delefate and Datasource

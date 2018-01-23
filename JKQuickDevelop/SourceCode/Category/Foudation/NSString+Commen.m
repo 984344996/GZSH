@@ -9,7 +9,21 @@
 #import "NSString+Commen.h"
 
 @implementation NSString (Commen)
+
 #pragma mark - Utils
++ (NSString* )GetH5Url:(NSString *)url
+{
+    if ([url startsWith:@"http"]){
+        return url;
+    }
+    if ([url startsWith:@"/"]) {
+        NSString *finalUrl = [NSString stringWithFormat:@"%@%@",BaseFileUrl,url];
+        return finalUrl;
+    }
+    NSString *finalUrl = [NSString stringWithFormat:@"%@%@",@"http://",url];
+    return finalUrl;
+}
+
 + (BOOL)isEmpty:(NSString *)string
 {
     return string == nil || string.length == 0;

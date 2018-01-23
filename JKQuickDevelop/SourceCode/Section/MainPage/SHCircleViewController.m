@@ -18,13 +18,31 @@
 #import "SendMomentViewController.h"
 #import <ReactiveObjC.h>
 #import "MomentNewsViewController.h"
+#import "HUDHelper.h"
+#import "APIServerSdk.h"
+#import "DynamicInfo.h"
+#import "ChatKeyBoard.h"
+#import "ChatKeyBoardMacroDefine.h"
+#import "NSString+Commen.h"
+#import "AppDataFlowHelper.h"
+#import <JKCategories.h>
+#import "DynamicMsg+CoreDataProperties.h"
+#import <MagicalRecord/MagicalRecord.h>
 
-@interface SHCircleViewController ()<MomentCellDelegate>
+@interface SHCircleViewController ()<MomentCellDelegate,ChatKeyBoardDelegate>
 
 @property (nonatomic, assign) BOOL isMainPage;
 @property (nonatomic, strong) NSString *userid;
 @property (nonatomic, strong) NSMutableArray *momentModes;
 @property (nonatomic, strong) MomentHeaderView *header;
+@property (nonatomic, strong) NSIndexPath *editIndexPath; // 当前正在编辑
+@property (nonatomic, strong) Comment *lastResponseComment;
+
+@property (nonatomic, strong) ChatKeyBoard *chatKeyBoard;
+@property (nonatomic, assign) CGFloat history_Y_offset;//记录table的offset.y
+@property (nonatomic, assign) CGFloat seletedCellHeight;//记录点击cell的高度，高度由代理传过来
+@property (nonatomic, assign) BOOL isShowKeyBoard;
+@property (nonatomic, assign) BOOL needUpdateOffset;//控制是否刷新table的offset
 
 @end
 
@@ -43,7 +61,6 @@
     [super configView];
     
     [self addUIBarButtonItemImage:@"Circle_Icon_Camera" size:CGSizeMake(24, 24) isLeft:NO target:self action:@selector(publishMoment:)];
-    
     if (self.isMainPage) {
         self.tableView.tableHeaderView = self.header;
     }
@@ -53,20 +70,81 @@
 
 - (void)configData{
     [super configData];
-    NSData *friendsData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"moment" ofType:@"json"]]];
-    NSDictionary *JSONDic = [NSJSONSerialization JSONObjectWithData:friendsData options:NSJSONReadingAllowFragments error:nil];
-    for (NSDictionary *eachDic in JSONDic[@"data"]) {
-        [self.momentModes addObject:[Moment mj_objectWithKeyValues:eachDic]];
-    }
-    [self.tableView reloadData];
+    [self loadMoment:YES];
+    [self loadUnreadComment];
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Load data
+
+- (void)loadMoment:(BOOL)isRefresh{
+    WEAKSELF
+    [APIServerSdk doGetMoment:nil succeed:^(id obj) {
+        STRONGSELF
+        NSMutableArray *append = [Moment mj_objectArrayWithKeyValuesArray:obj];
+        [strongSelf.momentModes addObjectsFromArray:append];
+        [strongSelf.tableView reloadData];
+    } needCache:NO cacheSucceed:^(id obj) {
+        
+    } failed:^(NSString *error) {
+        [[HUDHelper sharedInstance] tipMessage:@"加载失败" inView:self.view];
+    }];
+}
+
+- (void)loadUnreadComment{
+    WEAKSELF
+    [APIServerSdk doGetMomentNotice:^(id obj) {
+        STRONGSELF
+        [strongSelf saveDynamicMsg:obj];
+    } failed:^(NSString *error) {
+        
+    }];
+}
+
+// 数据库操作
+- (void)fetchCount{
+    NSUInteger count = [DynamicMsg MR_countOfEntities];
+    if (count > 0) {
+        DynamicMsg *lastMsg = [DynamicMsg MR_findFirst];
+        self.header.labelCommentName.text = lastMsg.opUsername;
+        self.header.containerView.hidden = NO;
+        self.header.labelCommentCount.text = [NSString stringWithFormat:@"%ld条评论",count];
+    }else{
+        self.header.containerView.hidden = YES;
+    }
+}
+
+- (void)saveDynamicMsg:(NSMutableArray *)objs{
+    if (objs.count == 0) {
+        [self fetchCount];
+        return;
+    }
+    
+    NSArray *arrayToSave = [DynamicMsg MR_importFromArray:objs inContext:[NSManagedObjectContext MR_defaultContext]];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        [self fetchCount];
+        DLog(@"success = %d \n error = %@",contextDidSave,error.localizedDescription);
+    }];
+}
 
 - (void)configEvent{
     [super configEvent];
+    
+    //注册键盘出现NSNotification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    //注册键盘隐藏NSNotification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
     self.header.userInteractionEnabled               = YES;
     self.header.containerView.userInteractionEnabled = YES;
-
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
     [self.header.containerView addGestureRecognizer:tap];
     @weakify(self)
@@ -124,7 +202,7 @@
         MomentTableViewCell *cell = (MomentTableViewCell *)sourceCell;
         [cell configCellWithModel:moment indexPath:indexPath];
     } cache:^NSDictionary *{
-        NSDictionary *cache = @{kHYBCacheUniqueKey : moment.momentId,
+        NSDictionary *cache = @{kHYBCacheUniqueKey : moment.dynamicInfo.dynamicId,
                                 kHYBCacheStateKey  : @"",
                                 kHYBRecalculateForStateKey : @(moment.shouldUpdateCache)};
         moment.shouldUpdateCache = NO;
@@ -133,6 +211,27 @@
     return h;
 }
 
+#pragma mark - Private methods
+
+- (void)reloadEditIndex{
+    Moment *moment = self.momentModes[self.editIndexPath.row];
+    moment.shouldUpdateCache = YES;
+    [self.tableView reloadRowsAtIndexPaths:@[self.editIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (MomentUser *)convertSelfToMomentUser{
+    MomentUser *user = [[MomentUser alloc] init];
+    UserInfo *info = [AppDataFlowHelper getLoginUserInfo];
+    user.userId = info.userId;
+    user.avatar = info.avatar;
+    user.name = info.userName;
+    return user;
+}
+
+- (NSString *)getSelfId{
+    UserInfo *info = [AppDataFlowHelper getLoginUserInfo];
+    return info.userId;
+}
 #pragma mark - MomentCell Delegate
 
 // 重新加载高度
@@ -143,20 +242,74 @@
 // 点击评论时
 - (void)passCellHeight:(CGFloat)cellHeight indexPath:(NSIndexPath *)indexPath commentModel:(Comment *)commentModel commentCell:(CommentTableViewCell *)cell momentCell:(MomentTableViewCell *)momentCell{
     
+    if (self.isShowKeyBoard) {
+        [self.view endEditing:YES];
+        return;
+    }
+    
+    // 不能自己评论自己
+    if ([commentModel.userA.userId isEqualToString:[self getSelfId]]) {
+        return;
+    }
+    
+    self.editIndexPath = indexPath;
+    self.lastResponseComment = commentModel;
+    self.needUpdateOffset = YES;
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    self.history_Y_offset = [cell convertRect:cell.bounds toView:window].origin.y;
+    self.seletedCellHeight = cellHeight;
+    self.chatKeyBoard.placeHolder = [NSString stringWithFormat:@"回复 %@",commentModel.userA.name];
+    [self.chatKeyBoard keyboardUpforComment];
 }
 
 // 评论点击
 - (void)btnCommentTapped:(UIButton *)button indexPath:(NSIndexPath *)indexPath{
+    if (self.isShowKeyBoard) {
+        [self.view endEditing:YES];
+        return;
+    }
     
+    self.seletedCellHeight = 0.0;
+    self.needUpdateOffset = YES;
+    self.editIndexPath = indexPath;
+    
+    Moment *moment = self.momentModes[indexPath.row];
+    UIWindow *view = [UIApplication sharedApplication].keyWindow;
+    self.chatKeyBoard.placeHolder = [NSString stringWithFormat:@"评论%@",moment.momentUser.name];
+    self.history_Y_offset = [button convertRect:button.bounds toView:view].origin.y;
+    [self.chatKeyBoard keyboardUpforComment];
 }
 
 // 喜欢
 - (void)btnLikeTapped:(UIButton *)button indexPath:(NSIndexPath *)indexPath{
+    if (self.isShowKeyBoard) {
+        [self.view endEditing:YES];
+        return;
+    }
     
+    self.editIndexPath = indexPath;
+    Moment *moment = self.momentModes[indexPath.row];
+    
+    WEAKSELF
+    [APIServerSdk doPraiseMoment:moment.dynamicInfo.dynamicId succeed:^(id obj) {
+        STRONGSELF
+        Moment *moment = strongSelf.momentModes[self.editIndexPath.row];
+        moment.dynamicInfo.hasPraised = YES;
+        [moment.praiseList addObject:[strongSelf convertSelfToMomentUser]];
+        [strongSelf reloadEditIndex];
+    } failed:^(NSString *error) {
+        /// 重复点赞 网络不通
+    }];
 }
 
 // 显示更多文字
 - (void)btnMoreTextTapped:(UIButton *)button indexPath:(NSIndexPath *)indexPath{
+    if (self.isShowKeyBoard) {
+        [self.view endEditing:YES];
+        return;
+    }
+    
     Moment *moment = self.momentModes[indexPath.row];
     moment.isExpand = !moment.isExpand;
     moment.shouldUpdateCache = YES;
@@ -165,6 +318,11 @@
 
 // 九宫格图片点击
 - (void)jggViewTapped:(NSUInteger)index dataource:(NSArray *)datasource{
+    if (self.isShowKeyBoard) {
+        [self.view endEditing:YES];
+        return;
+    }
+    
     ZLPhotoActionSheet *actionSheet = [[ZLPhotoActionSheet alloc] init];
     actionSheet.sender = self;
     actionSheet.configuration.navBarColor = kGreenColor;
@@ -172,7 +330,7 @@
     NSMutableArray *urls = [NSMutableArray array];
     [datasource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSString class]]) {
-            NSURL *url = [NSURL URLWithString:obj];
+            NSString *url = GetImageString(obj);
             [urls addObject:url];
         }
     }];
@@ -183,7 +341,117 @@
 
 // 点击头像
 - (void)labelNameTapped:(MomentUser *)user{
+    if (self.isShowKeyBoard) {
+        [self.view endEditing:YES];
+        return;
+    }
     
 }
 
+#pragma mark - Key board
+
+-(ChatKeyBoard *)chatKeyBoard{
+    if (_chatKeyBoard==nil) {
+        _chatKeyBoard =[ChatKeyBoard keyBoardWithNavgationBarTranslucent:YES];
+        _chatKeyBoard.delegate = self;
+        _chatKeyBoard.keyBoardStyle = KeyBoardStyleComment;
+        _chatKeyBoard.allowVoice = NO;
+        _chatKeyBoard.allowMore = NO;
+        _chatKeyBoard.allowSwitchBar = NO;
+        _chatKeyBoard.placeHolder = @"评论";
+        [self.view addSubview:_chatKeyBoard];
+        [self.view bringSubviewToFront:_chatKeyBoard];
+    }
+    return _chatKeyBoard;
+}
+
+- (void)chatKeyBoardSendText:(NSString *)text{
+    if ([NSString isEmpty:text]) {
+        [[HUDHelper sharedInstance] tipMessage:@"评论不能为空" inView:self.view];
+        return;
+    }
+    
+    Moment *moment = self.momentModes[self.editIndexPath.row];
+    WEAKSELF
+    [APIServerSdk doComment:moment.dynamicInfo.dynamicId content:text userId:self.lastResponseComment.userA.userId succeed:^(id obj) {
+        STRONGSELF
+        [strongSelf reloadWhenCommentSucceed:text];
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] tipMessage:@"评论失败" inView:strongSelf.view];
+        strongSelf.lastResponseComment = nil;
+    }];
+    self.chatKeyBoard.placeHolder = nil;
+    [self.chatKeyBoard keyboardDownForComment];
+}
+
+- (void)reloadWhenCommentSucceed:(NSString *)content{
+    Moment *momment = self.momentModes[self.editIndexPath.row];
+    Comment *newComment = [[Comment alloc] init];
+    newComment.userA = [self convertSelfToMomentUser];
+    newComment.userB = self.lastResponseComment.userA;
+    newComment.content = content;
+    newComment.commentId = [NSString jk_UUIDTimestamp];
+    [momment.commentList addObject:newComment];
+    self.lastResponseComment = nil;
+    [self reloadEditIndex];
+}
+
+#pragma mark keyboardWillShow
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    self.isShowKeyBoard    = YES;
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue        = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    __block  CGFloat keyboardHeight = [aValue CGRectValue].size.height;
+    if (keyboardHeight == 0) {
+        // 解决搜狗输入法三次调用此方法的bug、
+        // IOS8.0之后可以安装第三方键盘，如搜狗输入法之类的。
+        // 获得的高度都为0.这是因为键盘弹出的方法:- (void)keyBoardWillShow:(NSNotification
+        // *)notification需要执行三次,你如果打印一下,你会发现键盘高度为:第一次:0;第二次:216:第三次
+        // :282.并不是获取不到高度,而是第三次才获取真正的高度.
+        return;
+    }
+    
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    CGFloat delta = 0.0;
+    if (self.seletedCellHeight){ //点击某行row，进行回复某人
+        delta = self.history_Y_offset - ([UIApplication sharedApplication].keyWindow.bounds.size.height - keyboardHeight-self.seletedCellHeight - kChatToolBarHeight - 2);
+    }else{ //点击评论按钮
+        delta = self.history_Y_offset - ([UIApplication sharedApplication].keyWindow.bounds.size.height - keyboardHeight-kChatToolBarHeight-24-10);//24为评论按钮高度，10为评论按钮上部的5加评论按钮下部的5
+    }
+    CGPoint offset = self.tableView.contentOffset;
+    offset.y += delta;
+    if (offset.y < 0) {
+        offset.y = 0;
+    }
+    
+    if (self.needUpdateOffset) {
+        [self.tableView setContentOffset:offset animated:YES];
+    }
+}
+
+#pragma mark keyboardWillHide
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    self.isShowKeyBoard = NO;
+    self.needUpdateOffset = NO;
+    
+    CGFloat cH = self.tableView.contentSize.height;
+    CGFloat fH = self.tableView.frame.size.height;
+    CGFloat oY = self.tableView.contentOffset.y;
+    
+    if (cH > fH && cH - oY < fH)
+    {
+        CGPoint offset = CGPointMake(0, cH - fH);
+        [self.tableView setContentOffset:offset animated:YES];
+    }
+    if (cH < fH) {
+        CGPoint offset = CGPointMake(0, 0);
+        [self.tableView setContentOffset:offset animated:YES];
+    }
+}
 @end

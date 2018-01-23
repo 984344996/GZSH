@@ -7,6 +7,7 @@
 //
 
 #import "NSDate+Common.h"
+#import <JKCategories.h>
 
 @implementation NSDate (Common)
 
@@ -16,6 +17,7 @@
 #define kWeekTimeInterval   (7  * kDayTimeInterval)
 #define kMonthTimeInterval  (30 * kDayTimeInterval)
 #define kYearTimeInterval   (12 * kMonthTimeInterval)
+
 
 - (BOOL)isToday
 {
@@ -174,4 +176,87 @@
     return nil;
 }
 
+#pragma mark - 格式转换
+
++ (NSDateFormatter *)getFormatterUTC:(NSString *)format{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    return formatter;
+}
+
++ (NSDateFormatter *)getFormatterLocal:(NSString *)format{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:format];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
+    return formatter;
+}
+
++ (NSString *)parseServerDateTimeToFormat:(NSString *)dateString format:(NSString *)format{
+    if (!dateString) {
+        return @"";
+    }
+    NSDateFormatter *fromFormat = [self getFormatterLocal:kServerDateTimeFormat];
+    NSDate *date = [fromFormat dateFromString:dateString];
+    if (!date) {
+        return @"";
+    }
+    NSDateFormatter *toFormat = [self getFormatterLocal:format];
+    NSString *str = [toFormat stringFromDate:date];
+    return str;
+}
+
++ (NSString *)parseTimeToCYMD:(NSString *)dateString shortYear:(BOOL)shortYear{
+    if (!dateString) {
+        return @"";
+    }
+    NSDateFormatter *fromFormat = [self getFormatterLocal:kServerDateTimeFormat];
+    NSDate *date = [fromFormat dateFromString:dateString];
+    if (!date) {
+        return @"";
+    }
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    
+    NSInteger year = [components year];
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    
+    if (shortYear) {
+        year = year % 100;
+        NSString *str = [NSString stringWithFormat:@"%2ld年%ld月%ld日",year,month,day];
+        return str;
+    }
+    
+    NSString *str = [NSString stringWithFormat:@"%ld年%ld月%ld日",year,month,day];
+    return str;
+}
+
++ (NSString *)parseTimeToCMD:(NSString *)dateString{
+    if (!dateString) {
+        return @"";
+    }
+    NSDateFormatter *fromFormat = [self getFormatterLocal:kServerDateTimeFormat];
+    NSDate *date = [fromFormat dateFromString:dateString];
+    if (!date) {
+        return @"";
+    }
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    
+    NSInteger month = [components month];
+    NSInteger day = [components day];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld月%ld日",month,day];
+    return str;
+}
+
++ (NSString *)getMomentDateStamp:(NSString *)dateString{
+    NSDateFormatter *fromFormat = [self getFormatterLocal:kServerDateTimeFormat];
+    NSDate *date                = [fromFormat dateFromString:dateString];
+    NSString *str               = [NSDate jk_timeInfoWithDate:date];
+    return str;
+}
 @end

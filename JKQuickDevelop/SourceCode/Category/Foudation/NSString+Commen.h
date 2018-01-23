@@ -10,6 +10,8 @@
 
 @interface NSString (Commen)
 
++ (NSString* )GetH5Url:(NSString *)url;
+
 //是否为空
 + (BOOL)isEmpty:(NSString *)string;
 

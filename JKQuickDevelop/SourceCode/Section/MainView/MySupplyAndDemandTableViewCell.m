@@ -7,6 +7,8 @@
 //
 
 #import "MySupplyAndDemandTableViewCell.h"
+#import "NSDate+Common.h"
+#import <UIImageView+WebCache.h>
 
 @implementation MySupplyAndDemandTableViewCell
 
@@ -16,5 +18,9 @@
     self.imageIcon.layer.masksToBounds = YES;
 }
 
-
+- (void)setCellData:(DemandInfo *)model{
+    self.labelTitle.text = model.title;
+    self.labelTime.text = [NSDate parseServerDateTimeToFormat:model.time format:kTurnState1];
+    [self.imageIcon sd_setImageWithURL:GetImageUrl(model.imgUrl) placeholderImage:kPlaceHoderBannerImage];
+}
 @end

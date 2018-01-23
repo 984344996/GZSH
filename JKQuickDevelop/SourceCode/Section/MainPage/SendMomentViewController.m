@@ -10,6 +10,10 @@
 #import <UITextView+Placeholder.h>
 #import "CirclePicCollectionViewCell.h"
 #import <ZLPhotoActionSheet.h>
+#import "UpLoadImagesEngine.h"
+#import "HUDHelper.h"
+#import "NSString+Commen.h"
+#import <ReactiveObjC.h>
 
 @interface SendMomentViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray *images;
@@ -18,6 +22,7 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, strong) UITextView *momentText;
 @property (nonatomic, strong) ZLPhotoActionSheet *photoActionSheet;
+@property (nonatomic, strong) NSString *content;
 @end
 
 @implementation SendMomentViewController
@@ -37,6 +42,11 @@
     [self.view addSubview:self.collectionView];
     self.collectionView.backgroundColor = [UIColor clearColor];
     [self.collectionView registerNib:[UINib nibWithNibName:@"CirclePicCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CirclePicCollectionViewCell"];
+}
+
+- (void)configEvent{
+    [super configEvent];
+    RAC(self , content) = [RACSignal merge:@[RACObserve(self.momentText, text),self.momentText.rac_textSignal]];
 }
 
 
@@ -87,6 +97,7 @@
         _photoActionSheet.sender = self;
         _photoActionSheet.configuration.navBarColor = kGreenColor;
         _photoActionSheet.configuration.navTitleColor = kWhiteColor;
+        _photoActionSheet.configuration.allowSelectOriginal = NO;
         _photoActionSheet.configuration.maxSelectCount = 9;
         _photoActionSheet.configuration.allowSelectGif = NO;
         _photoActionSheet.configuration.allowSelectVideo = NO;
@@ -113,7 +124,21 @@
 #pragma mark - Private methods
 
 - (void)publish:(UIBarButtonItem *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self checkForPublish]) {
+        SHUploadTask *task = [[SHUploadTask alloc] init];
+        task.content = self.content;
+        task.imgs = self.images;
+        [[UpLoadImagesEngine sharedInstance] addTask:task];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (BOOL)checkForPublish{
+    if ([NSString isEmpty:self.content] && self.images.count == 0) {
+        [[HUDHelper sharedInstance] tipMessage:@"发送内容不能为空" inView:self.view];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)selectPhoto{

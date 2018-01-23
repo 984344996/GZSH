@@ -17,7 +17,7 @@
 
 - (void)setCellData:(NSDictionary *)dic{
     self.labelTitle.text = dic[@"title"];
-    self.labelContent.text = dic[@"content"];
+    self.labelContent.text = dic[@"content"] ? dic[@"content"] : @"暂无此联系方式";
 }
 
 @end

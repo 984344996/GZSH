@@ -13,11 +13,14 @@
 #import <Masonry.h>
 #import "MomentMacro.h"
 #import "JGGView.h"
+#import "DynamicInfo.h"
 #import <UIImageView+WebCache.h>
+#import "NSDate+Common.h"
 
 @interface MomentTableViewCell()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) CopyAbleLabel *descLabel;
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -36,7 +39,8 @@
     if (!_headImageView) {
         _headImageView = [[UIImageView alloc] init];
         _headImageView.backgroundColor = [UIColor whiteColor];
-        _headImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _headImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _headImageView.layer.masksToBounds = YES;
     }
     return _headImageView;
 }
@@ -50,6 +54,16 @@
         _nameLabel.textColor = kMomentTitleTextColor;
     }
     return _nameLabel;
+}
+
+- (UILabel *)timeLabel{
+    if (!_timeLabel) {
+        _timeLabel = [UILabel new];
+        _timeLabel.numberOfLines = 1;
+        _timeLabel.font = [UIFont systemFontOfSize:10];
+        _timeLabel.textColor = kSecondTextColor;
+    }
+    return _timeLabel;
 }
 
 - (CopyAbleLabel *)descLabel{
@@ -183,6 +197,12 @@
             make.top.mas_equalTo(self.moreBtn.mas_bottom).offset(kGAP);
         }];
         
+        [self.contentView addSubview:self.timeLabel];
+        [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.jggView);
+            make.top.mas_equalTo(self.jggView.mas_bottom).offset(2);
+        }];
+        
         [self.contentView addSubview:self.likeBtn];
         [self.likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.descLabel);
@@ -219,7 +239,10 @@
     _moment = model;
     self.indexPath = indexPath;
     self.nameLabel.text = model.momentUser.name;
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.momentUser.avatar] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.likeBtn setSelected: model.dynamicInfo.hasPraised];
+    self.timeLabel.text = [NSDate getMomentDateStamp:model.dynamicInfo.createTime];
+    
+    [self.headImageView sd_setImageWithURL:GetImageUrl(model.momentUser.avatar) placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     NSMutableParagraphStyle *muStyle = [[NSMutableParagraphStyle alloc]init];
     muStyle.lineSpacing = 3;//设置行间距离
@@ -264,7 +287,6 @@
     }
     
     self.moreBtn.selected = model.isExpand;
-    
     CGFloat jgg_width = JK_SCREEN_WIDTH-2*kGAP-kAvatar_Size-50;
     CGFloat image_width = (jgg_width-2*kGAP)/3;
     CGFloat jgg_height = 0.0;
@@ -290,10 +312,14 @@
         }
     };
     
+    CGFloat jggMagin = kGAP/2;
+    if (jgg_height < 0.1) {
+        jggMagin = 0;
+    }
     ///布局九宫格
     [self.jggView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.moreBtn);
-        make.top.mas_equalTo(self.moreBtn.mas_bottom).offset(kGAP/2);
+        make.top.mas_equalTo(self.moreBtn.mas_bottom).offset(jggMagin);
         make.size.mas_equalTo(CGSizeMake(jgg_width, jgg_height));
     }];
     
@@ -319,7 +345,7 @@
             LikeTableViewCell *cell = (LikeTableViewCell *)sourceCell;
             [cell setMoment:self.moment];
         } cache:^NSDictionary *{
-            return @{kHYBCacheUniqueKey : self.moment.momentId,
+            return @{kHYBCacheUniqueKey : self.moment.dynamicInfo.dynamicId,
                      kHYBCacheStateKey : @"",
                      kHYBRecalculateForStateKey : @(YES)};
         }];
@@ -377,9 +403,9 @@
             LikeTableViewCell *cell = (LikeTableViewCell *)sourceCell;
             [cell setMoment:self.moment];
         } cache:^NSDictionary *{
-            return @{kHYBCacheUniqueKey : self.moment.momentId,
+            return @{kHYBCacheUniqueKey : self.moment.dynamicInfo.dynamicId,
                      kHYBCacheStateKey : @"",
-                     kHYBRecalculateForStateKey : @(NO)};
+                     kHYBRecalculateForStateKey : @(YES)};
         }];
         return cellHeight;
     }else{
@@ -410,7 +436,7 @@
         
         CommentTableViewCell *commentCell = (CommentTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
         if ([self.delegate respondsToSelector:@selector(passCellHeight:indexPath:commentModel:commentCell:momentCell:)]) {
-            [self.delegate passCellHeight:cellHeight indexPath:indexPath commentModel:commentModel commentCell:commentCell momentCell:self];
+            [self.delegate passCellHeight:cellHeight indexPath:self.indexPath commentModel:commentModel commentCell:commentCell momentCell:self];
         }
     }
 }

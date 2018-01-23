@@ -7,7 +7,6 @@
 //
 
 #import "JKBaseTableViewController.h"
-#import <MJRefresh.h>
 #import "NSString+Commen.h"
 
 @interface JKBaseTableViewController ()
@@ -18,10 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 - (void)configView{
+    [super configView];
     [self.view addSubview:self.tableView];
 }
 
@@ -31,16 +30,21 @@
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.extendedLayoutIncludesOpaqueBars = YES;
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0,self.view.jk_width,self.view.jk_height) style:UITableViewStylePlain];
-        self.tableView.emptyDataSetSource = self;
-        self.tableView.emptyDataSetDelegate = self;
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        self.tableView.showsVerticalScrollIndicator = NO;
-        //去掉下面没有数据呈现的cell
-        self.tableView.tableFooterView = [[UIView alloc]init];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.jk_width, self.view.jk_height) style:UITableViewStylePlain];
+        if ([self showEmptyView]) {
+            _tableView.emptyDataSetSource = self;
+            _tableView.emptyDataSetDelegate = self;
+        }
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.tableFooterView = [[UIView alloc]init];
     }
     return _tableView;
+}
+
+- (BOOL)showEmptyView{
+    return NO;
 }
 
 - (NSMutableArray *)dataArray{
@@ -72,7 +76,7 @@
 {  _isOpenFooterRefresh =  isOpenFooterRefresh;
     if (_isOpenFooterRefresh) {
         WEAKSELF
-        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerRefresh];
         }];
     }else{

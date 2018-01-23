@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MettingModel.h"
 
 @interface ActivityTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *activityImage;
@@ -14,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *activityAddress;
 @property (weak, nonatomic) IBOutlet UILabel *activityTime;
 @property (weak, nonatomic) IBOutlet UILabel *activityMemberCount;
+
+- (void)setCellData:(MettingModel *)model;
 
 @end

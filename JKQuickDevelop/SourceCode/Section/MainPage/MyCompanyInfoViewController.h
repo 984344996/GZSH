@@ -8,6 +8,6 @@
 
 #import "JKBaseTableViewController.h"
 
-@interface MyCompanyInfoViewController : JKBaseTableViewController
+@interface MyCompanyInfoViewController : JKBaseViewController
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsModel.h"
 
 @interface MainPageHeaderBannerCollectionViewCell : UICollectionViewCell
-- (void)setCellData:(NSDictionary *)dic;
+- (void)setCellData:(NewsModel *)model;
 @end

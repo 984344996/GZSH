@@ -8,13 +8,14 @@
 
 #import "ActivityTableViewCell.h"
 #include "CornerTriangleView.h"
+#import "NSDate+Common.h"
+#import <UIImageView+WebCache.h>
 
 @interface ActivityTableViewCell()
 @property (nonatomic, strong) CornerTriangleView *triangleView;
 @end
 
 @implementation ActivityTableViewCell
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.contentView addSubview:self.triangleView];
@@ -27,6 +28,27 @@
         _triangleView = [[CornerTriangleView alloc] initWithFrame:tFrame andTitle:@"未开始" andTitleFont:kMainTextFieldTextFontBold12 andTitleColor:kWhiteColor andTriangleColor:kMainGreenColor];
     }
     return _triangleView;
+}
+
+- (void)setCellData:(MettingModel *)model{
+    self.activityName.text = model.title;
+    self.activityAddress.text = model.address;
+    self.activityTime.text = [NSDate parseServerDateTimeToFormat:model.title format:kTurnState5];
+    self.activityMemberCount.text = [NSString stringWithFormat:@"已报名人数：%ld",model.number];
+    [self.activityImage sd_setImageWithURL:GetImageUrl(model.img) placeholderImage:kPlaceHoderBannerImage];
+    
+    if ([model.state isEqualToString:@"未开始"]){
+        [self setUILayer:NO];
+    }
+    
+    if ([model.state isEqualToString:@"已结束"]){
+        [self setUILayer:YES];
+    }
+    
+    if (model.allowApply) {
+        [self setUILayer:NO];
+        self.triangleView.title = @"进行中";
+    }
 }
 
 #pragma mark - Private methods

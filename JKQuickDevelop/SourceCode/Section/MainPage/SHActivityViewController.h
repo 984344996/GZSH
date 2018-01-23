@@ -10,4 +10,5 @@
 
 @interface SHActivityViewController : JKBaseTableViewController
 
+
 @end

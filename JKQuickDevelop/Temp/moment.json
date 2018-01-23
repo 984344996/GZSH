@@ -17,22 +17,18 @@
                              }
                              }
                              ],
-             "content": [
-                         "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160503/14622764778932thumbnail.jpg",
-                         "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160426/14616659617000.jpg",
-                         "https://d13yacurqjgara.cloudfront.net/users/288987/screenshots/2025999/batman-beyond-the-rain.gif"
-                         ],
              "dynamicInfo": {
              "dynamicId": "1",
              "hasPraised": true,
-             "type": "text"
              },
              "momentId": "1",
              "momentUser": {
              "avatar": "http://weixintest.ihk.cn/ihkwx_upload/userPhoto/15914867203-1461920972642.jpg",
+             "type": "text",
              "name": "邓杰",
              "userId": "1"
              },
+             "text": "央视网消息：政治局七位常委全部出席",
              "praiseList": [
                             {
                             "avatar": "http://weixintest.ihk.cn/ihkwx_upload/userPhoto/15914867203-1461920972642.jpg",

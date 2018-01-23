@@ -57,7 +57,7 @@
 - (void)configCellWithModel:(Comment *)model{
     
     NSString *str;
-    if (model.userB) {
+    if (model.userB.userId) {
         str = [NSString stringWithFormat:@"%@回复%@：%@",model.userA.name,model.userB.name,model.content];
     }else{
         str = [NSString stringWithFormat:@"%@：%@",model.userA.name,model.content];

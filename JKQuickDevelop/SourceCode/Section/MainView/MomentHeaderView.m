@@ -105,6 +105,7 @@
         _containerView.backgroundColor = RGB(54, 53, 53);
         _containerView.layer.cornerRadius = 4;
         _containerView.layer.masksToBounds = YES;
+        _containerView.hidden = YES;
     }
     return _containerView;
 }

@@ -16,14 +16,37 @@
 
 #define APIServerProduct @"https://app.product.com"
 #define APIServerDevelop @"http://gzsh.projects.jyapi.cn/app"
+
+#define BaseFileUrlProduct @"https://app.product.com"
+#define BaseFileUrlDevelop @"http://gzsh.projects.jyapi.cn"
+
 #define APIServerCerPath @""   // SSL验证证书
 #define APPHttpCacheTime 10080 // http缓存时间 默认为一周
 
 #if DEBUG
 #define APIServer APIServerDevelop
+#define BaseFileUrl BaseFileUrlDevelop
 #else
 #define APIServer APIServerProduct
+#define BaseFileUrl BaseFileUrlProduct
 #endif
+
+// 根据BaseUrl获取图片绝对Url
+static __inline__ NSURL* GetImageUrl(NSString *relativeUrl)
+{
+    if (!relativeUrl) {
+        return nil;
+    }
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseFileUrl,relativeUrl];
+    return [NSURL URLWithString:url];
+}
+
+static __inline__ NSString* GetImageString(NSString *relativeUrl)
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",BaseFileUrl,relativeUrl];
+    return url;
+}
+
 
 // 开关配置
 #define kJKSupportNetOberve 1

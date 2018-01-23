@@ -10,7 +10,7 @@
 #import "UIImage+JKResize.h"
 #import <AFNetworking.h>
 
-@interface JKBaseViewController ()
+@interface JKBaseViewController ()<UIGestureRecognizerDelegate>
 /// Nav分隔线
 @property (nonatomic , weak , readonly) UIImageView * navSystemLine;
 /// TabBar栏分隔线
@@ -137,9 +137,11 @@
     
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = [self interactivePopEnable];
+        self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
     
 }
+
 
 - (void)dealloc{
     [self removeObserver];

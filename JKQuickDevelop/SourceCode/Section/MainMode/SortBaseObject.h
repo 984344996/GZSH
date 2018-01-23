@@ -10,6 +10,8 @@
 
 @interface SortBaseObject : NSObject
 //letter = [@"1", @"~"] -> letterShow = @"#";
+
 @property (nonatomic, strong) NSString *letter;
 @property (nonatomic, strong) NSString *letterShow;
+@property (nonatomic, strong) NSString *pingyin;
 @end

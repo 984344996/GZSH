@@ -9,10 +9,18 @@
 #import "FeedbackViewController.h"
 #import "UITextView+Placeholder.h"
 #import <JKCategories.h>
+#import <ReactiveObjC.h>
+#import "APIServerSdk.h"
+#import "HUDHelper.h"
+#import "NSString+Commen.h"
+#import <MBProgressHUD.h>
 
 @interface FeedbackViewController ()
 @property (nonatomic, strong) UITextView *textContent;
 @property (nonatomic, strong) UIButton *btnSubmit;
+@property (nonatomic, strong) NSString *feedBackStr;
+
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation FeedbackViewController
@@ -30,6 +38,27 @@
     [self.view addSubview:self.btnSubmit];
 }
 
+- (void)configEvent{
+    [super configEvent];
+    RAC(self, feedBackStr) = [RACSignal merge:@[RACObserve(self.textContent,text),self.textContent.rac_textSignal]];
+    
+    @weakify(self);
+    [[self.btnSubmit rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self);
+        if ([self checkForSubmit]) {
+            [self doFeedBack];
+        }
+    }];
+}
+
+- (BOOL)checkForSubmit{
+    if ([NSString isEmpty:self.feedBackStr]) {
+        [[HUDHelper sharedInstance] tipMessage:@"反馈内容不能为空" inView:self.view];
+        return NO;
+    }
+    return YES;
+}
+
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
@@ -41,6 +70,25 @@
         btnH += kDeltaForIphoneX;
     }
     [self.btnSubmit setFrame:CGRectMake(0, h - btnH, w, btnH)];
+}
+
+#pragma mark - APIServer
+
+- (void)doFeedBack{
+    @weakify(self);
+    self.hud = [[HUDHelper sharedInstance] loading:@"正在提交" inView:self.view];
+    [APIServerSdk doFeedback:self.feedBackStr succeed:^(id obj) {
+        @strongify(self);
+        [[HUDHelper sharedInstance] stopLoading:self.hud];
+        [[HUDHelper sharedInstance] tipMessage:@"反馈成功" inView:self.view];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    } failed:^(NSString *error) {
+        @strongify(self);
+        [[HUDHelper sharedInstance] stopLoading:self.hud];
+        [[HUDHelper sharedInstance] tipMessage:error inView:self.view];
+    }];
 }
 
 #pragma mark - Lazy loading

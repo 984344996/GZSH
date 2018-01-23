@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JKBaseViewController.h"
+#import <MJRefresh.h>
 #import <UIScrollView+EmptyDataSet.h>
 
 @interface JKBaseTableViewController :JKBaseViewController<DZNEmptyDataSetSource,DZNEmptyDataSetDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -23,6 +24,10 @@
 // 开启加载更多
 @property (nonatomic, assign) BOOL isOpenFooterRefresh;
 
+/**
+ 展示空白控件
+ */
+- (BOOL)showEmptyView;
 
 /**
  子类重写下拉加载调用

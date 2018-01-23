@@ -9,6 +9,8 @@
 #import "AppDataFlowHelper.h"
 #import <MJExtension.h>
 #import "KeyValueUtility.h"
+#import "JKNetworkHelper.h"
+#import "JKNetworkCache.h"
 
 static NSString *kToken = @"kToken";
 static NSString *kLoginUserInfo = @"kLoginUserInfo";
@@ -16,6 +18,7 @@ static NSString *kLoginUserInfo = @"kLoginUserInfo";
 @implementation AppDataFlowHelper
 
 + (void)loginOut{
+    [JKNetworkCache removeAllHttpCache];
     [self clearLoginToken];
     [self clearLoginUserInfo];
 }
@@ -23,6 +26,7 @@ static NSString *kLoginUserInfo = @"kLoginUserInfo";
 #pragma mark - Token
 
 + (void)saveLoginToken:(NSString *)token{
+    [JKNetworkHelper setToken:token];
     [KeyValueUtility setValue:token forKey:kToken];
 }
 

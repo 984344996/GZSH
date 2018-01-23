@@ -30,6 +30,7 @@
         NSString *outputPing = [PinyinHelper toHanyuPinyinStringWithNSString:key withHanyuPinyinOutputFormat:formatter withNSString:@""];
         NSString *letter = [[outputPing substringToIndex:1] uppercaseString];
         [obj setLetter:letter];
+        [obj setPingyin:[outputPing uppercaseString]];
         if ([letter characterAtIndex:0] >= 'A' && [letter characterAtIndex:0] <= 'Z') {
             [obj setLetterShow:letter];
             [tempDic setObject:obj forKey:letter];

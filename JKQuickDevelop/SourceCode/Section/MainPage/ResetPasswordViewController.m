@@ -29,8 +29,7 @@
 @property (nonatomic, strong) NSString *password;
 @end
 
-@implementation
-ResetPasswordViewController
+@implementation ResetPasswordViewController
 
 #pragma mark - Life circle
 

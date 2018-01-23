@@ -54,4 +54,107 @@ typedef void(^SHRequestSucceed)(id obj);
               succeed:(SHRequestSucceed)succeed
                failed:(SHRequestFailed)failed;
 
+#pragma mark - 主页
+
+// 获取滚动栏
++ (void)doGetBanner:(SHRequestSucceed)succeed
+          needCache:(BOOL)needCache
+       cacheSucceed:(SHRequestSucceed)cacheSucceed
+             failed:(SHRequestFailed)failed;
+
+// 获取新闻
++ (void)doGetNews:(NSInteger)page
+              max:(NSInteger)max
+             type:(NSString *)type
+          succeed:(SHRequestSucceed)succeed
+        needCache:(BOOL)needCache
+     cacheSucceed:(SHRequestSucceed)cacheSucceed
+           failed:(SHRequestFailed)failed;
+
+// 获取供求信息
++ (void)doGetDemand:(NSInteger)page
+                max:(NSInteger)max
+            succeed:(SHRequestSucceed)succeed
+          needCache:(BOOL)needCache
+       cacheSucceed:(SHRequestSucceed)cacheSucceed
+             failed:(SHRequestFailed)failed;
+
+// 获取某人的供求信息
++ (void)doGetUserDemand:(NSInteger)page
+                succeed:(SHRequestSucceed)succeed
+                 failed:(SHRequestFailed)failed;
+
+
+#pragma mark - Address
+
+// 获取联系人列表
++ (void)doGetUserContact:(SHRequestSucceed)succeed
+               needCache:(BOOL)needCache
+            cacheSucceed:(SHRequestSucceed)cacheSucceed
+                  failed:(SHRequestFailed)failed;
+
+// 获取企业库
++ (void)doGetUserEnterprise:(SHRequestSucceed)succeed
+                  needCache:(BOOL)needCache
+               cacheSucceed:(SHRequestSucceed)cacheSucceed
+                     failed:(SHRequestFailed)failed;
+
+#pragma mark - 会议活动
+
+// 会议活动
++ (void)doGetActivityMeeting:(NSUInteger)page
+                        type:(NSString *)type
+                     succeed:(SHRequestSucceed)succeed
+                   needCache:(BOOL)needCache
+                cacheSucceed:(SHRequestSucceed)cacheSucceed
+                      failed:(SHRequestFailed)failed;
+
++ (void)doJoinActivityMeeting:(NSString *)meetingId
+                      succeed:(SHRequestSucceed)succeed
+                       failed:(SHRequestFailed)failed;
+
+#pragma mark - 商会圈
+
++ (void)doGetMoment:(NSString *)userId
+            succeed:(SHRequestSucceed)succeed
+          needCache:(BOOL)needCache
+       cacheSucceed:(SHRequestSucceed)cacheSucceed
+             failed:(SHRequestFailed)failed;;
+
++ (void)doSendMoment:(NSString *)type
+                text:(NSString *)text
+                imgs:(NSArray *)imgs
+             succeed:(SHRequestSucceed)succeed
+              failed:(SHRequestFailed)failed;
+
++ (void)doPraiseMoment:(NSString *)dynamicId
+               succeed:(SHRequestSucceed)succeed
+                failed:(SHRequestFailed)failed;
+
++ (void)doComment:(NSString *)dynamicId
+          content:(NSString *)content
+           userId:(NSString *)userId
+          succeed:(SHRequestSucceed)succeed
+           failed:(SHRequestFailed)failed;
+
++ (void)doGetMomentDetail:(NSString *)dynamicId
+                  succeed:(SHRequestSucceed)succeed
+                   failed:(SHRequestFailed)failed;
+
+
++ (void)doGetMomentNotice:(SHRequestSucceed)succeed
+                   failed:(SHRequestFailed)failed;
+#pragma mark - 个人中心
+
++ (void)doFeedback:(NSString *)feedBackStr
+           succeed:(SHRequestSucceed)succeed
+            failed:(SHRequestFailed)failed;
+
+
++ (void)doGetSysInfo:(SHRequestSucceed)succeed
+              failed:(SHRequestFailed)failed;
+
+
+
+
 @end

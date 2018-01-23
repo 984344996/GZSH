@@ -262,8 +262,6 @@ static int viewTagNow = 1001;
     CGFloat height = kRichCompanyWidth * (model.height / model.width);
     UIImageView  *imageView = [[UIImageView alloc] init];
     imageView.tag = model.tagForView;
-    
-    imageView.backgroundColor = [UIColor redColor];
     imageView.layer.masksToBounds = YES;
     imageView.image = model.image;
     imageView.contentMode = UIViewContentModeScaleAspectFill;

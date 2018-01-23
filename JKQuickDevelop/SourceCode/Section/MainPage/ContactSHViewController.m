@@ -10,6 +10,9 @@
 #import <JKCategories.h>
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "SHContactTableViewCell.h"
+#import "APIServerSdk.h"
+#import "SysInfoModel.h"
+#import <MJExtension.h>
 
 @implementation ContactSHHeaderView
 
@@ -57,6 +60,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"SHContactTableViewCell" bundle:nil] forCellReuseIdentifier:@"SHContactTableViewCell"];
 }
 
+- (void)configData{
+    [super configData];
+    [self loadSysInfo];
+}
+
 - (ContactSHHeaderView *)header{
     if (!_header) {
         _header = [[ContactSHHeaderView alloc] initWithFrame:CGRectMake(0, 0, JK_SCREEN_WIDTH, 225)];
@@ -67,16 +75,37 @@
 - (NSArray *)dataDics{
     if (!_dataDics) {
         _dataDics = [NSArray arrayWithObjects:
-                     @{@"title":@"座机：",@"content":@"028-34523423"},
-                     @{@"title":@"传真：",@"content":@"028-34523423"},
-                     @{@"title":@"微信号：",@"content":@"gzsh360"},
-                     @{@"title":@"邮：",@"content":@"gzsh@163.com"},
-                     @{@"title":@"地址：",@"content":@"成都市高新区孵化园A座109号"},nil];
+                     @{@"title":@"座机：",@"content":@" "},
+                     @{@"title":@"传真：",@"content":@" "},
+                     @{@"title":@"微信号：",@"content":@" "},
+                     @{@"title":@"邮：",@"content":@" "},
+                     @{@"title":@"地址：",@"content":@" "},nil];
     }
     return _dataDics;
 }
+
+
 #pragma mark - Private methods
 
+- (void)loadSysInfo{
+    WEAKSELF
+    [APIServerSdk doGetSysInfo:^(id obj) {
+        STRONGSELF
+        SysInfoModel *model = [SysInfoModel mj_objectWithKeyValues:obj];
+        [strongSelf refreshSysData:model];
+    } failed:^(NSString *error) {
+    }];
+}
+
+- (void)refreshSysData:(SysInfoModel *)model{
+    _dataDics = [NSArray arrayWithObjects:
+                 @{@"title":@"座机：",@"content":model.tel},
+                 @{@"title":@"传真：",@"content":model.fax},
+                 @{@"title":@"微信号：",@"content":model.wx},
+                 @{@"title":@"邮箱：",@"content":model.email},
+                 @{@"title":@"地址：",@"content":model.address},nil];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Datasource and Delegate
 

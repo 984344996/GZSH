@@ -7,20 +7,37 @@
 //
 
 #import "MyCompanyInfoViewController.h"
-#import "MineCompanyTextTableViewCell.h"
+#import "MyCompanyInfoEditViewController.h"
 #import "EnterpriseModel.h"
-#import <UITableView+FDTemplateLayoutCell.h>
+#import "RichMode.h"
+#import <MyLayout.h>
 #import "NSString+Commen.h"
 #import <MJExtension.h>
-#import "MyCompanyInfoEditViewController.h"
 
 @interface MyCompanyInfoViewController ()
-@property (nonatomic, strong) NSMutableArray *models;
+@property (nonatomic, strong) MyLinearLayout *rootLiner;
+@property (nonatomic, strong) MyLinearLayout *linerCompanyInfo;
+@property (nonatomic, strong) MyLinearLayout *linerCompanyService;
+
+@property (nonatomic, strong) UILabel *labelPhone;
+@property (nonatomic, strong) UILabel *labelMail;
+@property (nonatomic, strong) UILabel *labelAddress;
 @end
 
 @implementation MyCompanyInfoViewController
 
 #pragma mark - Life circle
+
+- (void)loadView{
+    UIScrollView *scrollView   = [UIScrollView new];
+    scrollView.backgroundColor = [UIColor whiteColor];
+    self.view                  = scrollView;
+    _rootLiner                 = [MyLinearLayout linearLayoutWithOrientation:MyOrientation_Vert];
+    _rootLiner.padding         = UIEdgeInsetsMake(12, 12, 12, 12);
+    _rootLiner.myLeading       = _rootLiner.myTrailing = 0;
+    _rootLiner.heightSize.lBound(scrollView.heightSize, 10, 1);
+    [scrollView addSubview:_rootLiner];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,89 +45,114 @@
 
 - (void)configView{
     [super configView];
+    [self configLiner];
     self.title = @"我的企业信息";
     [self addUIBarButtonItemText:@"编辑" isLeft:NO target:self action:@selector(editInfo:)];
+}
+
+#pragma mark - APIServer
+
+
+
+#pragma mark - UI Create
+
+- (void)configLiner{
+    self.linerCompanyInfo    = [self createRichContentLiner:@"企业概况："];
+    self.linerCompanyService = [self createRichContentLiner:@"企业服务："];
+    self.labelPhone          = [self createLabelContentLiner:@"电话号码："];
+    self.labelMail           = [self createLabelContentLiner:@"邮箱："];
+    self.labelAddress        = [self createLabelContentLiner:@"地址："];
+}
+
+
+- (MyLinearLayout *)createRichContentLiner:(NSString *)title{
+    MyLinearLayout *layout        = [[MyLinearLayout alloc] initWithOrientation:MyOrientation_Horz];
+    layout.myLeading              = layout.myTrailing = 0;
+    layout.myTop                  = 25;
+    layout.heightSize.min(25);
+    layout.wrapContentSize        = YES;
     
-    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MineCompanyTextTableViewCell" bundle:nil] forCellReuseIdentifier:@"MineCompanyTextTableViewCell"];
+    MyLinearLayout *contentLayout = [[MyLinearLayout alloc] initWithOrientation:MyOrientation_Vert];
+    contentLayout.weight          = 1;
+    contentLayout.wrapContentSize = YES;
+    contentLayout.myLeft          = 12;
+    contentLayout.myTrailing      = 0;
+    
+    [layout addSubview:[self createTitleLabel:title]];
+    [layout addSubview:contentLayout];
+    [self.rootLiner addSubview:layout];
+    return contentLayout;
 }
 
-- (void)configData{
-    [super configData];
-    EnterpriseModel *mode = [[EnterpriseModel alloc] init];
-    mode.desc = @"详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本";
-    mode.service = @"详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本详细文本";
-    mode.mobile = @"18384345235";
-    mode.email = @"18384345235@163.com";
-    mode.address = @"川省成都市天府三街23432号";
-    [self makeEnterpriseInfoToModel:mode];
+- (UILabel *)createLabelContentLiner:(NSString *)title{
+    MyLinearLayout *layout = [[MyLinearLayout alloc] initWithOrientation:MyOrientation_Horz];
+    layout.myLeading       = layout.myTrailing = 0;
+    layout.myTop           = 25;
+    layout.heightSize.min(25);
+    layout.wrapContentSize = YES;
+
+    UILabel *contentLabel  = [self createContentLabel:@""];
+    [layout addSubview:[self createTitleLabel:title]];
+    [layout addSubview:contentLabel];
+    [self.rootLiner addSubview:layout];
+    return contentLabel;
 }
 
-- (void)makeEnterpriseInfoToModel:(EnterpriseModel *)model{
-    if (![NSString isEmpty:model.desc]) {
-        [self addItem:@"企业概况：" content:model.desc];
-    }
-    if (![NSString isEmpty:model.service]) {
-        [self addItem:@"企业服务：" content:model.service];
-    }
-    if (![NSString isEmpty:model.mobile]) {
-         [self addItem:@"电话号码：" content:model.mobile];
-    }
-    if (![NSString isEmpty:model.phone]) {
-        [self addItem:@"座机：" content:model.phone];
-    }
-    if (![NSString isEmpty:model.email]) {
-         [self addItem:@"邮件：" content:model.email];
-    }
-    if (![NSString isEmpty:model.address]) {
-        [self addItem:@"邮件：" content:model.address];
-    }
+- (UILabel*)createTitleLabel:(NSString*)title
+{
+    UILabel *sectionLabel        = [UILabel new];
+    sectionLabel.text            = title;
+    sectionLabel.font            = kMainTextFieldTextFontMiddle;
+    sectionLabel.textColor       = kSecondTextColor;
+    sectionLabel.myWidth         = 80;
+    sectionLabel.myHeight        = 25;
+    sectionLabel.myLeading       = sectionLabel.myTop = 0;
+    sectionLabel.textAlignment   = NSTextAlignmentRight;
+    return sectionLabel;
 }
 
-- (NSMutableArray *)models{
-    if (!_models) {
-        _models = [NSMutableArray array];
-    }
-    return _models;
+- (UILabel*)createContentLabel:(NSString*)content
+{
+    UILabel *contentLabel        = [UILabel new];
+    contentLabel.text            = content;
+    contentLabel.font            = kMainTextFieldTextFontMiddle;
+    contentLabel.textColor       = kMainTextColor;
+    contentLabel.myLeft          = 12;
+    contentLabel.weight          = 1;
+    contentLabel.wrapContentSize = YES;
+    return contentLabel;
 }
 
-#pragma mark - Private methods
+- (UIImageView *)addImageRich:(RichMode *)model{
+    CGFloat height = kRichCompanyInfoWidth * (model.height / model.width);
+    UIImageView  *imageView = [[UIImageView alloc] init];
+    imageView.layer.masksToBounds = YES;
+    imageView.image = model.image;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.myTop = 0;
+    imageView.myLeading = 2;
+    imageView.myTrailing = 2;
+    imageView.myHeight = height;
+    return imageView;
+}
 
-- (void)addItem:(NSString *)title content:(NSString *)content{
-    [self.models addObject:@{
-                             @"title":title,
-                             @"content":content
-                             }];
+- (UILabel*)addContentLabel:(NSString*)content
+{
+    UILabel *contentLabel   = [UILabel new];
+    contentLabel.text       = content;
+    contentLabel.font       = kMainTextFieldTextFontMiddle;
+    contentLabel.textColor  = kMainTextColor;
+    contentLabel.myLeading  = 0;
+    contentLabel.myTrailing = 0;
+    contentLabel.wrapContentSize = YES;
+    return contentLabel;
 }
 
 - (void)editInfo:(UIBarButtonItem *)sender{
     MyCompanyInfoEditViewController *vc = [[MyCompanyInfoEditViewController alloc] init];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    self.hidesBottomBarWhenPushed = YES;
 }
 
-
-#pragma mark - Delegate and Datasource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.models.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [self.tableView fd_heightForCellWithIdentifier:@"MineCompanyTextTableViewCell" cacheByIndexPath:indexPath configuration:^(id cell) {
-        MineCompanyTextTableViewCell *c = (MineCompanyTextTableViewCell *)cell;
-        [c setCellData:self.models[indexPath.row]];
-    }];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MineCompanyTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MineCompanyTextTableViewCell" forIndexPath:indexPath];
-    [cell setCellData:self.models[indexPath.row]];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
 @end

@@ -10,12 +10,20 @@
 #import "DemandInfo.h"
 #import "MySupplyAndDemandTableViewCell.h"
 #import "MySupplyAndDemandEditViewController.h"
-
 @interface MySupplyAndDemandViewController ()
 @property (nonatomic, strong) NSMutableArray *supplies;
 @end
 
 @implementation MySupplyAndDemandViewController
+
+- (instancetype)initWithUserId:(NSString *)userId isSelf:(BOOL)isSelf{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.userId = userId;
+        self.isSelf = isSelf;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

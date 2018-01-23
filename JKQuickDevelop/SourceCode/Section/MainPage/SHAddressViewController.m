@@ -13,8 +13,11 @@
 #import <MJExtension.h>
 #import <JKCategories.h>
 #import "Contact.h"
+#import "NSString+Commen.h"
 #import "ObjectPingSortHelper.h"
 #import "PersonalInfoViewController.h"
+#import "APIServerSdk.h"
+
 
 @interface SHAddressViewController ()
 @property (nonatomic, strong) AddressTableViewHeader *header;
@@ -23,6 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *letterModes;
 @property (nonatomic, strong) NSMutableArray *filterModes;
 @property (nonatomic, strong) ObjectPingSortHelper *helper;
+@property (nonatomic, assign) BOOL filter;
 
 //{@"letter":@"A",array:{}}
 @property (nonatomic, strong) NSMutableArray *sortedLetterArray;
@@ -30,7 +34,6 @@
 
 @implementation SHAddressViewController
 
-#pragma mark - Test Data;
 
 #pragma mark - Life circle
 
@@ -41,7 +44,6 @@
 - (void)configView{
     [super configView];
     self.tableView.tableHeaderView = self.header;
-    self.tableView.sectionHeaderHeight = 29;
     self.tableView.separatorColor = kMainBottomLayerColor;
     self.tableView.sectionIndexBackgroundColor = kMainBottomLayerColor;
     self.tableView.sectionIndexColor = [UIColor darkGrayColor];
@@ -51,16 +53,25 @@
 
 - (void)configData{
     [super configData];
-    NSData *friendsData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"contact" ofType:@"json"]]];
-    NSDictionary *JSONDic = [NSJSONSerialization JSONObjectWithData:friendsData options:NSJSONReadingAllowFragments error:nil];
-    for (NSDictionary *eachDic in JSONDic[@"friends"]) {
-        [self.allModes addObject:[Contact mj_objectWithKeyValues:eachDic]];
-    }
+    [self loadContacts];
+}
+
+- (void)configEvent{
+    [super configEvent];
+    @weakify(self);
+    RAC(self,filter) = [[RACSignal merge:@[RACObserve(self.header.inputFilterKey, text),self.header.inputFilterKey.rac_textSignal]] map:^id _Nullable(id  _Nullable value) {
+        NSString *key = value;
+        if ([NSString isEmpty:key]) {
+            return [NSNumber numberWithBool:NO];
+        }else{
+            return [NSNumber numberWithBool:YES];
+        }
+    }];
     
-    self.sortedModes = [self.helper sortObjects:self.allModes key:@"userName"];
-    self.letterModes = self.helper.sortedLetters;
-    
-    [self.tableView reloadData];
+    [[[self.header.inputFilterKey rac_textSignal] distinctUntilChanged] subscribeNext:^(NSString * _Nullable x) {
+        @strongify(self);
+        [self filerKey:x];
+    }];
 }
 
 - (AddressTableViewHeader *)header{
@@ -85,6 +96,12 @@
     return _sortedModes;
 }
 
+- (NSMutableArray *)filterModes{
+    if (!_filterModes) {
+        _filterModes = [[NSMutableArray alloc] init];
+    }
+    return _filterModes;
+}
 
 - (ObjectPingSortHelper *)helper{
     if (!_helper) {
@@ -99,7 +116,30 @@
     }
     return _letterModes;
 }
+
+#pragma mark - APIServer
+
+- (void)loadContacts{
+    @weakify(self);
+    [APIServerSdk doGetUserContact:^(id obj) {
+        @strongify(self);
+        self.allModes = [Contact mj_objectArrayWithKeyValuesArray:obj];
+        [self sortModels];
+    } needCache:YES cacheSucceed:^(id obj) {
+        @strongify(self);
+        self.allModes = [Contact mj_objectArrayWithKeyValuesArray:obj];
+        [self sortModels];
+    } failed:^(NSString *error) {
+    }];
+}
+
+
 #pragma mark - Private methods
+- (void)sortModels{
+    self.sortedModes = [self.helper sortObjects:self.allModes key:@"userName"];
+    self.letterModes = self.helper.sortedLetters;
+    [self.tableView reloadData];
+}
 
 - (void)intoPersonInfo{
     PersonalInfoViewController *vc =  [[PersonalInfoViewController alloc] init];
@@ -108,6 +148,34 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+- (void)filerKey:(NSString *)key{
+    /// 用户名 拼音 电话 企业名称 对比
+    [self.filterModes removeAllObjects];
+    for (int i = 0; i < self.sortedModes.count; i++) {
+        NSMutableArray *array = self.sortedModes[i];
+        for (int j = 0; j < array.count; j++) {
+            Contact *contact = array[j];
+            NSString *keyUpper =  [key uppercaseString];
+            if ([contact.userName containsString:key]) {
+                [self.filterModes addObject:contact];
+                continue;
+            }
+            if ([contact.pingyin containsString:key]) {
+                [self.filterModes addObject:contact];
+                continue;
+            }
+            if ([contact.mobile containsString:keyUpper]) {
+                [self.filterModes addObject:contact];
+                continue;
+            }
+            if ([contact.enterprise containsString:keyUpper]) {
+                [self.filterModes addObject:contact];
+                continue;
+            }
+        }
+    }
+    [self.tableView reloadData];
+}
 
 #pragma mark - Delegate and Datasource
 //IOS8 解决左边线间距问题
@@ -126,10 +194,17 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.filter) {
+        return 1;
+    }
     return self.sortedModes.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.filter) {
+        return self.filterModes.count;
+    }
+    
     NSArray *array = self.sortedModes[section];
     return array.count;
 }
@@ -140,8 +215,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressTableViewCell" forIndexPath:indexPath];
-    NSArray *array = self.sortedModes[indexPath.section];
-    Contact *contact = array[indexPath.row];
+    Contact *contact;
+    if (self.filter) {
+        contact = self.filterModes[indexPath.row];
+    }else{
+        NSArray *array = self.sortedModes[indexPath.section];
+        contact = array[indexPath.row];
+    }
     [cell setupCellData:contact];
     return cell;
 }
@@ -156,7 +236,17 @@
 }
 
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    if (self.filter) {
+        return nil;
+    }
     return  self.letterModes;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.filter) {
+        return 0;
+    }
+    return 29;
 }
 
 @end

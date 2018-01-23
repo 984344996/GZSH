@@ -86,6 +86,14 @@
 		3547EA88200FA25400A37B1F /* JKImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA87200FA25400A37B1F /* JKImagePicker.m */; };
 		3547EA8D2010746B00A37B1F /* SelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA8A2010746A00A37B1F /* SelectedListView.m */; };
 		3547EA952012180600A37B1F /* AppDataFlowHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA942012180600A37B1F /* AppDataFlowHelper.m */; };
+		3547EA982013046E00A37B1F /* SHWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA972013046E00A37B1F /* SHWebViewViewController.m */; };
+		3547EA9B20130B6900A37B1F /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA9A20130B6900A37B1F /* AppUtils.m */; };
+		3547EA9E201365CC00A37B1F /* PageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EA9D201365CC00A37B1F /* PageData.m */; };
+		3547EAA12015B9B000A37B1F /* UpLoadImagesEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EAA02015B9B000A37B1F /* UpLoadImagesEngine.m */; };
+		3547EAA72015C15D00A37B1F /* SHUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EAA62015C15D00A37B1F /* SHUploadTask.m */; };
+		3547EAAA201637ED00A37B1F /* GZSH.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3547EAA8201637ED00A37B1F /* GZSH.xcdatamodeld */; };
+		3547EAAF2016394000A37B1F /* DynamicMsg+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EAAC2016394000A37B1F /* DynamicMsg+CoreDataClass.m */; };
+		3547EAB02016394000A37B1F /* DynamicMsg+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547EAAE2016394000A37B1F /* DynamicMsg+CoreDataProperties.m */; };
 		354832B1200E2A570004E574 /* APIServerSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B0200E2A570004E574 /* APIServerSdk.m */; };
 		354832B5200E2B710004E574 /* APIRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B4200E2B710004E574 /* APIRouter.m */; };
 		354832B9200E33E90004E574 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832B8200E33E90004E574 /* UserInfo.m */; };
@@ -95,7 +103,6 @@
 		354832C5200E3CA10004E574 /* UpLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832C4200E3CA10004E574 /* UpLoadModel.m */; };
 		354832C8200E3CFF0004E574 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832C7200E3CFF0004E574 /* NewsModel.m */; };
 		354832CB200E3DA70004E574 /* MettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832CA200E3DA70004E574 /* MettingModel.m */; };
-		354832CE200E402B0004E574 /* DynamicMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832CD200E402B0004E574 /* DynamicMsg.m */; };
 		354832D1200E44660004E574 /* CommonResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832D0200E44660004E574 /* CommonResponseModel.m */; };
 		354B0AED2003A12200D614B7 /* MomentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AEC2003A12200D614B7 /* MomentHeaderView.m */; };
 		354B0AF32004729E00D614B7 /* RichMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AF22004729E00D614B7 /* RichMode.m */; };
@@ -416,8 +423,6 @@
 		358104EF1FFE618E00FC463A /* MainPageHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358104ED1FFE618E00FC463A /* MainPageHeaderCollectionViewCell.xib */; };
 		358104F71FFE633C00FC463A /* MainPageHeaderBannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104F61FFE633C00FC463A /* MainPageHeaderBannerCollectionViewCell.m */; };
 		358104FA1FFE74C100FC463A /* MainPageSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104F91FFE74C100FC463A /* MainPageSectionView.m */; };
-		358104FE1FFE74F700FC463A /* MainPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 358104FC1FFE74F700FC463A /* MainPageTableViewCell.m */; };
-		358104FF1FFE74F700FC463A /* MainPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358104FD1FFE74F700FC463A /* MainPageTableViewCell.xib */; };
 		358B44D11E499C6800A0DC93 /* JKAPPVersionCheckHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 358B44D01E499C6800A0DC93 /* JKAPPVersionCheckHelper.m */; };
 		358B44D41E499C8200A0DC93 /* HUDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 358B44D31E499C8200A0DC93 /* HUDHelper.m */; };
 		358B44D91E499C9B00A0DC93 /* JKNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 358B44D61E499C9B00A0DC93 /* JKNetworkCache.m */; };
@@ -684,6 +689,21 @@
 		3547EA8C2010746B00A37B1F /* SelectedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectedListView.h; path = SourceCode/Tool/UIKit/SelectedListView.h; sourceTree = "<group>"; };
 		3547EA932012180600A37B1F /* AppDataFlowHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDataFlowHelper.h; path = SourceCode/Section/MainMode/AppDataFlowHelper.h; sourceTree = "<group>"; };
 		3547EA942012180600A37B1F /* AppDataFlowHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDataFlowHelper.m; path = SourceCode/Section/MainMode/AppDataFlowHelper.m; sourceTree = "<group>"; };
+		3547EA962013046E00A37B1F /* SHWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHWebViewViewController.h; path = SourceCode/Section/MainPage/SHWebViewViewController.h; sourceTree = "<group>"; };
+		3547EA972013046E00A37B1F /* SHWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHWebViewViewController.m; path = SourceCode/Section/MainPage/SHWebViewViewController.m; sourceTree = "<group>"; };
+		3547EA9920130B6900A37B1F /* AppUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppUtils.h; path = SourceCode/Section/MainMode/AppUtils.h; sourceTree = "<group>"; };
+		3547EA9A20130B6900A37B1F /* AppUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppUtils.m; path = SourceCode/Section/MainMode/AppUtils.m; sourceTree = "<group>"; };
+		3547EA9C201365CC00A37B1F /* PageData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PageData.h; path = SourceCode/Section/MainMode/PageData.h; sourceTree = "<group>"; };
+		3547EA9D201365CC00A37B1F /* PageData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PageData.m; path = SourceCode/Section/MainMode/PageData.m; sourceTree = "<group>"; };
+		3547EA9F2015B9B000A37B1F /* UpLoadImagesEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpLoadImagesEngine.h; sourceTree = "<group>"; };
+		3547EAA02015B9B000A37B1F /* UpLoadImagesEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpLoadImagesEngine.m; sourceTree = "<group>"; };
+		3547EAA52015C15D00A37B1F /* SHUploadTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHUploadTask.h; path = SourceCode/Section/MainMode/SHUploadTask.h; sourceTree = "<group>"; };
+		3547EAA62015C15D00A37B1F /* SHUploadTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHUploadTask.m; path = SourceCode/Section/MainMode/SHUploadTask.m; sourceTree = "<group>"; };
+		3547EAA9201637ED00A37B1F /* GZSH.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GZSH.xcdatamodel; sourceTree = "<group>"; };
+		3547EAAB2016394000A37B1F /* DynamicMsg+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DynamicMsg+CoreDataClass.h"; path = "SourceCode/Section/MainMode/DynamicMsg+CoreDataClass.h"; sourceTree = "<group>"; };
+		3547EAAC2016394000A37B1F /* DynamicMsg+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DynamicMsg+CoreDataClass.m"; path = "SourceCode/Section/MainMode/DynamicMsg+CoreDataClass.m"; sourceTree = "<group>"; };
+		3547EAAD2016394000A37B1F /* DynamicMsg+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DynamicMsg+CoreDataProperties.h"; path = "SourceCode/Section/MainMode/DynamicMsg+CoreDataProperties.h"; sourceTree = "<group>"; };
+		3547EAAE2016394000A37B1F /* DynamicMsg+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "DynamicMsg+CoreDataProperties.m"; path = "SourceCode/Section/MainMode/DynamicMsg+CoreDataProperties.m"; sourceTree = "<group>"; };
 		354832AF200E2A570004E574 /* APIServerSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIServerSdk.h; path = SourceCode/Section/MainMode/APIServerSdk.h; sourceTree = "<group>"; };
 		354832B0200E2A570004E574 /* APIServerSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = APIServerSdk.m; path = SourceCode/Section/MainMode/APIServerSdk.m; sourceTree = "<group>"; };
 		354832B3200E2B710004E574 /* APIRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APIRouter.h; path = SourceCode/Section/MainMode/APIRouter.h; sourceTree = "<group>"; };
@@ -702,8 +722,6 @@
 		354832C7200E3CFF0004E574 /* NewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NewsModel.m; path = SourceCode/Section/MainMode/NewsModel.m; sourceTree = "<group>"; };
 		354832C9200E3DA70004E574 /* MettingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MettingModel.h; path = SourceCode/Section/MainMode/MettingModel.h; sourceTree = "<group>"; };
 		354832CA200E3DA70004E574 /* MettingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MettingModel.m; path = SourceCode/Section/MainMode/MettingModel.m; sourceTree = "<group>"; };
-		354832CC200E402B0004E574 /* DynamicMsg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DynamicMsg.h; path = SourceCode/Section/MainMode/DynamicMsg.h; sourceTree = "<group>"; };
-		354832CD200E402B0004E574 /* DynamicMsg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DynamicMsg.m; path = SourceCode/Section/MainMode/DynamicMsg.m; sourceTree = "<group>"; };
 		354832CF200E44660004E574 /* CommonResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CommonResponseModel.h; path = SourceCode/Section/MainMode/CommonResponseModel.h; sourceTree = "<group>"; };
 		354832D0200E44660004E574 /* CommonResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CommonResponseModel.m; path = SourceCode/Section/MainMode/CommonResponseModel.m; sourceTree = "<group>"; };
 		354B0AEB2003A12200D614B7 /* MomentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentHeaderView.h; path = SourceCode/Section/MainView/MomentHeaderView.h; sourceTree = "<group>"; };
@@ -1084,9 +1102,6 @@
 		358104F61FFE633C00FC463A /* MainPageHeaderBannerCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainPageHeaderBannerCollectionViewCell.m; sourceTree = "<group>"; };
 		358104F81FFE74C100FC463A /* MainPageSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainPageSectionView.h; path = SourceCode/Section/MainView/MainPageSectionView.h; sourceTree = "<group>"; };
 		358104F91FFE74C100FC463A /* MainPageSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainPageSectionView.m; path = SourceCode/Section/MainView/MainPageSectionView.m; sourceTree = "<group>"; };
-		358104FB1FFE74F700FC463A /* MainPageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainPageTableViewCell.h; path = SourceCode/Section/MainView/MainPageTableViewCell.h; sourceTree = "<group>"; };
-		358104FC1FFE74F700FC463A /* MainPageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainPageTableViewCell.m; path = SourceCode/Section/MainView/MainPageTableViewCell.m; sourceTree = "<group>"; };
-		358104FD1FFE74F700FC463A /* MainPageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainPageTableViewCell.xib; path = SourceCode/Section/MainView/MainPageTableViewCell.xib; sourceTree = "<group>"; };
 		358B44CF1E499C6800A0DC93 /* JKAPPVersionCheckHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKAPPVersionCheckHelper.h; path = SourceCode/Tool/Appstore/JKAPPVersionCheckHelper.h; sourceTree = "<group>"; };
 		358B44D01E499C6800A0DC93 /* JKAPPVersionCheckHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKAPPVersionCheckHelper.m; path = SourceCode/Tool/Appstore/JKAPPVersionCheckHelper.m; sourceTree = "<group>"; };
 		358B44D21E499C8200A0DC93 /* HUDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HUDHelper.h; path = SourceCode/Tool/UIKit/HUDHelper.h; sourceTree = "<group>"; };
@@ -1428,6 +1443,7 @@
 				353750771E31BE98006DC277 /* Localizable.strings */,
 				35588CAE2000A49900ED128A /* contact.json */,
 				355894FE200216E900ED128A /* moment.json */,
+				3547EAA8201637ED00A37B1F /* GZSH.xcdatamodeld */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -1626,6 +1642,12 @@
 			children = (
 				3547EA932012180600A37B1F /* AppDataFlowHelper.h */,
 				3547EA942012180600A37B1F /* AppDataFlowHelper.m */,
+				3547EA9920130B6900A37B1F /* AppUtils.h */,
+				3547EA9A20130B6900A37B1F /* AppUtils.m */,
+				3547EA9F2015B9B000A37B1F /* UpLoadImagesEngine.h */,
+				3547EAA02015B9B000A37B1F /* UpLoadImagesEngine.m */,
+				3547EAA52015C15D00A37B1F /* SHUploadTask.h */,
+				3547EAA62015C15D00A37B1F /* SHUploadTask.m */,
 			);
 			name = AppDataFlow;
 			sourceTree = "<group>";
@@ -1659,12 +1681,12 @@
 				354832C7200E3CFF0004E574 /* NewsModel.m */,
 				354832C9200E3DA70004E574 /* MettingModel.h */,
 				354832CA200E3DA70004E574 /* MettingModel.m */,
-				354832CC200E402B0004E574 /* DynamicMsg.h */,
-				354832CD200E402B0004E574 /* DynamicMsg.m */,
 				354832CF200E44660004E574 /* CommonResponseModel.h */,
 				354832D0200E44660004E574 /* CommonResponseModel.m */,
 				3547EA83200F961700A37B1F /* AddressParser.h */,
 				3547EA84200F961700A37B1F /* AddressParser.m */,
+				3547EA9C201365CC00A37B1F /* PageData.h */,
+				3547EA9D201365CC00A37B1F /* PageData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1752,6 +1774,10 @@
 		35588CD42001188000ED128A /* Mode */ = {
 			isa = PBXGroup;
 			children = (
+				3547EAAB2016394000A37B1F /* DynamicMsg+CoreDataClass.h */,
+				3547EAAC2016394000A37B1F /* DynamicMsg+CoreDataClass.m */,
+				3547EAAD2016394000A37B1F /* DynamicMsg+CoreDataProperties.h */,
+				3547EAAE2016394000A37B1F /* DynamicMsg+CoreDataProperties.m */,
 				35588CD5200118DA00ED128A /* MomentUser.h */,
 				35588CD6200118DA00ED128A /* MomentUser.m */,
 				35588CD8200118F800ED128A /* DynamicInfo.h */,
@@ -3084,9 +3110,6 @@
 				358104F61FFE633C00FC463A /* MainPageHeaderBannerCollectionViewCell.m */,
 				358104F81FFE74C100FC463A /* MainPageSectionView.h */,
 				358104F91FFE74C100FC463A /* MainPageSectionView.m */,
-				358104FB1FFE74F700FC463A /* MainPageTableViewCell.h */,
-				358104FC1FFE74F700FC463A /* MainPageTableViewCell.m */,
-				358104FD1FFE74F700FC463A /* MainPageTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3217,6 +3240,8 @@
 				35C1726A1FFBA7D800607658 /* SHActivityViewController.m */,
 				35C172871FFBB23300607658 /* SHActivityDetailViewController.h */,
 				35C172881FFBB23300607658 /* SHActivityDetailViewController.m */,
+				3547EA962013046E00A37B1F /* SHWebViewViewController.h */,
+				3547EA972013046E00A37B1F /* SHWebViewViewController.m */,
 			);
 			name = SHActivity;
 			sourceTree = "<group>";
@@ -3634,7 +3659,6 @@
 				355894782001F13500ED128A /* f_static_061@2x.png in Resources */,
 				3558947C2001F13500ED128A /* f_static_063@2x.png in Resources */,
 				3558948E2001F13500ED128A /* f_static_072@2x.png in Resources */,
-				358104FF1FFE74F700FC463A /* MainPageTableViewCell.xib in Resources */,
 				355893F32001F13400ED128A /* section0_emotion15@2x.png in Resources */,
 				3558946F2001F13500ED128A /* f_static_056@3x.png in Resources */,
 				3558940D2001F13400ED128A /* f_static_007@3x.png in Resources */,
@@ -3965,6 +3989,7 @@
 				358B44D11E499C6800A0DC93 /* JKAPPVersionCheckHelper.m in Sources */,
 				355894E82001F13500ED128A /* MorePanel.m in Sources */,
 				355894E42001F13500ED128A /* FacePanel.m in Sources */,
+				3547EAAA201637ED00A37B1F /* GZSH.xcdatamodeld in Sources */,
 				35374ED11E3059A1006DC277 /* JKBaseViewController.m in Sources */,
 				35C172981FFBB3E700607658 /* NewsNoticeViewController.m in Sources */,
 				35FCE3A71E6FC0E9001ACC20 /* NSObject+CommonBlock.m in Sources */,
@@ -3984,6 +4009,7 @@
 				355894DC2001F13500ED128A /* ChatToolBarItem.m in Sources */,
 				35323EA21E6D3D8500FF7BF0 /* MZIMMessageCellBodyBase.m in Sources */,
 				35135640200796360091606C /* MySupplyAndDemandTableViewCell.m in Sources */,
+				3547EA982013046E00A37B1F /* SHWebViewViewController.m in Sources */,
 				35C172771FFBB02300607658 /* ApplicationStep2ViewController.m in Sources */,
 				35A323461E34830800787AFD /* JKCenterRiseTabBar.m in Sources */,
 				35C172621FFBA77700607658 /* SHMainPageViewController.m in Sources */,
@@ -4001,6 +4027,7 @@
 				358104D31FFDFB5E00FC463A /* ApplicationStep2View.m in Sources */,
 				355894EA2001F13500ED128A /* OfficialAccountToolbar.m in Sources */,
 				3513566A200B3D110091606C /* RichContainerView.m in Sources */,
+				3547EAAF2016394000A37B1F /* DynamicMsg+CoreDataClass.m in Sources */,
 				35C172B31FFBB50E00607658 /* FeedbackViewController.m in Sources */,
 				358104F71FFE633C00FC463A /* MainPageHeaderBannerCollectionViewCell.m in Sources */,
 				354832C5200E3CA10004E574 /* UpLoadModel.m in Sources */,
@@ -4031,7 +4058,6 @@
 				355894F42001FD1100ED128A /* CommentTableViewCell.m in Sources */,
 				355894DD2001F13500ED128A /* FaceThemeModel.m in Sources */,
 				353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */,
-				354832CE200E402B0004E574 /* DynamicMsg.m in Sources */,
 				35374EDD1E305ACF006DC277 /* JKBaseTableViewController.m in Sources */,
 				3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */,
 				354832C2200E3C500004E574 /* SysInfoModel.m in Sources */,
@@ -4047,6 +4073,7 @@
 				355894E22001F13500ED128A /* FaceButton.m in Sources */,
 				3547EA952012180600A37B1F /* AppDataFlowHelper.m in Sources */,
 				358104D61FFDFB7600FC463A /* ApplicationStep3View.m in Sources */,
+				3547EAA72015C15D00A37B1F /* SHUploadTask.m in Sources */,
 				35EA97891E372C1F00BD07CF /* JKBaseAppDelegate.m in Sources */,
 				3547EA88200FA25400A37B1F /* JKImagePicker.m in Sources */,
 				35323EA01E6D3D8500FF7BF0 /* MZIMManager.m in Sources */,
@@ -4058,6 +4085,7 @@
 				3513564D2007A2080091606C /* SHContactTableViewCell.m in Sources */,
 				358B44E51E4C151200A0DC93 /* LoginViewController.m in Sources */,
 				3547EA8D2010746B00A37B1F /* SelectedListView.m in Sources */,
+				3547EAA12015B9B000A37B1F /* UpLoadImagesEngine.m in Sources */,
 				355894E92001F13500ED128A /* ChatToolBar.m in Sources */,
 				358104FA1FFE74C100FC463A /* MainPageSectionView.m in Sources */,
 				35135634200780470091606C /* MineCompanyTextTableViewCell.m in Sources */,
@@ -4077,6 +4105,7 @@
 				35C172741FFBAFCF00607658 /* ApplicationStep1ViewController.m in Sources */,
 				35C172AA1FFBB4B300607658 /* MomentNewsViewController.m in Sources */,
 				35323EA61E6D3D8500FF7BF0 /* MZIMMessageFactory.m in Sources */,
+				3547EA9E201365CC00A37B1F /* PageData.m in Sources */,
 				353750861E321348006DC277 /* JKBaseTabBarController.m in Sources */,
 				35C172891FFBB23300607658 /* SHActivityDetailViewController.m in Sources */,
 				354832B9200E33E90004E574 /* UserInfo.m in Sources */,
@@ -4093,7 +4122,6 @@
 				35135644200798530091606C /* DemandInfo.m in Sources */,
 				356380351FF33CFC00A01869 /* PinyinFormatter.m in Sources */,
 				35323E9B1E6D3D8500FF7BF0 /* MZIMChatInputBar.m in Sources */,
-				358104FE1FFE74F700FC463A /* MainPageTableViewCell.m in Sources */,
 				35588CEB200120D800ED128A /* NSString+Extension.m in Sources */,
 				35439D641FFBC9C50069FA28 /* LoginView.m in Sources */,
 				35135639200783780091606C /* EnterpriseModel.m in Sources */,
@@ -4104,7 +4132,9 @@
 				35323E9F1E6D3D8500FF7BF0 /* MZIMListener.m in Sources */,
 				35374EC81E305921006DC277 /* AppDelegate.m in Sources */,
 				358B44E11E4C148E00A0DC93 /* SplashViewController.m in Sources */,
+				3547EA9B20130B6900A37B1F /* AppUtils.m in Sources */,
 				35F069241E52EFE8009DBEE4 /* KeyValueUtility.m in Sources */,
+				3547EAB02016394000A37B1F /* DynamicMsg+CoreDataProperties.m in Sources */,
 				35323EC91E6D444500FF7BF0 /* MZIMMessageCellBodyAudio.m in Sources */,
 				355894EC2001F13500ED128A /* RFTextView.m in Sources */,
 				354832B1200E2A570004E574 /* APIServerSdk.m in Sources */,
@@ -4436,6 +4466,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		3547EAA8201637ED00A37B1F /* GZSH.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3547EAA9201637ED00A37B1F /* GZSH.xcdatamodel */,
+			);
+			currentVersion = 3547EAA9201637ED00A37B1F /* GZSH.xcdatamodel */;
+			path = GZSH.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		35F5172C1E2377A5006E14C1 /* JKQuickDevelop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

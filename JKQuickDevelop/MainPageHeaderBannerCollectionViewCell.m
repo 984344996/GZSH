@@ -70,10 +70,10 @@
     return _labelDesc;
 }
 
-- (void)setCellData:(NSDictionary *)dic{
+- (void)setCellData:(NewsModel *)model{
     self.iconLeft.image = [UIImage imageNamed:@"Home_Icon_Activity"];
     self.labelDate.text = @"[11月17日]";
-    self.labelDesc.text = @"贵州商会在人民大会堂隆重举行，贵州商会在人民大会堂隆重举行";
+    self.labelDesc.text = model.title;
 }
 
 - (void)layoutSubviews{
