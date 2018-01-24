@@ -3,6 +3,7 @@
     <entity name="DynamicMsg" representedClassName="DynamicMsg" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dynamicId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="opAvatar" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,6 +14,6 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DynamicMsg" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="DynamicMsg" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
 </model>

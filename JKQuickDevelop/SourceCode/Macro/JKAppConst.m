@@ -9,4 +9,5 @@
 #import "JKAppConst.h"
 
 NSString * const  kJKNetStatusChangeNotification = @"kJKNetStatusChangeNotification";
-NSString * const kJKTokenOutofDate = @"kJKTokenOutofDate";
+NSString * const  kJKTokenOutofDate = @"kJKTokenOutofDate";
+NSString * const  kJKMomentSendSucceed = @"kJKMomentSendSucceed";

@@ -12,6 +12,7 @@
 #import <Masonry.h>
 #import "NSString+Commen.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "NSDate+Common.h"
 
 @interface MomentNewsTableViewCell()
 @property (nonatomic, strong) UILabel *labelName;
@@ -69,30 +70,42 @@
     }];
 }
 
-- (void)setNewsModel:(MomentNewsModel *)newsModel{
+- (void)setNewsModel:(DynamicMsg *)newsModel{
     _newsModel = newsModel;
-    if ([NSString isEmpty:newsModel.imgUrl]) {
+    if ([NSString isEmpty:newsModel.img]) {
         [self.imageView setHidden:YES];
         [self.labelMomentText setHidden:NO];
     }else{
         [self.imageView setHidden:NO];
         [self.labelMomentText setHidden:YES];
-        [self.imgContent sd_setImageWithURL:[NSURL URLWithString:newsModel.imgUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [self.imgContent sd_setImageWithURL:GetImageUrl(newsModel.img) placeholderImage:[UIImage imageNamed:@"placeholder"]];
     }
     
-    self.labelName.text = newsModel.username;
-    self.labelTime.text = newsModel.time;
-    self.labelCommentText.text = newsModel.content;
-    self.labelMomentText.text = newsModel.contentToBeComment;
+    if ([newsModel.opType isEqualToString:@"LIKE"]) {
+        UIImage *image = [UIImage imageNamed:@"Circle_Icon_Like_BrightGreen"];
+        NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:CGSizeMake(24,24) alignToFont:kCommentFont alignment:YYTextVerticalAlignmentCenter];
+        self.labelCommentText.attributedText = attachText;
+    }else{
+        self.labelCommentText.text = newsModel.opContent;
+    }
+    
+    self.labelName.text        = newsModel.opUsername;
+    self.labelTime.text        = [NSDate getMomentDateStamp:newsModel.createTime];
+    self.labelMomentText.text = newsModel.content;
 }
 
-+ (CGFloat)heightWithMode:(MomentNewsModel *)newsModel{
++ (CGFloat)heightWithMode:(DynamicMsg *)newsModel{
     
-    CGFloat hAppendLeft = [newsModel.content textSizeIn:CGSizeMake(JK_SCREEN_WIDTH - 121.0, CGFLOAT_MAX) font:kMainTextFieldTextFontSmall].height;
+    CGFloat hAppendLeft = 0;
+    if (![newsModel.opType isEqualToString:@"LIKE"]) {
+        hAppendLeft = [newsModel.content textSizeIn:CGSizeMake(JK_SCREEN_WIDTH - 121.0, CGFLOAT_MAX) font:kMainTextFieldTextFontSmall].height;
+    }else{
+        hAppendLeft = 57;
+    }
     
     CGFloat hRight;
-    if ([NSString isEmpty:newsModel.imgUrl]) {
-        hRight = [newsModel.contentToBeComment textSizeIn:CGSizeMake(75, CGFLOAT_MAX) font:kMainTextFieldTextFontSmall].height + 12;
+    if ([NSString isEmpty:newsModel.img]) {
+        hRight = [newsModel.opContent textSizeIn:CGSizeMake(75, CGFLOAT_MAX) font:kMainTextFieldTextFontSmall].height + 12;
     }else{
         hRight = 66;
     }

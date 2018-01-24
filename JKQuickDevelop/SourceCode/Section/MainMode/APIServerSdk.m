@@ -11,6 +11,7 @@
 #import <MJExtension.h>
 #import "AccomplishModel.h"
 #import "CommonResponseModel.h"
+#import "EnterpriseModel.h"
 
 static inline NSString* getServerAddr(NSString *relativePath){
     return [NSString stringWithFormat:@"%@%@",APIServer,relativePath];
@@ -401,8 +402,8 @@ static inline NSString* integerToString(NSInteger number){
 }
 
 + (void)doFeedback:(NSString *)feedBackStr
-                      succeed:(SHRequestSucceed)succeed
-                       failed:(SHRequestFailed)failed{
+           succeed:(SHRequestSucceed)succeed
+            failed:(SHRequestFailed)failed{
     NSDictionary *params = @{@"content":feedBackStr};
     [JKNetworkHelper POST:getServerAddr(RFeedback) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
         [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
@@ -421,5 +422,30 @@ static inline NSString* integerToString(NSInteger number){
         [self netWorkErrorDeliver:nil failed:failed];
     }];
 }
+
+
+#pragma mark - 个人中心
+
++ (void)doEditEnterpriseInfo:(EnterpriseModel *)model
+                     succeed:(SHRequestSucceed)succeed
+                      failed:(SHRequestFailed)failed{
+    
+    NSMutableDictionary *params = [model mj_keyValues];
+    [JKNetworkHelper POST:getServerAddr(REditEnterprise) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
++ (void)doGetEnterpriseInfo:(SHRequestSucceed)succeed
+                     failed:(SHRequestFailed)failed{
+    [JKNetworkHelper GET:getServerAddr(REnterprise) parameters:nil cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
 
 @end

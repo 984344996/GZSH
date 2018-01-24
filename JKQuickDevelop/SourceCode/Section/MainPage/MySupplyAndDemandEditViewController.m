@@ -13,8 +13,19 @@
 #import <IQKeyboardManager.h>
 #import "RichMode.h"
 #import "NSString+Commen.h"
+#import <ZLPhotoActionSheet.h>
+#import <ReactiveObjC.h>
+#import "HUDHelper.h"
+#import "EnterpriseModel.h"
+#import "UploadRichEngine.h"
+#import <MJExtension.h>
+#import "APIServerSdk.h"
+#import <MBProgressHUD.h>
+#import "AppDelegate.h"
 
 @interface MySupplyAndDemandEditViewController ()<UITextViewDelegate>
+
+@property (nonatomic, strong) ZLPhotoActionSheet* photoActionSheet;
 @property (nonatomic, strong) MyLinearLayout *rootLiner;
 @property (nonatomic, strong) MyLinearLayout *linerContent;
 @property (nonatomic, strong) NSMutableArray *supplyRich;
@@ -23,6 +34,9 @@
 @property (nonatomic, strong) JKTextField_Padding *inputTitle;
 @property (nonatomic, strong) JKTextField_Padding *inputCompany;
 @property (nonatomic, strong) JKTextField_Padding *inputPhone;
+
+@property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, weak) UIWindow *window;
 @end
 
 @implementation MySupplyAndDemandEditViewController
@@ -63,6 +77,16 @@
     [self reloadContentInfo];
 }
 
+- (void)configEvent{
+    [super configEvent];
+    /*
+    RAC(self.enterpriseModel , mobile) = [RACSignal merge:@[RACObserve(self.inputMobile, text),self.inputMobile.rac_textSignal]];
+    RAC(self.enterpriseModel , phone) = [RACSignal merge:@[RACObserve(self.inputPhone, text),self.inputPhone.rac_textSignal]];
+    RAC(self.enterpriseModel , email) = [RACSignal merge:@[RACObserve(self.inputEmail, text),self.inputEmail.rac_textSignal]];
+    RAC(self.enterpriseModel , address) = [RACSignal merge:@[RACObserve(self.inputAddress, text),self.inputAddress.rac_textSignal]];
+     */
+}
+
 - (void)configLiner{
     _inputTitle = [self makeLinerTitleWithInput:@"标题:" placeHolder:@"请输入..."];
     _inputCompany = [self makeLinerTitleWithInput:@"发布单位:" placeHolder:@"请输入..."];
@@ -72,12 +96,35 @@
 
 #pragma mark - Lazy loading
 
+- (UIWindow *)window{
+    if (!_window) {
+        _window = [[AppDelegate sharedAppDelegate] window];
+    }
+    return _window;
+}
+
 - (NSMutableArray *)supplyRich{
     if (!_supplyRich) {
         _supplyRich = [NSMutableArray array];
         [_supplyRich addObject:[self createBlankTextRich]];
     }
     return _supplyRich;
+}
+
+- (ZLPhotoActionSheet *)photoActionSheet{
+    if (!_photoActionSheet) {
+        _photoActionSheet = [[ZLPhotoActionSheet alloc] init];
+        _photoActionSheet.sender = self;
+        _photoActionSheet.configuration.navBarColor = kGreenColor;
+        _photoActionSheet.configuration.navTitleColor = kWhiteColor;
+        _photoActionSheet.configuration.maxSelectCount = 1;
+        _photoActionSheet.configuration.allowSelectGif = NO;
+        _photoActionSheet.configuration.allowSelectVideo = NO;
+        _photoActionSheet.configuration.allowMixSelect = NO;
+        _photoActionSheet.configuration.allowEditImage = YES;
+        _photoActionSheet.configuration.allowSelectOriginal = NO;
+    }
+    return _photoActionSheet;
 }
 
 #pragma mark - Private methods
@@ -109,7 +156,7 @@
     textView.textColor = kMainTextColor;
     textView.placeholder = @"请输入...";
     textView.placeholderLabel.font = kMainTextFieldTextFontMiddle;
-    textView.myHeight = 24;
+    textView.myHeight = 30;
     textView.myTop = 0;
     textView.myLeading = 0;
     textView.myTrailing = 0;
@@ -143,12 +190,8 @@
     return imageView;
 }
 
-#pragma mark - Events
-
-- (void)insertPic:(UIBarButtonItem *)sender{
-    
-    /// TODO选照片
-    RichMode *newRich = [self createTestImageRich];
+- (void)addPic:(UIImage *)image{
+    RichMode *newRich = [self createImageRichModel:image];
     UIImageView *imageView = [self createImageRich:newRich];
     /// 筛选前面添加的View  如果文字不为空则插入
     if (self.currentEdit == 1) {
@@ -170,6 +213,68 @@
         }
     }
 }
+
+
+
+- (BOOL)checkForSubmit{
+    NSString *tipMsg;
+    BOOL isSucceed = YES;
+    /*
+    if (![self checkForComanyRich:self.companyInfoRich] && isSucceed) {
+        tipMsg = @"企业概况不能为空";
+        isSucceed = NO;
+    }
+    if (![self checkForComanyRich:self.companyServiceRich] && isSucceed) {
+        tipMsg = @"企业服务不能为空";
+        isSucceed = NO;
+    }
+    if ([NSString isEmpty:self.enterpriseModel.mobile] && isSucceed) {
+        tipMsg = @"电话号码不能为空";
+        isSucceed = NO;
+    }
+    if ([NSString isEmpty:self.enterpriseModel.email] && isSucceed) {
+        tipMsg = @"邮箱不能为空";
+        isSucceed = NO;
+    }
+    
+    if ([NSString isEmpty:self.enterpriseModel.address] && isSucceed) {
+        tipMsg = @"地址不能为空";
+        isSucceed = NO;
+    }
+    */
+    
+    if (!isSucceed) {
+        [[HUDHelper sharedInstance] tipMessage:tipMsg inView:self.view];
+    }
+    return isSucceed;
+}
+
+- (BOOL)checkForCotentRich:(NSMutableArray *)richs{
+    if (richs.count == 1) {
+        RichMode *mode = richs[0];
+        UITextView *textView = [self.view viewWithTag:mode.tagForView];
+        if ([NSString isEmpty:textView.text]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+#pragma mark - Events
+
+- (void)insertPic:(UIBarButtonItem *)sender{
+    [self.view endEditing:YES];
+    WEAKSELF
+    [self.photoActionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nullable images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
+        STRONGSELF
+        UIImage *image = images[0];
+        if (image) {
+            [strongSelf addPic:image];
+        }
+    }];
+    [self.photoActionSheet showPreviewAnimated:YES];
+    
+}
+
 
 - (void)imageDel:(UIButton *)sender{
     UIImageView *imageView = (UIImageView *)sender.superview;
@@ -200,12 +305,12 @@ static int viewTagNow = 1001;
     return mode;
 }
 
-- (RichMode *)createTestImageRich{
+- (RichMode *)createImageRichModel:(UIImage *)image{
     RichMode *mode = [[RichMode alloc] init];
     mode.type = @"image";
-    mode.image = [UIImage imageNamed:@"placeholder"];
-    mode.width = 640;
-    mode.height = 300;
+    mode.image = image;
+    mode.width = image.size.width;
+    mode.height = image.size.height;
     mode.tagForView = viewTagNow++;
     return mode;
 }
@@ -252,7 +357,6 @@ static int viewTagNow = 1001;
 - (MyLinearLayout *)makeLinerContent:(NSString *)title{
     MyLinearLayout *liner = [MyLinearLayout linearLayoutWithOrientation:MyOrientation_Horz];
     liner.myLeading = liner.myTrailing = 0;
-    liner.myHeight = 24;
     liner.myTop = 28;
     liner.wrapContentHeight = YES;
     
@@ -265,6 +369,7 @@ static int viewTagNow = 1001;
     linerCotent.myLeft = 20;
     linerCotent.myTrailing = 12;
     linerCotent.weight = 1;
+    linerCotent.wrapContentHeight = YES;
     
     [liner addSubview:sectionLabel];
     [liner addSubview:linerCotent];

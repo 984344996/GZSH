@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MomentNewsModel.h"
+#import "DynamicMsg+CoreDataProperties.h"
 
 @interface MomentNewsTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) MomentNewsModel *newsModel;
-+ (CGFloat)heightWithMode:(MomentNewsModel *)newsModel;
+@property (nonatomic, strong) DynamicMsg *newsModel;
++ (CGFloat)heightWithMode:(DynamicMsg *)newsModel;
 @end

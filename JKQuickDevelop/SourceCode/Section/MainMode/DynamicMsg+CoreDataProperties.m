@@ -25,5 +25,5 @@
 @dynamic opAvatar;
 @dynamic opContent;
 @dynamic opType;
-
+@dynamic dynamicId;
 @end

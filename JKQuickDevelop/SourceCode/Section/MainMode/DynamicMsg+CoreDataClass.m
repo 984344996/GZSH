@@ -10,5 +10,5 @@
 #import "DynamicMsg+CoreDataClass.h"
 
 @implementation DynamicMsg
-
+@synthesize cellHeight;
 @end

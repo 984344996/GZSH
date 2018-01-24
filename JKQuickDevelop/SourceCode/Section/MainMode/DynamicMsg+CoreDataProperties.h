@@ -21,12 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *type;
 @property (nullable, nonatomic, copy) NSString *content;
 @property (nullable, nonatomic, copy) NSString *img;
+@property (nullable, nonatomic, copy) NSString *dynamicId;
 @property (nullable, nonatomic, copy) NSString *opUserId;
 @property (nullable, nonatomic, copy) NSString *opUsername;
 @property (nullable, nonatomic, copy) NSString *opAvatar;
 @property (nullable, nonatomic, copy) NSString *opContent;
 @property (nullable, nonatomic, copy) NSString *opType;
-
 @end
 
 NS_ASSUME_NONNULL_END

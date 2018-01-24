@@ -50,8 +50,17 @@
     [self addUIBarButtonItemText:@"编辑" isLeft:NO target:self action:@selector(editInfo:)];
 }
 
+
+- (void)configData{
+    [super configData];
+    
+}
+
 #pragma mark - APIServer
 
+- (void)loadEnterpriseInfo{
+    
+}
 
 
 #pragma mark - UI Create

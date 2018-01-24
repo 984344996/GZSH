@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DynamicMsg : NSManagedObject
-
+@property (nonatomic, assign) CGFloat cellHeight;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -101,7 +101,7 @@
     }
     
     [APIServerSdk doSendMoment:type text:task.content imgs:task.imgUrls succeed:^(id obj) {
-        DLog(@"===== Send moment Success");
+        [[NSNotificationCenter defaultCenter] postNotificationName:kJKMomentSendSucceed object:nil];
     } failed:^(NSString *error) {
         UIView *view = [[AppDelegate sharedAppDelegate] topViewController].view;
         [[HUDHelper sharedInstance] tipMessage:@"动态发送失败" inView:view];

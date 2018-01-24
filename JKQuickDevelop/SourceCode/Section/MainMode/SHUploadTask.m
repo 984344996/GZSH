@@ -47,8 +47,8 @@
         [APIServerSdk doUploadImage:image dir:@"circle" name:@"file" succeed:^(id obj) {
             STRONGSELF
             strongSelf.lastSucceedIndex += 1;
-            CommonResponseModel *cObj = obj;
-            UpLoadModel* upLoadModel = [UpLoadModel mj_objectWithKeyValues:cObj.data];
+            CommonResponseModel *cObj   = obj;
+            UpLoadModel* upLoadModel    = [UpLoadModel mj_objectWithKeyValues:cObj.data];
             [strongSelf.imgUrls addObject:upLoadModel.url];
             NSLog(@"====== upload success");
             [strongSelf upLoadNextImage];
@@ -61,6 +61,7 @@
             }else{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [strongSelf upLoadNextImage];
+                    strongSelf.retryCount++;
                 });
             }
         }];

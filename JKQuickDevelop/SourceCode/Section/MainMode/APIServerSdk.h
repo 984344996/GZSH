@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JKNetworkHelper.h"
+#import "EnterpriseModel.h"
 
 @class AccomplishModel;
 
@@ -155,6 +156,10 @@ typedef void(^SHRequestSucceed)(id obj);
               failed:(SHRequestFailed)failed;
 
 
++ (void)doEditEnterpriseInfo:(EnterpriseModel *)model
+                     succeed:(SHRequestSucceed)succeed
+                      failed:(SHRequestFailed)failed;
 
-
++ (void)doGetEnterpriseInfo:(SHRequestSucceed)succeed
+                     failed:(SHRequestFailed)failed;
 @end

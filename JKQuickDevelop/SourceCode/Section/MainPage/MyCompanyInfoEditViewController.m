@@ -13,9 +13,19 @@
 #import <IQKeyboardManager.h>
 #import "RichMode.h"
 #import "NSString+Commen.h"
+#import <ZLPhotoActionSheet.h>
+#import <ReactiveObjC.h>
+#import "HUDHelper.h"
+#import "EnterpriseModel.h"
+#import "UploadRichEngine.h"
+#import <MJExtension.h>
+#import "APIServerSdk.h"
+#import <MBProgressHUD.h>
+#import "AppDelegate.h"
 
 @interface MyCompanyInfoEditViewController ()<UITextViewDelegate>
 
+@property (nonatomic, strong) ZLPhotoActionSheet* photoActionSheet;
 @property (nonatomic, strong) MyLinearLayout *rootLiner;
 @property (nonatomic, strong) MyLinearLayout *linerCompanyInfo;
 @property (nonatomic, strong) MyLinearLayout *linerCompanyService;
@@ -28,6 +38,9 @@
 @property (nonatomic, strong) JKTextField_Padding *inputEmail;
 @property (nonatomic, strong) UITextView *inputAddress;
 @property (nonatomic, assign) NSUInteger currentEdit;
+@property (nonatomic, strong) EnterpriseModel *enterpriseModel;
+@property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, weak) UIWindow *window;
 
 @end
 
@@ -55,12 +68,24 @@
     self.title = @"编辑企业信息";
     
     UIBarButtonItem *itemPic = [[UIBarButtonItem alloc] initWithTitle:@"图片" style:UIBarButtonItemStylePlain target:self action:@selector(insertPic:)];
-    UIBarButtonItem *itemDone = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(insertPic:)];
+    UIBarButtonItem *itemDone = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(editDone:)];
     self.navigationItem.rightBarButtonItems = @[itemDone,itemPic];
     
     [self configLiner];
     [self reloadCompanyInfo];
     [self reloadCompanyService];
+}
+
+- (void)configData{
+    [super configData];
+}
+
+- (void)configEvent{
+    [super configEvent];
+    RAC(self.enterpriseModel , mobile) = [RACSignal merge:@[RACObserve(self.inputMobile, text),self.inputMobile.rac_textSignal]];
+    RAC(self.enterpriseModel , phone) = [RACSignal merge:@[RACObserve(self.inputPhone, text),self.inputPhone.rac_textSignal]];
+    RAC(self.enterpriseModel , email) = [RACSignal merge:@[RACObserve(self.inputEmail, text),self.inputEmail.rac_textSignal]];
+    RAC(self.enterpriseModel , address) = [RACSignal merge:@[RACObserve(self.inputAddress, text),self.inputAddress.rac_textSignal]];
 }
 
 - (void)configLiner{
@@ -72,14 +97,17 @@
     
     [self.rootLiner addSubview:[self createSectionLabel:@"电话号码："]];
     _inputMobile = [self createUITextField:@"请输入..."];
+    _inputMobile.keyboardType = UIKeyboardTypePhonePad;
     [self.rootLiner addSubview:_inputMobile];
     
     [self.rootLiner addSubview:[self createSectionLabel:@"座机："]];
     _inputPhone = [self createUITextField:@"选填"];
+    _inputPhone.keyboardType = UIKeyboardTypePhonePad;
     [self.rootLiner addSubview:_inputPhone];
     
     [self.rootLiner addSubview:[self createSectionLabel:@"邮件："]];
     _inputEmail = [self createUITextField:@"请输入..."];
+    _inputEmail.keyboardType = UIKeyboardTypeASCIICapable;
     [self.rootLiner addSubview:_inputEmail];
     
 
@@ -87,7 +115,6 @@
     _inputAddress = [self createTextView:@"请输入"];
     [self.rootLiner addSubview:_inputAddress];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -100,6 +127,13 @@
 }
 
 #pragma mark - Lazy loading
+
+- (UIWindow *)window{
+    if (!_window) {
+        _window = [[AppDelegate sharedAppDelegate] window];
+    }
+    return _window;
+}
 
 - (MyLinearLayout *)linerCompanyInfo{
     if (!_linerCompanyInfo) {
@@ -145,7 +179,28 @@
     return _companyServiceRich;
 }
 
+- (ZLPhotoActionSheet *)photoActionSheet{
+    if (!_photoActionSheet) {
+        _photoActionSheet = [[ZLPhotoActionSheet alloc] init];
+        _photoActionSheet.sender = self;
+        _photoActionSheet.configuration.navBarColor = kGreenColor;
+        _photoActionSheet.configuration.navTitleColor = kWhiteColor;
+        _photoActionSheet.configuration.maxSelectCount = 1;
+        _photoActionSheet.configuration.allowSelectGif = NO;
+        _photoActionSheet.configuration.allowSelectVideo = NO;
+        _photoActionSheet.configuration.allowMixSelect = NO;
+        _photoActionSheet.configuration.allowEditImage = YES;
+        _photoActionSheet.configuration.allowSelectOriginal = NO;
+    }
+    return _photoActionSheet;
+}
 
+- (EnterpriseModel *)enterpriseModel{
+    if (!_enterpriseModel) {
+        _enterpriseModel = [[EnterpriseModel alloc] init];
+    }
+    return _enterpriseModel;
+}
 #pragma mark - Private methods
 
 - (void)reloadCompanyInfo{
@@ -185,12 +240,12 @@ static int viewTagNow = 1001;
     return mode;
 }
 
-- (RichMode *)createTestImageRich{
+- (RichMode *)createImageRichModel:(UIImage *)image{
     RichMode *mode = [[RichMode alloc] init];
     mode.type = @"image";
-    mode.image = [UIImage imageNamed:@"placeholder"];
-    mode.width = 640;
-    mode.height = 300;
+    mode.image = image;
+    mode.width = image.size.width;
+    mode.height = image.size.height;
     mode.tagForView = viewTagNow++;
     return mode;
 }
@@ -251,7 +306,7 @@ static int viewTagNow = 1001;
     textView.textColor = kMainTextColor;
     textView.placeholder = @"请输入...";
     textView.placeholderLabel.font = kMainTextFieldTextFontMiddle;
-    textView.myHeight = 24;
+    textView.myHeight = 30;
     textView.myTop = 0;
     textView.myLeading = 0;
     textView.myTrailing = 0;
@@ -284,10 +339,9 @@ static int viewTagNow = 1001;
     return imageView;
 }
 
-- (void)insertPic:(UIBarButtonItem *)sender{
-   
-    /// TODO选照片
-    RichMode *newRich = [self createTestImageRich];
+
+- (void)addPic:(UIImage *)image{
+    RichMode *newRich = [self createImageRichModel:image];
     UIImageView *imageView = [self createImageRich:newRich];
     // 筛选前面添加的View  如果文字不为空则插入
     if (self.currentEdit == 1) {
@@ -326,10 +380,124 @@ static int viewTagNow = 1001;
         }
     }
 }
+
+#pragma mark - Check And Data dealing
+
+- (BOOL)checkForSubmit{
+    NSString *tipMsg;
+    BOOL isSucceed = YES;
+    if (![self checkForComanyRich:self.companyInfoRich] && isSucceed) {
+        tipMsg = @"企业概况不能为空";
+        isSucceed = NO;
+    }
+    if (![self checkForComanyRich:self.companyServiceRich] && isSucceed) {
+        tipMsg = @"企业服务不能为空";
+        isSucceed = NO;
+    }
+    if ([NSString isEmpty:self.enterpriseModel.mobile] && isSucceed) {
+        tipMsg = @"电话号码不能为空";
+        isSucceed = NO;
+    }
+    if ([NSString isEmpty:self.enterpriseModel.email] && isSucceed) {
+        tipMsg = @"邮箱不能为空";
+        isSucceed = NO;
+    }
+    
+    if ([NSString isEmpty:self.enterpriseModel.address] && isSucceed) {
+        tipMsg = @"地址不能为空";
+        isSucceed = NO;
+    }
+    
+    if (!isSucceed) {
+        [[HUDHelper sharedInstance] tipMessage:tipMsg inView:self.view];
+    }
+    return isSucceed;
+}
+
+- (BOOL)checkForComanyRich:(NSMutableArray *)richs{
+    if (richs.count == 1) {
+        RichMode *mode = richs[0];
+        UITextView *textView = [self.view viewWithTag:mode.tagForView];
+        if ([NSString isEmpty:textView.text]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 #pragma mark - Events
 
+- (void)insertPic:(UIBarButtonItem *)sender{
+    [self.view endEditing:YES];
+    WEAKSELF
+    [self.photoActionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nullable images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
+        STRONGSELF
+        UIImage *image = images[0];
+        if (image) {
+            [strongSelf addPic:image];
+        }
+    }];
+    [self.photoActionSheet showPreviewAnimated:YES];
+}
+
 - (void)editDone:(UIBarButtonItem *)sender{
+    if ([self checkForSubmit]) {
+        WEAKSELF
+        self.hud = [[HUDHelper sharedInstance] loading:@"更新中" inView:self.window];
+        [[UploadRichEngine sharedInstance] upLoadRiches:self.companyInfoRich succeed:^(NSMutableArray *riches) {
+            STRONGSELF
+            strongSelf.companyInfoRich = riches;
+            WEAKSELF
+            [[UploadRichEngine sharedInstance] upLoadRiches:self.companyServiceRich succeed:^(NSMutableArray *riches) {
+                STRONGSELF
+                strongSelf.companyServiceRich = riches;
+                [strongSelf submitToAPIServer];
+            } failed:^{
+                STRONGSELF
+                [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+                [[HUDHelper sharedInstance] tipMessage:@"上传失败" inView:strongSelf.window];
+            }];
+        } failed:^{
+            STRONGSELF
+            [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+            [[HUDHelper sharedInstance] tipMessage:@"上传失败" inView:strongSelf.window];
+        }];
+    }
+}
+
+- (void)submitToAPIServer{
+    for (RichMode *mode in self.companyInfoRich) {
+        if ([mode.type isEqualToString:@"text"]) {
+            UITextView *textView = [self.view viewWithTag:mode.tagForView];
+            mode.inputContent = textView.text;
+        }
+    }
+    for (RichMode *mode in self.companyServiceRich) {
+        if ([mode.type isEqualToString:@"text"]) {
+            UITextView *textView = [self.view viewWithTag:mode.tagForView];
+            mode.inputContent = textView.text;
+        }
+    }
     
+    NSMutableArray *uploadInfo = [RichMode turnToRichModeUpload:self.companyInfoRich];
+    NSMutableArray *uploadService = [RichMode turnToRichModeUpload:self.companyServiceRich];
+    
+    NSString *infoString = [uploadInfo mj_JSONString];
+    NSString *serviceString = [uploadService mj_JSONString];
+    
+    self.enterpriseModel.service = serviceString;
+    self.enterpriseModel.desc = infoString;
+    
+    WEAKSELF
+    [APIServerSdk doEditEnterpriseInfo:self.enterpriseModel succeed:^(id obj) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+        [[HUDHelper sharedInstance] tipMessage:@"更新成功" inView:strongSelf.window];
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+        [[HUDHelper sharedInstance] tipMessage:@"上传失败" inView:strongSelf.window];
+    }];
 }
 
 - (void)imageDel:(UIButton *)sender{
@@ -395,7 +563,7 @@ static int viewTagNow = 1001;
     
     if(textView.superview == self.linerCompanyService){
         NSInteger index = [self findIndexByTag:tag richArray:self.companyServiceRich];
-        if (index == 0 && self.companyInfoRich.count == 1) {
+        if (index == 0 && self.companyServiceRich.count == 1) {
             return;
         }
         
@@ -406,7 +574,7 @@ static int viewTagNow = 1001;
             [[self.view viewWithTag:lastMode.tagForView] becomeFirstResponder];
             return;
         }
-        
+
         RichMode *lastMode = [self.companyServiceRich objectAtIndex:index - 1];
         if ([lastMode.type isEqualToString:@"image"]) {
             [self.companyServiceRich removeObjectAtIndex:index - 1];

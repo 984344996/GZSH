@@ -59,23 +59,34 @@
 
 - (void)configView{
     [super configView];
+    if (!self.momentId) {
+        [self addUIBarButtonItemImage:@"Circle_Icon_Camera" size:CGSizeMake(24, 24) isLeft:NO target:self action:@selector(publishMoment:)];
+    }
     
-    [self addUIBarButtonItemImage:@"Circle_Icon_Camera" size:CGSizeMake(24, 24) isLeft:NO target:self action:@selector(publishMoment:)];
     if (self.isMainPage) {
         self.tableView.tableHeaderView = self.header;
     }
+    
     [self.tableView registerClass:[MomentTableViewCell class] forCellReuseIdentifier:@"MomentTableViewCell"];
     
 }
 
 - (void)configData{
     [super configData];
+    if (self.momentId) {
+        [self loadMomentById:self.momentId];
+        return;
+    }
     [self loadMoment:YES];
-    [self loadUnreadComment];
 }
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadUnreadComment];
 }
 
 #pragma mark - Load data
@@ -84,6 +95,9 @@
     WEAKSELF
     [APIServerSdk doGetMoment:nil succeed:^(id obj) {
         STRONGSELF
+        if (isRefresh) {
+            [strongSelf.momentModes removeAllObjects];
+        }
         NSMutableArray *append = [Moment mj_objectArrayWithKeyValuesArray:obj];
         [strongSelf.momentModes addObjectsFromArray:append];
         [strongSelf.tableView reloadData];
@@ -91,6 +105,18 @@
         
     } failed:^(NSString *error) {
         [[HUDHelper sharedInstance] tipMessage:@"加载失败" inView:self.view];
+    }];
+}
+
+- (void)loadMomentById:(NSString *)momentId{
+    WEAKSELF
+    [APIServerSdk doGetMomentDetail:momentId succeed:^(id obj) {
+        STRONGSELF
+        Moment *moment         = [Moment mj_objectWithKeyValues:obj];
+        [strongSelf.momentModes removeAllObjects];
+        [strongSelf.momentModes addObject:moment];
+        [strongSelf.tableView reloadData];
+    } failed:^(NSString *error) {
     }];
 }
 
@@ -142,6 +168,10 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(momentSendSucceed:)
+                                                 name:kJKMomentSendSucceed object:nil];
+    
     self.header.userInteractionEnabled               = YES;
     self.header.containerView.userInteractionEnabled = YES;
     
@@ -174,6 +204,10 @@
 }
 
 #pragma mark - Private methods
+
+- (void)momentSendSucceed:(NSNotification *)notification{
+    [self loadMoment:YES];
+}
 
 - (void)publishMoment:(UIBarButtonItem *)sender{
     SendMomentViewController *vc = [[SendMomentViewController alloc] init];
@@ -454,4 +488,5 @@
         [self.tableView setContentOffset:offset animated:YES];
     }
 }
+
 @end

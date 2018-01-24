@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RichModelUpload.h"
 
 @interface RichMode : NSObject
 // ["image", "text"]
@@ -19,4 +20,5 @@
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, assign) NSInteger tagForView;
 
++ (NSMutableArray *)turnToRichModeUpload:(NSMutableArray *)richModel;
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "MomentNewsViewController.h"
-#import "MomentNewsModel.h"
 #import "MomentNewsTableViewCell.h"
+#import "DynamicMsg+CoreDataProperties.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import "SHCircleViewController.h"
 
 @interface MomentNewsViewController ()
 @property (nonatomic, strong) NSMutableArray *newsModels;
@@ -31,21 +33,15 @@
 
 - (void)configData{
     [super configData];
-    
-    MomentNewsModel *test1 = [[MomentNewsModel alloc] init];
-    test1.username = @"朋友A";
-    test1.time = @"18分钟前";
-    test1.content = @"风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~ 风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~";
-    test1.imgUrl = @"http://weixintest.ihk.cn/ihkwx_upload/userPhoto/15914867203-1461920972642.jpg";
-    
-    MomentNewsModel *test2 = [[MomentNewsModel alloc] init];
-    test2.username = @"摸摸摸摸摸";
-    test2.time = @"一天前";
-    test2.content = @"风景真美，什么时候去得~ 什么时候去得~风景真美，什么时候去得~";
-    test2.contentToBeComment = @"风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~风景真美，什么时候去得~";
-    
-    [self.newsModels addObject:test1];
-    [self.newsModels addObject:test2];
+    [self refreshData];
+}
+
+- (void)refreshData{
+    NSArray *array = [DynamicMsg MR_findAllSortedBy:@"createTime" ascending:NO];
+    if (array) {
+        [self.newsModels removeAllObjects];
+        [self.newsModels addObjectsFromArray:array];
+    }
     [self.tableView reloadData];
 }
 
@@ -60,6 +56,8 @@
 
 - (void)clearAll:(UIBarButtonItem *)sender{
     [self.newsModels removeAllObjects];
+    [DynamicMsg MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
     [self.tableView reloadData];
 }
 
@@ -71,13 +69,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MomentNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MomentNewsTableViewCell" forIndexPath:indexPath];
-    MomentNewsModel *model        = self.newsModels[indexPath.row];
+    DynamicMsg *model        = self.newsModels[indexPath.row];
     [cell setNewsModel:model];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MomentNewsModel *model = self.newsModels[indexPath.row];
+    DynamicMsg *model = self.newsModels[indexPath.row];
     if (model.cellHeight > 0.1) {
         return model.cellHeight;
     }
@@ -88,6 +86,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    DynamicMsg *model = self.newsModels[indexPath.row];
+    SHCircleViewController *vc = [[SHCircleViewController alloc] initWithMainPage:NO userid:nil];
+    vc.momentId = model.dynamicId;
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 @end

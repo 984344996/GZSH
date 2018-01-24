@@ -21,7 +21,6 @@
 		351356562009CF010091606C /* CirclePicCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351356542009CF010091606C /* CirclePicCollectionViewCell.m */; };
 		351356572009CF010091606C /* CirclePicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 351356552009CF010091606C /* CirclePicCollectionViewCell.xib */; };
 		3513565A2009ECCC0091606C /* MomentNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351356592009ECCC0091606C /* MomentNewsTableViewCell.m */; };
-		3513565D2009FAE60091606C /* MomentNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3513565C2009FAE60091606C /* MomentNewsModel.m */; };
 		35135660200A0C1B0091606C /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3513565F200A0C1B0091606C /* PersonalInfoViewController.m */; };
 		3513566A200B3D110091606C /* RichContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35135669200B3D110091606C /* RichContainerView.m */; };
 		3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3516EC0D1E8C9FC400B9A97D /* ClusterPrePermissions.m */; };
@@ -72,6 +71,8 @@
 		353750821E31F9E4006DC277 /* loading_02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3537507F1E31F9E4006DC277 /* loading_02@2x.png */; };
 		353750831E31F9E4006DC277 /* loading_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 353750801E31F9E4006DC277 /* loading_03@2x.png */; };
 		353750861E321348006DC277 /* JKBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 353750851E321348006DC277 /* JKBaseTabBarController.m */; };
+		3538C2092018B8C7003DC0AE /* UploadRichEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C2082018B8C7003DC0AE /* UploadRichEngine.m */; };
+		3538C20C2018CB00003DC0AE /* RichModelUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C20B2018CB00003DC0AE /* RichModelUpload.m */; };
 		353D21211E2CB40100AA2610 /* libBlocksKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21201E2CB40100AA2610 /* libBlocksKit.a */; };
 		353D21241E2CB54B00AA2610 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21231E2CB54B00AA2610 /* CoreGraphics.framework */; };
 		353D21261E2CB56800AA2610 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21251E2CB56800AA2610 /* Foundation.framework */; };
@@ -530,8 +531,6 @@
 		351356552009CF010091606C /* CirclePicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CirclePicCollectionViewCell.xib; path = SourceCode/Section/MainView/CirclePicCollectionViewCell.xib; sourceTree = "<group>"; };
 		351356582009ECCC0091606C /* MomentNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentNewsTableViewCell.h; path = SourceCode/Section/MainView/MomentNewsTableViewCell.h; sourceTree = "<group>"; };
 		351356592009ECCC0091606C /* MomentNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentNewsTableViewCell.m; path = SourceCode/Section/MainView/MomentNewsTableViewCell.m; sourceTree = "<group>"; };
-		3513565B2009FAE60091606C /* MomentNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentNewsModel.h; path = SourceCode/Section/MainMode/MomentNewsModel.h; sourceTree = "<group>"; };
-		3513565C2009FAE60091606C /* MomentNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentNewsModel.m; path = SourceCode/Section/MainMode/MomentNewsModel.m; sourceTree = "<group>"; };
 		3513565E200A0C1B0091606C /* PersonalInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PersonalInfoViewController.h; path = SourceCode/Section/MainPage/PersonalInfoViewController.h; sourceTree = "<group>"; };
 		3513565F200A0C1B0091606C /* PersonalInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PersonalInfoViewController.m; path = SourceCode/Section/MainPage/PersonalInfoViewController.m; sourceTree = "<group>"; };
 		35135668200B3D110091606C /* RichContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichContainerView.h; path = SourceCode/Section/MainView/RichContainerView.h; sourceTree = "<group>"; };
@@ -627,6 +626,10 @@
 		353750801E31F9E4006DC277 /* loading_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loading_03@2x.png"; path = "Resource/Image/loading_03@2x.png"; sourceTree = "<group>"; };
 		353750841E321348006DC277 /* JKBaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKBaseTabBarController.h; path = SourceCode/Base/JKController/JKBaseTabBarController.h; sourceTree = "<group>"; };
 		353750851E321348006DC277 /* JKBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKBaseTabBarController.m; path = SourceCode/Base/JKController/JKBaseTabBarController.m; sourceTree = "<group>"; };
+		3538C2072018B8C7003DC0AE /* UploadRichEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UploadRichEngine.h; path = SourceCode/Section/MainMode/UploadRichEngine.h; sourceTree = "<group>"; };
+		3538C2082018B8C7003DC0AE /* UploadRichEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UploadRichEngine.m; path = SourceCode/Section/MainMode/UploadRichEngine.m; sourceTree = "<group>"; };
+		3538C20A2018CB00003DC0AE /* RichModelUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichModelUpload.h; path = SourceCode/Section/MainMode/RichModelUpload.h; sourceTree = "<group>"; };
+		3538C20B2018CB00003DC0AE /* RichModelUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RichModelUpload.m; path = SourceCode/Section/MainMode/RichModelUpload.m; sourceTree = "<group>"; };
 		353D20F81E2CB3EF00AA2610 /* A2BlockInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A2BlockInvocation.h; path = Vendor/BlocksKit/include/A2BlockInvocation.h; sourceTree = "<group>"; };
 		353D20F91E2CB3EF00AA2610 /* A2DynamicDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A2DynamicDelegate.h; path = Vendor/BlocksKit/include/A2DynamicDelegate.h; sourceTree = "<group>"; };
 		353D20FA1E2CB3EF00AA2610 /* BKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKMacros.h; path = Vendor/BlocksKit/include/BKMacros.h; sourceTree = "<group>"; };
@@ -1648,6 +1651,8 @@
 				3547EAA02015B9B000A37B1F /* UpLoadImagesEngine.m */,
 				3547EAA52015C15D00A37B1F /* SHUploadTask.h */,
 				3547EAA62015C15D00A37B1F /* SHUploadTask.m */,
+				3538C2072018B8C7003DC0AE /* UploadRichEngine.h */,
+				3538C2082018B8C7003DC0AE /* UploadRichEngine.m */,
 			);
 			name = AppDataFlow;
 			sourceTree = "<group>";
@@ -1687,6 +1692,8 @@
 				3547EA84200F961700A37B1F /* AddressParser.m */,
 				3547EA9C201365CC00A37B1F /* PageData.h */,
 				3547EA9D201365CC00A37B1F /* PageData.m */,
+				3538C20A2018CB00003DC0AE /* RichModelUpload.h */,
+				3538C20B2018CB00003DC0AE /* RichModelUpload.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1786,8 +1793,6 @@
 				35588CDC2001191000ED128A /* Comment.m */,
 				35588CDE20011A2C00ED128A /* Moment.h */,
 				35588CDF20011A2C00ED128A /* Moment.m */,
-				3513565B2009FAE60091606C /* MomentNewsModel.h */,
-				3513565C2009FAE60091606C /* MomentNewsModel.m */,
 			);
 			name = Mode;
 			sourceTree = "<group>";
@@ -4035,6 +4040,7 @@
 				355894DE2001F13500ED128A /* MoreItem.m in Sources */,
 				355894E32001F13500ED128A /* FacePageView.m in Sources */,
 				3513563C200793B20091606C /* MyCompanyInfoEditView.m in Sources */,
+				3538C20C2018CB00003DC0AE /* RichModelUpload.m in Sources */,
 				35588CA42000895C00ED128A /* AddressTableViewHeader.m in Sources */,
 				35C172831FFBB14400607658 /* MySupplyAndDemandViewController.m in Sources */,
 				354832D1200E44660004E574 /* CommonResponseModel.m in Sources */,
@@ -4056,6 +4062,7 @@
 				3547EA7D200F7D8E00A37B1F /* RegExString.m in Sources */,
 				35323EA51E6D3D8500FF7BF0 /* MZIMMessageDispatcher.m in Sources */,
 				355894F42001FD1100ED128A /* CommentTableViewCell.m in Sources */,
+				3538C2092018B8C7003DC0AE /* UploadRichEngine.m in Sources */,
 				355894DD2001F13500ED128A /* FaceThemeModel.m in Sources */,
 				353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */,
 				35374EDD1E305ACF006DC277 /* JKBaseTableViewController.m in Sources */,
@@ -4114,7 +4121,6 @@
 				35FCE3A41E6FC09E001ACC20 /* NSString+Commen.m in Sources */,
 				35588CC82000E8CE00ED128A /* MemberCenterTableViewCell.m in Sources */,
 				35374ECA1E305944006DC277 /* main.m in Sources */,
-				3513565D2009FAE60091606C /* MomentNewsModel.m in Sources */,
 				352F23791E553FE30063C511 /* JKTickDownButton.m in Sources */,
 				358104E41FFE4E9300FC463A /* MainPageNewsView.m in Sources */,
 				358104D01FFDFB3E00FC463A /* ApplicationStep1View.m in Sources */,
