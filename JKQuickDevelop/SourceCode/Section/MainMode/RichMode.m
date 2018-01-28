@@ -37,4 +37,11 @@
     return newArr;
 }
 
+- (NSString *)type{
+    if (self.image || self.imageUrl) {
+        return @"image";
+    }
+    return @"text";
+}
+
 @end

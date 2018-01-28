@@ -186,7 +186,7 @@ static inline NSString* integerToString(NSInteger number){
                              };
     JKHttpRequestCacheResponse cacheCallback = ^(id cacheObject){
         if (cacheObject) {
-            [self commontCallbackDeliver:cacheObject onlyData:YES succeed:cacheSucceed failed:failed];
+            [self commontCallbackDeliver:cacheObject onlyData:NO succeed:cacheSucceed failed:failed];
         }
     };
     if (!needCache) {
@@ -194,7 +194,7 @@ static inline NSString* integerToString(NSInteger number){
     }
     
     [JKNetworkHelper GET:getServerAddr(RDemand) parameters:params cache:cacheCallback success:^(id  _Nonnull responseObject) {
-        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
     } failure:^(NSError * _Nonnull error) {
         [self netWorkErrorDeliver:nil failed:failed];
     }];
@@ -258,13 +258,14 @@ static inline NSString* integerToString(NSInteger number){
 #pragma mark - 商会圈
 
 + (void)doGetMoment:(NSString *)userId
+               page:(NSInteger)page
             succeed:(SHRequestSucceed)succeed
           needCache:(BOOL)needCache
        cacheSucceed:(SHRequestSucceed)cacheSucceed
              failed:(SHRequestFailed)failed{
     JKHttpRequestCacheResponse cacheCallback = ^(id cacheObject){
         if (cacheObject) {
-            [self commontCallbackDeliver:cacheObject onlyData:YES succeed:cacheSucceed failed:failed];
+            [self commontCallbackDeliver:cacheObject onlyData:NO succeed:cacheSucceed failed:failed];
         }
     };
     if (!needCache) {
@@ -275,9 +276,10 @@ static inline NSString* integerToString(NSInteger number){
     if (userId) {
         [params setObject:userId forKey:@"userId"];
     }
+    [params setObject:integerToString(page) forKey:@"page"];
     
     [JKNetworkHelper GET:getServerAddr(RCircle) parameters:params cache:cacheCallback success:^(id  _Nonnull responseObject) {
-        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
     } failure:^(NSError * _Nonnull error) {
         [self netWorkErrorDeliver:nil failed:failed];
     }];
@@ -426,6 +428,27 @@ static inline NSString* integerToString(NSInteger number){
 
 #pragma mark - 个人中心
 
++ (void)doGetUserInfo:(NSString *)userId
+            needCache:(BOOL)needCache
+         cacheSucceed:(SHRequestSucceed)cacheSucceed
+              succeed:(SHRequestSucceed)succeed
+               failed:(SHRequestFailed)failed{
+    NSDictionary *params = @{@"userId":userId};
+    JKHttpRequestCacheResponse cacheCallback = ^(id cacheObject){
+        if (cacheObject) {
+            [self commontCallbackDeliver:cacheObject onlyData:YES succeed:cacheSucceed failed:failed];
+        }
+    };
+    if (!needCache) {
+        cacheCallback = nil;
+    }
+    [JKNetworkHelper GET:getServerAddr(RUserInfo) parameters:params cache:cacheCallback success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
 + (void)doEditEnterpriseInfo:(EnterpriseModel *)model
                      succeed:(SHRequestSucceed)succeed
                       failed:(SHRequestFailed)failed{
@@ -447,5 +470,46 @@ static inline NSString* integerToString(NSInteger number){
     }];
 }
 
++ (void)doDemandUpdate:(DemandInfo *)model succeed:(SHRequestSucceed)succeed failed:(SHRequestFailed)failed{
+    NSMutableDictionary *params = [model mj_keyValues];
+    [JKNetworkHelper POST:getServerAddr(REditDemandUpdate) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
++ (void)doDemandPublish:(DemandInfo *)model succeed:(SHRequestSucceed)succeed failed:(SHRequestFailed)failed{
+    NSMutableDictionary *params = [model mj_keyValues];
+    [JKNetworkHelper POST:getServerAddr(REditDemand) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
++ (void)doLoadOwnDemands:(NSInteger )page
+                 succeed:(SHRequestSucceed)succeed
+                  failed:(SHRequestFailed)failed{
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"page":integerToString(page)}];
+    [JKNetworkHelper GET:getServerAddr(ROwnDemands) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
++ (void)doLoadOtherDemands:(NSString *)userId
+                      page:(NSInteger)page
+                   succeed:(SHRequestSucceed)succeed
+                    failed:(SHRequestFailed)failed{
+    NSDictionary *params = @{@"page":integerToString(page),@"userId":userId};
+    [JKNetworkHelper GET:getServerAddr(RUserDemand) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
 
 @end

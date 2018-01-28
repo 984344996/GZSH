@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Contact.h"
+#import "EnterpriseModelExt.h"
 
 @interface AddressTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageAvatar;
@@ -16,4 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelCompany;
 
 - (void)setupCellData:(Contact *)data;
+- (void)setupCellDataEnterprise:(EnterpriseModelExt *)data;
+
 @end

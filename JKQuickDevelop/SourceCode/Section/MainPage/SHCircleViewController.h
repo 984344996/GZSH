@@ -12,6 +12,7 @@
 
 @interface SHCircleViewController : JKBaseTableViewController
 
+@property (nonatomic, assign) CGFloat bottomMargin;
 @property (nonatomic, assign) NSString *momentId;
 /**
  朋友圈初始化函数

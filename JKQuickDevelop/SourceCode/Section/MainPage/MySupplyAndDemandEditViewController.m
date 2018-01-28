@@ -22,6 +22,8 @@
 #import "APIServerSdk.h"
 #import <MBProgressHUD.h>
 #import "AppDelegate.h"
+#import "DemandInfo.h"
+#import <UIImageView+WebCache.h>
 
 @interface MySupplyAndDemandEditViewController ()<UITextViewDelegate>
 
@@ -37,9 +39,21 @@
 
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, weak) UIWindow *window;
+@property (nonatomic, strong) DemandInfo *demandInfo;
 @end
 
 @implementation MySupplyAndDemandEditViewController
+
+- (instancetype)initWithDemandInfo:(DemandInfo *)model;{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        if (model) {
+            self.demandInfo    = model;
+            self.supplyRich    = [RichMode mj_objectArrayWithKeyValuesArray:self.demandInfo.content];
+        }
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,6 +75,7 @@
     scrollView.backgroundColor = [UIColor whiteColor];
     self.view = scrollView;
     _rootLiner = [MyLinearLayout linearLayoutWithOrientation:MyOrientation_Vert];
+    _rootLiner.padding = UIEdgeInsetsMake(12, 12, 12, 12);
     _rootLiner.myLeading = _rootLiner.myTrailing = 0;
     _rootLiner.heightSize.lBound(scrollView.heightSize, 10, 1);
     [scrollView addSubview:_rootLiner];
@@ -71,20 +86,18 @@
     [super configView];
     self.title = @"编辑供求信息";
     UIBarButtonItem *itemPic = [[UIBarButtonItem alloc] initWithTitle:@"图片" style:UIBarButtonItemStylePlain target:self action:@selector(insertPic:)];
-    UIBarButtonItem *itemDone = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(insertPic:)];
+    UIBarButtonItem *itemDone = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(editDone:)];
     self.navigationItem.rightBarButtonItems = @[itemDone,itemPic];
+    
     [self configLiner];
     [self reloadContentInfo];
 }
 
 - (void)configEvent{
     [super configEvent];
-    /*
-    RAC(self.enterpriseModel , mobile) = [RACSignal merge:@[RACObserve(self.inputMobile, text),self.inputMobile.rac_textSignal]];
-    RAC(self.enterpriseModel , phone) = [RACSignal merge:@[RACObserve(self.inputPhone, text),self.inputPhone.rac_textSignal]];
-    RAC(self.enterpriseModel , email) = [RACSignal merge:@[RACObserve(self.inputEmail, text),self.inputEmail.rac_textSignal]];
-    RAC(self.enterpriseModel , address) = [RACSignal merge:@[RACObserve(self.inputAddress, text),self.inputAddress.rac_textSignal]];
-     */
+    RAC(self.demandInfo , title) = [RACSignal merge:@[RACObserve(self.inputTitle, text),self.inputTitle.rac_textSignal]];
+    RAC(self.demandInfo , publisher) = [RACSignal merge:@[RACObserve(self.inputCompany, text),self.inputCompany.rac_textSignal]];
+    RAC(self.demandInfo , contact) = [RACSignal merge:@[RACObserve(self.inputPhone, text),self.inputPhone.rac_textSignal]];
 }
 
 - (void)configLiner{
@@ -92,6 +105,10 @@
     _inputCompany = [self makeLinerTitleWithInput:@"发布单位:" placeHolder:@"请输入..."];
     _inputPhone = [self makeLinerTitleWithInput:@"联系方式:" placeHolder:@"请输入..."];
     _linerContent = [self makeLinerContent:@"内容:"];
+    
+    self.inputTitle.text = self.demandInfo.title;
+    self.inputCompany.text = self.demandInfo.publisher;
+    self.inputPhone.text = self.demandInfo.contact;
 }
 
 #pragma mark - Lazy loading
@@ -103,10 +120,16 @@
     return _window;
 }
 
+- (DemandInfo *)demandInfo{
+    if (!_demandInfo) {
+        _demandInfo = [[DemandInfo alloc] init];
+    }
+    return _demandInfo;
+}
+
 - (NSMutableArray *)supplyRich{
     if (!_supplyRich) {
         _supplyRich = [NSMutableArray array];
-        [_supplyRich addObject:[self createBlankTextRich]];
     }
     return _supplyRich;
 }
@@ -133,8 +156,11 @@
     [self.linerContent removeAllSubviews];
     [self.supplyRich enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RichMode *model = obj;
+        model.tagForView = viewTagNow++;
         if ([model.type isEqualToString:@"text"]){
             UITextView *textView = [self createTextViewRich:model];
+            CGFloat h            = [textView sizeThatFits:CGSizeMake(kRichSupplyWidth, CGFLOAT_MAX)].height;
+            textView.myHeight    = h;
             [self.linerContent addSubview:textView];
         }else{
             UIImageView *imageView = [self createImageRich:model];
@@ -167,9 +193,11 @@
     CGFloat height = kRichSupplyWidth * (model.height / model.width);
     UIImageView  *imageView = [[UIImageView alloc] init];
     imageView.tag = model.tagForView;
-    
     imageView.layer.masksToBounds = YES;
     imageView.image = model.image;
+    if (model.imageUrl) {
+        [imageView sd_setImageWithURL:GetImageUrl(model.imageUrl) placeholderImage:kPlaceHoderBannerImage];
+    }
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.myTop = 0;
     imageView.myLeading = 2;
@@ -214,34 +242,28 @@
     }
 }
 
-
-
 - (BOOL)checkForSubmit{
     NSString *tipMsg;
     BOOL isSucceed = YES;
-    /*
-    if (![self checkForComanyRich:self.companyInfoRich] && isSucceed) {
-        tipMsg = @"企业概况不能为空";
+    
+    if ([NSString isEmpty:self.demandInfo.title] && isSucceed) {
+        tipMsg = @"标题不能为空";
         isSucceed = NO;
     }
-    if (![self checkForComanyRich:self.companyServiceRich] && isSucceed) {
-        tipMsg = @"企业服务不能为空";
-        isSucceed = NO;
-    }
-    if ([NSString isEmpty:self.enterpriseModel.mobile] && isSucceed) {
-        tipMsg = @"电话号码不能为空";
-        isSucceed = NO;
-    }
-    if ([NSString isEmpty:self.enterpriseModel.email] && isSucceed) {
-        tipMsg = @"邮箱不能为空";
+    if ([NSString isEmpty:self.demandInfo.publisher] && isSucceed) {
+        tipMsg = @"企业不能为空";
         isSucceed = NO;
     }
     
-    if ([NSString isEmpty:self.enterpriseModel.address] && isSucceed) {
-        tipMsg = @"地址不能为空";
+    if ([NSString isEmpty:self.demandInfo.contact] && isSucceed) {
+        tipMsg = @"联系方式不能为空";
         isSucceed = NO;
     }
-    */
+    
+    if (![self checkForCotentRich:self.supplyRich] && isSucceed) {
+        tipMsg = @"内容不能为空";
+        isSucceed = NO;
+    }
     
     if (!isSucceed) {
         [[HUDHelper sharedInstance] tipMessage:tipMsg inView:self.view];
@@ -275,6 +297,74 @@
     
 }
 
+- (void)editDone:(UIBarButtonItem *)sender{
+    if ([self checkForSubmit]) {
+        self.hud = [[HUDHelper sharedInstance] loading:@"更新中" inView:self.window];
+        WEAKSELF
+        [[UploadRichEngine sharedInstance] upLoadRiches:self.supplyRich succeed:^(NSMutableArray *riches) {
+            STRONGSELF
+            strongSelf.supplyRich = riches;
+            [strongSelf submitToAPIServer];
+        } failed:^{
+            STRONGSELF
+            [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+            [[HUDHelper sharedInstance] tipMessage:@"上传失败" inView:strongSelf.window];
+        }];
+    }
+}
+
+#pragma mark - APIServer
+
+- (void)submitToAPIServer{
+    for (RichMode *mode in self.supplyRich) {
+        if ([mode.type isEqualToString:@"text"]) {
+            UITextView *textView = [self.view viewWithTag:mode.tagForView];
+            mode.inputContent = textView.text;
+        }
+    }
+    
+    NSMutableArray *uploadContent = [RichMode turnToRichModeUpload:self.supplyRich];
+    NSString *contentString       = [uploadContent mj_JSONString];
+    self.demandInfo.content       = contentString;
+    
+    self.demandInfo.id = self.demandInfo.demandId;
+    if (self.demandInfo.demandId) {
+        [self doUpdate];
+    }else{
+        [self doPublish];
+    }
+}
+
+// 更新供求
+- (void)doUpdate{
+    WEAKSELF
+    [APIServerSdk doDemandUpdate:self.demandInfo succeed:^(id obj) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+        [[HUDHelper sharedInstance] tipMessage:@"更新成功" inView:strongSelf.window];
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+        [[HUDHelper sharedInstance] tipMessage:@"更新失败" inView:strongSelf.window];
+    }];
+}
+
+// 发布供求
+- (void)doPublish{
+    WEAKSELF
+    [APIServerSdk doDemandPublish:self.demandInfo succeed:^(id obj) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+        [[HUDHelper sharedInstance] tipMessage:@"发布成功" inView:strongSelf.window];
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+        [[HUDHelper sharedInstance] tipMessage:@"发布失败" inView:strongSelf.window];
+    }];
+}
+
+
+#pragma mark - Make Component
 
 - (void)imageDel:(UIButton *)sender{
     UIImageView *imageView = (UIImageView *)sender.superview;
@@ -297,7 +387,6 @@
 
 
 static int viewTagNow = 1001;
-
 - (RichMode *)createBlankTextRich{
     RichMode *mode = [[RichMode alloc] init];
     mode.type = @"text";
@@ -316,64 +405,50 @@ static int viewTagNow = 1001;
 }
 
 - (JKTextField_Padding *)makeLinerTitleWithInput:(NSString *)title placeHolder:(NSString *)placeHolder{
+    UILabel *sectionLabel          = [self makeTitleLabel:title];
+
+    JKTextField_Padding *textField = [[JKTextField_Padding alloc] init];
+    textField.borderColor          = kMainTextFieldBorderColor;
+    textField.font                 = kMainTextFieldTextFontMiddle;
+    textField.textColor            = kMainTextColor;
+    textField.borderW              = 1;
+    textField.placeholder          = placeHolder;
+    textField.leftPadding          = 5;
     
-    MyLinearLayout *liner = [MyLinearLayout linearLayoutWithOrientation:MyOrientation_Horz];
-    liner.myLeading = liner.myTrailing = 0;
-    liner.myHeight = 24;
-    liner.myTop = 28;
+    textField.myHeight             = 24;
+    textField.myTop                = 5;
+    textField.myLeading            = 0;
+    textField.myTrailing           = 0;
     
-    JKTextField_Padding *textField =  [[JKTextField_Padding alloc] init];
-    textField.borderColor = kMainTextFieldBorderColor;
-    textField.font = kMainTextFieldTextFontMiddle;
-    textField.textColor = kMainTextColor;
-    textField.borderW = 1;
-    textField.placeholder = placeHolder;
-    textField.leftPadding = 5;
-    textField.myHeight = 24;
-    textField.myLeft = 20;
-    textField.weight = 1;
-    textField.myTrailing = 12;
-    
-    UILabel *sectionLabel = [self makeTitleLabel:title];
-    [liner addSubview:sectionLabel];
-    [liner addSubview:textField];
-    [self.rootLiner addSubview:liner];
+    [self.rootLiner addSubview:sectionLabel];
+    [self.rootLiner addSubview:textField];
     return textField;
 }
 
 - (UILabel *)makeTitleLabel:(NSString *)title{
-    UILabel *sectionLabel = [UILabel new];
-    sectionLabel.text = title;
-    sectionLabel.textAlignment = NSTextAlignmentRight;
-    sectionLabel.font = kMainTextFieldTextFontMiddle;
-    sectionLabel.textColor = kSecondTextColor;
+    UILabel *sectionLabel      = [UILabel new];
+    sectionLabel.text          = title;
+    sectionLabel.font          = kMainTextFieldTextFontMiddle;
+    sectionLabel.textColor     = kSecondTextColor;
     [sectionLabel sizeToFit];
-    sectionLabel.myLeft = 12;
-    sectionLabel.myWidth = 65;
-    sectionLabel.myHeight = 24;
+    sectionLabel.myTop         = 12;
     return sectionLabel;
 }
 
 - (MyLinearLayout *)makeLinerContent:(NSString *)title{
-    MyLinearLayout *liner = [MyLinearLayout linearLayoutWithOrientation:MyOrientation_Horz];
-    liner.myLeading = liner.myTrailing = 0;
-    liner.myTop = 28;
-    liner.wrapContentHeight = YES;
-    
+
     UILabel *sectionLabel = [self makeTitleLabel:title];
     
     MyLinearLayout *linerCotent = [MyLinearLayout linearLayoutWithOrientation:MyOrientation_Vert];
     linerCotent.layer.borderColor = kMainTextFieldBorderColor.CGColor;
     linerCotent.layer.borderWidth = 1;
     linerCotent.heightSize.min(80);
-    linerCotent.myLeft = 20;
-    linerCotent.myTrailing = 12;
-    linerCotent.weight = 1;
+    linerCotent.myLeading = 0;
+    linerCotent.myTrailing = 0;
     linerCotent.wrapContentHeight = YES;
     
-    [liner addSubview:sectionLabel];
-    [liner addSubview:linerCotent];
-    [self.rootLiner addSubview:liner];
+    [self.rootLiner addSubview:sectionLabel];
+    [self.rootLiner addSubview:linerCotent];
     return linerCotent;
 }
 

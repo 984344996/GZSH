@@ -7,7 +7,8 @@
 //
 
 #import "JKBaseViewController.h"
+#import "EnterpriseModel.h"
 
 @interface MyCompanyInfoEditViewController : JKBaseViewController
-
+- (instancetype)initWithEnterpriseModel:(EnterpriseModel *)model;
 @end

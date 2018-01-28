@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfo.h"
 
 @interface MemberCenterTableViewHeaderView : UIView
 @property (strong, nonatomic) IBOutlet UIView *header;
@@ -18,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconVipImage;
 @property (weak, nonatomic) IBOutlet UILabel *vipInfoLabel;
 
+- (void)setUserInfo:(UserInfo *)userInfo;
 
 @end

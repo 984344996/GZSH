@@ -8,11 +8,14 @@
 
 #import "MyCompanyInfoViewController.h"
 #import "MyCompanyInfoEditViewController.h"
-#import "EnterpriseModel.h"
 #import "RichMode.h"
+#import "UserInfo.h"
 #import <MyLayout.h>
 #import "NSString+Commen.h"
 #import <MJExtension.h>
+#import "APIServerSdk.h"
+#import "AppDataFlowHelper.h"
+#import <UIImageView+WebCache.h>
 
 @interface MyCompanyInfoViewController ()
 @property (nonatomic, strong) MyLinearLayout *rootLiner;
@@ -22,9 +25,33 @@
 @property (nonatomic, strong) UILabel *labelPhone;
 @property (nonatomic, strong) UILabel *labelMail;
 @property (nonatomic, strong) UILabel *labelAddress;
+
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, assign) BOOL isSelf;
+@property (nonatomic, strong) NSMutableArray *richInfoModels;
+@property (nonatomic, strong) NSMutableArray *richServiceModels;
+@property (nonatomic, strong) EnterpriseModel *enterpriseModel;
 @end
 
 @implementation MyCompanyInfoViewController
+
+- (instancetype)initWithEnterpriseModel:(EnterpriseModel *)model isSelf:(BOOL)isSelf{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.isSelf = isSelf;
+        self.enterpriseModel = model;
+    }
+    return self;
+}
+
+- (instancetype)initWithUserId:(NSString *)userId isSelf:(BOOL)isSelf{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.isSelf = isSelf;
+        self.userId = userId;
+    }
+    return self;
+}
 
 #pragma mark - Life circle
 
@@ -46,22 +73,88 @@
 - (void)configView{
     [super configView];
     [self configLiner];
-    self.title = @"我的企业信息";
-    [self addUIBarButtonItemText:@"编辑" isLeft:NO target:self action:@selector(editInfo:)];
+    if (self.isSelf) {
+        self.title = @"我的企业信息";
+       [self addUIBarButtonItemText:@"编辑" isLeft:NO target:self action:@selector(editInfo:)];
+    }else{
+        self.title = @"企业资料";
+    }
 }
-
 
 - (void)configData{
     [super configData];
+    if (self.isSelf){
+        [self loadEnterpriseInfo:nil];
+    }
+    if (self.enterpriseModel) {
+        [self reloadUI];
+    }
     
+    if (self.userId) {
+        [self loadEnterpriseInfo:self.userId];
+    }
+}
+
+- (void)reloadUI{
+    self.richInfoModels = [RichMode mj_objectArrayWithKeyValuesArray:self.enterpriseModel.desc];
+    self.richServiceModels = [RichMode mj_objectArrayWithKeyValuesArray:self.enterpriseModel.service];
+    self.labelPhone.text = self.enterpriseModel.mobile;
+    self.labelMail.text = self.enterpriseModel.email;
+    self.labelAddress.text = self.enterpriseModel.address;
+    
+    for (RichMode *model in self.richInfoModels) {
+        if ([model.type isEqualToString:@"image"]) {
+            [self.linerCompanyInfo addSubview: [self addImageRich:model]];
+        }else{
+            [self.linerCompanyInfo addSubview: [self addLabelRich:model]];
+        }
+    }
+    
+    for (RichMode *model in self.richServiceModels) {
+        if ([model.type isEqualToString:@"image"]) {
+            [self.linerCompanyService addSubview: [self addImageRich:model]];
+        }else{
+            [self.linerCompanyService addSubview: [self addLabelRich:model]];
+        }
+    }
 }
 
 #pragma mark - APIServer
-
-- (void)loadEnterpriseInfo{
+- (void)loadEnterpriseInfo:(NSString *)userId{
+    NSString *loadId;
+    if (!userId) {
+        loadId = [AppDataFlowHelper getLoginUserInfo].userId;
+    }else{
+        loadId = userId;
+    }
     
+    WEAKSELF
+    [APIServerSdk doGetUserInfo:loadId needCache:NO cacheSucceed:nil succeed:^(id obj) {
+        STRONGSELF
+        UserInfo *userInfo         = [UserInfo mj_objectWithKeyValues:obj];
+        strongSelf.enterpriseModel = userInfo.enterprise;
+        [strongSelf reloadUI];
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] tipMessage:@"加载数据失败" inView:strongSelf.view];
+    }];
 }
 
+#pragma mark - Lazy loading
+
+- (NSMutableArray *)richInfoModels{
+    if (!_richInfoModels) {
+        _richInfoModels = [NSMutableArray array];
+    }
+    return _richInfoModels;
+}
+
+- (NSMutableArray *)richServiceModels{
+    if (!_richServiceModels) {
+        _richServiceModels = [NSMutableArray array];
+    }
+    return _richServiceModels;
+}
 
 #pragma mark - UI Create
 
@@ -75,35 +168,21 @@
 
 
 - (MyLinearLayout *)createRichContentLiner:(NSString *)title{
-    MyLinearLayout *layout        = [[MyLinearLayout alloc] initWithOrientation:MyOrientation_Horz];
-    layout.myLeading              = layout.myTrailing = 0;
-    layout.myTop                  = 25;
-    layout.heightSize.min(25);
-    layout.wrapContentSize        = YES;
-    
     MyLinearLayout *contentLayout = [[MyLinearLayout alloc] initWithOrientation:MyOrientation_Vert];
-    contentLayout.weight          = 1;
     contentLayout.wrapContentSize = YES;
-    contentLayout.myLeft          = 12;
-    contentLayout.myTrailing      = 0;
+    contentLayout.myTop           = 10;
+    contentLayout.myLeft          = 10;
+    contentLayout.myTrailing      = 10;
     
-    [layout addSubview:[self createTitleLabel:title]];
-    [layout addSubview:contentLayout];
-    [self.rootLiner addSubview:layout];
+    [self.rootLiner addSubview:[self createTitleLabel:title]];
+    [self.rootLiner addSubview:contentLayout];
     return contentLayout;
 }
 
 - (UILabel *)createLabelContentLiner:(NSString *)title{
-    MyLinearLayout *layout = [[MyLinearLayout alloc] initWithOrientation:MyOrientation_Horz];
-    layout.myLeading       = layout.myTrailing = 0;
-    layout.myTop           = 25;
-    layout.heightSize.min(25);
-    layout.wrapContentSize = YES;
-
     UILabel *contentLabel  = [self createContentLabel:@""];
-    [layout addSubview:[self createTitleLabel:title]];
-    [layout addSubview:contentLabel];
-    [self.rootLiner addSubview:layout];
+    [self.rootLiner addSubview:[self createTitleLabel:title]];
+    [self.rootLiner addSubview:contentLabel];
     return contentLabel;
 }
 
@@ -111,12 +190,11 @@
 {
     UILabel *sectionLabel        = [UILabel new];
     sectionLabel.text            = title;
-    sectionLabel.font            = kMainTextFieldTextFontMiddle;
+    sectionLabel.font            = kMainTextFieldTextFontLarge;
     sectionLabel.textColor       = kSecondTextColor;
-    sectionLabel.myWidth         = 80;
-    sectionLabel.myHeight        = 25;
-    sectionLabel.myLeading       = sectionLabel.myTop = 0;
-    sectionLabel.textAlignment   = NSTextAlignmentRight;
+    sectionLabel.wrapContentSize = YES;
+    sectionLabel.myTop           = 12;
+    sectionLabel.myLeading = sectionLabel.myTrailing = 0;
     return sectionLabel;
 }
 
@@ -126,8 +204,8 @@
     contentLabel.text            = content;
     contentLabel.font            = kMainTextFieldTextFontMiddle;
     contentLabel.textColor       = kMainTextColor;
-    contentLabel.myLeft          = 12;
-    contentLabel.weight          = 1;
+    contentLabel.myTop           = 5;
+    contentLabel.myLeading = contentLabel.myTrailing = 12;
     contentLabel.wrapContentSize = YES;
     return contentLabel;
 }
@@ -137,20 +215,24 @@
     UIImageView  *imageView = [[UIImageView alloc] init];
     imageView.layer.masksToBounds = YES;
     imageView.image = model.image;
+    if (model.imageUrl) {
+        [imageView sd_setImageWithURL:GetImageUrl(model.imageUrl) placeholderImage:kPlaceHoderBannerImage];
+    }
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.myTop = 0;
+    imageView.myTop = 10;
     imageView.myLeading = 2;
     imageView.myTrailing = 2;
     imageView.myHeight = height;
     return imageView;
 }
 
-- (UILabel*)addContentLabel:(NSString*)content
+- (UILabel*)addLabelRich:(RichMode *)model
 {
     UILabel *contentLabel   = [UILabel new];
-    contentLabel.text       = content;
+    contentLabel.text       = model.inputContent;
     contentLabel.font       = kMainTextFieldTextFontMiddle;
     contentLabel.textColor  = kMainTextColor;
+    contentLabel.myTop = 10;
     contentLabel.myLeading  = 0;
     contentLabel.myTrailing = 0;
     contentLabel.wrapContentSize = YES;
@@ -158,7 +240,7 @@
 }
 
 - (void)editInfo:(UIBarButtonItem *)sender{
-    MyCompanyInfoEditViewController *vc = [[MyCompanyInfoEditViewController alloc] init];
+    MyCompanyInfoEditViewController *vc = [[MyCompanyInfoEditViewController alloc] initWithEnterpriseModel:self.enterpriseModel];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = YES;

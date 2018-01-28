@@ -7,7 +7,10 @@
 //
 
 #import "JKBaseViewController.h"
+#import "DemandInfo.h"
 
 @interface MySupplyAndDemandEditViewController : JKBaseViewController
+
+- (instancetype)initWithDemandInfo:(DemandInfo *)model;
 
 @end

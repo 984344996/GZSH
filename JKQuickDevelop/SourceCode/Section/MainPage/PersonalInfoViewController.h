@@ -7,7 +7,8 @@
 //
 
 #import "JKBaseViewController.h"
+#import "UserInfo.h"
 
 @interface PersonalInfoViewController : JKBaseViewController
-
+- (instancetype)initWithUserId:(NSString *)userId;
 @end

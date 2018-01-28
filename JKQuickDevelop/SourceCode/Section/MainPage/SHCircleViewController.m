@@ -28,22 +28,30 @@
 #import <JKCategories.h>
 #import "DynamicMsg+CoreDataProperties.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import "SDTimeLineRefreshFooter.h"
+#import "SDTimeLineRefreshHeader.h"
+#import "CommonResponseModel.h"
 
 @interface SHCircleViewController ()<MomentCellDelegate,ChatKeyBoardDelegate>
 
 @property (nonatomic, assign) BOOL isMainPage;
 @property (nonatomic, strong) NSString *userid;
 @property (nonatomic, strong) NSMutableArray *momentModes;
-@property (nonatomic, strong) MomentHeaderView *header;
-@property (nonatomic, strong) NSIndexPath *editIndexPath; // 当前正在编辑
 @property (nonatomic, strong) Comment *lastResponseComment;
 
-@property (nonatomic, strong) ChatKeyBoard *chatKeyBoard;
+@property (nonatomic, strong) NSIndexPath *editIndexPath; // 当前正在编辑
 @property (nonatomic, assign) CGFloat history_Y_offset;//记录table的offset.y
 @property (nonatomic, assign) CGFloat seletedCellHeight;//记录点击cell的高度，高度由代理传过来
 @property (nonatomic, assign) BOOL isShowKeyBoard;
 @property (nonatomic, assign) BOOL needUpdateOffset;//控制是否刷新table的offset
 
+@property (nonatomic, assign) BOOL isFirstLoad;
+@property (nonatomic, strong) MomentHeaderView *header;
+@property (nonatomic, strong) ChatKeyBoard *chatKeyBoard;
+@property (nonatomic, strong) SDTimeLineRefreshFooter *refreshFooter;
+@property (nonatomic, strong) SDTimeLineRefreshHeader *refreshHeader;
+
+@property (nonatomic, assign) NSInteger lastLoadPage;
 @end
 
 @implementation SHCircleViewController
@@ -53,6 +61,8 @@
     if (self) {
         self.userid = userid;
         self.isMainPage = isMainPage;
+        self.isFirstLoad = YES;
+        self.lastLoadPage = 1;
     }
     return self;
 }
@@ -69,6 +79,13 @@
     
     [self.tableView registerClass:[MomentTableViewCell class] forCellReuseIdentifier:@"MomentTableViewCell"];
     
+    // 上拉加载
+    _refreshFooter = [SDTimeLineRefreshFooter refreshFooterWithRefreshingText:@"正在加载数据..."];
+    WEAKSELF
+    [_refreshFooter addToScrollView:self.tableView refreshOpration:^{
+        STRONGSELF
+        [strongSelf loadMoment:NO];
+    }];
 }
 
 - (void)configData{
@@ -87,24 +104,65 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self loadUnreadComment];
+    
+    if (!_refreshHeader.superview) {
+        _refreshHeader = [SDTimeLineRefreshHeader refreshHeaderWithCenter:CGPointMake(40, 45)];
+        _refreshHeader.scrollView = self.tableView;
+        WEAKSELF
+        [_refreshHeader setRefreshingBlock:^{
+            STRONGSELF
+            [strongSelf loadMoment:YES];
+        }];
+        [self.tableView.superview addSubview:_refreshHeader];
+    } else {
+        [self.tableView.superview bringSubviewToFront:_refreshHeader];
+    }
 }
 
 #pragma mark - Load data
 
 - (void)loadMoment:(BOOL)isRefresh{
+    if (isRefresh) {
+        self.lastLoadPage = 1;
+    }
     WEAKSELF
-    [APIServerSdk doGetMoment:nil succeed:^(id obj) {
+    [APIServerSdk doGetMoment:self.userid page:self.lastLoadPage succeed:^(id obj) {
         STRONGSELF
         if (isRefresh) {
             [strongSelf.momentModes removeAllObjects];
+        }else{
+            self.lastLoadPage++;
         }
-        NSMutableArray *append = [Moment mj_objectArrayWithKeyValuesArray:obj];
+        
+        CommonResponseModel *model = obj;
+        NSMutableArray *append = [Moment mj_objectArrayWithKeyValuesArray:model.data];
         [strongSelf.momentModes addObjectsFromArray:append];
         [strongSelf.tableView reloadData];
-    } needCache:NO cacheSucceed:^(id obj) {
+        strongSelf.isFirstLoad = NO;
         
+        if (strongSelf.lastLoadPage == model.page.count) {
+            [strongSelf.refreshFooter endRefreshingWithNoMoreData];
+        }else{
+            [strongSelf.refreshFooter resetNoMoreData];
+        }
+        [strongSelf.refreshHeader endRefreshing];
+    } needCache:self.isFirstLoad cacheSucceed:^(id obj) {
+        STRONGSELF
+        [strongSelf.momentModes removeAllObjects];
+        CommonResponseModel *model = obj;
+        NSMutableArray *append = [Moment mj_objectArrayWithKeyValuesArray:model.data];
+        [strongSelf.momentModes addObjectsFromArray:append];
+        [strongSelf.tableView reloadData];
+        if (strongSelf.lastLoadPage == model.page.count) {
+            [strongSelf.refreshFooter endRefreshingWithNoMoreData];
+        }else{
+            [strongSelf.refreshFooter resetNoMoreData];
+        }
     } failed:^(NSString *error) {
+        STRONGSELF
         [[HUDHelper sharedInstance] tipMessage:@"加载失败" inView:self.view];
+        [strongSelf.refreshHeader endRefreshing];
+        [strongSelf.refreshFooter resetNoMoreData];
     }];
 }
 
@@ -152,7 +210,6 @@
     NSArray *arrayToSave = [DynamicMsg MR_importFromArray:objs inContext:[NSManagedObjectContext MR_defaultContext]];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
         [self fetchCount];
-        DLog(@"success = %d \n error = %@",contextDidSave,error.localizedDescription);
     }];
 }
 
@@ -384,15 +441,20 @@
 
 #pragma mark - Key board
 
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+}
+
 -(ChatKeyBoard *)chatKeyBoard{
     if (_chatKeyBoard==nil) {
-        _chatKeyBoard =[ChatKeyBoard keyBoardWithNavgationBarTranslucent:YES];
+        _chatKeyBoard =[ChatKeyBoard keyBoardWithParentViewBounds:self.tableView.bounds];
         _chatKeyBoard.delegate = self;
         _chatKeyBoard.keyBoardStyle = KeyBoardStyleComment;
         _chatKeyBoard.allowVoice = NO;
         _chatKeyBoard.allowMore = NO;
         _chatKeyBoard.allowSwitchBar = NO;
         _chatKeyBoard.placeHolder = @"评论";
+        _chatKeyBoard.bottomMargin = self.bottomMargin;
         [self.view addSubview:_chatKeyBoard];
         [self.view bringSubviewToFront:_chatKeyBoard];
     }

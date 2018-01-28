@@ -13,6 +13,9 @@
 #import "SHCircleViewController.h"
 #import <SGPagingView.h>
 #import <JKCategories.h>
+#import "APIServerSdk.h"
+#import "HUDHelper.h"
+#import <MJExtension.h>
 
 @interface PersonalInfoViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -24,11 +27,20 @@
 @property (nonatomic, strong) UIButton *btnPhoneCall;
 @property (nonatomic, strong) SGPageTitleView *pageTitle;
 @property (nonatomic, strong) SGPageContentView *contentView;
-
 @property (nonatomic, assign) NSUInteger selectedSegmentIndex;
+@property (nonatomic, strong) NSString *userId;
+
 @end
 
 @implementation PersonalInfoViewController
+
+- (instancetype)initWithUserId:(NSString *)userId{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.userId = userId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,6 +55,11 @@
     [self.view addSubview:self.contentView];
     [self.view addSubview:self.btnMessage];
     [self.view addSubview:self.btnPhoneCall];
+}
+
+- (void)configData{
+    [super configData];
+    [self loadUserInfo:self.userId];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -110,21 +127,26 @@
 
 - (MyCompanyInfoViewController *)companyVC{
     if (!_companyVC) {
-        _companyVC = [[MyCompanyInfoViewController alloc] init];
+        _companyVC = [[MyCompanyInfoViewController alloc] initWithUserId:self.userId isSelf:NO];
     }
     return _companyVC;
 }
 
 - (MySupplyAndDemandViewController *)supplyVC{
     if (!_supplyVC) {
-        _supplyVC = [[MySupplyAndDemandViewController alloc] init];
+        _supplyVC = [[MySupplyAndDemandViewController alloc] initWithUserId:self.userId isSelf:NO];
     }
     return _supplyVC;
 }
 
 - (SHCircleViewController *)momentVC{
     if (!_momentVC) {
-        _momentVC = [[SHCircleViewController alloc] initWithMainPage:NO userid:@""];
+        _momentVC = [[SHCircleViewController alloc] initWithMainPage:NO userid:self.userId];
+        CGFloat btnH = 56;
+        if (kDevice_Is_iPhoneX) {
+            btnH += kDeltaForIphoneX;
+        }
+        _momentVC.bottomMargin = btnH;
     }
     return _momentVC;
 }
@@ -154,8 +176,23 @@
     return _btnPhoneCall;
 }
 
+#pragma mark - APIServer
 
-#pragma mark - Private methods
+- (void)loadUserInfo:(NSString *)userId{
+    WEAKSELF
+    [APIServerSdk doGetUserInfo:userId needCache:YES cacheSucceed:^(id obj){
+        STRONGSELF
+        UserInfo *userInfo         = [UserInfo mj_objectWithKeyValues:obj];
+        [strongSelf.header setUserInfo:userInfo];
+    } succeed:^(id obj) {
+        STRONGSELF
+        UserInfo *userInfo         = [UserInfo mj_objectWithKeyValues:obj];
+        [strongSelf.header setUserInfo:userInfo];
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] tipMessage:@"加载用户信息失败" inView:strongSelf.view];
+    }];
+}
 
 #pragma mark - Delegate
 

@@ -38,8 +38,8 @@
 
 -(void)configMainUI{
     MainTabViewController *mainVC = [[MainTabViewController alloc] initWithType:JKTabBarTypeNormal];
-//    MyCompanyInfoEditViewController *vc = [[MyCompanyInfoEditViewController alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    //MyCompanyInfoViewController *vc = [[MyCompanyInfoViewController alloc] init];
+    //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window setRootViewController:mainVC];
 }
 

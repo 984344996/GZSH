@@ -73,6 +73,10 @@
 		353750861E321348006DC277 /* JKBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 353750851E321348006DC277 /* JKBaseTabBarController.m */; };
 		3538C2092018B8C7003DC0AE /* UploadRichEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C2082018B8C7003DC0AE /* UploadRichEngine.m */; };
 		3538C20C2018CB00003DC0AE /* RichModelUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C20B2018CB00003DC0AE /* RichModelUpload.m */; };
+		3538C2122019BCA6003DC0AE /* DemandInfoUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C2112019BCA6003DC0AE /* DemandInfoUpload.m */; };
+		3538C2152019D143003DC0AE /* MySupplyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C2142019D143003DC0AE /* MySupplyDetailViewController.m */; };
+		3538C218201B0FFC003DC0AE /* SHEnterpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C217201B0FFC003DC0AE /* SHEnterpriseViewController.m */; };
+		3538C21B201B1212003DC0AE /* EnterpriseModelExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538C21A201B1212003DC0AE /* EnterpriseModelExt.m */; };
 		353D21211E2CB40100AA2610 /* libBlocksKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21201E2CB40100AA2610 /* libBlocksKit.a */; };
 		353D21241E2CB54B00AA2610 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21231E2CB54B00AA2610 /* CoreGraphics.framework */; };
 		353D21261E2CB56800AA2610 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353D21251E2CB56800AA2610 /* Foundation.framework */; };
@@ -105,6 +109,9 @@
 		354832C8200E3CFF0004E574 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832C7200E3CFF0004E574 /* NewsModel.m */; };
 		354832CB200E3DA70004E574 /* MettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832CA200E3DA70004E574 /* MettingModel.m */; };
 		354832D1200E44660004E574 /* CommonResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354832D0200E44660004E574 /* CommonResponseModel.m */; };
+		35496069201DC289002A5C4C /* SDBaseRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35496068201DC289002A5C4C /* SDBaseRefreshView.m */; };
+		3549606C201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549606B201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m */; };
+		3549606F201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549606E201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m */; };
 		354B0AED2003A12200D614B7 /* MomentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AEC2003A12200D614B7 /* MomentHeaderView.m */; };
 		354B0AF32004729E00D614B7 /* RichMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AF22004729E00D614B7 /* RichMode.m */; };
 		35588CA42000895C00ED128A /* AddressTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 35588CA32000895C00ED128A /* AddressTableViewHeader.m */; };
@@ -630,6 +637,14 @@
 		3538C2082018B8C7003DC0AE /* UploadRichEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UploadRichEngine.m; path = SourceCode/Section/MainMode/UploadRichEngine.m; sourceTree = "<group>"; };
 		3538C20A2018CB00003DC0AE /* RichModelUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichModelUpload.h; path = SourceCode/Section/MainMode/RichModelUpload.h; sourceTree = "<group>"; };
 		3538C20B2018CB00003DC0AE /* RichModelUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RichModelUpload.m; path = SourceCode/Section/MainMode/RichModelUpload.m; sourceTree = "<group>"; };
+		3538C2102019BCA6003DC0AE /* DemandInfoUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DemandInfoUpload.h; path = SourceCode/Section/MainMode/DemandInfoUpload.h; sourceTree = "<group>"; };
+		3538C2112019BCA6003DC0AE /* DemandInfoUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DemandInfoUpload.m; path = SourceCode/Section/MainMode/DemandInfoUpload.m; sourceTree = "<group>"; };
+		3538C2132019D143003DC0AE /* MySupplyDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MySupplyDetailViewController.h; path = SourceCode/Section/MainPage/MySupplyDetailViewController.h; sourceTree = "<group>"; };
+		3538C2142019D143003DC0AE /* MySupplyDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MySupplyDetailViewController.m; path = SourceCode/Section/MainPage/MySupplyDetailViewController.m; sourceTree = "<group>"; };
+		3538C216201B0FFC003DC0AE /* SHEnterpriseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHEnterpriseViewController.h; path = SourceCode/Section/MainPage/SHEnterpriseViewController.h; sourceTree = "<group>"; };
+		3538C217201B0FFC003DC0AE /* SHEnterpriseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SHEnterpriseViewController.m; path = SourceCode/Section/MainPage/SHEnterpriseViewController.m; sourceTree = "<group>"; };
+		3538C219201B1212003DC0AE /* EnterpriseModelExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EnterpriseModelExt.h; path = SourceCode/Section/MainMode/EnterpriseModelExt.h; sourceTree = "<group>"; };
+		3538C21A201B1212003DC0AE /* EnterpriseModelExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = EnterpriseModelExt.m; path = SourceCode/Section/MainMode/EnterpriseModelExt.m; sourceTree = "<group>"; };
 		353D20F81E2CB3EF00AA2610 /* A2BlockInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A2BlockInvocation.h; path = Vendor/BlocksKit/include/A2BlockInvocation.h; sourceTree = "<group>"; };
 		353D20F91E2CB3EF00AA2610 /* A2DynamicDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = A2DynamicDelegate.h; path = Vendor/BlocksKit/include/A2DynamicDelegate.h; sourceTree = "<group>"; };
 		353D20FA1E2CB3EF00AA2610 /* BKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BKMacros.h; path = Vendor/BlocksKit/include/BKMacros.h; sourceTree = "<group>"; };
@@ -727,6 +742,12 @@
 		354832CA200E3DA70004E574 /* MettingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MettingModel.m; path = SourceCode/Section/MainMode/MettingModel.m; sourceTree = "<group>"; };
 		354832CF200E44660004E574 /* CommonResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CommonResponseModel.h; path = SourceCode/Section/MainMode/CommonResponseModel.h; sourceTree = "<group>"; };
 		354832D0200E44660004E574 /* CommonResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CommonResponseModel.m; path = SourceCode/Section/MainMode/CommonResponseModel.m; sourceTree = "<group>"; };
+		35496067201DC288002A5C4C /* SDBaseRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseRefreshView.h; sourceTree = "<group>"; };
+		35496068201DC289002A5C4C /* SDBaseRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseRefreshView.m; sourceTree = "<group>"; };
+		3549606A201DC2BA002A5C4C /* SDTimeLineRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTimeLineRefreshFooter.h; sourceTree = "<group>"; };
+		3549606B201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTimeLineRefreshFooter.m; sourceTree = "<group>"; };
+		3549606D201DC2C8002A5C4C /* SDTimeLineRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTimeLineRefreshHeader.h; sourceTree = "<group>"; };
+		3549606E201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTimeLineRefreshHeader.m; sourceTree = "<group>"; };
 		354B0AEB2003A12200D614B7 /* MomentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentHeaderView.h; path = SourceCode/Section/MainView/MomentHeaderView.h; sourceTree = "<group>"; };
 		354B0AEC2003A12200D614B7 /* MomentHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentHeaderView.m; path = SourceCode/Section/MainView/MomentHeaderView.m; sourceTree = "<group>"; };
 		354B0AF12004729E00D614B7 /* RichMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichMode.h; path = SourceCode/Section/MainMode/RichMode.h; sourceTree = "<group>"; };
@@ -1694,6 +1715,8 @@
 				3547EA9D201365CC00A37B1F /* PageData.m */,
 				3538C20A2018CB00003DC0AE /* RichModelUpload.h */,
 				3538C20B2018CB00003DC0AE /* RichModelUpload.m */,
+				3538C2102019BCA6003DC0AE /* DemandInfoUpload.h */,
+				3538C2112019BCA6003DC0AE /* DemandInfoUpload.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1717,6 +1740,8 @@
 			children = (
 				35588CAB20009A4A00ED128A /* Contact.h */,
 				35588CAC20009A4A00ED128A /* Contact.m */,
+				3538C219201B1212003DC0AE /* EnterpriseModelExt.h */,
+				3538C21A201B1212003DC0AE /* EnterpriseModelExt.m */,
 			);
 			name = Mode;
 			sourceTree = "<group>";
@@ -1759,6 +1784,12 @@
 		35588CCA2001181C00ED128A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3549606D201DC2C8002A5C4C /* SDTimeLineRefreshHeader.h */,
+				3549606E201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m */,
+				3549606A201DC2BA002A5C4C /* SDTimeLineRefreshFooter.h */,
+				3549606B201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m */,
+				35496067201DC288002A5C4C /* SDBaseRefreshView.h */,
+				35496068201DC289002A5C4C /* SDBaseRefreshView.m */,
 				355894FC20020E1A00ED128A /* JGGView.h */,
 				355894FB20020E1A00ED128A /* JGGView.m */,
 				355894F22001FD1100ED128A /* CommentTableViewCell.h */,
@@ -3229,6 +3260,8 @@
 				35588CA12000892300ED128A /* View */,
 				35C172661FFBA7CB00607658 /* SHAddressViewController.h */,
 				35C172671FFBA7CB00607658 /* SHAddressViewController.m */,
+				3538C216201B0FFC003DC0AE /* SHEnterpriseViewController.h */,
+				3538C217201B0FFC003DC0AE /* SHEnterpriseViewController.m */,
 				35C172901FFBB33D00607658 /* CompanyInfoViewController.h */,
 				35C172911FFBB33D00607658 /* CompanyInfoViewController.m */,
 				35C172931FFBB37800607658 /* SupplyInfoViewController.h */,
@@ -3266,6 +3299,8 @@
 				35C1727F1FFBB10300607658 /* MyCompanyInfoEditViewController.m */,
 				35C172811FFBB14400607658 /* MySupplyAndDemandViewController.h */,
 				35C172821FFBB14400607658 /* MySupplyAndDemandViewController.m */,
+				3538C2132019D143003DC0AE /* MySupplyDetailViewController.h */,
+				3538C2142019D143003DC0AE /* MySupplyDetailViewController.m */,
 				35C172841FFBB16B00607658 /* MySupplyAndDemandEditViewController.h */,
 				35C172851FFBB16B00607658 /* MySupplyAndDemandEditViewController.m */,
 				35C172AE1FFBB4F600607658 /* ContactSHViewController.h */,
@@ -3993,6 +4028,7 @@
 				35323E9E1E6D3D8500FF7BF0 /* MZIMFileHelper.m in Sources */,
 				358B44D11E499C6800A0DC93 /* JKAPPVersionCheckHelper.m in Sources */,
 				355894E82001F13500ED128A /* MorePanel.m in Sources */,
+				3538C218201B0FFC003DC0AE /* SHEnterpriseViewController.m in Sources */,
 				355894E42001F13500ED128A /* FacePanel.m in Sources */,
 				3547EAAA201637ED00A37B1F /* GZSH.xcdatamodeld in Sources */,
 				35374ED11E3059A1006DC277 /* JKBaseViewController.m in Sources */,
@@ -4008,6 +4044,7 @@
 				35588CB22000A63E00ED128A /* ObjectPingSortHelper.m in Sources */,
 				35588CC22000E4A000ED128A /* MemberCenterTableViewHeaderView.m in Sources */,
 				35C172711FFBAF0000607658 /* ResetPasswordViewController.m in Sources */,
+				3538C2152019D143003DC0AE /* MySupplyDetailViewController.m in Sources */,
 				35588CE620011F1900ED128A /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */,
 				35588CDD2001191000ED128A /* Comment.m in Sources */,
 				35C172681FFBA7CB00607658 /* SHAddressViewController.m in Sources */,
@@ -4015,12 +4052,14 @@
 				35323EA21E6D3D8500FF7BF0 /* MZIMMessageCellBodyBase.m in Sources */,
 				35135640200796360091606C /* MySupplyAndDemandTableViewCell.m in Sources */,
 				3547EA982013046E00A37B1F /* SHWebViewViewController.m in Sources */,
+				3549606C201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m in Sources */,
 				35C172771FFBB02300607658 /* ApplicationStep2ViewController.m in Sources */,
 				35A323461E34830800787AFD /* JKCenterRiseTabBar.m in Sources */,
 				35C172621FFBA77700607658 /* SHMainPageViewController.m in Sources */,
 				3547EA82200F91AF00A37B1F /* AddressModel.m in Sources */,
 				352F23721E5434D10063C511 /* MainTabViewController.m in Sources */,
 				35C172A71FFBB49D00607658 /* SendMomentViewController.m in Sources */,
+				35496069201DC289002A5C4C /* SDBaseRefreshView.m in Sources */,
 				35C1726E1FFBA7ED00607658 /* SHMemberViewController.m in Sources */,
 				35323EC61E6D438E00FF7BF0 /* MZIMMessageTableViewCell.m in Sources */,
 				352B886C1E8E1E310034F005 /* PushActionHelper.m in Sources */,
@@ -4047,6 +4086,7 @@
 				35588CA820008F5F00ED128A /* AddressTableViewCell.m in Sources */,
 				35C1728C1FFBB27F00607658 /* ApplicationStep3ViewController.m in Sources */,
 				355894FA2001FD3600ED128A /* MomentTableViewCell.m in Sources */,
+				3549606F201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m in Sources */,
 				355894E72001F13500ED128A /* PanelBottomView.m in Sources */,
 				35323EA71E6D3D8500FF7BF0 /* MZIMMessageShappedImageView.m in Sources */,
 				355894EB2001F13500ED128A /* RFRecordButton.m in Sources */,
@@ -4066,6 +4106,7 @@
 				355894DD2001F13500ED128A /* FaceThemeModel.m in Sources */,
 				353E2DA31E8B9AC900802E9F /* JKIAPHelper.m in Sources */,
 				35374EDD1E305ACF006DC277 /* JKBaseTableViewController.m in Sources */,
+				3538C21B201B1212003DC0AE /* EnterpriseModelExt.m in Sources */,
 				3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */,
 				354832C2200E3C500004E574 /* SysInfoModel.m in Sources */,
 				354832CB200E3DA70004E574 /* MettingModel.m in Sources */,
@@ -4120,6 +4161,7 @@
 				35C172AD1FFBB4D400607658 /* MomentDetailViewController.m in Sources */,
 				35FCE3A41E6FC09E001ACC20 /* NSString+Commen.m in Sources */,
 				35588CC82000E8CE00ED128A /* MemberCenterTableViewCell.m in Sources */,
+				3538C2122019BCA6003DC0AE /* DemandInfoUpload.m in Sources */,
 				35374ECA1E305944006DC277 /* main.m in Sources */,
 				352F23791E553FE30063C511 /* JKTickDownButton.m in Sources */,
 				358104E41FFE4E9300FC463A /* MainPageNewsView.m in Sources */,

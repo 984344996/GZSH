@@ -173,7 +173,7 @@
 }
 
 - (void)btnCompanyClicked:(UIButton *)sender{
-    [self.delegate didTurnToTabIndex:2];
+    [self.delegate didTurnToEnterpriseCenter];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size{

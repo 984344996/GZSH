@@ -7,7 +7,10 @@
 //
 
 #import "JKBaseTableViewController.h"
+#import "EnterpriseModel.h"
 
 @interface MyCompanyInfoViewController : JKBaseViewController
 
+- (instancetype)initWithEnterpriseModel:(EnterpriseModel *)model isSelf:(BOOL)isSelf;
+- (instancetype)initWithUserId:(NSString *)userId isSelf:(BOOL)isSelf;
 @end

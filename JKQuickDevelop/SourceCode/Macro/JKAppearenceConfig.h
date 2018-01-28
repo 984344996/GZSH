@@ -60,5 +60,6 @@
 
 #define kRichCompanyInfoWidth (JK_SCREEN_WIDTH - 104)
 #define kRichCompanyWidth (JK_SCREEN_WIDTH - 24)
-#define kRichSupplyWidth (JK_SCREEN_WIDTH - 109)
+#define kRichSupplyWidth (JK_SCREEN_WIDTH - 24)
+#define kRichSupplyDetailWidth (JK_SCREEN_WIDTH - 44)
 #endif /* JKAppearenceConfig_h */

@@ -16,6 +16,7 @@
 - (void)didNewsTapped:(NewsModel *)newsModel;
 - (void)didTurnToTabIndex:(NSUInteger)index;
 - (void)didTurnToNewCenter;
+- (void)didTurnToEnterpriseCenter;
 @end
 
 @interface MainPageTableHeaderView : UIView

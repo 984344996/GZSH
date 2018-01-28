@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JKNetworkHelper.h"
 #import "EnterpriseModel.h"
+#import "DemandInfo.h"
 
 @class AccomplishModel;
 
@@ -117,6 +118,7 @@ typedef void(^SHRequestSucceed)(id obj);
 #pragma mark - 商会圈
 
 + (void)doGetMoment:(NSString *)userId
+               page:(NSInteger)page
             succeed:(SHRequestSucceed)succeed
           needCache:(BOOL)needCache
        cacheSucceed:(SHRequestSucceed)cacheSucceed
@@ -147,6 +149,12 @@ typedef void(^SHRequestSucceed)(id obj);
                    failed:(SHRequestFailed)failed;
 #pragma mark - 个人中心
 
++ (void)doGetUserInfo:(NSString *)userId
+            needCache:(BOOL)needCache
+         cacheSucceed:(SHRequestSucceed)cacheSucceed
+              succeed:(SHRequestSucceed)succeed
+               failed:(SHRequestFailed)failed;
+
 + (void)doFeedback:(NSString *)feedBackStr
            succeed:(SHRequestSucceed)succeed
             failed:(SHRequestFailed)failed;
@@ -162,4 +170,21 @@ typedef void(^SHRequestSucceed)(id obj);
 
 + (void)doGetEnterpriseInfo:(SHRequestSucceed)succeed
                      failed:(SHRequestFailed)failed;
+
++ (void)doDemandUpdate:(DemandInfo *)model
+               succeed:(SHRequestSucceed)succeed
+                failed:(SHRequestFailed)failed;
+
++ (void)doDemandPublish:(DemandInfo *)model
+                succeed:(SHRequestSucceed)succeed
+                 failed:(SHRequestFailed)failed;
+
++ (void)doLoadOwnDemands:(NSInteger )page
+                 succeed:(SHRequestSucceed)succeed
+                  failed:(SHRequestFailed)failed;
+
++ (void)doLoadOtherDemands:(NSString *)userId
+                      page:(NSInteger)page
+                   succeed:(SHRequestSucceed)succeed
+                    failed:(SHRequestFailed)failed;
 @end

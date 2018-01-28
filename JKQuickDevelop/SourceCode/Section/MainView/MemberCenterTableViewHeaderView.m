@@ -7,6 +7,7 @@
 //
 
 #import "MemberCenterTableViewHeaderView.h"
+#import <UIImageView+WebCache.h>
 
 @implementation MemberCenterTableViewHeaderView
 
@@ -20,6 +21,14 @@
         [_header setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     }
     return self;
+}
+
+- (void)setUserInfo:(UserInfo *)userInfo{
+    [self.avatar sd_setImageWithURL:GetImageUrl(userInfo.avatar) placeholderImage:kPlaceHoderHeaderImage];
+    self.nameLabel.text       = userInfo.userName;
+    self.shPositionLabel.text = userInfo.chamTitle;
+    self.companyLabel.text    = userInfo.enterprise.name;
+    self.companyPositionLabel.text = userInfo.enterpriseTitle;
 }
 
 

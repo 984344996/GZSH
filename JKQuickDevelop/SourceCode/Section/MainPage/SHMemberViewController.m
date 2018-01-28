@@ -13,10 +13,15 @@
 #import "MySupplyAndDemandViewController.h"
 #import "ContactSHViewController.h"
 #import "SHSettingViewController.h"
+#import "UserInfo.h"
+#import "APIServerSdk.h"
+#import "AppDataFlowHelper.h"
+#import <MJExtension.h>
 
 @interface SHMemberViewController ()
 
 @property (nonatomic, strong) NSArray *cellModes;
+@property (nonatomic, strong) UserInfo *userInfo;
 @property (nonatomic, strong) MemberCenterTableViewHeaderView *header;
 @end
 
@@ -33,6 +38,11 @@
     self.tableView.tableHeaderView = self.header;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"MemberCenterTableViewCell" bundle:nil] forCellReuseIdentifier:@"MemberCenterTableViewCell"];
+}
+
+- (void)configData{
+    [super configData];
+    [self loadSelfUserInfo];
 }
 
 - (MemberCenterTableViewHeaderView *)header{
@@ -53,17 +63,41 @@
     return _cellModes;
 }
 
+#pragma mark - APIServer
+
+- (void)loadSelfUserInfo{
+    NSString *userId = [AppDataFlowHelper getLoginUserInfo].userId;
+    WEAKSELF
+    [APIServerSdk doGetUserInfo:userId needCache:YES cacheSucceed:^(id obj) {
+        STRONGSELF
+        strongSelf.userInfo = [UserInfo mj_objectWithKeyValues:obj];
+    } succeed:^(id obj) {
+        STRONGSELF
+        strongSelf.userInfo = [UserInfo mj_objectWithKeyValues:obj];
+    } failed:^(NSString *error) {
+    }];
+}
+
+
 #pragma mark - Private methods
 
+- (void)setUserInfo:(UserInfo *)userInfo{
+    if (!userInfo) {
+        return;
+    }
+    _userInfo = userInfo;
+    [self.header setUserInfo:userInfo];
+}
+
 - (void)intoMyCompanyInfo{
-    MyCompanyInfoViewController *vc = [[MyCompanyInfoViewController alloc] init];
+    MyCompanyInfoViewController *vc = [[MyCompanyInfoViewController alloc] initWithEnterpriseModel:nil isSelf:YES];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)intoMyApplyInfo{
-    MySupplyAndDemandViewController *vc = [[MySupplyAndDemandViewController alloc] init];
+    MySupplyAndDemandViewController *vc = [[MySupplyAndDemandViewController alloc] initWithUserId:nil isSelf:YES];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;

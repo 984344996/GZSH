@@ -20,6 +20,9 @@
 #import "MySupplyAndDemandViewController.h"
 #import <MJExtension.h>
 #import <ReactiveObjC.h>
+#import "MySupplyDetailViewController.h"
+#import "MySupplyAndDemandViewController.h"
+#import "SHEnterpriseViewController.h"
 
 @interface SHMainPageViewController ()<MainPageTableHeaderViewDelegate>
 
@@ -28,7 +31,6 @@
 @property (nonatomic, strong) NSMutableArray *noticeModels;
 @property (nonatomic, assign) NSInteger cacheIndex;
 @property (nonatomic, strong) MainPageSectionView *sectionHeader;
-
 @property (nonatomic, strong) MainPageTableHeaderView *header;
 @end
 
@@ -54,7 +56,7 @@
     @weakify(self);
     [[gen rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
         @strongify(self);
-        MySupplyAndDemandViewController *vc = [[MySupplyAndDemandViewController alloc] init];
+        MySupplyAndDemandViewController *vc = [[MySupplyAndDemandViewController alloc] initWithUserId:nil isSelf:NO];
         self.hidesBottomBarWhenPushed       = YES;
         [self.navigationController pushViewController:vc animated:YES];
         self.hidesBottomBarWhenPushed       = NO;
@@ -122,6 +124,7 @@
 - (MainPageSectionView *)sectionHeader{
     if (!_sectionHeader) {
         _sectionHeader = [[MainPageSectionView alloc] initWithFrame:CGRectMake(0, 0, JK_SCREEN_WIDTH, 40)];
+
     }
     return _sectionHeader;
 }
@@ -160,10 +163,12 @@
 - (void)loadDemand{
     self.cacheIndex += 1;
     [APIServerSdk doGetDemand:1 max:10 succeed:^(id obj) {
-        NSMutableArray *models = [DemandInfo mj_objectArrayWithKeyValuesArray:obj];
+        CommonResponseModel *model = obj;
+        NSMutableArray *models = [DemandInfo mj_objectArrayWithKeyValuesArray:model.data];
         self.demands = models;
     } needCache:self.cacheIndex <= 3 cacheSucceed:^(id obj) {
-        NSMutableArray *models = [DemandInfo mj_objectArrayWithKeyValuesArray:obj];
+        CommonResponseModel *model = obj;
+        NSMutableArray *models = [DemandInfo mj_objectArrayWithKeyValuesArray:model.data];
         self.demands = models;
     } failed:^(NSString *error) {
     }];
@@ -196,10 +201,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self doEnterDetail:indexPath];
 }
 
-- (void)showDemandList{
-    
+
+- (void)doEnterDetail:(NSIndexPath *)index{
+    MySupplyDetailViewController *vc = [[MySupplyDetailViewController alloc] initWithDemand:self.demands[index.row] isSelf:NO];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - MainPageTableHeaderViewDelegate
@@ -231,6 +241,11 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
-
+- (void)didTurnToEnterpriseCenter{
+    SHEnterpriseViewController *vc = [[SHEnterpriseViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
 
 @end

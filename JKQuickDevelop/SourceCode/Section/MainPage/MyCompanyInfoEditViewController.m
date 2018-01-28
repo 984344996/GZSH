@@ -22,6 +22,7 @@
 #import "APIServerSdk.h"
 #import <MBProgressHUD.h>
 #import "AppDelegate.h"
+#import <UIImageView+WebCache.h>
 
 @interface MyCompanyInfoEditViewController ()<UITextViewDelegate>
 
@@ -45,6 +46,18 @@
 @end
 
 @implementation MyCompanyInfoEditViewController
+
+- (instancetype)initWithEnterpriseModel:(EnterpriseModel *)model{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        if (model) {
+            self.enterpriseModel    = model;
+            self.companyInfoRich    = [RichMode mj_objectArrayWithKeyValuesArray:self.enterpriseModel.desc];
+            self.companyServiceRich = [RichMode mj_objectArrayWithKeyValuesArray:self.enterpriseModel.service];
+        }
+    }
+    return self;
+}
 
 - (void)loadView{
     
@@ -72,6 +85,12 @@
     self.navigationItem.rightBarButtonItems = @[itemDone,itemPic];
     
     [self configLiner];
+    
+    self.inputMobile.text = self.enterpriseModel.mobile;
+    self.inputPhone.text = self.enterpriseModel.phone;
+    self.inputEmail.text = self.enterpriseModel.email;
+    self.inputAddress.text = self.enterpriseModel.address;
+    
     [self reloadCompanyInfo];
     [self reloadCompanyService];
 }
@@ -166,7 +185,6 @@
 - (NSMutableArray *)companyInfoRich{
     if (!_companyInfoRich) {
         _companyInfoRich = [NSMutableArray array];
-        [_companyInfoRich addObject:[self createBlankTextRich]];
     }
     return _companyInfoRich;
 }
@@ -174,7 +192,6 @@
 - (NSMutableArray *)companyServiceRich{
     if (!_companyServiceRich) {
         _companyServiceRich = [NSMutableArray array];
-        [_companyServiceRich addObject:[self createBlankTextRich]];
     }
     return _companyServiceRich;
 }
@@ -205,10 +222,15 @@
 
 - (void)reloadCompanyInfo{
     [self.linerCompanyInfo removeAllSubviews];
+    
+    [self.companyInfoRich addObject:[self createBlankTextRich]];
     [self.companyInfoRich enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RichMode *model = obj;
+        model.tagForView = viewTagNow++;
         if ([model.type isEqualToString:@"text"]){
             UITextView *textView = [self createTextViewRich:model];
+            CGFloat h            = [textView sizeThatFits:CGSizeMake(kRichCompanyWidth, CGFLOAT_MAX)].height;
+            textView.myHeight    = h;
             [self.linerCompanyInfo addSubview:textView];
         }else{
             UIImageView *imageView = [self createImageRich:model];
@@ -219,10 +241,15 @@
 
 - (void)reloadCompanyService{
     [self.linerCompanyService removeAllSubviews];
+    
+    [self.companyServiceRich addObject:[self createBlankTextRich]];
     [self.companyServiceRich enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RichMode *model = obj;
+        model.tagForView = viewTagNow++;
         if ([model.type isEqualToString:@"text"]){
             UITextView *textView = [self createTextViewRich:model];
+            CGFloat h            = [textView sizeThatFits:CGSizeMake(kRichCompanyWidth, CGFLOAT_MAX)].height;
+            textView.myHeight    = h;
             [self.linerCompanyService addSubview:textView];
         }else{
             UIImageView *imageView = [self createImageRich:model];
@@ -252,64 +279,64 @@ static int viewTagNow = 1001;
 
 - (UILabel*)createSectionLabel:(NSString*)title
 {
-    UILabel *sectionLabel = [UILabel new];
-    sectionLabel.text = title;
-    sectionLabel.font = kMainTextFieldTextFontMiddle;
+    UILabel *sectionLabel  = [UILabel new];
+    sectionLabel.text      = title;
+    sectionLabel.font      = kMainTextFieldTextFontMiddle;
     sectionLabel.textColor = kSecondTextColor;
     [sectionLabel sizeToFit];
-    sectionLabel.myTop = 12;
+    sectionLabel.myTop     = 12;
     return sectionLabel;
 }
 
 - (JKTextField_Padding *)createUITextField:(NSString *)placeHolder{
-    JKTextField_Padding *textField =  [[JKTextField_Padding alloc] init];
-    textField.borderColor = kMainTextFieldBorderColor;
-    textField.font = kMainTextFieldTextFontMiddle;
-    textField.textColor = kMainTextColor;
-    textField.borderW = 1;
-    textField.placeholder = placeHolder;
-    textField.leftPadding = 5;
-    
-    textField.myHeight = 24;
-    textField.myTop = 5;
-    textField.myLeading = 0;
-    textField.myTrailing = 0;
+    JKTextField_Padding *textField = [[JKTextField_Padding alloc] init];
+    textField.borderColor          = kMainTextFieldBorderColor;
+    textField.font                 = kMainTextFieldTextFontMiddle;
+    textField.textColor            = kMainTextColor;
+    textField.borderW              = 1;
+    textField.placeholder          = placeHolder;
+    textField.leftPadding          = 5;
+
+    textField.myHeight             = 24;
+    textField.myTop                = 5;
+    textField.myLeading            = 0;
+    textField.myTrailing           = 0;
     return textField;
 }
 
 - (UITextView *)createTextView:(NSString *)placeHolder{
     UITextView  *textView = [[UITextView alloc] init];
-    textView.font = kMainTextFieldTextFontMiddle;
-    textView.textColor = kMainTextColor;
-    textView.layer.borderColor = kMainTextFieldBorderColor.CGColor;
-    textView.layer.borderWidth = 1;
-    textView.placeholder = placeHolder;
+    textView.font                  = kMainTextFieldTextFontMiddle;
+    textView.textColor             = kMainTextColor;
+    textView.layer.borderColor     = kMainTextFieldBorderColor.CGColor;
+    textView.layer.borderWidth     = 1;
+    textView.placeholder           = placeHolder;
     textView.placeholderLabel.font = kMainTextFieldTextFontMiddle;
-    
-    textView.myHeight = 80;
-    textView.myTop = 5;
-    textView.myLeading = 0;
+
+    textView.myHeight              = 80;
+    textView.myTop                 = 5;
+    textView.myLeading             = 0;
     textView.myTrailing = 0;
     return textView;
 }
 
 - (UITextView *)createTextViewRich:(RichMode *)model{
     UITextView  *textView = [[UITextView alloc] init];
-    textView.tag = model.tagForView;
-    
+    textView.tag                   = model.tagForView;
+
     WEAKSELF
-    textView.contentInset = UIEdgeInsetsMake(0, 2, 0, 2);
-    textView.delegate = weakSelf;
-    textView.scrollEnabled = NO;
-    textView.text = model.inputContent;
-    textView.font = kMainTextFieldTextFontMiddle;
-    textView.textColor = kMainTextColor;
-    textView.placeholder = @"请输入...";
+    textView.contentInset          = UIEdgeInsetsMake(0, 2, 0, 2);
+    textView.delegate              = weakSelf;
+    textView.scrollEnabled         = NO;
+    textView.text                  = model.inputContent;
+    textView.font                  = kMainTextFieldTextFontMiddle;
+    textView.textColor             = kMainTextColor;
+    textView.placeholder           = @"请输入...";
     textView.placeholderLabel.font = kMainTextFieldTextFontMiddle;
-    textView.myHeight = 30;
-    textView.myTop = 0;
-    textView.myLeading = 0;
-    textView.myTrailing = 0;
+    textView.myHeight              = 30;
+    textView.myTop                 = 0;
+    textView.myLeading             = 0;
+    textView.myTrailing            = 0;
     return textView;
 }
 
@@ -319,11 +346,14 @@ static int viewTagNow = 1001;
     imageView.tag = model.tagForView;
     imageView.layer.masksToBounds = YES;
     imageView.image = model.image;
+    if (model.imageUrl) {
+        [imageView sd_setImageWithURL:GetImageUrl(model.imageUrl) placeholderImage:kPlaceHoderBannerImage];
+    }
     imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.myTop = 0;
-    imageView.myLeading = 2;
-    imageView.myTrailing = 2;
-    imageView.myHeight = height;
+    imageView.myTop       = 0;
+    imageView.myLeading   = 2;
+    imageView.myTrailing  = 2;
+    imageView.myHeight    = height;
     imageView.userInteractionEnabled = YES;
     
     UIButton *button = [[UIButton alloc] init];

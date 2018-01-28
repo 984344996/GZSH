@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, KeyBoardStyle)
  */
 + (instancetype)keyBoardWithParentViewBounds:(CGRect)bounds;
 
-
+@property (nonatomic, assign) CGFloat bottomMargin;
 @property (nonatomic, weak) id<ChatKeyBoardDataSource> dataSource;
 @property (nonatomic, weak) id<ChatKeyBoardDelegate> delegate;
 

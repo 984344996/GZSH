@@ -1,25 +1,27 @@
 //
-//  SHAddressViewController.m
+//  SHEnterpriseViewController.m
 //  JKQuickDevelop
 //
-//  Created by dengjie on 2018/1/2.
+//  Created by dengjie on 2018/1/26.
 //  Copyright © 2018年 dengjie. All rights reserved.
 //
 
+#import "SHEnterpriseViewController.h"
 #import "SHAddressViewController.h"
 #import "AddressTableViewHeader.h"
 #import "AddressTableViewCell.h"
 #import <ReactiveObjC.h>
 #import <MJExtension.h>
 #import <JKCategories.h>
-#import "Contact.h"
+#import "EnterpriseModelExt.h"
 #import "NSString+Commen.h"
 #import "ObjectPingSortHelper.h"
 #import "PersonalInfoViewController.h"
+#import "MyCompanyInfoViewController.h"
 #import "APIServerSdk.h"
+#import "MyCompanyInfoViewController.h"
 
-
-@interface SHAddressViewController ()
+@interface SHEnterpriseViewController ()
 @property (nonatomic, strong) AddressTableViewHeader *header;
 @property (nonatomic, strong) NSMutableArray *allModes;
 @property (nonatomic, strong) NSMutableArray *sortedModes;
@@ -32,8 +34,7 @@
 @property (nonatomic, strong) NSMutableArray *sortedLetterArray;
 @end
 
-@implementation SHAddressViewController
-
+@implementation SHEnterpriseViewController
 
 #pragma mark - Life circle
 
@@ -43,6 +44,7 @@
 
 - (void)configView{
     [super configView];
+    self.title = @"企业库";
     self.tableView.tableHeaderView = self.header;
     self.tableView.separatorColor = kMainBottomLayerColor;
     self.tableView.sectionIndexBackgroundColor = kMainBottomLayerColor;
@@ -121,13 +123,13 @@
 
 - (void)loadContacts{
     @weakify(self);
-    [APIServerSdk doGetUserContact:^(id obj) {
+    [APIServerSdk doGetUserEnterprise:^(id obj) {
         @strongify(self);
-        self.allModes = [Contact mj_objectArrayWithKeyValuesArray:obj];
+        self.allModes = [EnterpriseModelExt mj_objectArrayWithKeyValuesArray:obj];
         [self sortModels];
     } needCache:YES cacheSucceed:^(id obj) {
         @strongify(self);
-        self.allModes = [Contact mj_objectArrayWithKeyValuesArray:obj];
+        self.allModes = [EnterpriseModelExt mj_objectArrayWithKeyValuesArray:obj];
         [self sortModels];
     } failed:^(NSString *error) {
     }];
@@ -136,33 +138,34 @@
 
 #pragma mark - Private methods
 - (void)sortModels{
-    self.sortedModes = [self.helper sortObjects:self.allModes key:@"userName"];
+    self.sortedModes = [self.helper sortObjects:self.allModes key:@"name"];
     self.letterModes = self.helper.sortedLetters;
     [self.tableView reloadData];
 }
 
-- (void)intoPersonInfo:(NSIndexPath *)indexPath{
-    Contact *contact;
+- (void)intoEnterpriseInfo:(NSIndexPath *)indexPath{
+    EnterpriseModelExt *modelExt;
     if (self.filter) {
-        contact = self.filterModes[indexPath.row];
+        modelExt  = self.filterModes[indexPath.row];
     }else{
-        contact = self.sortedModes[indexPath.section][indexPath.row];
+        modelExt = self.sortedModes[indexPath.section][indexPath.row];
     }
-    PersonalInfoViewController *vc =  [[PersonalInfoViewController alloc] initWithUserId:contact.userId];
+    EnterpriseModel *model = [EnterpriseModel mj_objectWithKeyValues:modelExt.mj_keyValues];
+    MyCompanyInfoViewController *vc =  [[MyCompanyInfoViewController alloc] initWithEnterpriseModel:model isSelf:NO];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)filerKey:(NSString *)key{
-    /// 用户名 拼音 电话 企业名称 对比
+    /// 企业名 拼音 电话 用户名 对比
     [self.filterModes removeAllObjects];
     for (int i = 0; i < self.sortedModes.count; i++) {
         NSMutableArray *array = self.sortedModes[i];
         for (int j = 0; j < array.count; j++) {
-            Contact *contact = array[j];
+            EnterpriseModelExt *contact = array[j];
             NSString *keyUpper =  [key uppercaseString];
-            if ([contact.userName containsString:key]) {
+            if ([contact.name containsString:key]) {
                 [self.filterModes addObject:contact];
                 continue;
             }
@@ -170,11 +173,11 @@
                 [self.filterModes addObject:contact];
                 continue;
             }
-            if ([contact.mobile containsString:keyUpper]) {
+            if ([contact.userMobile containsString:keyUpper]) {
                 [self.filterModes addObject:contact];
                 continue;
             }
-            if ([contact.enterprise containsString:keyUpper]) {
+            if ([contact.username containsString:keyUpper]) {
                 [self.filterModes addObject:contact];
                 continue;
             }
@@ -221,20 +224,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddressTableViewCell" forIndexPath:indexPath];
-    Contact *contact;
+    EnterpriseModelExt *enterprise;
     if (self.filter) {
-        contact = self.filterModes[indexPath.row];
+        enterprise = self.filterModes[indexPath.row];
     }else{
         NSArray *array = self.sortedModes[indexPath.section];
-        contact = array[indexPath.row];
+        enterprise = array[indexPath.row];
     }
-    [cell setupCellData:contact];
+    [cell setupCellDataEnterprise:enterprise];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self intoPersonInfo:indexPath];
+    [self intoEnterpriseInfo:indexPath];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{

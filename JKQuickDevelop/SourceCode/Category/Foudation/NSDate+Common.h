@@ -12,6 +12,7 @@
 #define kTurnState2 @"yyyy-MM-dd"
 #define kTurnState3 @"HH:mm"
 #define kTurnState5 @"yyyy/MM/dd HH:mm:ss"
+#define kTurnState6 @"yyyy/MM/dd HH:mm"
 
 @interface NSDate (Common)
 

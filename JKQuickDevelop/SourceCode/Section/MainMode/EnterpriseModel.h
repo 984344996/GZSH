@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SortBaseObject.h"
 
-@interface EnterpriseModel : NSObject
+@interface EnterpriseModel : SortBaseObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *mobile;
