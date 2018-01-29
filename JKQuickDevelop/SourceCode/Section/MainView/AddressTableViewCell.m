@@ -14,10 +14,23 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
+- (IBAction)actionPhoneCall:(id)sender {
+    if (self.Callback) {
+        self.Callback(YES, self.contact);
+    }
+}
+
+- (IBAction)actionSms:(id)sender {
+    if (self.Callback) {
+        self.Callback(NO, self.contact);
+    }
+}
 
 #pragma mark - Public methods
 
 - (void)setupCellData:(Contact *)data{
+    
+    self.contact = data.mobile;
     self.labelName.text    = data.userName;
     self.labelPhone.text   = data.mobile;
     self.labelCompany.text = data.enterprise;
@@ -25,6 +38,8 @@
 }
 
 - (void)setupCellDataEnterprise:(EnterpriseModelExt *)data{
+    
+    self.contact = data.userMobile;
     self.labelName.text    = data.name;
     self.labelPhone.text   = data.userMobile;
     self.labelCompany.text = data.username;

@@ -10,4 +10,7 @@
 
 @interface AppUtils : NSObject
 
++ (void)makePhoneCallTo:(NSString *)phone;
++ (void)sendSmsTo:(NSString *)phone;
+
 @end

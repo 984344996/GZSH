@@ -41,6 +41,10 @@
         _headImageView.backgroundColor = [UIColor whiteColor];
         _headImageView.contentMode = UIViewContentModeScaleAspectFill;
         _headImageView.layer.masksToBounds = YES;
+        _headImageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *gen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userAction:)];
+        [_headImageView addGestureRecognizer:gen];
     }
     return _headImageView;
 }
@@ -52,6 +56,10 @@
         _nameLabel.numberOfLines = 0;
         _nameLabel.font = kMomentTitleFont;
         _nameLabel.textColor = kMomentTitleTextColor;
+        _nameLabel.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *gen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userAction:)];
+        [_nameLabel addGestureRecognizer:gen];
     }
     return _nameLabel;
 }
@@ -138,6 +146,12 @@
 }
 
 #pragma mark - Events
+
+- (void)userAction:(UITapGestureRecognizer *)sender{
+    if ([self.delegate respondsToSelector:@selector(labelNameTapped:)]) {
+        [self.delegate labelNameTapped:self.moment.momentUser];
+    }
+}
 
 - (void)commentAction:(UIButton *)sender{
     if ([self.delegate respondsToSelector:@selector(btnCommentTapped:indexPath:)]) {
@@ -242,7 +256,7 @@
     [self.likeBtn setSelected: model.dynamicInfo.hasPraised];
     self.timeLabel.text = [NSDate getMomentDateStamp:model.dynamicInfo.createTime];
     
-    [self.headImageView sd_setImageWithURL:GetImageUrl(model.momentUser.avatar) placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.headImageView sd_setImageWithURL:GetImageUrl(model.momentUser.avatar) placeholderImage: kPlaceHoderHeaderImage];
     
     NSMutableParagraphStyle *muStyle = [[NSMutableParagraphStyle alloc]init];
     muStyle.lineSpacing = 3;//设置行间距离
@@ -288,7 +302,7 @@
     
     self.moreBtn.selected = model.isExpand;
     CGFloat jgg_width = JK_SCREEN_WIDTH-2*kGAP-kAvatar_Size-50;
-    CGFloat image_width = (jgg_width-2*kGAP)/3;
+    CGFloat image_width = (jgg_width-2*kJGGViewGap)/3;
     CGFloat jgg_height = 0.0;
     
     if (model.content.count==0) {
@@ -296,9 +310,9 @@
     }else if (model.content.count<=3) {
         jgg_height = image_width;
     }else if (model.content.count>3&&model.content.count<=6){
-        jgg_height = 2*image_width+kGAP;
+        jgg_height = 2*image_width+kJGGViewGap;
     }else  if (model.content.count>6&&model.content.count<=9){
-        jgg_height = 3*image_width+2*kGAP;
+        jgg_height = 3*image_width+2*kJGGViewGap;
     }
     
     ///解决图片复用问题

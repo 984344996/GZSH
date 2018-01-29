@@ -11,6 +11,7 @@
 
 #define kAvatar_Size 36
 #define kGAP 24
+#define kJGGViewGap 10
 
 #define kMomentHightTextColor RGB(139,165,139)
 #define kMomentTitleTextColor RGB(31,185,34)

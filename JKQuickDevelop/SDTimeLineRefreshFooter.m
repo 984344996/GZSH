@@ -96,6 +96,13 @@
     self.indicatorLabel.text = @"正在加载数据...";
 }
 
+- (void)didMoveToWindow{
+    [super didMoveToWindow];
+    if (self.refreshState == SDWXRefreshViewStateNoMoreData) {
+        [self.indicator setHidden:YES];
+    }
+}
+
 - (void)setRefreshState:(SDWXRefreshViewState)refreshState
 {
     [super setRefreshState:refreshState];

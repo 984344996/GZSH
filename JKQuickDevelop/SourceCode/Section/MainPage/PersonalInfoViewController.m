@@ -15,7 +15,9 @@
 #import <JKCategories.h>
 #import "APIServerSdk.h"
 #import "HUDHelper.h"
+#import "AppUtils.h"
 #import <MJExtension.h>
+#import <ReactiveObjC.h>
 
 @interface PersonalInfoViewController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -29,6 +31,7 @@
 @property (nonatomic, strong) SGPageContentView *contentView;
 @property (nonatomic, assign) NSUInteger selectedSegmentIndex;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) UserInfo *userInfo;
 
 @end
 
@@ -60,6 +63,34 @@
 - (void)configData{
     [super configData];
     [self loadUserInfo:self.userId];
+}
+
+
+- (BOOL)checkMobile{
+    if (!_userInfo) {
+        [[HUDHelper sharedInstance] tipMessage:@"未获取到用户信息" inView:self.view];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)configEvent{
+    [super configEvent];
+    
+    @weakify(self)
+    [[self.btnPhoneCall rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self);
+        if ([self checkMobile]) {
+            [AppUtils makePhoneCallTo:self.userInfo.mobile];
+        }
+    }];
+    
+    [[self.btnMessage rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self);
+        if ([self checkMobile]) {
+            [AppUtils sendSmsTo:self.userInfo.mobile];
+        }
+    }];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -183,10 +214,12 @@
     [APIServerSdk doGetUserInfo:userId needCache:YES cacheSucceed:^(id obj){
         STRONGSELF
         UserInfo *userInfo         = [UserInfo mj_objectWithKeyValues:obj];
+        strongSelf.userInfo = userInfo;
         [strongSelf.header setUserInfo:userInfo];
     } succeed:^(id obj) {
         STRONGSELF
         UserInfo *userInfo         = [UserInfo mj_objectWithKeyValues:obj];
+        strongSelf.userInfo = userInfo;
         [strongSelf.header setUserInfo:userInfo];
     } failed:^(NSString *error) {
         STRONGSELF

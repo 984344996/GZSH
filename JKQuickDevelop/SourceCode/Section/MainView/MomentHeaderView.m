@@ -90,11 +90,12 @@
 
 - (UIImageView *)imageAvtar{
     if (!_imageAvtar) {
-        _imageAvtar = [[UIImageView alloc] init];
-        _imageAvtar.image = [UIImage imageNamed:@"testAvatar"];
-        _imageAvtar.contentMode = UIViewContentModeScaleAspectFill;
+        _imageAvtar                   = [[UIImageView alloc] init];
+        _imageAvtar.contentMode       = UIViewContentModeScaleAspectFill;
         _imageAvtar.layer.borderWidth = 2;
         _imageAvtar.layer.borderColor = [UIColor whiteColor].CGColor;
+        _imageAvtar.layer.masksToBounds = YES;
+        _imageAvtar.userInteractionEnabled = YES;
     }
     return _imageAvtar;
 }
@@ -113,7 +114,7 @@
 - (UILabel *)labelCommentName{
     if (!_labelCommentName) {
         _labelCommentName = [[UILabel alloc] init];
-        _labelCommentName.text = @"ZOE";
+        _labelCommentName.text = @"";
         _labelCommentName.textAlignment = NSTextAlignmentCenter;
         _labelCommentName.font = kMainTextFieldTextFontBold12;
         _labelCommentName.textColor = RGB(139, 165, 139);
@@ -125,7 +126,7 @@
 - (UILabel *)labelCommentCount{
     if (!_labelCommentCount) {
         _labelCommentCount = [[UILabel alloc] init];
-        _labelCommentCount.text = @"10条评论";
+        _labelCommentCount.text = @"";
         _labelCommentCount.textAlignment = NSTextAlignmentCenter;
         _labelCommentCount.font = kMainTextFieldTextFontBold12;
         _labelCommentCount.textColor = RGB(185, 185, 187);

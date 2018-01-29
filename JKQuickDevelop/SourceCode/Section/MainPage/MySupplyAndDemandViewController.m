@@ -14,7 +14,7 @@
 #import "CommonResponseModel.h"
 #import <MJExtension.h>
 #import "MySupplyDetailViewController.h"
-
+#import "PersonalInfoViewController.h"
 
 @interface MySupplyAndDemandViewController ()
 @property (nonatomic, assign) NSInteger page;
@@ -40,6 +40,9 @@
 - (void)configView{
     [super configView];
     
+    self.isOpenHeaderRefresh = YES;
+    self.isOpenFooterRefresh = YES;
+    
     if (self.isSelf) {
         self.title = @"我的供求信息";
         [self addUIBarButtonItemText:@"发布" isLeft:NO target:self action:@selector(doPublish:)];
@@ -53,15 +56,22 @@
 
 - (void)configData{
     [super configData];
-    [self loadData:YES];
+    [self.tableView.mj_header beginRefreshing];
 }
-
 
 - (NSMutableArray *)supplies{
     if (!_supplies) {
         _supplies = [NSMutableArray array];
     }
     return _supplies;
+}
+
+- (void)headerRefresh{
+    [self loadData:YES];
+}
+
+- (void)footerRefresh{
+    [self loadData:NO];
 }
 
 #pragma mark - APIServer
@@ -77,6 +87,11 @@
 }
 
 - (void)loadSelfDemands:(BOOL)isRefresh{
+    if (isRefresh) {
+        self.page = 1;
+    }else{
+        self.page++;
+    }
     WEAKSELF
     [APIServerSdk doLoadOwnDemands:self.page succeed:^(id obj) {
         STRONGSELF
@@ -87,12 +102,30 @@
         NSMutableArray *append = [DemandInfo mj_objectArrayWithKeyValuesArray:model.data];
         [strongSelf.supplies addObjectsFromArray:append];
         [strongSelf.tableView reloadData];
-    } failed:^(NSString *error) {
         
+        [strongSelf.tableView.mj_header endRefreshing];
+        [strongSelf.tableView.mj_footer endRefreshing];
+        if (strongSelf.page == model.page.count) {
+            [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [strongSelf.tableView.mj_footer resetNoMoreData];
+        }
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [strongSelf.tableView.mj_header endRefreshing];
+        [strongSelf.tableView.mj_footer endRefreshing];
+        if (!isRefresh) {
+            self.page--;
+        }
     }];
 }
 
 - (void)loadOtherDemands:(BOOL)isRefresh{
+    if (isRefresh) {
+        self.page = 1;
+    }else{
+        self.page++;
+    }
     WEAKSELF
     [APIServerSdk doLoadOtherDemands:self.userId page:self.page succeed:^(id obj) {
         STRONGSELF
@@ -103,11 +136,30 @@
         NSMutableArray *append = [DemandInfo mj_objectArrayWithKeyValuesArray:model.data];
         [strongSelf.supplies addObjectsFromArray:append];
         [strongSelf.tableView reloadData];
+        
+        [strongSelf.tableView.mj_header endRefreshing];
+        [strongSelf.tableView.mj_footer endRefreshing];
+        if (strongSelf.page == model.page.count) {
+            [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [strongSelf.tableView.mj_footer resetNoMoreData];
+        }
     } failed:^(NSString *error) {
+        STRONGSELF
+        [strongSelf.tableView.mj_header endRefreshing];
+        [strongSelf.tableView.mj_footer endRefreshing];
+        if (!isRefresh) {
+            self.page--;
+        }
     }];
 }
 
 - (void)loadMainPageDemands:(BOOL)isRefresh{
+    if (isRefresh) {
+        self.page = 1;
+    }else{
+        self.page++;
+    }
     WEAKSELF
     [APIServerSdk doGetDemand:self.page max:20 succeed:^(id obj) {
         STRONGSELF
@@ -118,7 +170,20 @@
         NSMutableArray *append = [DemandInfo mj_objectArrayWithKeyValuesArray:model.data];
         [strongSelf.supplies addObjectsFromArray:append];
         [strongSelf.tableView reloadData];
+        [strongSelf.tableView.mj_header endRefreshing];
+        [strongSelf.tableView.mj_footer endRefreshing];
+        if (strongSelf.page == model.page.count) {
+            [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [strongSelf.tableView.mj_footer resetNoMoreData];
+        }
     } needCache:NO cacheSucceed:nil failed:^(NSString *error) {
+        STRONGSELF
+        [strongSelf.tableView.mj_header endRefreshing];
+        [strongSelf.tableView.mj_footer endRefreshing];
+        if (!isRefresh) {
+            self.page--;
+        }
     }];
 }
 
@@ -134,9 +199,14 @@
 
 - (void)doEnterDetail:(NSIndexPath *)index{
     MySupplyDetailViewController *vc = [[MySupplyDetailViewController alloc] initWithDemand:self.supplies[index.row] isSelf:self.isSelf];
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = YES;
+    
+    UIViewController *parentVC = self.parentViewController;
+    if (![parentVC isKindOfClass:[PersonalInfoViewController class]]) {
+        parentVC = self;
+    }
+    parentVC.hidesBottomBarWhenPushed = YES;
+    [parentVC.navigationController pushViewController:vc animated:YES];
+    parentVC.hidesBottomBarWhenPushed = YES;
 }
 
 #pragma mark - Table Delegate and Datasource

@@ -64,7 +64,9 @@
 - (void)configView{
     [super configView];
     self.title = @"供求信息";
-    [self addUIBarButtonItemText:@"编辑" isLeft:NO target:self action:@selector(editInfo:)];
+    if (self.isSelf) {
+        [self addUIBarButtonItemText:@"编辑" isLeft:NO target:self action:@selector(editInfo:)];
+    }
     [self addViews];
     [self reloadUI];
 }

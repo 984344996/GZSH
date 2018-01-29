@@ -17,6 +17,8 @@
 #import "StartPageViewController.h"
 #import "SplashViewController.h"
 #import "LoginViewController.h"
+#import "AppDataFlowHelper.h"
+#import <LEEAlert.h>
 #import <JKCategories.h>
 #import <MagicalRecord/MagicalRecord.h>
 
@@ -74,6 +76,7 @@
 
 /** APP将要终止进程 */
 - (void)applicationWillTerminate:(UIApplication *)application {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [MagicalRecord cleanUp];
     [self saveContext];
 }
@@ -320,6 +323,25 @@
 }
 
 #pragma mark - SDK Active
+
+- (void)presentLogin:(NSNotification *)notifycation{
+    [LEEAlert alert]
+    .config
+    .LeeTitle(@"提示")
+    .LeeAction(@"确定", ^{
+        [AppDataFlowHelper loginOut];
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self replaceRootViewController:nav animated:YES];
+    })
+    .LeeAddContent(^(UILabel *label) {
+        label.text = @"登录信息已过期，请重新登录！";
+        label.textColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
+        label.textAlignment = NSTextAlignmentCenter;
+    })
+    .LeeShow();
+}
+
 - (void)configAppLaunch
 {
     // 在需要的界面自行打开
@@ -328,6 +350,7 @@
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"GZSH"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentLogin:) name:kJKTokenOutofDate object:nil];
     
 #if kJKSupportNetOberve
     [self registerNetObeserver];

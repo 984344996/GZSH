@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="477" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-zu-qNG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VipCenter_Icon_HeadPortrait" translatesAutoresizingMaskIntoConstraints="NO" id="Edo-zu-qNG">
                         <rect key="frame" x="12" y="22" width="36" height="36"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="36" id="53g-P1-0SS"/>
@@ -33,6 +33,9 @@
                             <constraint firstAttribute="height" constant="24" id="wB6-in-7OW"/>
                         </constraints>
                         <state key="normal" title="Button" image="AddressBook_Icon_Phone"/>
+                        <connections>
+                            <action selector="actionPhoneCall:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0O4-Z2-9FA"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U99-0c-dxO">
                         <rect key="frame" x="447" y="49.5" width="24" height="24"/>
@@ -41,6 +44,9 @@
                             <constraint firstAttribute="width" constant="24" id="beB-RB-vOn"/>
                         </constraints>
                         <state key="normal" title="Button" image="AddressBook_Icon_Text"/>
+                        <connections>
+                            <action selector="actionSms:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iVc-FZ-w4j"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘能刘能" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dc-28-7XC">
                         <rect key="frame" x="56" y="21.5" width="57.5" height="17"/>
@@ -85,12 +91,12 @@
                 <outlet property="labelName" destination="3Dc-28-7XC" id="Cfq-ip-ViK"/>
                 <outlet property="labelPhone" destination="Q06-CX-anL" id="TnM-T5-gh0"/>
             </connections>
-            <point key="canvasLocation" x="204.5" y="-11"/>
+            <point key="canvasLocation" x="-243" y="-9"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="AddressBook_Icon_Phone" width="24" height="24"/>
         <image name="AddressBook_Icon_Text" width="24" height="24"/>
-        <image name="testAvatar" width="500" height="500"/>
+        <image name="VipCenter_Icon_HeadPortrait" width="78" height="78"/>
     </resources>
 </document>

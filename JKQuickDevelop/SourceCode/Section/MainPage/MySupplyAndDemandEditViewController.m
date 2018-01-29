@@ -154,6 +154,8 @@
 
 - (void)reloadContentInfo{
     [self.linerContent removeAllSubviews];
+    
+    [self.supplyRich addObject:[self createBlankTextRich]];
     [self.supplyRich enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RichMode *model = obj;
         model.tagForView = viewTagNow++;

@@ -21,10 +21,10 @@
     _dataSource = dataSource;
     //单张图片的大小
     CGFloat jgg_width = JK_SCREEN_WIDTH-2*kGAP-kAvatar_Size-50;
-    CGFloat imageWidth =  (jgg_width-2*kGAP)/3;
+    CGFloat imageWidth =  (jgg_width-2*kJGGViewGap)/3;
     CGFloat imageHeight =  imageWidth;
     for (NSUInteger i=0; i<dataSource.count; i++) {
-        YYAnimatedImageView *iv = [[YYAnimatedImageView alloc]initWithFrame:CGRectMake(0+(imageWidth+kGAP)*(i%3),floorf(i/3.0)*(imageHeight+kGAP),imageWidth, imageHeight)];
+        YYAnimatedImageView *iv = [[YYAnimatedImageView alloc]initWithFrame:CGRectMake(0+(imageWidth+kJGGViewGap)*(i%3),floorf(i/3.0)*(imageHeight+kJGGViewGap),imageWidth, imageHeight)];
             if ([dataSource[i] isKindOfClass:[UIImage class]]) {
             iv.image = dataSource[i];
         }else if ([dataSource[i] isKindOfClass:[NSString class]]){

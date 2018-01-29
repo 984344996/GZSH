@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UILabel *labelPhone;
 @property (weak, nonatomic) IBOutlet UILabel *labelCompany;
+@property (nonatomic, copy) NSString *contact;
+
+@property (nonatomic, copy) void(^Callback)(BOOL isPhone,NSString *phone);
 
 - (void)setupCellData:(Contact *)data;
 - (void)setupCellDataEnterprise:(EnterpriseModelExt *)data;

@@ -31,6 +31,8 @@
 #import "SDTimeLineRefreshFooter.h"
 #import "SDTimeLineRefreshHeader.h"
 #import "CommonResponseModel.h"
+#import "PersonalInfoViewController.h"
+#import <UIImageView+WebCache.h>
 
 @interface SHCircleViewController ()<MomentCellDelegate,ChatKeyBoardDelegate>
 
@@ -94,6 +96,9 @@
         [self loadMomentById:self.momentId];
         return;
     }
+    
+    NSString *avatar = [AppDataFlowHelper getLoginUserInfo].avatar;
+    [self.header.imageAvtar sd_setImageWithURL:GetImageUrl(avatar) placeholderImage:kPlaceHoderHeaderImage];
     [self loadMoment:YES];
 }
 
@@ -240,6 +245,17 @@
         MomentNewsViewController *vc = [[MomentNewsViewController alloc] init];
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }];
+    
+    UITapGestureRecognizer *gen = [[UITapGestureRecognizer alloc] init];
+    [self.header.imageAvtar addGestureRecognizer:gen];
+    [[gen rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        @strongify(self);
+        NSString *userId                   = [AppDataFlowHelper getLoginUserInfo].userId;
+        PersonalInfoViewController *infoVc = [[PersonalInfoViewController alloc] initWithUserId:userId];
+        self.hidesBottomBarWhenPushed      = YES;
+        [self.navigationController pushViewController:infoVc animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }];
 }
@@ -436,7 +452,18 @@
         [self.view endEditing:YES];
         return;
     }
-    
+    PersonalInfoViewController *infoVc = [[PersonalInfoViewController alloc] initWithUserId:user.userId];
+    UIViewController *parentVC = self.parentViewController;
+    NSUInteger count = self.navigationController.childViewControllers.count;
+    if (count > 1) {
+        parentVC.hidesBottomBarWhenPushed = YES;
+        [parentVC.navigationController pushViewController:infoVc animated:YES];
+        parentVC.hidesBottomBarWhenPushed = YES;
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:infoVc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
 }
 
 #pragma mark - Key board

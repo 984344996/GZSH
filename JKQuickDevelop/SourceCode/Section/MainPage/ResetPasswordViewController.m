@@ -15,6 +15,7 @@
 #import <JKCategories.h>
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "AppDataFlowHelper.h"
 
 @interface ResetPasswordViewController ()
 
@@ -106,6 +107,7 @@
     self.hud = [[HUDHelper sharedInstance] loading:@"正在重置" inView:self.view];
     [APIServerSdk doResetPass:self.phone verification:self.code password:self.password succeed:^(id obj) {
         @strongify(self);
+        [AppDataFlowHelper loginOut];
         [[HUDHelper sharedInstance] stopLoading:self.hud];
         [[HUDHelper sharedInstance] tipMessage:@"重置成功,请登录" inView:self.view];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

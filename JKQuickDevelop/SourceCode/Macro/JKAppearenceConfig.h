@@ -41,7 +41,7 @@
 #define kDownReleaseToRefresh   @"松开即可更新..."
 #define kDownDragUpToRefresh    @"上拉即可更新..."
 #define kDownRefreshLoading     @"加载中..."
-#define kPlaceHoderHeaderImage [UIImage imageNamed:@"placeholder"]
+#define kPlaceHoderHeaderImage [UIImage imageNamed:@"VipCenter_Icon_HeadPortrait"]
 #define kPlaceHoderBannerImage [UIImage imageNamed:@"placeholder"]
 
 // 常用的字体

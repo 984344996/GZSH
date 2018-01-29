@@ -17,7 +17,7 @@
 #import "ObjectPingSortHelper.h"
 #import "PersonalInfoViewController.h"
 #import "APIServerSdk.h"
-
+#import "AppUtils.h"
 
 @interface SHAddressViewController ()
 @property (nonatomic, strong) AddressTableViewHeader *header;
@@ -229,6 +229,13 @@
         contact = array[indexPath.row];
     }
     [cell setupCellData:contact];
+    cell.Callback = ^(BOOL isPhone, NSString *phone) {
+        if (isPhone) {
+            [AppUtils makePhoneCallTo:phone];
+        }else{
+            [AppUtils sendSmsTo:phone];
+        }
+    };
     return cell;
 }
 

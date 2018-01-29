@@ -11,6 +11,12 @@
 
 @implementation AppUtils
 
++ (void)makePhoneCallTo:(NSString *)phone{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]]];
+}
 
++ (void)sendSmsTo:(NSString *)phone{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms://%@",phone]]];
+}
 
 @end

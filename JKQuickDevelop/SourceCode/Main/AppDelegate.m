@@ -11,8 +11,6 @@
 #import "SplashViewController.h"
 #import "LoginViewController.h"
 #import "MainTabViewController.h"
-#import "MyCompanyInfoViewController.h"
-#import "MyCompanyInfoEditViewController.h"
 
 @interface AppDelegate ()
 
@@ -38,8 +36,6 @@
 
 -(void)configMainUI{
     MainTabViewController *mainVC = [[MainTabViewController alloc] initWithType:JKTabBarTypeNormal];
-    //MyCompanyInfoViewController *vc = [[MyCompanyInfoViewController alloc] init];
-    //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window setRootViewController:mainVC];
 }
 

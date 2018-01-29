@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.index = 1;
 }
 
 - (void)configView{
@@ -60,7 +61,6 @@
 }
 
 - (void)footerRefresh{
-    self.index += 1;
     [self loadActivityMeeting:nil isRefresh:NO];
 }
 
@@ -69,6 +69,8 @@
 - (void)loadActivityMeeting:(NSString *)type isRefresh:(BOOL)isRefresh{
     if (isRefresh) {
         self.index = 1;
+    }else{
+        self.index++;
     }
     
     @weakify(self);
@@ -81,15 +83,20 @@
         NSMutableArray *appendArray = [MettingModel mj_objectArrayWithKeyValuesArray: model.data];
         [self.activityAndMetting addObjectsFromArray:appendArray];
         
-        if (self.activityAndMetting.count >= model.page.totalCount) {
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        if (self.index == model.page.count) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }else{
             [self.tableView.mj_footer resetNoMoreData];
-            [self.tableView.mj_footer endRefreshing];
         }
-        [self.tableView.mj_header endRefreshing];
     } needCache:NO cacheSucceed:nil failed:^(NSString *error) {
-        
+        @strongify(self);
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        if (!isRefresh) {
+            self.index--;
+        }
     }];
 }
 
