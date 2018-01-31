@@ -8,6 +8,7 @@
 
 #import "MemberCenterTableViewHeaderView.h"
 #import <UIImageView+WebCache.h>
+#import "CharmTitleModel.h"
 
 @implementation MemberCenterTableViewHeaderView
 
@@ -25,11 +26,13 @@
 
 - (void)setUserInfo:(UserInfo *)userInfo{
     [self.avatar sd_setImageWithURL:GetImageUrl(userInfo.avatar) placeholderImage:kPlaceHoderHeaderImage];
-    self.nameLabel.text       = userInfo.userName;
-    self.shPositionLabel.text = userInfo.chamTitle;
-    self.companyLabel.text    = userInfo.enterprise.name;
+    self.nameLabel.text            = userInfo.userName;
+    self.companyLabel.text         = userInfo.enterprise.name;
     self.companyPositionLabel.text = userInfo.enterpriseTitle;
-}
 
+    CharmTitleModel *model         = [[CharmTitleModel alloc] initWithChamTitle:userInfo.chamTitle];
+    self.shPositionLabel.text      = model.title;
+    self.iconVipImage.image        = [UIImage imageNamed:model.image];
+}
 
 @end

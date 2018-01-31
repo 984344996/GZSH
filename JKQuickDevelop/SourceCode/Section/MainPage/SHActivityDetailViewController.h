@@ -8,7 +8,8 @@
 
 #import "JKBaseViewController.h"
 #import <WebKit/WebKit.h>
+#import "MettingModel.h"
 
 @interface SHActivityDetailViewController : JKBaseViewController
-
+@property (nonatomic, strong) NSString *meetingId;
 @end

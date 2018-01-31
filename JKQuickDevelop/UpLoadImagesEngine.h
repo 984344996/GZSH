@@ -12,6 +12,8 @@
 @interface UpLoadImagesEngine : NSObject
 
 + (UpLoadImagesEngine *)sharedInstance;
+
+- (void)createAndAddTask:(NSString *)content imgs:(NSMutableArray *)imgs;
 - (void)addTask:(SHUploadTask *)task;
 - (void)addTasks:(NSMutableArray *)tasks;
 @end

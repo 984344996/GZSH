@@ -71,7 +71,9 @@
 }
 
 - (void)doApplication{
-    self.hud = [[HUDHelper sharedInstance] loading:@"正在申请" inView:self.view];
+    self.hud              = [[HUDHelper sharedInstance] loading:@"正在申请" inView:self.view];
+    NSString *companyDesc = [NSString stringWithFormat:@"[{\"inputContent\":%@}]",self.model.enterpriseDescription];
+    self.model.enterpriseDescription = companyDesc;
     [APIServerSdk doAccomplish:self.model succeed:^(id obj) {
         [[HUDHelper sharedInstance] stopLoading:self.hud];
         [[HUDHelper sharedInstance] tipMessage:@"申请成功" inView:self.view];

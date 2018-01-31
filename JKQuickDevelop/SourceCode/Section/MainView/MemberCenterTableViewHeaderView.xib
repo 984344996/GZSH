@@ -51,7 +51,7 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.70146618150684936" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VipCenter_Icon_Vip_F" translatesAutoresizingMaskIntoConstraints="NO" id="evx-iL-bxY">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="evx-iL-bxY">
                     <rect key="frame" x="341" y="46.5" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="r9R-Su-Ovo"/>
@@ -96,6 +96,5 @@
     </objects>
     <resources>
         <image name="VipCenter_Icon_HeadPortrait" width="78" height="78"/>
-        <image name="VipCenter_Icon_Vip_F" width="24" height="24"/>
     </resources>
 </document>

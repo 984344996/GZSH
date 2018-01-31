@@ -9,6 +9,8 @@
 #import "JKBaseViewController.h"
 #import "UIImage+JKResize.h"
 #import <AFNetworking.h>
+#import "AppDataFlowHelper.h"
+#import <LEEAlert.h>
 
 @interface JKBaseViewController ()<UIGestureRecognizerDelegate>
 /// Nav分隔线
@@ -113,10 +115,43 @@
 
 @implementation JKBaseViewController
 
+
+#pragma mark - Proj define
+
+- (void)showNoAccessPermissionDialog{
+    [LEEAlert alert]
+    .config
+    .LeeTitle(@"提示")
+    .LeeAction(@"确定", nil)
+    .LeeAddContent(^(UILabel *label) {
+        label.text = @"会员权限不足或者已过期，请联系商会！";
+        label.textColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
+        label.textAlignment = NSTextAlignmentCenter;
+    })
+    .LeeShow();
+}
+
+- (void)checkForPermisson:(void(^)())hasPermissionHanlder noPermissionHanlder:(void(^)())noPermissionHanlder{
+    UserInfo *userInfo = [AppDataFlowHelper getLoginUserInfo];
+    if (userInfo.chamModel.level > 7 || [userInfo.vipState isEqualToString:@"INVALID"]) {
+        self.hasAccessPermisson = NO;
+        if (noPermissionHanlder) {
+            noPermissionHanlder();
+        }
+    }else{
+        self.hasAccessPermisson = YES;
+        if (hasPermissionHanlder) {
+            hasPermissionHanlder();
+        }
+    }
+}
+
+
 #pragma mark - LifeCircle
 -(void)viewDidLoad{
     self.view.backgroundColor = [UIColor whiteColor];
     [super viewDidLoad];
+    [self checkForPermisson:nil noPermissionHanlder:nil];
     [self configView];
     [self configLayout];
     [self configEvent];

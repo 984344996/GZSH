@@ -14,6 +14,7 @@
 
 @interface LikeTableViewCell()
 @property (nonatomic, strong) YYLabel *contentLabel;
+@property (nonatomic, strong) UIView *bottomLine;
 @property (nonatomic, strong) NSMutableArray *likeUserArray;
 @property (nonatomic, strong) NSMutableArray *nameArray;
 @end
@@ -31,11 +32,20 @@
 - (void)initView{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.contentLabel];
+    [self.contentView addSubview:self.bottomLine];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.with.offset(8);
         make.right.with.offset(-8);
         make.top.equalTo(self.contentView).with.offset(3.0);
     }];
+    
+    [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView);
+        make.height.mas_equalTo(1);
+    }];
+    
     self.backgroundColor = [UIColor clearColor];
     self.hyb_lastViewInCell = self.contentLabel;
     self.hyb_bottomOffsetToCell = 0;
@@ -51,6 +61,14 @@
         _contentLabel.preferredMaxLayoutWidth = kMomentCommentWidth;
     }
     return _contentLabel;
+}
+
+- (UIView *)bottomLine{
+    if (!_bottomLine) {
+        _bottomLine = [[UIView alloc] init];
+        _bottomLine.backgroundColor = RGB(238, 236, 236);
+    }
+    return _bottomLine;
 }
 
 #pragma mark - Public methods

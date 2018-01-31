@@ -71,11 +71,12 @@
 
 - (void)configView{
     [super configView];
-    if (!self.momentId) {
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    if (!self.momentId && self.hasAccessPermisson) {
         [self addUIBarButtonItemImage:@"Circle_Icon_Camera" size:CGSizeMake(24, 24) isLeft:NO target:self action:@selector(publishMoment:)];
     }
     
-    if (self.isMainPage) {
+    if (self.isMainPage && self.hasAccessPermisson) {
         self.tableView.tableHeaderView = self.header;
     }
     
@@ -108,8 +109,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self loadUnreadComment];
     
+    if (!self.hasAccessPermisson) {
+        [self showNoAccessPermissionDialog];
+    }
+    
+    [self loadUnreadComment];
     if (!_refreshHeader.superview) {
         _refreshHeader = [SDTimeLineRefreshHeader refreshHeaderWithCenter:CGPointMake(40, 45)];
         _refreshHeader.scrollView = self.tableView;
@@ -291,7 +296,22 @@
 
 #pragma mark - TableView Delegate and Datasource
 
+- (BOOL)showEmptyView{
+    return !self.hasAccessPermisson;
+}
+
+- (UIImage *)emptyImage{
+    return [UIImage imageNamed:@"sorry"];
+}
+
+- (NSString *)emptyTitle{
+    return @"抱歉，您不是商会会员不能查看此内容";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (!self.hasAccessPermisson) {
+        return 0;
+    }
     return self.momentModes.count;
 }
 

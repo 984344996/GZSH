@@ -71,6 +71,9 @@
     [APIServerSdk doGetUserInfo:userId needCache:YES cacheSucceed:^(id obj) {
         STRONGSELF
         strongSelf.userInfo = [UserInfo mj_objectWithKeyValues:obj];
+
+        UserInfo *saveInfo  = [UserInfo mj_objectWithKeyValues:obj];
+        [AppDataFlowHelper saveLoginUserInfo:saveInfo];
     } succeed:^(id obj) {
         STRONGSELF
         strongSelf.userInfo = [UserInfo mj_objectWithKeyValues:obj];
@@ -90,6 +93,10 @@
 }
 
 - (void)intoMyCompanyInfo{
+    if (!self.hasAccessPermisson) {
+        [self showNoAccessPermissionDialog];
+        return;
+    }
     MyCompanyInfoViewController *vc = [[MyCompanyInfoViewController alloc] initWithEnterpriseModel:nil isSelf:YES];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -97,6 +104,10 @@
 }
 
 - (void)intoMyApplyInfo{
+    if (!self.hasAccessPermisson) {
+        [self showNoAccessPermissionDialog];
+        return;
+    }
     MySupplyAndDemandViewController *vc = [[MySupplyAndDemandViewController alloc] initWithUserId:nil isSelf:YES];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -130,16 +141,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MemberCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MemberCenterTableViewCell" forIndexPath:indexPath];
-    NSArray *mode = self.cellModes[indexPath.row];
-    cell.imageIcon.image = [UIImage imageNamed:mode[0]];
-    cell.labelTitle.text = mode[1];
+    NSArray *mode                   = self.cellModes[indexPath.row];
+    cell.imageIcon.image            = [UIImage imageNamed:mode[0]];
+    cell.labelTitle.text            = mode[1];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSArray *mode = self.cellModes[indexPath.row];
-    SEL sel = NSSelectorFromString(mode[2]);
+    NSArray *mode         = self.cellModes[indexPath.row];
+    SEL sel               = NSSelectorFromString(mode[2]);
     void (*func)(id, SEL) = (void *)[self methodForSelector:sel];
     func(self, sel);
 }

@@ -403,6 +403,17 @@ static inline NSString* integerToString(NSInteger number){
     }];
 }
 
++ (void)doGetActivityMeetingDetail:(NSString *)meetingId
+                           succeed:(SHRequestSucceed)succeed
+                            failed:(SHRequestFailed)failed{
+    NSDictionary *params = @{@"meetingId":meetingId};
+    [JKNetworkHelper GET:getServerAddr(RMeetingDetail) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:YES succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
 + (void)doFeedback:(NSString *)feedBackStr
            succeed:(SHRequestSucceed)succeed
             failed:(SHRequestFailed)failed{

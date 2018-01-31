@@ -112,6 +112,8 @@
 		35496069201DC289002A5C4C /* SDBaseRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35496068201DC289002A5C4C /* SDBaseRefreshView.m */; };
 		3549606C201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549606B201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m */; };
 		3549606F201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549606E201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m */; };
+		354960722020A174002A5C4C /* CharmTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354960712020A174002A5C4C /* CharmTitleModel.m */; };
+		354960752020BB92002A5C4C /* MeetingDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 354960742020BB92002A5C4C /* MeetingDetail.m */; };
 		354B0AED2003A12200D614B7 /* MomentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AEC2003A12200D614B7 /* MomentHeaderView.m */; };
 		354B0AF32004729E00D614B7 /* RichMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AF22004729E00D614B7 /* RichMode.m */; };
 		35588CA42000895C00ED128A /* AddressTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 35588CA32000895C00ED128A /* AddressTableViewHeader.m */; };
@@ -748,6 +750,10 @@
 		3549606B201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTimeLineRefreshFooter.m; sourceTree = "<group>"; };
 		3549606D201DC2C8002A5C4C /* SDTimeLineRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTimeLineRefreshHeader.h; sourceTree = "<group>"; };
 		3549606E201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTimeLineRefreshHeader.m; sourceTree = "<group>"; };
+		354960702020A174002A5C4C /* CharmTitleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CharmTitleModel.h; path = SourceCode/Section/MainMode/CharmTitleModel.h; sourceTree = "<group>"; };
+		354960712020A174002A5C4C /* CharmTitleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CharmTitleModel.m; path = SourceCode/Section/MainMode/CharmTitleModel.m; sourceTree = "<group>"; };
+		354960732020BB92002A5C4C /* MeetingDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MeetingDetail.h; path = SourceCode/Section/MainMode/MeetingDetail.h; sourceTree = "<group>"; };
+		354960742020BB92002A5C4C /* MeetingDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MeetingDetail.m; path = SourceCode/Section/MainMode/MeetingDetail.m; sourceTree = "<group>"; };
 		354B0AEB2003A12200D614B7 /* MomentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentHeaderView.h; path = SourceCode/Section/MainView/MomentHeaderView.h; sourceTree = "<group>"; };
 		354B0AEC2003A12200D614B7 /* MomentHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MomentHeaderView.m; path = SourceCode/Section/MainView/MomentHeaderView.m; sourceTree = "<group>"; };
 		354B0AF12004729E00D614B7 /* RichMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RichMode.h; path = SourceCode/Section/MainMode/RichMode.h; sourceTree = "<group>"; };
@@ -1717,6 +1723,10 @@
 				3538C20B2018CB00003DC0AE /* RichModelUpload.m */,
 				3538C2102019BCA6003DC0AE /* DemandInfoUpload.h */,
 				3538C2112019BCA6003DC0AE /* DemandInfoUpload.m */,
+				354960702020A174002A5C4C /* CharmTitleModel.h */,
+				354960712020A174002A5C4C /* CharmTitleModel.m */,
+				354960732020BB92002A5C4C /* MeetingDetail.h */,
+				354960742020BB92002A5C4C /* MeetingDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -4034,6 +4044,7 @@
 				35374ED11E3059A1006DC277 /* JKBaseViewController.m in Sources */,
 				35C172981FFBB3E700607658 /* NewsNoticeViewController.m in Sources */,
 				35FCE3A71E6FC0E9001ACC20 /* NSObject+CommonBlock.m in Sources */,
+				354960752020BB92002A5C4C /* MeetingDetail.m in Sources */,
 				35F5172E1E2377A5006E14C1 /* JKQuickDevelop.xcdatamodeld in Sources */,
 				35323EA91E6D3D8500FF7BF0 /* MZIMRecorderHelper.m in Sources */,
 				35588CB82000C0B200ED128A /* CornerTriangleView.m in Sources */,
@@ -4138,6 +4149,7 @@
 				358104FA1FFE74C100FC463A /* MainPageSectionView.m in Sources */,
 				35135634200780470091606C /* MineCompanyTextTableViewCell.m in Sources */,
 				35C172921FFBB33D00607658 /* CompanyInfoViewController.m in Sources */,
+				354960722020A174002A5C4C /* CharmTitleModel.m in Sources */,
 				355894FD20020E1A00ED128A /* JGGView.m in Sources */,
 				35135660200A0C1B0091606C /* PersonalInfoViewController.m in Sources */,
 				354832BC200E39370004E574 /* AccomplishModel.m in Sources */,
@@ -4379,6 +4391,7 @@
 			baseConfigurationReference = FC79AD031A56A99AB7E8FE26 /* Pods-JKQuickDevelop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = JKQuickDevelop/JKQuickDevelop.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -4414,6 +4427,7 @@
 			baseConfigurationReference = B5B53404CE48A259A5B20E54 /* Pods-JKQuickDevelop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = JKQuickDevelop/JKQuickDevelop.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

@@ -45,7 +45,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已报人数：1999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhK-wu-AFK">
-                        <rect key="frame" x="367" y="298" width="120" height="17"/>
+                        <rect key="frame" x="367" y="294" width="120" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="e1T-Hg-MaH"/>
                         </constraints>
@@ -60,7 +60,7 @@
                     <constraint firstAttribute="bottom" secondItem="dUq-yG-8gx" secondAttribute="bottom" constant="10" id="HMc-xW-4Zn"/>
                     <constraint firstItem="0K7-2P-hwp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Qac-YV-wiq"/>
                     <constraint firstItem="0K7-2P-hwp" firstAttribute="top" secondItem="l6S-S7-ayW" secondAttribute="bottom" constant="4" id="SeY-1B-n12"/>
-                    <constraint firstItem="dhK-wu-AFK" firstAttribute="top" secondItem="0K7-2P-hwp" secondAttribute="bottom" constant="4" id="SiC-8z-GZG"/>
+                    <constraint firstItem="dhK-wu-AFK" firstAttribute="top" secondItem="0K7-2P-hwp" secondAttribute="bottom" id="SiC-8z-GZG"/>
                     <constraint firstItem="dUq-yG-8gx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="TN1-AO-Mch"/>
                     <constraint firstAttribute="trailing" secondItem="l6S-S7-ayW" secondAttribute="trailing" constant="12" id="a5d-yd-FOl"/>
                     <constraint firstItem="l6S-S7-ayW" firstAttribute="top" secondItem="P79-2r-Kbh" secondAttribute="bottom" constant="4" id="bRX-Up-VtU"/>

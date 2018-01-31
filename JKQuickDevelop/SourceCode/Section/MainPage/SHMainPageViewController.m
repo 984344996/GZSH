@@ -56,6 +56,10 @@
     @weakify(self);
     [[gen rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
         @strongify(self);
+        if (!self.hasAccessPermisson) {
+            [self showNoAccessPermissionDialog];
+            return;
+        }
         MySupplyAndDemandViewController *vc = [[MySupplyAndDemandViewController alloc] initWithUserId:nil isSelf:NO];
         self.hidesBottomBarWhenPushed       = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -206,6 +210,10 @@
 
 
 - (void)doEnterDetail:(NSIndexPath *)index{
+    if (!self.hasAccessPermisson) {
+        [self showNoAccessPermissionDialog];
+        return;
+    }
     MySupplyDetailViewController *vc = [[MySupplyDetailViewController alloc] initWithDemand:self.demands[index.row] isSelf:NO];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -242,6 +250,10 @@
 }
 
 - (void)didTurnToEnterpriseCenter{
+    if (!self.hasAccessPermisson) {
+        [self showNoAccessPermissionDialog];
+        return;
+    }
     SHEnterpriseViewController *vc = [[SHEnterpriseViewController alloc] init];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

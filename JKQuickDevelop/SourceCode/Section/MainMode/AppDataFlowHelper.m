@@ -16,6 +16,7 @@ static NSString *kToken = @"kToken";
 static NSString *kLoginUserInfo = @"kLoginUserInfo";
 
 @implementation AppDataFlowHelper
+static UserInfo *currentUserObj;
 
 + (void)loginOut{
     [JKNetworkCache removeAllHttpCache];
@@ -42,17 +43,26 @@ static NSString *kLoginUserInfo = @"kLoginUserInfo";
 #pragma mark - User Info
 
 + (void)saveLoginUserInfo:(UserInfo *)userInfo{
-    NSDictionary *dic = [userInfo mj_keyValues];
+    CharmTitleModel *model = [[CharmTitleModel alloc] initWithChamTitle:userInfo.chamTitle];
+    userInfo.chamModel     = model;
+    NSDictionary *dic      = [userInfo mj_keyValues];
+    currentUserObj         = userInfo;
     [KeyValueUtility setValue:dic forKey:kLoginUserInfo];
 }
 
 + (void)clearLoginUserInfo{
+    currentUserObj = nil;
     [KeyValueUtility setValue:nil forKey:kLoginUserInfo];
 }
 
 + (UserInfo *)getLoginUserInfo{
-    NSDictionary *dic = [KeyValueUtility getValueForKey:kLoginUserInfo];
+    if (currentUserObj) {
+        //currentUserObj.chamModel.level = 8;
+        return currentUserObj;
+    }
+    NSDictionary *dic  = [KeyValueUtility getValueForKey:kLoginUserInfo];
     UserInfo *userInfo = [UserInfo mj_objectWithKeyValues:dic];
+    //userInfo.chamModel.level = 8;
     return userInfo;
 }
 

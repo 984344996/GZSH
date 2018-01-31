@@ -115,6 +115,9 @@ typedef void(^SHRequestSucceed)(id obj);
                       succeed:(SHRequestSucceed)succeed
                        failed:(SHRequestFailed)failed;
 
++ (void)doGetActivityMeetingDetail:(NSString *)meetingId
+                           succeed:(SHRequestSucceed)succeed
+                            failed:(SHRequestFailed)failed;
 #pragma mark - 商会圈
 
 + (void)doGetMoment:(NSString *)userId

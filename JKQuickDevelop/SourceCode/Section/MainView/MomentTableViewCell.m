@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIButton *likeBtn;
 @property (nonatomic, copy) NSIndexPath *indexPath;
 @property (nonatomic, strong) JGGView *jggView;
+@property (nonatomic, strong) UIView *bottomLine;
 @end
 
 @implementation MomentTableViewCell
@@ -145,6 +146,13 @@
     return _tableView;
 }
 
+- (UIView *)bottomLine{
+    if (!_bottomLine) {
+        _bottomLine = [[UIView alloc] init];
+        _bottomLine.backgroundColor = kMainBottomLayerColor;
+    }
+    return _bottomLine;
+}
 #pragma mark - Events
 
 - (void)userAction:(UITapGestureRecognizer *)sender{
@@ -241,8 +249,16 @@
             make.right.mas_equalTo(-kGAP);
         }];
         
-        self.hyb_lastViewInCell = self.tableView;
-        self.hyb_bottomOffsetToCell = kGAP;
+        [self.contentView addSubview:self.bottomLine];
+        [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tableView.mas_bottom).with.offset(12);
+            make.left.equalTo(self.contentView);
+            make.right.equalTo(self.contentView);
+            make.height.mas_equalTo(8);
+        }];
+        
+        self.hyb_lastViewInCell = self.bottomLine;
+        self.hyb_bottomOffsetToCell = 0;
     }
     return self;
 }

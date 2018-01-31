@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EnterpriseModel.h"
+#import "CharmTitleModel.h"
 
 @interface UserInfo : NSObject
 @property (nonatomic, strong) NSString *userName;
@@ -17,5 +18,6 @@
 @property (nonatomic, strong) NSString *chamTitle; // 商会头衔
 @property (nonatomic, strong) EnterpriseModel *enterprise;
 @property (nonatomic, strong) NSString *enterpriseTitle;
-@property (nonatomic, strong) NSString *vipState;
+@property (nonatomic, strong) NSString *vipState; // VALID、INVALID
+@property (nonatomic, strong) CharmTitleModel *chamModel;
 @end

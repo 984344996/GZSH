@@ -49,11 +49,18 @@ typedef NS_ENUM(NSInteger,LoadingViewType){
  */
 
 @interface JKBaseViewController : UIViewController
-
+@property (nonatomic, assign)BOOL hasAccessPermisson;
 @property (nonatomic, assign)BOOL observeNetStatus;
 @property (nonatomic, strong)NSMutableArray* loadingImageArray;
 @property (nonatomic, strong)NSString *loadingPrompText;
 @property (nonatomic, strong)JKPageLoadingView * loadingView;
+
+#pragma mark - Proj define
+
+- (void)checkForPermisson:(void(^)())hasPermissionHanlder noPermissionHanlder:(void(^)())noPermissionHanlder;
+- (void)showNoAccessPermissionDialog;
+
+#pragma mark - Public define
 
 - (CGFloat)topMargin;
 

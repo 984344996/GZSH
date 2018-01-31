@@ -39,6 +39,13 @@
 }
 
 
+- (void)createAndAddTask:(NSString *)content imgs:(NSMutableArray *)imgs{
+    SHUploadTask *task = [[SHUploadTask alloc] init];
+    task.content       = content;
+    task.imgs          = imgs.mutableCopy;
+    [self addTask:task];
+}
+
 - (void)addTask:(SHUploadTask *)task{
     [self.currentTasks setObject:task forKey:task.taskId];
     [self setTaskHandler:task];
@@ -60,16 +67,21 @@
     WEAKSELF
     task.upLoadSuccessHandler = ^(NSString *taskId) {
         STRONGSELF
-        SHUploadTask *task = strongSelf.currentTasks[taskId];
-        [self.currentTasks removeObjectForKey:taskId];
+        strongSelf.isRunning = NO;
+        SHUploadTask *task   = strongSelf.currentTasks[taskId];
         [strongSelf sendMoment:task];
+        [strongSelf.currentTasks removeObjectForKey:taskId];
+        [strongSelf startRunning];
     };
     
     task.upLoadFailedHandler = ^(NSString *taskId){
         STRONGSELF
+        strongSelf.isRunning = NO;
         [strongSelf.currentTasks removeObjectForKey:taskId];
-        UIView *view = [[AppDelegate sharedAppDelegate] topViewController].view;
+        UIView *view         = [[AppDelegate sharedAppDelegate] topViewController].view;
         [[HUDHelper sharedInstance] tipMessage:@"动态发送失败" inView:view];
+        [strongSelf.currentTasks removeObjectForKey:taskId];
+        [strongSelf startRunning];
     };
 }
 
@@ -79,6 +91,7 @@
     }
     
     self.isRunning = YES;
+    self.runningTask = nil;
     [self.currentTasks enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, SHUploadTask*  _Nonnull obj, BOOL * _Nonnull stop) {
         if (!obj.isSucceed){
             self.runningTask = obj;
@@ -92,7 +105,6 @@
 #pragma mark - Api逻辑
 
 // 发送朋友圈回调
-
 - (void)sendMoment:(SHUploadTask *)task{
     
     NSString *type = @"TEXT";

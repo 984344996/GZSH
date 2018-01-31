@@ -90,11 +90,11 @@
 
 - (YJBannerView *)topBanner{
     if (!_topBanner) {
-        _topBanner = [YJBannerView bannerViewWithFrame:CGRectZero
+        _topBanner              = [YJBannerView bannerViewWithFrame:CGRectZero
                                             dataSource:self
                                               delegate:self
                                   placeholderImageName:@"placeholder"     selectorString:@"sd_setImageWithURL:placeholderImage:"];
-        _topBanner.autoDuration = 2.5f;
+        _topBanner.autoDuration = 4;
         _topBanner.autoScroll = YES;
     }
     return _topBanner;
@@ -124,15 +124,20 @@
 
 - (YJBannerView *)newsBanner{
     if (!_newsBanner) {
-        _newsBanner.backgroundColor = [UIColor redColor];
-        _newsBanner = [YJBannerView bannerViewWithFrame:CGRectZero
+        _newsBanner.backgroundColor                 = [UIColor redColor];
+        _newsBanner                                 = [YJBannerView bannerViewWithFrame:CGRectZero
                                              dataSource:self
                                                delegate:self
                                    placeholderImageName:@""
                                          selectorString:nil];
-        _newsBanner.bannerViewScrollDirection = BannerViewDirectionLeft;
-        _newsBanner.bannerGestureEnable = YES;
-        _newsBanner.autoScroll = YES;
+        _newsBanner.pageControlStyle                = PageControlCustom;
+        _newsBanner.pageControlDotSize              = CGSizeMake(12, 2);
+        _newsBanner.customPageControlHighlightImage = [UIImage imageNamed:@"selected_dot"];
+        _newsBanner.customPageControlNormalImage    = [UIImage imageNamed:@"normal_dot"];
+        _newsBanner.bannerViewScrollDirection       = BannerViewDirectionLeft;
+        _newsBanner.bannerGestureEnable             = YES;
+        _newsBanner.autoScroll                      = YES;
+        _newsBanner.autoDuration  =  5;
     }
     return _newsBanner;
 }

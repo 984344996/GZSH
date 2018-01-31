@@ -41,6 +41,13 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (!self.hasAccessPermisson) {
+        [self showNoAccessPermissionDialog];
+    }
+}
+
 - (void)configView{
     [super configView];
     self.tableView.tableHeaderView = self.header;
@@ -199,7 +206,27 @@
     }
 }
 
+- (BOOL)showEmptyView{
+    return !self.hasAccessPermisson;
+}
+
+- (UIImage *)emptyImage{
+    return [UIImage imageNamed:@"sorry"];
+}
+
+- (NSString *)emptyTitle{
+    return @"抱歉，您不是商会会员不能查看此内容";
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
+    return -60;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (!self.hasAccessPermisson) {
+        return 0;
+    }
+    
     if (self.filter) {
         return 1;
     }
@@ -207,6 +234,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (!self.hasAccessPermisson) {
+        return 0;
+    }
+    
     if (self.filter) {
         return self.filterModes.count;
     }

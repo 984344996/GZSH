@@ -68,6 +68,7 @@
     }else{
         if (self.upLoadSuccessHandler) {
             self.upLoadSuccessHandler(self.taskId);
+            self.isSucceed = YES;
         }
     }
 }

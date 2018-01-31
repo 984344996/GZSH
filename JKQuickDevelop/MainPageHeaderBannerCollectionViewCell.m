@@ -8,6 +8,7 @@
 
 #import "MainPageHeaderBannerCollectionViewCell.h"
 #import <JKCategories.h>
+#import "NSDate+Common.h"
 
 @interface MainPageHeaderBannerCollectionViewCell()
 
@@ -72,7 +73,7 @@
 
 - (void)setCellData:(NewsModel *)model{
     self.iconLeft.image = [UIImage imageNamed:@"Home_Icon_Activity"];
-    self.labelDate.text = @"[11月17日]";
+    self.labelDate.text = [NSString stringWithFormat:@"[%@]",[NSDate parseTimeToCMD:model.time]];
     self.labelDesc.text = model.title;
 }
 

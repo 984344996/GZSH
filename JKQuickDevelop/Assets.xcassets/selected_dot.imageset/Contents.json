@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "VipCenter_Icon_Vip_S.png",
+      "filename" : "selected_dot.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "VipCenter_Icon_Vip_S@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "VipCenter_Icon_Vip_S@3x.png",
       "scale" : "3x"
     }
   ],

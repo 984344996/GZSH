@@ -12,11 +12,11 @@
 @property (nonatomic, strong) NSString *meetingId;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *address;
-@property (nonatomic, strong) NSNumber *time;
-@property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSString *state; // AVAILABLE OVERDUE
 @property (nonatomic, assign) NSInteger number;
 @property (nonatomic, strong) NSString *img;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *content;
-@property (nonatomic, assign) BOOL *allowApply;
+@property (nonatomic, assign) BOOL allowApply;
 @end

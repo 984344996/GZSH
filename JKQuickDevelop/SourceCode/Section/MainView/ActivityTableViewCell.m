@@ -33,21 +33,24 @@
 - (void)setCellData:(MettingModel *)model{
     self.activityName.text = model.title;
     self.activityAddress.text = model.address;
-    self.activityTime.text = [NSDate parseServerDateTimeToFormat:model.title format:kTurnState5];
+    self.activityTime.text = [NSDate parseServerDateTimeToFormat:model.time format:kTurnState5];
     self.activityMemberCount.text = [NSString stringWithFormat:@"已报名人数：%ld",model.number];
     [self.activityImage sd_setImageWithURL:GetImageUrl(model.img) placeholderImage:kPlaceHoderBannerImage];
     
-    if ([model.state isEqualToString:@"未开始"]){
+    if (!model.allowApply){
         [self setUILayer:NO];
+        return;
     }
     
-    if ([model.state isEqualToString:@"已结束"]){
+    if ([model.state isEqualToString:@"OVERDUE"]){
         [self setUILayer:YES];
+        return;
     }
     
-    if (model.allowApply) {
+    if(model.allowApply && [model.state isEqualToString:@"AVAILABLE"]){
         [self setUILayer:NO];
-        self.triangleView.title = @"进行中";
+        [self.triangleView setTitle:@"进行中"];
+        return;
     }
 }
 

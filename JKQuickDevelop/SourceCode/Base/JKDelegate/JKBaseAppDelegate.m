@@ -18,8 +18,10 @@
 #import "SplashViewController.h"
 #import "LoginViewController.h"
 #import "AppDataFlowHelper.h"
+#import "APIServerSdk.h"
 #import <LEEAlert.h>
 #import <JKCategories.h>
+#import <MJExtension.h>
 #import <MagicalRecord/MagicalRecord.h>
 
 @implementation JKBaseAppDelegate
@@ -324,6 +326,18 @@
 
 #pragma mark - SDK Active
 
+- (void)refreshUserInfo{
+    NSString *userId = [AppDataFlowHelper getLoginUserInfo].userId;
+    if (!userId) {
+        return;
+    }
+    [APIServerSdk doGetUserInfo:userId needCache:NO cacheSucceed:nil succeed:^(id obj) {
+        UserInfo *userInfo = [UserInfo mj_objectWithKeyValues:obj];
+        [AppDataFlowHelper saveLoginUserInfo:userInfo];
+    } failed:^(NSString *error) {
+    }];
+}
+
 - (void)presentLogin:(NSNotification *)notifycation{
     [LEEAlert alert]
     .config
@@ -351,6 +365,7 @@
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"GZSH"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentLogin:) name:kJKTokenOutofDate object:nil];
+    [self refreshUserInfo];
     
 #if kJKSupportNetOberve
     [self registerNetObeserver];
@@ -415,6 +430,7 @@
 }
 
 #pragma mark - Controller Push Pop Present Dissmiss
+
 - (UINavigationController *)navigationViewController
 {
     if ([self.window.rootViewController isKindOfClass:[UINavigationController class]])

@@ -19,6 +19,7 @@
 @interface SHActivityViewController ()
 @property (nonatomic, assign) NSUInteger index;
 @property (nonatomic, strong) NSMutableArray *activityAndMetting;
+@property (nonatomic, assign) BOOL isFirstLoad;
 @end
 
 @implementation SHActivityViewController
@@ -28,6 +29,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.index = 1;
+    self.isFirstLoad = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (!self.hasAccessPermisson) {
+        [self showNoAccessPermissionDialog];
+    }
 }
 
 - (void)configView{
@@ -41,9 +50,11 @@
     [self.tableView.mj_header beginRefreshing];
 }
 
-- (void)intoActivityDetail{
+- (void)intoActivityDetail:(NSIndexPath *)inexPath{
     SHActivityDetailViewController *vc = [[SHActivityDetailViewController alloc] init];
-    self.hidesBottomBarWhenPushed = YES;
+    MettingModel *model                = self.activityAndMetting[inexPath.row];
+    vc.meetingId                       = model.meetingId;
+    self.hidesBottomBarWhenPushed      = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
@@ -76,10 +87,25 @@
     @weakify(self);
     [APIServerSdk doGetActivityMeeting:self.index type:type succeed:^(id obj) {
         @strongify(self);
+        self.isFirstLoad = NO;
         if (isRefresh) {
             [self.activityAndMetting removeAllObjects];
         }
-        CommonResponseModel *model = obj;
+        CommonResponseModel *model  = obj;
+        NSMutableArray *appendArray = [MettingModel mj_objectArrayWithKeyValuesArray: model.data];
+        [self.activityAndMetting addObjectsFromArray:appendArray];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        if (self.index == model.page.count) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.tableView.mj_footer resetNoMoreData];
+        }
+        [self.tableView reloadData];
+    } needCache:self.isFirstLoad cacheSucceed:^(id obj){
+        @strongify(self);
+        [self.activityAndMetting removeAllObjects];
+        CommonResponseModel *model  = obj;
         NSMutableArray *appendArray = [MettingModel mj_objectArrayWithKeyValuesArray: model.data];
         [self.activityAndMetting addObjectsFromArray:appendArray];
         
@@ -90,7 +116,8 @@
         }else{
             [self.tableView.mj_footer resetNoMoreData];
         }
-    } needCache:NO cacheSucceed:nil failed:^(NSString *error) {
+        [self.tableView reloadData];
+    } failed:^(NSString *error) {
         @strongify(self);
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
@@ -101,8 +128,23 @@
 }
 
 #pragma mark - Private methods
+- (BOOL)showEmptyView{
+    return !self.hasAccessPermisson;
+}
+
+- (UIImage *)emptyImage{
+    return [UIImage imageNamed:@"sorry"];
+}
+
+- (NSString *)emptyTitle{
+    return @"抱歉，您不是商会会员不能查看此内容";
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (!self.hasAccessPermisson) {
+        return 0;
+    }
+    
     return self.activityAndMetting.count;
 }
 
@@ -120,7 +162,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self intoActivityDetail];
+    [self intoActivityDetail:indexPath];
 }
 
 @end

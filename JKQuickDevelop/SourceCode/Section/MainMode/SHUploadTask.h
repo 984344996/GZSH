@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kMaxRetry 5
+#define kMaxRetry 2
 
 @interface SHUploadTask : NSObject
 
@@ -17,7 +17,7 @@
 @property (nonatomic, assign) BOOL isSucceed; // 任务是否完成
 
 #pragma mark - 商会圈
-@property (nonatomic, assign) NSString* content; // 朋友圈文字
+@property (nonatomic, copy) NSString* content; // 朋友圈文字
 @property (nonatomic, assign) NSInteger lastSucceedIndex;
 @property (nonatomic, strong) NSMutableArray *imgs; // 图片数组
 @property (nonatomic, strong) NSMutableArray *imgUrls; // 图片远程路径

@@ -125,10 +125,7 @@
 
 - (void)publish:(UIBarButtonItem *)sender{
     if ([self checkForPublish]) {
-        SHUploadTask *task = [[SHUploadTask alloc] init];
-        task.content = self.content;
-        task.imgs = self.images;
-        [[UpLoadImagesEngine sharedInstance] addTask:task];
+        [[UpLoadImagesEngine sharedInstance] createAndAddTask:self.content imgs:self.images];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
