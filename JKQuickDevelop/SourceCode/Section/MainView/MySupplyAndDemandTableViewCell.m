@@ -14,6 +14,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.imageIcon.contentMode        = UIViewContentModeScaleAspectFill;
     self.imageIcon.layer.cornerRadius = 4;
     self.imageIcon.layer.masksToBounds = YES;
 }

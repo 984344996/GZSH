@@ -10,6 +10,7 @@
 
 @interface AppUtils : NSObject
 
++ (int)fetchDynamicMsgCount;
 + (void)makePhoneCallTo:(NSString *)phone;
 + (void)sendSmsTo:(NSString *)phone;
 

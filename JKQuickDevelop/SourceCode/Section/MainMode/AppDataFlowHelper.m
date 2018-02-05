@@ -11,6 +11,8 @@
 #import "KeyValueUtility.h"
 #import "JKNetworkHelper.h"
 #import "JKNetworkCache.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import "DynamicMsg+CoreDataProperties.h"
 
 static NSString *kToken = @"kToken";
 static NSString *kLoginUserInfo = @"kLoginUserInfo";
@@ -22,6 +24,9 @@ static UserInfo *currentUserObj;
     [JKNetworkCache removeAllHttpCache];
     [self clearLoginToken];
     [self clearLoginUserInfo];
+    
+    [DynamicMsg MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
 }
 
 #pragma mark - Token

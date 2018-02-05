@@ -11,6 +11,7 @@
 #import "DynamicMsg+CoreDataProperties.h"
 #import <MagicalRecord/MagicalRecord.h>
 #import "SHCircleViewController.h"
+#import "AppUtils.h"
 
 @interface MomentNewsViewController ()
 @property (nonatomic, strong) NSMutableArray *newsModels;
@@ -57,7 +58,9 @@
 - (void)clearAll:(UIBarButtonItem *)sender{
     [self.newsModels removeAllObjects];
     [DynamicMsg MR_truncateAll];
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        [AppUtils fetchDynamicMsgCount];
+    }];
     [self.tableView reloadData];
 }
 

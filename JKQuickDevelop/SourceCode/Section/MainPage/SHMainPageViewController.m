@@ -23,6 +23,7 @@
 #import "MySupplyDetailViewController.h"
 #import "MySupplyAndDemandViewController.h"
 #import "SHEnterpriseViewController.h"
+#import "AppUtils.h"
 
 @interface SHMainPageViewController ()<MainPageTableHeaderViewDelegate>
 
@@ -67,6 +68,11 @@
     }];
 }
 
+- (void)configData{
+    [super configData];
+    [AppUtils fetchDynamicMsgCount];
+}
+
 - (void)headerRefresh{
     [self loadBanner];
     [self loadNewsNotice];
@@ -82,9 +88,6 @@
     [super viewWillDisappear:animated];
     [self.header stopTimer];
 }
-
-#pragma mark - Private methods
-
 
 #pragma mark - Lazy loading
 

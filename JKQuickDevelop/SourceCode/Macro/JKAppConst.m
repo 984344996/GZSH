@@ -8,6 +8,8 @@
 
 #import "JKAppConst.h"
 
+NSString * const  kJKReddotNotification = @"kJKReddotNotification";
 NSString * const  kJKNetStatusChangeNotification = @"kJKNetStatusChangeNotification";
 NSString * const  kJKTokenOutofDate = @"kJKTokenOutofDate";
 NSString * const  kJKMomentSendSucceed = @"kJKMomentSendSucceed";
+

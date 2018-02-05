@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /// 网络状态变化通知
+extern  NSString * const  kJKReddotNotification;
 extern  NSString * const  kJKNetStatusChangeNotification;
 extern  NSString * const  kJKTokenOutofDate;
 extern  NSString * const  kJKMomentSendSucceed;

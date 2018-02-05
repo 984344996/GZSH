@@ -33,6 +33,7 @@
 #import "CommonResponseModel.h"
 #import "PersonalInfoViewController.h"
 #import <UIImageView+WebCache.h>
+#import "AppUtils.h"
 
 @interface SHCircleViewController ()<MomentCellDelegate,ChatKeyBoardDelegate>
 
@@ -115,6 +116,8 @@
     }
     
     [self loadUnreadComment];
+    [AppUtils fetchDynamicMsgCount];
+    
     if (!_refreshHeader.superview) {
         _refreshHeader = [SDTimeLineRefreshHeader refreshHeaderWithCenter:CGPointMake(40, 45)];
         _refreshHeader.scrollView = self.tableView;
@@ -340,12 +343,6 @@
 
 #pragma mark - Private methods
 
-- (void)reloadEditIndex{
-    Moment *moment = self.momentModes[self.editIndexPath.row];
-    moment.shouldUpdateCache = YES;
-    [self.tableView reloadRowsAtIndexPaths:@[self.editIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-}
-
 - (MomentUser *)convertSelfToMomentUser{
     MomentUser *user = [[MomentUser alloc] init];
     UserInfo *info = [AppDataFlowHelper getLoginUserInfo];
@@ -363,7 +360,10 @@
 
 // 重新加载高度
 - (void)reloadCellHeightForModel:(Moment *)model atIndexPath:(NSIndexPath *)indexPath{
-    
+    model.shouldUpdateCache = YES;
+    [UIView performWithoutAnimation:^{
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }];
 }
 
 // 点击评论时
@@ -424,7 +424,7 @@
         Moment *moment = strongSelf.momentModes[self.editIndexPath.row];
         moment.dynamicInfo.hasPraised = YES;
         [moment.praiseList addObject:[strongSelf convertSelfToMomentUser]];
-        [strongSelf reloadEditIndex];
+        [strongSelf reloadCellHeightForModel:moment atIndexPath:self.editIndexPath];
     } failed:^(NSString *error) {
         /// 重复点赞 网络不通
     }];
@@ -436,11 +436,9 @@
         [self.view endEditing:YES];
         return;
     }
-    
     Moment *moment = self.momentModes[indexPath.row];
     moment.isExpand = !moment.isExpand;
-    moment.shouldUpdateCache = YES;
-    [self.tableView reloadData];
+    [self reloadCellHeightForModel:moment atIndexPath:indexPath];
 }
 
 // 九宫格图片点击
@@ -537,7 +535,7 @@
     newComment.commentId = [NSString jk_UUIDTimestamp];
     [momment.commentList addObject:newComment];
     self.lastResponseComment = nil;
-    [self reloadEditIndex];
+    [self reloadCellHeightForModel:momment atIndexPath:self.editIndexPath];
 }
 
 #pragma mark keyboardWillShow

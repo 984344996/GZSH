@@ -33,6 +33,7 @@
     
     SHMemberViewController *memberVC = [[SHMemberViewController alloc] init];
     [self addChildViewController:memberVC title:@"个人中心" imageNormal:@"Home_Icon_Vip_Dark" imageSelect:@"Home_Icon_Vip_Bright" hasNav:YES];
+    
 }
 
 @end

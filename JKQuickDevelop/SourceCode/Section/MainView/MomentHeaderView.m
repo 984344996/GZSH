@@ -81,7 +81,7 @@
 - (UIImageView *)imagePosterView{
     if (!_imagePosterView) {
         _imagePosterView = [[UIImageView alloc] init];
-        _imagePosterView.image = [UIImage imageNamed:@"testBG"];
+        _imagePosterView.image = [UIImage imageNamed:@"Circle_Img_Top"];
         _imagePosterView.contentMode = UIViewContentModeScaleAspectFill;
         _imagePosterView.layer.masksToBounds = YES;
     }

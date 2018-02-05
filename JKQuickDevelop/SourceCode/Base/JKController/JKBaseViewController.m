@@ -88,8 +88,8 @@
  */
 -(UILabel *)promptLabel{
     if (!_promptLabel) {
-            _promptLabel               = [[UILabel alloc]init];
-            _promptLabel.textAlignment = NSTextAlignmentCenter;
+        _promptLabel               = [[UILabel alloc]init];
+        _promptLabel.textAlignment = NSTextAlignmentCenter;
         _promptLabel.textColor         = kMainTextColor;
         _promptLabel.font              = kCommonMiddleTextFont;
     }
@@ -99,7 +99,7 @@
 
 /**
  懒加载
-
+ 
  @return 产生的动画ImageView
  */
 - (UIImageView *)loadingImage{
@@ -167,16 +167,8 @@
     if (![self showTabBarTopLine]) {
         [self hideTabBarTopLine];
     }
-    
     [self addIconBackNavigationItem];
-    
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = [self interactivePopEnable];
-        self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    }
-    
 }
-
 
 - (void)dealloc{
     [self removeObserver];
@@ -203,6 +195,37 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+#pragma mark - 手势返回
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self enableSideBack:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self enableSideBack:NO];
+}
+
+- (void)enableSideBack:(BOOL)enable{
+    if (enable && self.navigationController.childViewControllers.count > 1) {
+        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+            self.navigationController.interactivePopGestureRecognizer.enabled = [self interactivePopEnable];
+            self.navigationController.interactivePopGestureRecognizer.delegate = self;
+        }
+    }else{
+        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+        }
+    }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
+    return self.interactivePopEnable;
+}
+
 #pragma mark - 初始化设置
 
 - (void)configView{}
@@ -223,10 +246,10 @@
 }
 
 - (CGFloat)topMargin{
-        CGFloat margin = [[UIApplication sharedApplication] statusBarFrame].size.height;
-        if (self.navigationController && !self.navigationController.navigationBarHidden) {
-            margin += self.navigationController.navigationBar.bounds.size.height;
-        }
+    CGFloat margin = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    if (self.navigationController && !self.navigationController.navigationBarHidden) {
+        margin += self.navigationController.navigationBar.bounds.size.height;
+    }
     return margin;
 }
 
@@ -251,7 +274,7 @@
 }
 
 - (void)statusToNotReachable{
-
+    
 }
 
 - (void)statusToReachableWWAN{
@@ -259,7 +282,7 @@
 }
 
 - (void)statusToReachableWiFi{
-
+    
 }
 
 #pragma mark - Navigation Bar 添加按钮
@@ -270,9 +293,9 @@
     CGSize finalSize = image.size;
     if (!CGSizeEqualToSize(size, CGSizeZero)) {
         finalSize = size;
+    }else{
+        image = [image jk_resizedImage:finalSize interpolationQuality:kCGInterpolationHigh];
     }
-    
-    image = [image jk_resizedImage:finalSize interpolationQuality:kCGInterpolationHigh];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:target action:action];
     isLeft ? (self.navigationItem.leftBarButtonItem = item) : (self.navigationItem.rightBarButtonItem = item);
 }
@@ -313,7 +336,7 @@
 
 /**
  懒加载
-
+ 
  @return 加载动画数组
  */
 - (NSMutableArray *)loadingImageArray{
@@ -329,7 +352,7 @@
 
 /**
  懒加载
-
+ 
  @return 加载提示文字
  */
 - (NSString *)loadingPrompText{

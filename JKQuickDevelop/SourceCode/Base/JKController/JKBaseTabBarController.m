@@ -28,11 +28,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configChildVC];
+    [self registerRedDotNotification];
     
     if (tabBarType == JKTabBarTypeCenterRise) {
         JKCenterRiseTabBar *tabBar = [[JKCenterRiseTabBar alloc] init];
         tabBar.jk_delegate = self;
         [self setValue:tabBar forKey:@"tabBar"];
+    }
+}
+
+
+#pragma mark - Red dot notification
+
+- (void)registerRedDotNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(redDotMessageReceived:) name:kJKReddotNotification object:nil];
+}
+
+- (void)redDotMessageReceived:(NSNotification *)sender{
+    NSDictionary *info = sender.userInfo;
+    NSNumber *index    = info[@"index"];
+    NSNumber *number   = info[@"number"];
+    
+    if (number.unsignedIntegerValue > 0) {
+        [self showRedDotAtIndex:index.intValue];
+    }else{
+        [self hideRedDotAtIndex:index.intValue];
     }
 }
 
@@ -43,7 +63,7 @@
 
 -(void)showRedDotAtIndex:(int)index{
     UITabBarItem *item = self.viewControllers[index].tabBarItem;
-    item.badgeCenterOffset = CGPointMake(0, 0);
+    item.badgeCenterOffset = CGPointMake(-5, 5);
     [item showBadgeWithStyle:WBadgeStyleRedDot value:0 animationType:WBadgeAnimTypeNone];
     [item showBadge];
 }
@@ -52,7 +72,6 @@
     UITabBarItem *item = self.viewControllers[index].tabBarItem;
     [item clearBadge];
 }
-
 
 - (void)centerRiseButtonClick:(JKCenterRiseTabBar *)tabBar{
     
