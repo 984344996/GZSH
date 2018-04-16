@@ -125,6 +125,12 @@ target 'JKQuickDevelop' do
     
     #数据库
     pod "MagicalRecord"
+    
+    #微信支付
+    pod 'WechatOpenSDK'
+    
+    #支付宝支付
+    
 
   target 'JKQuickDevelopTests' do
     inherit! :search_paths

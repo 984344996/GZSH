@@ -17,6 +17,7 @@
 #import "APIServerSdk.h"
 #import "AppDataFlowHelper.h"
 #import <MJExtension.h>
+#import <ReactiveObjC.h>
 
 @interface SHMemberViewController ()
 
@@ -43,6 +44,17 @@
 - (void)configData{
     [super configData];
     [self loadSelfUserInfo];
+}
+
+- (void)configEvent{
+    [super configEvent];
+    [self.header.vipView setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *gen = [[UITapGestureRecognizer alloc] init];
+    [self.header.vipView addGestureRecognizer:gen];
+    [[gen rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+       
+    }];
 }
 
 - (MemberCenterTableViewHeaderView *)header{

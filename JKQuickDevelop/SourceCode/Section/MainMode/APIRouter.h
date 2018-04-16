@@ -50,10 +50,10 @@ extern NSString *const RCircleComment;
 extern NSString *const RCircleDetail;
 extern NSString *const RCircleNotice;
 
-
-
-
-
-
-
-
+/// pay
+extern NSString *const RVip;
+extern NSString *const RFirstPay;
+extern NSString *const RDeleteUnpay;
+extern NSString *const RUnpay;
+extern NSString *const RPay;
+extern NSString *const RRenew;

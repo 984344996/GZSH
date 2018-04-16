@@ -23,6 +23,9 @@
 #import <JKCategories.h>
 #import <MJExtension.h>
 #import <MagicalRecord/MagicalRecord.h>
+#import <WXApi.h>
+#import <AlipaySDK/AlipaySDK.h>
+#import "ThirdPayHelper.h"
 
 @implementation JKBaseAppDelegate
 
@@ -81,6 +84,70 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [MagicalRecord cleanUp];
     [self saveContext];
+}
+
+/** 通过其他APP进入 */
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    if ([WXApi handleOpenURL:url delegate:[ThirdPayHelper sharedInstance]]) {
+        return YES;
+    }
+    if ([url.host isEqualToString:@"safepay"]) {
+        // 支付跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            DLog(@"Pay Result from handleOpenURL");
+            [[ThirdPayHelper sharedInstance] processAliPayResult:resultDic];
+        }];
+        
+        // 授权跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            // 解析 auth code
+            NSString *result = resultDic[@"result"];
+            NSString *authCode = nil;
+            if (result.length>0) {
+                NSArray *resultArr = [result componentsSeparatedByString:@"&"];
+                for (NSString *subResult in resultArr) {
+                    if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
+                        authCode = [subResult substringFromIndex:10];
+                        break;
+                    }
+                }
+            }
+            NSLog(@"授权结果 authCode = %@", authCode?:@"");
+        }];
+    }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    if ([WXApi handleOpenURL:url delegate:[ThirdPayHelper sharedInstance]]) {
+        return YES;
+    }
+    if ([url.host isEqualToString:@"safepay"]) {
+        // 支付跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            DLog(@"Pay Result from openURL");
+            [[ThirdPayHelper sharedInstance] processAliPayResult:resultDic];
+        }];
+        
+        // 授权跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            NSString *result = resultDic[@"result"];
+            NSString *authCode = nil;
+            if (result.length>0) {
+                NSArray *resultArr = [result componentsSeparatedByString:@"&"];
+                for (NSString *subResult in resultArr) {
+                    if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
+                        authCode = [subResult substringFromIndex:10];
+                        break;
+                    }
+                }
+            }
+            NSLog(@"授权结果 authCode = %@", authCode?:@"");
+        }];
+    }
+    return YES;
 }
 
 
@@ -247,11 +314,11 @@
     
     // 用背景图片做NavigationBar
     /*
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage jk_imageWithColor:kNavBarThemeColor]
-                                      forBarPosition:UIBarPositionAny
-                                          barMetrics:UIBarMetricsDefault];
-    
-    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+     [[UINavigationBar appearance] setBackgroundImage:[UIImage jk_imageWithColor:kNavBarThemeColor]
+     forBarPosition:UIBarPositionAny
+     barMetrics:UIBarMetricsDefault];
+     
+     [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
      */
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
@@ -338,6 +405,17 @@
     }];
 }
 
+- (void)refreshVipData{
+    [APIServerSdk doGetVip:^(id obj) {
+        CommonResponseModel *model = (CommonResponseModel *)obj;
+        NSMutableArray *array = [VipInfo mj_objectArrayWithKeyValuesArray:(model.data)];
+        if (array.count > 0) {
+            [AppDataFlowHelper saveVipList:model.data];
+        }
+    } failed:^(NSString *error) {
+    }];
+}
+
 - (void)presentLogin:(NSNotification *)notifycation{
     [LEEAlert alert]
     .config
@@ -366,6 +444,7 @@
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"GZSH"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentLogin:) name:kJKTokenOutofDate object:nil];
     [self refreshUserInfo];
+    [self refreshVipData];
     
 #if kJKSupportNetOberve
     [self registerNetObeserver];
@@ -373,7 +452,7 @@
 #if kJKSupportRater
     [self registerRaterNotifier];
 #endif
-
+    
 #if kJKSupportPush
     [self registerPushService];
 #endif
@@ -381,6 +460,15 @@
 #if kJKSupportUpgrade
     [self registerVersionCheck];
 #endif
+    
+#if kSupportWxPay
+    [WXApi registerApp:WXAppId];
+#endif
+    
+#if kSupportAliPay
+    
+#endif
+    
 }
 
 

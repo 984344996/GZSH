@@ -133,7 +133,7 @@
 
 - (void)checkForPermisson:(void(^)())hasPermissionHanlder noPermissionHanlder:(void(^)())noPermissionHanlder{
     UserInfo *userInfo = [AppDataFlowHelper getLoginUserInfo];
-    if (userInfo.chamModel.level > 7 || [userInfo.vipState isEqualToString:@"INVALID"]) {
+    if ([userInfo.vipState isEqualToString:@"INVALID"]) {
         self.hasAccessPermisson = NO;
         if (noPermissionHanlder) {
             noPermissionHanlder();

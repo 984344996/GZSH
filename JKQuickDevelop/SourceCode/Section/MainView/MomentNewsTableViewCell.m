@@ -98,7 +98,8 @@
     
     CGFloat hAppendLeft = 0;
     if (![newsModel.opType isEqualToString:@"LIKE"]) {
-        hAppendLeft = [newsModel.content textSizeIn:CGSizeMake(JK_SCREEN_WIDTH - 121.0, CGFLOAT_MAX) font:kMainTextFieldTextFontSmall].height;
+        DLog(@"content == %@",newsModel.opContent);
+        hAppendLeft = [newsModel.opContent textSizeIn:CGSizeMake(JK_SCREEN_WIDTH - 121.0, CGFLOAT_MAX) font:kMainTextFieldTextFontSmall].height;
     }else{
         hAppendLeft = 57;
     }

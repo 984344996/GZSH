@@ -20,6 +20,8 @@
 + (void)saveLoginUserInfo:(UserInfo *)userInfo;
 + (void)clearLoginUserInfo;
 + (UserInfo *)getLoginUserInfo;
-
++ (void)saveVipList:(id)vips;
++ (NSArray *)getVipList;
++ (VipInfo *)getVipInfoOfCharmTitle:(NSString *)title;
 
 @end

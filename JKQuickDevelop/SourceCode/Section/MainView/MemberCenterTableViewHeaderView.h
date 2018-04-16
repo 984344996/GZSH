@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyPositionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconVipImage;
 @property (weak, nonatomic) IBOutlet UILabel *vipInfoLabel;
+@property (weak, nonatomic) IBOutlet UIView *vipView;
 
 - (void)setUserInfo:(UserInfo *)userInfo;
 

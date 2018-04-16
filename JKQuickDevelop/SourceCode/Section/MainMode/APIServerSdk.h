@@ -190,4 +190,29 @@ typedef void(^SHRequestSucceed)(id obj);
                       page:(NSInteger)page
                    succeed:(SHRequestSucceed)succeed
                     failed:(SHRequestFailed)failed;
+
+/// 新增支付
+
++ (void)doGetVip:(SHRequestSucceed)succeed
+          failed:(SHRequestFailed)failed;
+
++ (void)doFirstBuy:(NSString *)channel
+             vipId:(NSString *)vipId
+           succeed:(SHRequestSucceed)succeed
+            failed:(SHRequestFailed)failed;
+
++ (void)doDeleteUnPay:(SHRequestSucceed)succeed
+               failed:(SHRequestFailed)failed;
+
++ (void)doFindUnpaid:(SHRequestSucceed)succeed
+              failed:(SHRequestFailed)failed;
+
++ (void)doBuy:(NSString *)channel
+     succeed :(SHRequestSucceed)succeed
+       failed:(SHRequestFailed)failed;
+
++ (void)doRenew:(NSString *)channcel
+          vipId:(NSString *)vipId
+       succeed :(SHRequestSucceed)succeed
+         failed:(SHRequestFailed)failed;
 @end

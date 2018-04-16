@@ -15,13 +15,16 @@
 #define APPUpgradeAddr [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/SMZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",APPID]
 
 #define APIServerProduct @"https://app.product.com"
-#define APIServerDevelop @"http://gzsh.projects.jyapi.cn/app"
+#define APIServerDevelop @"http://gzsh.jyapi.cn/app"
 
 #define BaseFileUrlProduct @"https://app.product.com"
-#define BaseFileUrlDevelop @"http://gzsh.projects.jyapi.cn"
+#define BaseFileUrlDevelop @"http://gzsh.jyapi.cn"
 
 #define APIServerCerPath @""   // SSL验证证书
 #define APPHttpCacheTime 10080 // http缓存时间 默认为一周
+
+#define WXAppId @"wxa5af774c1e0ca22a"
+#define AlAppId @"appid"
 
 #if DEBUG
 #define APIServer APIServerDevelop
@@ -57,4 +60,6 @@ static __inline__ NSString* GetImageString(NSString *relativeUrl)
 #define kJKUsingSplahPage 0
 #define kJKUsingLoginPage 1
 
+#define kSupportWxPay 1
+#define kSupportAliPay 1
 #endif /* JKSwitchMarco_h */

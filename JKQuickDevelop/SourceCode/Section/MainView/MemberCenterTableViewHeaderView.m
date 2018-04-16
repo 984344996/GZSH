@@ -8,7 +8,7 @@
 
 #import "MemberCenterTableViewHeaderView.h"
 #import <UIImageView+WebCache.h>
-#import "CharmTitleModel.h"
+#import "AppDataFlowHelper.h"
 
 @implementation MemberCenterTableViewHeaderView
 
@@ -30,9 +30,14 @@
     self.companyLabel.text         = userInfo.enterprise.name;
     self.companyPositionLabel.text = userInfo.enterpriseTitle;
 
-    CharmTitleModel *model         = [[CharmTitleModel alloc] initWithChamTitle:userInfo.chamTitle];
-    self.shPositionLabel.text      = model.title;
-    self.iconVipImage.image        = [UIImage imageNamed:model.image];
+    VipInfo *info = [AppDataFlowHelper getVipInfoOfCharmTitle:userInfo.chamTitle];
+    self.shPositionLabel.text      = info.name;
+    self.vipInfoLabel.text         = info.name;
+    if ([userInfo.vipState isEqualToString:@"VALID"]) {
+        [self.iconVipImage sd_setImageWithURL:GetImageUrl(info.icon) placeholderImage:kPlaceHoderHeaderImage];
+    }else{
+         [self.iconVipImage sd_setImageWithURL:GetImageUrl(info.iconGray) placeholderImage:kPlaceHoderHeaderImage];
+    }
 }
 
 @end

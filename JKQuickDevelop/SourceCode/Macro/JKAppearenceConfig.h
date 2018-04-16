@@ -34,7 +34,7 @@
 #define kBtnYellowColor RGB(252, 180, 40)
 #define kMainTextFieldBorderColor RGB(151,151,151)
 #define kMainBottomLayerColor RGB(245,245,245)
-#define kMainFrontLayerColor RGB(245,245,245)
+#define kMainFrontLayerColor RGB(255,255,255)
 #define kGrayLineColor [RGB(177, 177, 177) colorWithAlphaComponent:0.2]
 // 刷新显示
 #define kDownRefreshLoadOver    @"没有更多了"

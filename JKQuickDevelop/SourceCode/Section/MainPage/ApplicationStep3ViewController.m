@@ -15,6 +15,7 @@
 #import <MBProgressHUD.h>
 #import "APIServerSdk.h"
 #import <LEEAlert.h>
+#import "ApplicationStep4ViewController.h"
 
 @interface ApplicationStep3ViewController ()
 @property (nonatomic, strong) ApplicationStep3View *applicationStep3View;
@@ -74,13 +75,13 @@
     self.hud              = [[HUDHelper sharedInstance] loading:@"正在申请" inView:self.view];
     NSString *companyDesc = [NSString stringWithFormat:@"[{\"inputContent\":%@}]",self.model.enterpriseDescription];
     self.model.enterpriseDescription = companyDesc;
+    self.model.selfbuying = YES;
+    WEAKSELF
     [APIServerSdk doAccomplish:self.model succeed:^(id obj) {
-        [[HUDHelper sharedInstance] stopLoading:self.hud];
-        [[HUDHelper sharedInstance] tipMessage:@"申请成功" inView:self.view];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        });
+        STRONGSELF
+        [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
+        ApplicationStep4ViewController *vc =  [[ApplicationStep4ViewController alloc] init];
+        [strongSelf.navigationController pushViewController:vc animated:YES];
     } failed:^(NSString *error) {
         [[HUDHelper sharedInstance] stopLoading:self.hud];
         [[HUDHelper sharedInstance] tipMessage:error inView:self.view];

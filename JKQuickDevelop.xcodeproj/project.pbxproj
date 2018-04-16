@@ -112,7 +112,6 @@
 		35496069201DC289002A5C4C /* SDBaseRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35496068201DC289002A5C4C /* SDBaseRefreshView.m */; };
 		3549606C201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549606B201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m */; };
 		3549606F201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3549606E201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m */; };
-		354960722020A174002A5C4C /* CharmTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 354960712020A174002A5C4C /* CharmTitleModel.m */; };
 		354960752020BB92002A5C4C /* MeetingDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 354960742020BB92002A5C4C /* MeetingDetail.m */; };
 		354B0AED2003A12200D614B7 /* MomentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AEC2003A12200D614B7 /* MomentHeaderView.m */; };
 		354B0AF32004729E00D614B7 /* RichMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 354B0AF22004729E00D614B7 /* RichMode.m */; };
@@ -467,6 +466,23 @@
 		35C172AA1FFBB4B300607658 /* MomentNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172A91FFBB4B300607658 /* MomentNewsViewController.m */; };
 		35C172AD1FFBB4D400607658 /* MomentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172AC1FFBB4D400607658 /* MomentDetailViewController.m */; };
 		35C172B31FFBB50E00607658 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C172B21FFBB50E00607658 /* FeedbackViewController.m */; };
+		35C2F0B3206F2DA000157D4B /* VipInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0B2206F2DA000157D4B /* VipInfo.m */; };
+		35C2F0B9206F2DE900157D4B /* UnPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0B8206F2DE900157D4B /* UnPayModel.m */; };
+		35C2F0BC206F2E1C00157D4B /* PayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0BB206F2E1C00157D4B /* PayModel.m */; };
+		35C2F0BF206F438400157D4B /* ApplicationStep4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0BE206F438400157D4B /* ApplicationStep4ViewController.m */; };
+		35C2F0C2206F43D100157D4B /* ApplicationStep4View.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0C1206F43D100157D4B /* ApplicationStep4View.m */; };
+		35C2F0C4206F4A9900157D4B /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C2F0C3206F4A9900157D4B /* AlipaySDK.framework */; };
+		35C2F0C6206F4AD500157D4B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C2F0C5206F4AD500157D4B /* QuartzCore.framework */; };
+		35C2F0C8206F4ADE00157D4B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C2F0C7206F4ADE00157D4B /* CoreText.framework */; };
+		35C2F0CA206F4B0700157D4B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C2F0C9206F4B0700157D4B /* CFNetwork.framework */; };
+		35C2F0CC206F4B1100157D4B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C2F0CB206F4B1000157D4B /* CoreMotion.framework */; };
+		35C2F0CE206F4B3A00157D4B /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35C2F0CD206F4B3900157D4B /* AlipaySDK.bundle */; };
+		35C2F0D2206F569500157D4B /* ThirdPayHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0D1206F569500157D4B /* ThirdPayHelper.m */; };
+		35C2F0D8206F711F00157D4B /* MyVipRenewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0D7206F711F00157D4B /* MyVipRenewViewController.m */; };
+		35C2F0DC206F718600157D4B /* MyVipStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0DA206F718600157D4B /* MyVipStatusViewController.m */; };
+		35C2F0DD206F718600157D4B /* MyVipStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C2F0DB206F718600157D4B /* MyVipStatusViewController.xib */; };
+		35C2F0E0206FB3A400157D4B /* MyVipRenewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0DF206FB3A400157D4B /* MyVipRenewView.m */; };
+		35C2F0E3206FC0DB00157D4B /* JKSelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2F0E2206FC0DB00157D4B /* JKSelectedListView.m */; };
 		35EA976F1E35FB6700BD07CF /* JKQuickDevelopUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA976E1E35FB6700BD07CF /* JKQuickDevelopUITests.m */; };
 		35EA97771E360C2200BD07CF /* JKNetworkTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA97761E360C2200BD07CF /* JKNetworkTest.m */; };
 		35EA97891E372C1F00BD07CF /* JKBaseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA97881E372C1F00BD07CF /* JKBaseAppDelegate.m */; };
@@ -750,8 +766,6 @@
 		3549606B201DC2BA002A5C4C /* SDTimeLineRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTimeLineRefreshFooter.m; sourceTree = "<group>"; };
 		3549606D201DC2C8002A5C4C /* SDTimeLineRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTimeLineRefreshHeader.h; sourceTree = "<group>"; };
 		3549606E201DC2C8002A5C4C /* SDTimeLineRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTimeLineRefreshHeader.m; sourceTree = "<group>"; };
-		354960702020A174002A5C4C /* CharmTitleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CharmTitleModel.h; path = SourceCode/Section/MainMode/CharmTitleModel.h; sourceTree = "<group>"; };
-		354960712020A174002A5C4C /* CharmTitleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CharmTitleModel.m; path = SourceCode/Section/MainMode/CharmTitleModel.m; sourceTree = "<group>"; };
 		354960732020BB92002A5C4C /* MeetingDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MeetingDetail.h; path = SourceCode/Section/MainMode/MeetingDetail.h; sourceTree = "<group>"; };
 		354960742020BB92002A5C4C /* MeetingDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MeetingDetail.m; path = SourceCode/Section/MainMode/MeetingDetail.m; sourceTree = "<group>"; };
 		354B0AEB2003A12200D614B7 /* MomentHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MomentHeaderView.h; path = SourceCode/Section/MainView/MomentHeaderView.h; sourceTree = "<group>"; };
@@ -1202,6 +1216,33 @@
 		35C172AE1FFBB4F600607658 /* ContactSHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ContactSHViewController.h; path = SourceCode/Section/MainPage/ContactSHViewController.h; sourceTree = "<group>"; };
 		35C172B11FFBB50E00607658 /* FeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = SourceCode/Section/MainPage/FeedbackViewController.h; sourceTree = "<group>"; };
 		35C172B21FFBB50E00607658 /* FeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = SourceCode/Section/MainPage/FeedbackViewController.m; sourceTree = "<group>"; };
+		35C2F0B1206F2DA000157D4B /* VipInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VipInfo.h; path = SourceCode/APPModel/VipInfo.h; sourceTree = "<group>"; };
+		35C2F0B2206F2DA000157D4B /* VipInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VipInfo.m; path = SourceCode/APPModel/VipInfo.m; sourceTree = "<group>"; };
+		35C2F0B7206F2DE900157D4B /* UnPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UnPayModel.h; path = SourceCode/APPModel/UnPayModel.h; sourceTree = "<group>"; };
+		35C2F0B8206F2DE900157D4B /* UnPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UnPayModel.m; path = SourceCode/APPModel/UnPayModel.m; sourceTree = "<group>"; };
+		35C2F0BA206F2E1C00157D4B /* PayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PayModel.h; path = SourceCode/APPModel/PayModel.h; sourceTree = "<group>"; };
+		35C2F0BB206F2E1C00157D4B /* PayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PayModel.m; path = SourceCode/APPModel/PayModel.m; sourceTree = "<group>"; };
+		35C2F0BD206F438400157D4B /* ApplicationStep4ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApplicationStep4ViewController.h; path = SourceCode/Main/Controller/ApplicationStep4ViewController.h; sourceTree = "<group>"; };
+		35C2F0BE206F438400157D4B /* ApplicationStep4ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep4ViewController.m; path = SourceCode/Main/Controller/ApplicationStep4ViewController.m; sourceTree = "<group>"; };
+		35C2F0C0206F43D100157D4B /* ApplicationStep4View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ApplicationStep4View.h; path = SourceCode/Section/MainView/ApplicationStep4View.h; sourceTree = "<group>"; };
+		35C2F0C1206F43D100157D4B /* ApplicationStep4View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ApplicationStep4View.m; path = SourceCode/Section/MainView/ApplicationStep4View.m; sourceTree = "<group>"; };
+		35C2F0C3206F4A9900157D4B /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = JKQuickDevelop/Framework/AlipaySDK.framework; sourceTree = "<group>"; };
+		35C2F0C5206F4AD500157D4B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		35C2F0C7206F4ADE00157D4B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		35C2F0C9206F4B0700157D4B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		35C2F0CB206F4B1000157D4B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		35C2F0CD206F4B3900157D4B /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AlipaySDK.bundle; path = Framework/AlipaySDK.bundle; sourceTree = "<group>"; };
+		35C2F0D0206F569500157D4B /* ThirdPayHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThirdPayHelper.h; path = SourceCode/Tool/Appstore/ThirdPayHelper.h; sourceTree = "<group>"; };
+		35C2F0D1206F569500157D4B /* ThirdPayHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ThirdPayHelper.m; path = SourceCode/Tool/Appstore/ThirdPayHelper.m; sourceTree = "<group>"; };
+		35C2F0D6206F711F00157D4B /* MyVipRenewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyVipRenewViewController.h; path = SourceCode/Section/MainPage/MyVipRenewViewController.h; sourceTree = "<group>"; };
+		35C2F0D7206F711F00157D4B /* MyVipRenewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyVipRenewViewController.m; path = SourceCode/Section/MainPage/MyVipRenewViewController.m; sourceTree = "<group>"; };
+		35C2F0D9206F718600157D4B /* MyVipStatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyVipStatusViewController.h; path = SourceCode/Section/MainPage/MyVipStatusViewController.h; sourceTree = "<group>"; };
+		35C2F0DA206F718600157D4B /* MyVipStatusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyVipStatusViewController.m; path = SourceCode/Section/MainPage/MyVipStatusViewController.m; sourceTree = "<group>"; };
+		35C2F0DB206F718600157D4B /* MyVipStatusViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MyVipStatusViewController.xib; path = SourceCode/Section/MainPage/MyVipStatusViewController.xib; sourceTree = "<group>"; };
+		35C2F0DE206FB3A400157D4B /* MyVipRenewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyVipRenewView.h; path = SourceCode/Section/MainView/MyVipRenewView.h; sourceTree = "<group>"; };
+		35C2F0DF206FB3A400157D4B /* MyVipRenewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyVipRenewView.m; path = SourceCode/Section/MainView/MyVipRenewView.m; sourceTree = "<group>"; };
+		35C2F0E1206FC0DB00157D4B /* JKSelectedListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JKSelectedListView.h; path = SourceCode/Section/MainView/JKSelectedListView.h; sourceTree = "<group>"; };
+		35C2F0E2206FC0DB00157D4B /* JKSelectedListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JKSelectedListView.m; path = SourceCode/Section/MainView/JKSelectedListView.m; sourceTree = "<group>"; };
 		35EA976C1E35FB6700BD07CF /* JKQuickDevelopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JKQuickDevelopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		35EA976E1E35FB6700BD07CF /* JKQuickDevelopUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKQuickDevelopUITests.m; sourceTree = "<group>"; };
 		35EA97701E35FB6700BD07CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1254,19 +1295,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35C2F0CC206F4B1100157D4B /* CoreMotion.framework in Frameworks */,
+				35C2F0CA206F4B0700157D4B /* CFNetwork.framework in Frameworks */,
+				353D21261E2CB56800AA2610 /* Foundation.framework in Frameworks */,
+				353D212A1E2CB57D00AA2610 /* UIKit.framework in Frameworks */,
+				353D21241E2CB54B00AA2610 /* CoreGraphics.framework in Frameworks */,
+				35C2F0C8206F4ADE00157D4B /* CoreText.framework in Frameworks */,
+				35C2F0C6206F4AD500157D4B /* QuartzCore.framework in Frameworks */,
+				35323EAF1E6D3F3A00FF7BF0 /* CoreTelephony.framework in Frameworks */,
+				35323EB11E6D3F4800FF7BF0 /* SystemConfiguration.framework in Frameworks */,
+				35323EB51E6D3F6000FF7BF0 /* libz.tbd in Frameworks */,
+				35323EB31E6D3F5800FF7BF0 /* libc++.tbd in Frameworks */,
+				35C2F0C4206F4A9900157D4B /* AlipaySDK.framework in Frameworks */,
 				35323EC11E6D3FFB00FF7BF0 /* QALHttpSDK.framework in Frameworks */,
 				35323EB71E6D3F6A00FF7BF0 /* libsqlite3.tbd in Frameworks */,
-				35323EB51E6D3F6000FF7BF0 /* libz.tbd in Frameworks */,
 				35323EC21E6D3FFB00FF7BF0 /* QALSDK.framework in Frameworks */,
-				35323EB31E6D3F5800FF7BF0 /* libc++.tbd in Frameworks */,
 				35323EBF1E6D3FFB00FF7BF0 /* ImSDK.framework in Frameworks */,
-				35323EB11E6D3F4800FF7BF0 /* SystemConfiguration.framework in Frameworks */,
-				35323EAF1E6D3F3A00FF7BF0 /* CoreTelephony.framework in Frameworks */,
 				35F0691D1E52E0D4009DBEE4 /* libicucore.tbd in Frameworks */,
-				353D212A1E2CB57D00AA2610 /* UIKit.framework in Frameworks */,
 				353D21281E2CB57300AA2610 /* MessageUI.framework in Frameworks */,
-				353D21261E2CB56800AA2610 /* Foundation.framework in Frameworks */,
-				353D21241E2CB54B00AA2610 /* CoreGraphics.framework in Frameworks */,
 				353D21211E2CB40100AA2610 /* libBlocksKit.a in Frameworks */,
 				35323EC31E6D3FFB00FF7BF0 /* TLSSDK.framework in Frameworks */,
 				35323EBE1E6D3FFB00FF7BF0 /* IMCore.framework in Frameworks */,
@@ -1342,6 +1388,8 @@
 				352B88681E8DF9950034F005 /* PushNotificationHelper.m */,
 				352B886A1E8E1E310034F005 /* PushActionHelper.h */,
 				352B886B1E8E1E310034F005 /* PushActionHelper.m */,
+				35C2F0E1206FC0DB00157D4B /* JKSelectedListView.h */,
+				35C2F0E2206FC0DB00157D4B /* JKSelectedListView.m */,
 			);
 			name = PushNotificationHelper;
 			sourceTree = "<group>";
@@ -1467,6 +1515,7 @@
 		353750621E31BA01006DC277 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				35C2F0CD206F4B3900157D4B /* AlipaySDK.bundle */,
 				3547EA7E200F911300A37B1F /* comm_areas.json */,
 				35F5172C1E2377A5006E14C1 /* JKQuickDevelop.xcdatamodeld */,
 				353750701E31BDEB006DC277 /* InfoPlist.strings */,
@@ -1542,6 +1591,7 @@
 		353D20BA1E2C9C7B00AA2610 /* JKTool */ = {
 			isa = PBXGroup;
 			children = (
+				35C2F0CF206F4B5500157D4B /* WXAlipay */,
 				358B44CE1E497A7D00A0DC93 /* Appstore */,
 				358B44CD1E497A5100A0DC93 /* Foundation */,
 				358B44CC1E497A3600A0DC93 /* UIKit */,
@@ -1649,6 +1699,11 @@
 		353D21221E2CB54B00AA2610 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35C2F0CB206F4B1000157D4B /* CoreMotion.framework */,
+				35C2F0C9206F4B0700157D4B /* CFNetwork.framework */,
+				35C2F0C7206F4ADE00157D4B /* CoreText.framework */,
+				35C2F0C5206F4AD500157D4B /* QuartzCore.framework */,
+				35C2F0C3206F4A9900157D4B /* AlipaySDK.framework */,
 				35323EB61E6D3F6A00FF7BF0 /* libsqlite3.tbd */,
 				35323EB41E6D3F6000FF7BF0 /* libz.tbd */,
 				35323EB21E6D3F5800FF7BF0 /* libc++.tbd */,
@@ -1723,10 +1778,14 @@
 				3538C20B2018CB00003DC0AE /* RichModelUpload.m */,
 				3538C2102019BCA6003DC0AE /* DemandInfoUpload.h */,
 				3538C2112019BCA6003DC0AE /* DemandInfoUpload.m */,
-				354960702020A174002A5C4C /* CharmTitleModel.h */,
-				354960712020A174002A5C4C /* CharmTitleModel.m */,
 				354960732020BB92002A5C4C /* MeetingDetail.h */,
 				354960742020BB92002A5C4C /* MeetingDetail.m */,
+				35C2F0B1206F2DA000157D4B /* VipInfo.h */,
+				35C2F0B2206F2DA000157D4B /* VipInfo.m */,
+				35C2F0B7206F2DE900157D4B /* UnPayModel.h */,
+				35C2F0B8206F2DE900157D4B /* UnPayModel.m */,
+				35C2F0BA206F2E1C00157D4B /* PayModel.h */,
+				35C2F0BB206F2E1C00157D4B /* PayModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1787,6 +1846,8 @@
 				3513564A2007A2080091606C /* SHContactTableViewCell.h */,
 				3513564B2007A2080091606C /* SHContactTableViewCell.m */,
 				3513564C2007A2080091606C /* SHContactTableViewCell.xib */,
+				35C2F0DE206FB3A400157D4B /* MyVipRenewView.h */,
+				35C2F0DF206FB3A400157D4B /* MyVipRenewView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3319,6 +3380,11 @@
 				35C172B21FFBB50E00607658 /* FeedbackViewController.m */,
 				3513565E200A0C1B0091606C /* PersonalInfoViewController.h */,
 				3513565F200A0C1B0091606C /* PersonalInfoViewController.m */,
+				35C2F0D6206F711F00157D4B /* MyVipRenewViewController.h */,
+				35C2F0D7206F711F00157D4B /* MyVipRenewViewController.m */,
+				35C2F0D9206F718600157D4B /* MyVipStatusViewController.h */,
+				35C2F0DA206F718600157D4B /* MyVipStatusViewController.m */,
+				35C2F0DB206F718600157D4B /* MyVipStatusViewController.xib */,
 			);
 			name = SHMemberCenter;
 			sourceTree = "<group>";
@@ -3337,8 +3403,19 @@
 				358104D21FFDFB5E00FC463A /* ApplicationStep2View.m */,
 				358104D41FFDFB7600FC463A /* ApplicationStep3View.h */,
 				358104D51FFDFB7600FC463A /* ApplicationStep3View.m */,
+				35C2F0C0206F43D100157D4B /* ApplicationStep4View.h */,
+				35C2F0C1206F43D100157D4B /* ApplicationStep4View.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		35C2F0CF206F4B5500157D4B /* WXAlipay */ = {
+			isa = PBXGroup;
+			children = (
+				35C2F0D0206F569500157D4B /* ThirdPayHelper.h */,
+				35C2F0D1206F569500157D4B /* ThirdPayHelper.m */,
+			);
+			name = WXAlipay;
 			sourceTree = "<group>";
 		};
 		35EA976D1E35FB6700BD07CF /* JKQuickDevelopUITests */ = {
@@ -3371,6 +3448,8 @@
 				35C172761FFBB02300607658 /* ApplicationStep2ViewController.m */,
 				35C1728A1FFBB27F00607658 /* ApplicationStep3ViewController.h */,
 				35C1728B1FFBB27F00607658 /* ApplicationStep3ViewController.m */,
+				35C2F0BD206F438400157D4B /* ApplicationStep4ViewController.h */,
+				35C2F0BE206F438400157D4B /* ApplicationStep4ViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -3671,6 +3750,7 @@
 				3513564E2007A2080091606C /* SHContactTableViewCell.xib in Resources */,
 				355894C92001F13500ED128A /* f_static_101@3x.png in Resources */,
 				3547EA7F200F911300A37B1F /* comm_areas.json in Resources */,
+				35C2F0DD206F718600157D4B /* MyVipStatusViewController.xib in Resources */,
 				355894BD2001F13500ED128A /* f_static_095@3x.png in Resources */,
 				35588CA920008F5F00ED128A /* AddressTableViewCell.xib in Resources */,
 				355894362001F13400ED128A /* f_static_028@2x.png in Resources */,
@@ -3830,6 +3910,7 @@
 				355894B02001F13500ED128A /* f_static_089@2x.png in Resources */,
 				355893E12001F13400ED128A /* face@2x.png in Resources */,
 				355893E42001F13400ED128A /* input-bar-flat@3x.png in Resources */,
+				35C2F0CE206F4B3A00157D4B /* AlipaySDK.bundle in Resources */,
 				355893F02001F13400ED128A /* section0_emotion12@2x.png in Resources */,
 				355894A62001F13500ED128A /* f_static_084@2x.png in Resources */,
 				355894A72001F13500ED128A /* f_static_084@3x.png in Resources */,
@@ -3990,7 +4071,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-JKQuickDevelop/Pods-JKQuickDevelop-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/Appirater/Appirater.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/Appirater/Appirater.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/YJBannerView/YJBannerView/Resource/YJBannerView.bundle",
@@ -4000,7 +4081,13 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Appirater.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YJBannerView.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZLPhotoActionSheet.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZLPhotoBrowserCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZLPhotoBrowser.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4032,6 +4119,7 @@
 				35F0691A1E52E098009DBEE4 /* PathUtility.m in Sources */,
 				354B0AED2003A12200D614B7 /* MomentHeaderView.m in Sources */,
 				358104EE1FFE618E00FC463A /* MainPageHeaderCollectionViewCell.m in Sources */,
+				35C2F0D8206F711F00157D4B /* MyVipRenewViewController.m in Sources */,
 				356380491FFB1CA200A01869 /* CopyAbleLabel.m in Sources */,
 				355893DD2001F13400ED128A /* NSString+Emoji.m in Sources */,
 				35588CAD20009A4A00ED128A /* Contact.m in Sources */,
@@ -4050,12 +4138,14 @@
 				35588CB82000C0B200ED128A /* CornerTriangleView.m in Sources */,
 				352B88691E8DF9950034F005 /* PushNotificationHelper.m in Sources */,
 				354832BF200E3BC20004E574 /* BannerModel.m in Sources */,
+				35C2F0D2206F569500157D4B /* ThirdPayHelper.m in Sources */,
 				35323E9A1E6D3D8500FF7BF0 /* MZIMAudioPlayHelper.m in Sources */,
 				356380431FF629E800A01869 /* JKTextField_Padding.m in Sources */,
 				35588CB22000A63E00ED128A /* ObjectPingSortHelper.m in Sources */,
 				35588CC22000E4A000ED128A /* MemberCenterTableViewHeaderView.m in Sources */,
 				35C172711FFBAF0000607658 /* ResetPasswordViewController.m in Sources */,
 				3538C2152019D143003DC0AE /* MySupplyDetailViewController.m in Sources */,
+				35C2F0C2206F43D100157D4B /* ApplicationStep4View.m in Sources */,
 				35588CE620011F1900ED128A /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */,
 				35588CDD2001191000ED128A /* Comment.m in Sources */,
 				35C172681FFBA7CB00607658 /* SHAddressViewController.m in Sources */,
@@ -4090,6 +4180,8 @@
 				355894DE2001F13500ED128A /* MoreItem.m in Sources */,
 				355894E32001F13500ED128A /* FacePageView.m in Sources */,
 				3513563C200793B20091606C /* MyCompanyInfoEditView.m in Sources */,
+				35C2F0BC206F2E1C00157D4B /* PayModel.m in Sources */,
+				35C2F0B9206F2DE900157D4B /* UnPayModel.m in Sources */,
 				3538C20C2018CB00003DC0AE /* RichModelUpload.m in Sources */,
 				35588CA42000895C00ED128A /* AddressTableViewHeader.m in Sources */,
 				35C172831FFBB14400607658 /* MySupplyAndDemandViewController.m in Sources */,
@@ -4101,6 +4193,7 @@
 				355894E72001F13500ED128A /* PanelBottomView.m in Sources */,
 				35323EA71E6D3D8500FF7BF0 /* MZIMMessageShappedImageView.m in Sources */,
 				355894EB2001F13500ED128A /* RFRecordButton.m in Sources */,
+				35C2F0E3206FC0DB00157D4B /* JKSelectedListView.m in Sources */,
 				358B44D41E499C8200A0DC93 /* HUDHelper.m in Sources */,
 				35323E9C1E6D3D8500FF7BF0 /* MZIMChatViewController.m in Sources */,
 				358B44DE1E4C142D00A0DC93 /* StartPageViewController.m in Sources */,
@@ -4111,6 +4204,7 @@
 				35C1729E1FFBB41D00607658 /* NoticeViewController.m in Sources */,
 				354832C8200E3CFF0004E574 /* NewsModel.m in Sources */,
 				3547EA7D200F7D8E00A37B1F /* RegExString.m in Sources */,
+				35C2F0B3206F2DA000157D4B /* VipInfo.m in Sources */,
 				35323EA51E6D3D8500FF7BF0 /* MZIMMessageDispatcher.m in Sources */,
 				355894F42001FD1100ED128A /* CommentTableViewCell.m in Sources */,
 				3538C2092018B8C7003DC0AE /* UploadRichEngine.m in Sources */,
@@ -4121,6 +4215,7 @@
 				3516EC0E1E8C9FC400B9A97D /* ClusterPrePermissions.m in Sources */,
 				354832C2200E3C500004E574 /* SysInfoModel.m in Sources */,
 				354832CB200E3DA70004E574 /* MettingModel.m in Sources */,
+				35C2F0E0206FB3A400157D4B /* MyVipRenewView.m in Sources */,
 				358B44DA1E499C9B00A0DC93 /* JKNetworkHelper.m in Sources */,
 				35323EA81E6D3D8500FF7BF0 /* MZIMModeExtra.m in Sources */,
 				356380341FF33CFC00A01869 /* ChineseToPinyinResource.m in Sources */,
@@ -4149,7 +4244,6 @@
 				358104FA1FFE74C100FC463A /* MainPageSectionView.m in Sources */,
 				35135634200780470091606C /* MineCompanyTextTableViewCell.m in Sources */,
 				35C172921FFBB33D00607658 /* CompanyInfoViewController.m in Sources */,
-				354960722020A174002A5C4C /* CharmTitleModel.m in Sources */,
 				355894FD20020E1A00ED128A /* JGGView.m in Sources */,
 				35135660200A0C1B0091606C /* PersonalInfoViewController.m in Sources */,
 				354832BC200E39370004E574 /* AccomplishModel.m in Sources */,
@@ -4167,12 +4261,14 @@
 				35323EA61E6D3D8500FF7BF0 /* MZIMMessageFactory.m in Sources */,
 				3547EA9E201365CC00A37B1F /* PageData.m in Sources */,
 				353750861E321348006DC277 /* JKBaseTabBarController.m in Sources */,
+				35C2F0BF206F438400157D4B /* ApplicationStep4ViewController.m in Sources */,
 				35C172891FFBB23300607658 /* SHActivityDetailViewController.m in Sources */,
 				354832B9200E33E90004E574 /* UserInfo.m in Sources */,
 				355894E52001F13500ED128A /* FaceSourceManager.m in Sources */,
 				35C172AD1FFBB4D400607658 /* MomentDetailViewController.m in Sources */,
 				35FCE3A41E6FC09E001ACC20 /* NSString+Commen.m in Sources */,
 				35588CC82000E8CE00ED128A /* MemberCenterTableViewCell.m in Sources */,
+				35C2F0DC206F718600157D4B /* MyVipStatusViewController.m in Sources */,
 				3538C2122019BCA6003DC0AE /* DemandInfoUpload.m in Sources */,
 				35374ECA1E305944006DC277 /* main.m in Sources */,
 				352F23791E553FE30063C511 /* JKTickDownButton.m in Sources */,
@@ -4415,7 +4511,7 @@
 					"$(PROJECT_DIR)/JKQuickDevelop/Vendor/BlocksKit",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.infomedia.gzsh;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.jiangyou.gzsh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4451,7 +4547,7 @@
 					"$(PROJECT_DIR)/JKQuickDevelop/Vendor/BlocksKit",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.infomedia.gzsh;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.jiangyou.gzsh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

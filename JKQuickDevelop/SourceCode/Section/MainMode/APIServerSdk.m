@@ -523,4 +523,71 @@ static inline NSString* integerToString(NSInteger number){
     }];
 }
 
+/// 新增支付
++ (void)doGetVip:(SHRequestSucceed)succeed
+          failed:(SHRequestFailed)failed{
+    [JKNetworkHelper GET:getServerAddr(RVip) parameters:nil cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
+/// 注册时付款使用
++ (void)doFirstBuy:(NSString *)channel
+             vipId:(NSString *)vipId
+           succeed:(SHRequestSucceed)succeed
+            failed:(SHRequestFailed)failed{
+    NSDictionary *params = @{@"channel" : channel, @"vipId":vipId};
+    [JKNetworkHelper POST:getServerAddr(RFirstPay) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
+/// Delete unpay
++ (void)doDeleteUnPay:(SHRequestSucceed)succeed
+            failed:(SHRequestFailed)failed{
+    [JKNetworkHelper DELETE:getServerAddr(RDeleteUnpay) parameters:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
+/// 获取未支付订单
++ (void)doFindUnpaid:(SHRequestSucceed)succeed
+              failed:(SHRequestFailed)failed{
+    [JKNetworkHelper GET:getServerAddr(RUnpay) parameters:nil cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
+/// 支付订单
++ (void)doBuy:(NSString *)channel
+     succeed :(SHRequestSucceed)succeed
+       failed:(SHRequestFailed)failed{
+    NSDictionary *params = @{@"channel" : channel};
+    [JKNetworkHelper POST:getServerAddr(RUnpay) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
++ (void)doRenew:(NSString *)channcel
+          vipId:(NSString *)vipId
+       succeed :(SHRequestSucceed)succeed
+         failed:(SHRequestFailed)failed{
+    NSDictionary *params = @{@"channcel" : channcel,@"vipId":vipId};
+    [JKNetworkHelper POST:getServerAddr(RUnpay) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+        [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
+    } failure:^(NSError * _Nonnull error) {
+        [self netWorkErrorDeliver:nil failed:failed];
+    }];
+}
+
 @end

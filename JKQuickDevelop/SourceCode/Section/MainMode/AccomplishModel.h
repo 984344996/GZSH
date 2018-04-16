@@ -24,5 +24,5 @@
 @property (nonatomic, strong) NSString *enterpriseDescription;
 @property (nonatomic, strong) NSString *recommend;
 @property (nonatomic, strong) NSString *supplement;
-
+@property (nonatomic, assign) BOOL selfbuying;
 @end

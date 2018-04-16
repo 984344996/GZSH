@@ -11,6 +11,8 @@
 #import "SplashViewController.h"
 #import "LoginViewController.h"
 #import "MainTabViewController.h"
+#import "ApplicationStep4ViewController.h"
+#import "MyVipStatusViewController.h"
 
 @interface AppDelegate ()
 
