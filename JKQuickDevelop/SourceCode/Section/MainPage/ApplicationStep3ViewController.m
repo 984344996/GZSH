@@ -27,7 +27,7 @@
 #pragma mark - Life circle
 
 - (void)viewDidLoad {
-    self.title = @"申请入会（3/3）";
+    self.title = @"申请入会（3/4）";
     [super viewDidLoad];
 }
 
