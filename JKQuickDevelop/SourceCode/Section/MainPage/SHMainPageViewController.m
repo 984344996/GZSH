@@ -24,6 +24,10 @@
 #import "MySupplyAndDemandViewController.h"
 #import "SHEnterpriseViewController.h"
 #import "AppUtils.h"
+#import "UnPayModel.h"
+#import "JKSelectedListView.h"
+#import "ThirdPayHelper.h"
+#import <LEEAlert.h>
 
 @interface SHMainPageViewController ()<MainPageTableHeaderViewDelegate>
 
@@ -70,6 +74,7 @@
 
 - (void)configData{
     [super configData];
+    [self checkForUnPay];
     [AppUtils fetchDynamicMsgCount];
 }
 
@@ -181,6 +186,86 @@
     }];
 }
 
+/// 是否需要付费
+
+- (void)checkForUnPay{
+    WEAKSELF
+    [APIServerSdk doFindUnpaid:^(id obj) {
+        STRONGSELF
+        CommonResponseModel *response = (CommonResponseModel *)obj;
+        UnPayModel *model = [UnPayModel mj_objectWithKeyValues:response.data];
+        if (!model) {
+            return ;
+        }
+        [strongSelf tipToPay:model];
+    } failed:^(NSString *error) {
+    }];
+}
+
+- (void)tipToPay:(UnPayModel *)model{
+    [LEEAlert alert]
+    .config
+    .LeeTitle(@"有未支付订单")
+    .LeeCancelAction(@"取消", ^{
+    })
+    .LeeAction(@"去支付", ^{
+        [self chooseToPay:model];
+    })
+    .LeeAddContent(^(UILabel *label) {
+        label.text = [NSString stringWithFormat:@"您购买商会【%@】会员的%.2f元未支付！",model.vipName,model.price.floatValue];
+        label.textColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
+        label.textAlignment = NSTextAlignmentCenter;
+    })
+    .LeeShow();
+}
+
+- (void)chooseToPay:(UnPayModel *)model{
+    NSArray *array = @[@{@"name":@"微信支付",@"type":@"wx"},@{@"name":@"支付宝支付",@"type":@"alipay"}];
+    JKSelectedListView *view = [[JKSelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+    view.isSingle            = YES;
+    view.array               = array;
+    view.titleKey            = @"name";
+    
+    WEAKSELF
+    view.selectedBlock = ^(NSArray *array) {
+        [LEEAlert closeWithCompletionBlock:^{
+            STRONGSELF
+            NSUInteger index = [array indexOfObject:[array firstObject]];
+            NSObject *obj = array[index];
+            NSString *type = [obj valueForKey:@"type"];
+            [strongSelf doPayUnPay:type];
+        }];
+    };
+    NSString *title = @"请选择支付方式";
+    [LEEAlert alert].config
+    .LeeTitle(title)
+    .LeeCustomView(view)
+    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+    .LeeClickBackgroundClose(YES)
+    .LeeShow();
+}
+
+- (void)doPayUnPay:(NSString *)channel{
+    WEAKSELF
+    [APIServerSdk doBuy:channel succeed:^(id obj) {
+        STRONGSELF
+        CommonResponseModel *model = (CommonResponseModel *)obj;
+        PayModel *payModel = [PayModel mj_objectWithKeyValues:(model.data)];
+        [[ThirdPayHelper sharedInstance] thirdPay:channel payModel:payModel callback:^(PayType type, PayResult result, NSString *message) {
+            if (result == PayResultSuccess) {
+                [[HUDHelper sharedInstance] tipMessage:@"支付成功" inView:strongSelf.view];
+            }else{
+                [[HUDHelper sharedInstance] tipMessage:@"支付失败" inView:strongSelf.view];
+            }
+        }];
+    } failed:^(NSString *error) {
+        STRONGSELF
+        [[HUDHelper sharedInstance] tipMessage:@"支付失败" inView:strongSelf.view];
+    }];
+}
+
+
 #pragma mark - Delegate and Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -241,12 +326,28 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
-- (void)didTurnToTabIndex:(NSUInteger)index{
+/// 会议
+- (void)didTurnToSHMeeting:(NSUInteger)index{
+    [self.tabBarController setSelectedIndex:index];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kJKMeetingActivityRefresh object:nil userInfo:@{@"type":@"MEETING"}];
+    });
+}
+
+/// 活动
+- (void)didTurnToSHActivity:(NSUInteger)index{
+    [self.tabBarController setSelectedIndex:index];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kJKMeetingActivityRefresh object:nil userInfo:@{@"type":@"ACTIVITY"}];
+    });
+}
+
+- (void)didTurnToIndex:(NSUInteger)index{
     [self.tabBarController setSelectedIndex:index];
 }
 
 - (void)didTurnToNewCenter{
-    SHWebViewViewController *vc = [[SHWebViewViewController alloc] initWithUrl:[NSString GetH5Url:@"https://www.baidu.com"]];
+    SHWebViewViewController *vc = [[SHWebViewViewController alloc] initWithUrl:[NSString GetH5Url:[NSString stringWithFormat:@"%@%@",BaseFileUrl,@"/h5/news.html"]]];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;

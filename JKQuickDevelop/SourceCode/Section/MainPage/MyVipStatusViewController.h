@@ -9,8 +9,6 @@
 #import "JKBaseViewController.h"
 
 @interface MyVipStatusViewController : JKBaseViewController
-
-
 @property (weak, nonatomic) IBOutlet UILabel            *labelCharm;
 @property (weak, nonatomic) IBOutlet UIImageView        *imageIcon;
 @property (weak, nonatomic) IBOutlet UILabel            *labelTime;

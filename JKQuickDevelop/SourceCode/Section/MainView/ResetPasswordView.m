@@ -41,9 +41,9 @@
 
 - (UITextField *)inputPhone{
     if (!_inputPhone) {
-        _inputPhone = [[UITextField alloc] init];
-        _inputPhone.textColor = kMainTextColor;
-        _inputPhone.font = kMainTextFieldTextFontLarge;
+        _inputPhone             = [[UITextField alloc] init];
+        _inputPhone.textColor   = kMainTextColor;
+        _inputPhone.font        = kMainTextFieldTextFontLarge;
         _inputPhone.placeholder = @"请输入你的手机号";
         _inputPhone.keyboardType = UIKeyboardTypePhonePad;
     }
@@ -53,9 +53,9 @@
 
 - (UITextField *)inputSms{
     if (!_inputSms) {
-        _inputSms = [[UITextField alloc] init];
-        _inputSms.textColor = kMainTextColor;
-        _inputSms.font = kMainTextFieldTextFontLarge;
+        _inputSms             = [[UITextField alloc] init];
+        _inputSms.textColor   = kMainTextColor;
+        _inputSms.font        = kMainTextFieldTextFontLarge;
         _inputSms.placeholder = @"请输入验证码";
         _inputSms.keyboardType = UIKeyboardTypeNumberPad;
     }
@@ -64,10 +64,11 @@
 
 - (UITextField *)inputPass{
     if (!_inputPass) {
-        _inputPass = [[UITextField alloc] init];
-        _inputPass.textColor = kMainTextColor;
-        _inputPass.font = kMainTextFieldTextFontMiddle;
-        _inputPass.placeholder = @"请输入至少6位包含英文数字的新密码";
+        _inputPass                 = [[UITextField alloc] init];
+        _inputPass.textColor       = kMainTextColor;
+        _inputPass.font            = kMainTextFieldTextFontMiddle;
+        _inputPass.secureTextEntry = YES;
+        _inputPass.placeholder     = @"请输入至少6位包含英文数字的新密码";
         _inputPass.keyboardType = UIKeyboardTypeASCIICapable;
     }
     return _inputPass;
@@ -87,7 +88,7 @@
 
 - (UIButton *)buttonModify{
     if (!_buttonModify) {
-        _buttonModify = [[UIButton alloc] init];
+        _buttonModify                 = [[UIButton alloc] init];
         _buttonModify.titleLabel.font = kMainTextFieldTextFontBold16;
         [_buttonModify setTitle:@"确认修改" forState:UIControlStateNormal];
         [_buttonModify setTitleColor:kWhiteColor forState:UIControlStateNormal];
@@ -129,31 +130,31 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    CGFloat w = self.jk_width;
-    CGFloat h = self.jk_height;
-    CGFloat posY = 85;
-    CGFloat margin = 52;
+    CGFloat w             = self.jk_width;
+    CGFloat h             = self.jk_height;
+    CGFloat posY          = 85;
+    CGFloat margin        = 52;
     CGFloat wExceptMargin = w - margin * 2;
-    
+
     [self.inputPhone setFrame:CGRectMake(margin, posY, wExceptMargin, 25)];
-    posY              += 35;
+    posY                  += 35;
     [self.line1 setFrame:CGRectMake(margin, posY, w - margin * 2, 1)];
-    
-    posY += 23;
-    CGFloat inputSmsW = wExceptMargin * 0.6;
+
+    posY                  += 23;
+    CGFloat inputSmsW     = wExceptMargin * 0.6;
     [self.inputSms setFrame:CGRectMake(margin, posY, inputSmsW, 25)];
     [self.buttonSms setFrame:CGRectMake(margin + inputSmsW + 10 , posY - 5, w - self.inputSms.jk_right - 62, 35)];
-    posY += 35;
+    posY                  += 35;
     [self.line2 setFrame:CGRectMake(margin, posY, inputSmsW, 1)];
-    
-    posY += 23;
+
+    posY                  += 23;
     [self.inputPass setFrame:CGRectMake(margin, posY, wExceptMargin, 25)];
-    posY += 35;
+    posY                  += 35;
     [self.line3 setFrame:CGRectMake(margin, posY, wExceptMargin, 1)];
-    
-    CGFloat btnH = 56;
+
+    CGFloat btnH          = 56;
     if (kDevice_Is_iPhoneX) {
-        btnH += kDeltaForIphoneX;
+    btnH                  += kDeltaForIphoneX;
     }
     [self.buttonModify setFrame:CGRectMake(0, h - btnH, w, btnH)];
 }

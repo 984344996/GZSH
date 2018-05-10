@@ -338,7 +338,7 @@
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{
                                                            NSForegroundColorAttributeName:kNavBarTintColor,
                                                            NSShadowAttributeName:shadow,
-                                                           NSFontAttributeName:kCommonMiddleTextFont
+                                                           NSFontAttributeName:kCommonLargeTextFont
                                                            }
                                                 forState:UIControlStateNormal];
     //UITabBarItem

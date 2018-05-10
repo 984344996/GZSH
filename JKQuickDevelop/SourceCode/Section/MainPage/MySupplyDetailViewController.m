@@ -18,6 +18,7 @@
 #import "DemandInfo.h"
 #import "NSDate+Common.h"
 #import <UIImageView+WebCache.h>
+#import "APIServerSdk.h"
 
 @interface MySupplyDetailViewController ()
 
@@ -71,6 +72,9 @@
     [self reloadUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 
 - (MyLinearLayout *)linerContent{
     if (!_linerContent) {
@@ -103,6 +107,11 @@
 
 - (void)editInfo:(UIBarButtonItem *)sender{
     MySupplyAndDemandEditViewController *vc = [[MySupplyAndDemandEditViewController alloc] initWithDemandInfo:self.demand];
+    WEAKSELF
+    vc.SupplyEditedCallback = ^(DemandInfo *info) {
+        STRONGSELF
+        [strongSelf reloadUI];
+    };
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = YES;
@@ -134,6 +143,7 @@
 }
 
 - (void)reloadUI{
+    [self.linerContent removeAllSubviews];
     self.richContents = [RichMode mj_objectArrayWithKeyValuesArray:self.demand.content];
     NSString *dateStr      = [NSDate parseServerDateTimeToFormat:self.demand.time format:kTurnState6];
     self.labelTitle.text   = self.demand.title;

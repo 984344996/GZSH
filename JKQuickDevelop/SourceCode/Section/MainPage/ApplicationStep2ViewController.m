@@ -127,6 +127,7 @@
         [[JKImagePicker sharedInstance] showPopView:self allowedEdit:YES callback:^(UIImage *image) {
             [self.applicationStep2View.btnImage setImage:image forState:UIControlStateNormal];
             self.seletedImage = image;
+            [self uploadImage];
         }];
     }];
     
@@ -135,7 +136,6 @@
         if(!self.seletedImage){
             [[HUDHelper sharedInstance] tipMessage:@"请先选取照片" inView:self.view];
         }
-        [self uploadImage];
     }];
     
     self.applicationStep2View.inputAddressProvince.userInteractionEnabled = YES;
@@ -205,6 +205,7 @@
         [[HUDHelper sharedInstance] tipMessage:@"上传成功" inView:self.view];
         CommonResponseModel *cObj = obj;
         self.upLoadModel = [UpLoadModel mj_objectWithKeyValues:cObj.data];
+        [self.applicationStep2View.btnReupload setTitle:@"重新上传" forState:UIControlStateNormal];
     } failed:^(NSString *error) {
         [[HUDHelper sharedInstance] stopLoading:self.hud];
         [[HUDHelper sharedInstance] tipMessage:error inView:self.view];
@@ -229,7 +230,7 @@
     RAC(self.accomplishModel,name)            = [RACSignal
                                                  merge:@[self.applicationStep2View.inputName.rac_textSignal, RACObserve(self.applicationStep2View.inputName, text)]];
     RAC(self.accomplishModel,enterpriseName)  = [RACSignal
-                                                 merge:@[self.applicationStep2View.inpputCompayPosition.rac_textSignal, RACObserve(self.applicationStep2View.inpputCompayPosition, text)]];
+                                                 merge:@[self.applicationStep2View.inputCompany.rac_textSignal, RACObserve(self.applicationStep2View.inputCompany, text)]];
     
     RAC(self.accomplishModel,enterpriseTitle) = [RACSignal
                                                  merge:@[self.applicationStep2View.inpputCompayPosition.rac_textSignal, RACObserve(self.applicationStep2View.inpputCompayPosition, text)]];

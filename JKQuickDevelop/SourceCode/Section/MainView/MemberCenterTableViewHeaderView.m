@@ -27,9 +27,13 @@
 - (void)setUserInfo:(UserInfo *)userInfo{
     [self.avatar sd_setImageWithURL:GetImageUrl(userInfo.avatar) placeholderImage:kPlaceHoderHeaderImage];
     self.nameLabel.text            = userInfo.userName;
+    if (userInfo.enterprise.name) {
     self.companyLabel.text         = userInfo.enterprise.name;
-    self.companyPositionLabel.text = userInfo.enterpriseTitle;
-
+    }
+    if (userInfo.enterpriseTitle) {
+        self.companyPositionLabel.text = [NSString stringWithFormat:@"公司职位：%@",userInfo.enterpriseTitle];
+    }
+    
     VipInfo *info = [AppDataFlowHelper getVipInfoOfCharmTitle:userInfo.chamTitle];
     self.shPositionLabel.text      = info.name;
     self.vipInfoLabel.text         = info.name;

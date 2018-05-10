@@ -14,7 +14,9 @@
 @protocol MainPageTableHeaderViewDelegate <NSObject>
 - (void)didBannerTapped:(BannerModel *)bannerModel;
 - (void)didNewsTapped:(NewsModel *)newsModel;
-- (void)didTurnToTabIndex:(NSUInteger)index;
+- (void)didTurnToSHMeeting:(NSUInteger)index;
+- (void)didTurnToSHActivity:(NSUInteger)index;
+- (void)didTurnToIndex:(NSUInteger)index;
 - (void)didTurnToNewCenter;
 - (void)didTurnToEnterpriseCenter;
 @end

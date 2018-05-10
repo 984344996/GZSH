@@ -9,5 +9,4 @@
 #import "JKBaseViewController.h"
 
 @interface ApplicationStep4ViewController : JKBaseViewController
-
 @end

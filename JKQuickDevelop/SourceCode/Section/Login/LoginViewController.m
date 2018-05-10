@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, assign) CGFloat topMargin;
 @end
 
 @implementation LoginViewController
@@ -39,12 +40,67 @@
     self.view = self.loginView;
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (_topMargin < 1) {
+        _topMargin = self.loginView.jk_top;
+    }
+}
+
 
 - (void)configView{
     [super configView];
     self.title = @"登录";
     self.loginView.backgroundColor = [UIColor whiteColor];
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //注册键盘出现NSNotification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    //注册键盘隐藏NSNotification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue        = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    __block  CGFloat keyboardHeight = [aValue CGRectValue].size.height;
+    if (keyboardHeight == 0) {
+        // 解决搜狗输入法三次调用此方法的bug、
+        // IOS8.0之后可以安装第三方键盘，如搜狗输入法之类的。
+        // 获得的高度都为0.这是因为键盘弹出的方法:- (void)keyBoardWillShow:(NSNotification
+        // *)notification需要执行三次,你如果打印一下,你会发现键盘高度为:第一次:0;第二次:216:第三次
+        // :282.并不是获取不到高度,而是第三次才获取真正的高度.
+        return;
+    }
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.loginView setJk_top:self.topMargin - 150];
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    [animationDurationValue getValue:&animationDuration];
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.loginView setJk_top:self.topMargin];
+    }];
+}
+
 
 - (void)configEvent{
     @weakify(self)

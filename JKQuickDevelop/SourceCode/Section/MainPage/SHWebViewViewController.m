@@ -36,6 +36,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self configLeftButton];
     [self.navigationController.navigationBar addSubview:self.progressView];
 }
 
@@ -58,6 +59,24 @@
     self.webView.delegate = self.progrssProxy;
 }
 
+- (void)configLeftButton{
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.backBarButtonItem = nil;
+
+    UIButton *backButton                  = [[UIButton alloc] init];
+    [backButton setImage:[UIImage imageNamed:@"Bars_Arrow_Right"] forState:UIControlStateNormal];
+    [backButton setTitle:@"关闭" forState:UIControlStateNormal];
+    [backButton.titleLabel setFont:kCommonLargeTextFont];
+    [backButton addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *itemBack             = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+
+    UIBarButtonItem *itemFixSpace         = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+
+    UIBarButtonItem *itemPre              = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(goPre)];
+    self.navigationItem.leftBarButtonItems = @[itemBack,itemFixSpace,itemPre];
+}
+
+
 - (void)configData{
     [super configData];
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.loadUrl] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:0.0];
@@ -70,6 +89,17 @@
     CGFloat h = self.view.jk_height;
     
     [self.webView setFrame:CGRectMake(0, 0, w, h)];
+}
+
+#pragma mark - Private methods
+- (void)goBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)goPre{
+    if ([self.webView canGoBack]){
+        [self.webView goBack];
+    }
 }
 
 #pragma mark - Lazy loading

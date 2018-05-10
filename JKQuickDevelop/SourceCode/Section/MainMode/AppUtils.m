@@ -21,7 +21,7 @@
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:kJKReddotNotification object:nil userInfo:@{@"index":[NSNumber numberWithUnsignedInteger:1],@"number":[NSNumber numberWithUnsignedInteger:0]}];
     }
-    return count;
+    return (int)count;
 }
 
 + (void)makePhoneCallTo:(NSString *)phone{

@@ -73,7 +73,7 @@
 
 - (void)doApplication{
     self.hud              = [[HUDHelper sharedInstance] loading:@"正在申请" inView:self.view];
-    NSString *companyDesc = [NSString stringWithFormat:@"[{\"inputContent\":%@}]",self.model.enterpriseDescription];
+    NSString *companyDesc = [NSString stringWithFormat:@"[{\"inputContent\":\"%@\"}]",self.model.enterpriseDescription];
     self.model.enterpriseDescription = companyDesc;
     self.model.selfbuying = YES;
     WEAKSELF

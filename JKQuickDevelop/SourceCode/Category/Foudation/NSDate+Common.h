@@ -24,6 +24,7 @@
 
 - (NSString *)timeTextOfDate;
 
++ (NSDate *)getDateFromDateString:(NSString *)dateString;
 + (NSString *)parseServerDateTimeToFormat:(NSString *)dateString format:(NSString *)format;
 + (NSString *)parseTimeToCYMD:(NSString *)dateString shortYear:(BOOL)shortYear;
 + (NSString *)parseTimeToCMD:(NSString *)dateString;

@@ -9,5 +9,5 @@
 #import "JKBaseViewController.h"
 
 @interface MyVipRenewViewController : JKBaseViewController
-
+@property (nonatomic, strong) NSString *charmTitleLast;
 @end

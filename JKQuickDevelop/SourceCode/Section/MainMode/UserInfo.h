@@ -20,4 +20,5 @@
 @property (nonatomic, strong) NSString *enterpriseTitle;
 @property (nonatomic, strong) NSString *vipState; // VALID、INVALID
 @property (nonatomic, strong) VipInfo *vipInfo;
+@property (nonatomic, strong) NSString *vipExpires;
 @end

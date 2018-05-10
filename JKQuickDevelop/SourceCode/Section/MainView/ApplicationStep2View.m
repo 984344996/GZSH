@@ -155,6 +155,8 @@
         _btnReupload = [[UIButton alloc] init];
         [_btnReupload setTitle:@"上传头像" forState:UIControlStateNormal];
         [_btnReupload setTitleColor:kMainBlueColor forState:UIControlStateNormal];
+        [_btnReupload setTitleColor:kMainBlueColor forState:UIControlStateDisabled];
+        [_btnReupload setEnabled:NO];
         [_btnReupload.titleLabel setFont:kMainTextFieldTextFontSmall];
     }
     return _btnReupload;

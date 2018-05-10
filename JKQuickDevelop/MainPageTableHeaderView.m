@@ -174,7 +174,7 @@
 #pragma mark - Events
 
 - (void)btnAddressClicked:(UIButton *)sender{
-    [self.delegate didTurnToTabIndex:2];
+    [self.delegate didTurnToIndex:2];
 }
 
 - (void)btnCompanyClicked:(UIButton *)sender{
@@ -263,11 +263,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        [self.delegate didTurnToTabIndex:4];
+        [self.delegate didTurnToIndex:4];
     }else if(indexPath.row == 1){
-        [self.delegate didTurnToTabIndex:3];
+        [self.delegate didTurnToSHMeeting:3];
     }else if(indexPath.row == 2){
-         [self.delegate didTurnToTabIndex:3];
+         [self.delegate didTurnToSHActivity:3];
     }else{
         [self.delegate didTurnToNewCenter];
     }

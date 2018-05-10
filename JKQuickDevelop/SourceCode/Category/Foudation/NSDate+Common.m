@@ -192,6 +192,15 @@
     return formatter;
 }
 
++ (NSDate *)getDateFromDateString:(NSString *)dateString{
+    if (!dateString) {
+        return nil;
+    }
+    NSDateFormatter *fromFormat = [self getFormatterLocal:kServerDateTimeFormat];
+    NSDate *date = [fromFormat dateFromString:dateString];
+    return date;
+}
+
 + (NSString *)parseServerDateTimeToFormat:(NSString *)dateString format:(NSString *)format{
     if (!dateString) {
         return @"";

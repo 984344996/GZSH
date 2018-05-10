@@ -81,18 +81,21 @@
     }
 }
 
-- (void)configData{
-    [super configData];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     if (self.isSelf){
         [self loadEnterpriseInfo:nil];
     }
     if (self.enterpriseModel) {
         [self reloadUI];
     }
-    
     if (self.userId) {
         [self loadEnterpriseInfo:self.userId];
     }
+}
+
+- (void)configData{
+    [super configData];
 }
 
 - (void)reloadUI{
@@ -101,6 +104,8 @@
     self.labelPhone.text = self.enterpriseModel.mobile;
     self.labelMail.text = self.enterpriseModel.email;
     self.labelAddress.text = self.enterpriseModel.address;
+    [self.linerCompanyInfo removeAllSubviews];
+    [self.linerCompanyService removeAllSubviews];
     
     for (RichMode *model in self.richInfoModels) {
         if ([model.type isEqualToString:@"image"]) {

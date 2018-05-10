@@ -18,6 +18,7 @@
 #import "AppDataFlowHelper.h"
 #import <MJExtension.h>
 #import <ReactiveObjC.h>
+#import "MyVipStatusViewController.h"
 
 @interface SHMemberViewController ()
 
@@ -43,6 +44,7 @@
 
 - (void)configData{
     [super configData];
+    self.userInfo = [AppDataFlowHelper getLoginUserInfo];
     [self loadSelfUserInfo];
 }
 
@@ -53,7 +55,10 @@
     UITapGestureRecognizer *gen = [[UITapGestureRecognizer alloc] init];
     [self.header.vipView addGestureRecognizer:gen];
     [[gen rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
-       
+        MyVipStatusViewController *vc = [[MyVipStatusViewController alloc] init];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }];
 }
 
@@ -80,15 +85,11 @@
 - (void)loadSelfUserInfo{
     NSString *userId = [AppDataFlowHelper getLoginUserInfo].userId;
     WEAKSELF
-    [APIServerSdk doGetUserInfo:userId needCache:YES cacheSucceed:^(id obj) {
+    [APIServerSdk doGetUserInfo:userId needCache:NO cacheSucceed:nil succeed:^(id obj) {
         STRONGSELF
         strongSelf.userInfo = [UserInfo mj_objectWithKeyValues:obj];
-
         UserInfo *saveInfo  = [UserInfo mj_objectWithKeyValues:obj];
         [AppDataFlowHelper saveLoginUserInfo:saveInfo];
-    } succeed:^(id obj) {
-        STRONGSELF
-        strongSelf.userInfo = [UserInfo mj_objectWithKeyValues:obj];
     } failed:^(NSString *error) {
     }];
 }

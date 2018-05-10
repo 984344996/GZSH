@@ -38,11 +38,8 @@ static NSString* VipInfoFormat = @"%@会员价格为%.2f,您可直接支付成�
 
 - (void)viewDidLoad {
     self.title = @"申请入会（4/4）";
-    self.token = @"token_inactive_ezSocpdeYjV532eqns9dRoopw8m2SYpJHSraet";
-    
     self.index = -1;
     self.vipArray = [NSMutableArray array];
-    [JKNetworkHelper setToken:self.token];
     [super viewDidLoad];
 }
 
@@ -133,6 +130,12 @@ static NSString* VipInfoFormat = @"%@会员价格为%.2f,您可直接支付成�
 - (void)selectedThirdTypeAndPay{
     if (self.index < 0) {
         [[HUDHelper sharedInstance] tipMessage:@"请先选择会员类型" inView:self.view];
+        return;
+    }
+    
+    VipInfo *vip = self.vipArray[self.index];
+    if (vip.needCheck) {
+        [self DoPayVip:@"" vip:vip];
         return;
     }
     

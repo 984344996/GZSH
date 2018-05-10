@@ -12,4 +12,5 @@ NSString * const  kJKReddotNotification = @"kJKReddotNotification";
 NSString * const  kJKNetStatusChangeNotification = @"kJKNetStatusChangeNotification";
 NSString * const  kJKTokenOutofDate = @"kJKTokenOutofDate";
 NSString * const  kJKMomentSendSucceed = @"kJKMomentSendSucceed";
+NSString * const  kJKMeetingActivityRefresh = @"kJKMeetingActivityRefresh";
 

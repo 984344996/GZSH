@@ -13,3 +13,4 @@ extern  NSString * const  kJKReddotNotification;
 extern  NSString * const  kJKNetStatusChangeNotification;
 extern  NSString * const  kJKTokenOutofDate;
 extern  NSString * const  kJKMomentSendSucceed;
+extern  NSString * const  kJKMeetingActivityRefresh;

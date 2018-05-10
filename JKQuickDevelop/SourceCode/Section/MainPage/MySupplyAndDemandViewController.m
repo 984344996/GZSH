@@ -49,14 +49,17 @@
     }else{
         self.title = @"供求信息";
     }
-    
     self.tableView.separatorColor = kGrayLineColor;
     [self.tableView registerNib:[UINib nibWithNibName:@"MySupplyAndDemandTableViewCell" bundle:nil] forCellReuseIdentifier:@"MySupplyAndDemandTableViewCell"];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadData:YES];
+}
+
 - (void)configData{
     [super configData];
-    [self.tableView.mj_header beginRefreshing];
 }
 
 - (NSMutableArray *)supplies{

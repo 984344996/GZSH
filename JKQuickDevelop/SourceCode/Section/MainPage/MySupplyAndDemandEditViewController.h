@@ -11,6 +11,7 @@
 
 @interface MySupplyAndDemandEditViewController : JKBaseViewController
 
+@property (nonatomic, copy) void(^SupplyEditedCallback)(DemandInfo* info);
 - (instancetype)initWithDemandInfo:(DemandInfo *)model;
 
 @end

@@ -47,7 +47,20 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"ActivityTableViewCell" bundle:nil] forCellReuseIdentifier:@"ActivityTableViewCell"];
-    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)configData{
+    [super configData];
+    [self loadActivityMeeting:nil isRefresh:YES];
+}
+
+- (void)configEvent{
+    [super configEvent];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedRefresh:) name:kJKMeetingActivityRefresh object:nil];
+}
+- (void)receivedRefresh:(NSNotification *)sender{
+    NSString *type = sender.userInfo[@"type"];
+    [self loadActivityMeeting:type isRefresh:YES];
 }
 
 - (void)intoActivityDetail:(NSIndexPath *)inexPath{

@@ -344,6 +344,12 @@
         STRONGSELF
         [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
         [[HUDHelper sharedInstance] tipMessage:@"更新成功" inView:strongSelf.window];
+        if (strongSelf.SupplyEditedCallback) {
+            strongSelf.SupplyEditedCallback(self.demandInfo);
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [strongSelf.navigationController popViewControllerAnimated:YES];
+        });
     } failed:^(NSString *error) {
         STRONGSELF
         [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
@@ -358,6 +364,10 @@
         STRONGSELF
         [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];
         [[HUDHelper sharedInstance] tipMessage:@"发布成功" inView:strongSelf.window];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [strongSelf.navigationController popViewControllerAnimated:YES];
+        });
     } failed:^(NSString *error) {
         STRONGSELF
         [[HUDHelper sharedInstance] stopLoading:strongSelf.hud];

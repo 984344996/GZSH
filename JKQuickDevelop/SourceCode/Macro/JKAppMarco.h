@@ -14,10 +14,10 @@
 #define APPLookUpAddr [NSString stringWithFormat:@"https://itunes.apple.com/lookup?id=%@",APPID]
 #define APPUpgradeAddr [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/SMZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",APPID]
 
-#define APIServerProduct @"https://app.product.com"
+#define APIServerProduct @"http://gzsh.jyapi.cn/app"
 #define APIServerDevelop @"http://gzsh.jyapi.cn/app"
 
-#define BaseFileUrlProduct @"https://app.product.com"
+#define BaseFileUrlProduct @"http://gzsh.jyapi.cn"
 #define BaseFileUrlDevelop @"http://gzsh.jyapi.cn"
 
 #define APIServerCerPath @""   // SSL验证证书

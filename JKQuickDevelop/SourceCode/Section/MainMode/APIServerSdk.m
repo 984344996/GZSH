@@ -40,6 +40,8 @@ static inline NSString* integerToString(NSInteger number){
     }else{
         if (failed) {
             failed([response getErrorMsg]);
+        }else{
+            [response getErrorMsg];
         }
     }
 }
@@ -571,7 +573,7 @@ static inline NSString* integerToString(NSInteger number){
      succeed :(SHRequestSucceed)succeed
        failed:(SHRequestFailed)failed{
     NSDictionary *params = @{@"channel" : channel};
-    [JKNetworkHelper POST:getServerAddr(RUnpay) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+    [JKNetworkHelper POST:getServerAddr(RPay) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
         [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
     } failure:^(NSError * _Nonnull error) {
         [self netWorkErrorDeliver:nil failed:failed];
@@ -582,8 +584,8 @@ static inline NSString* integerToString(NSInteger number){
           vipId:(NSString *)vipId
        succeed :(SHRequestSucceed)succeed
          failed:(SHRequestFailed)failed{
-    NSDictionary *params = @{@"channcel" : channcel,@"vipId":vipId};
-    [JKNetworkHelper POST:getServerAddr(RUnpay) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
+    NSDictionary *params = @{@"channel" : channcel,@"vipId":vipId};
+    [JKNetworkHelper POST:getServerAddr(RRenew) parameters:params cache:nil success:^(id  _Nonnull responseObject) {
         [self commontCallbackDeliver:responseObject onlyData:NO succeed:succeed failed:failed];
     } failure:^(NSError * _Nonnull error) {
         [self netWorkErrorDeliver:nil failed:failed];

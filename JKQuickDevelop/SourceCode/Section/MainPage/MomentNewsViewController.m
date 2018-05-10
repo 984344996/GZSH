@@ -35,6 +35,11 @@
 - (void)configData{
     [super configData];
     [self refreshData];
+    
+    [DynamicMsg MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL contextDidSave, NSError * _Nullable error) {
+        [AppUtils fetchDynamicMsgCount];
+    }];
 }
 
 - (void)refreshData{
